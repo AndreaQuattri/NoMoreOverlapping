@@ -21,6 +21,10 @@ public class Model extends Observable{
 	private ArrayList<Studente> listStudente;
 	private ArrayList<Tirocinio> listTirocinio;
 	
+	private boolean enableModificaTable;
+	private boolean enableEliminaTable;
+
+	
 	
 	public Model() {
 
@@ -37,6 +41,9 @@ public class Model extends Observable{
 		listStudente = new ArrayList<Studente>();
 		listTirocinio = new ArrayList<Tirocinio>();
 		
+
+		enableModificaTable = false;
+		enableEliminaTable = false;
 		
 	}
 	
@@ -123,6 +130,32 @@ public class Model extends Observable{
 		setChanged();
 		
 		notifyObservers(notify);
+	}
+
+
+
+
+	public boolean isEnableModificaTable() {
+		return enableModificaTable;
+	}
+	
+	public boolean isEnableEliminaTable() {
+		return enableEliminaTable;
+	}
+
+
+
+
+	public void enableModificaTable(boolean enableModificaTable) {
+		this.enableModificaTable = enableModificaTable;
+		sendNotify(MyNotify.ENABLE_COMPILE);
+
+	}
+	
+	public void enableEliminaTable(boolean enableEliminaTable) {
+		this.enableEliminaTable = enableEliminaTable;
+		sendNotify(MyNotify.ENABLE_COMPILE);
+
 	}
 	
 	

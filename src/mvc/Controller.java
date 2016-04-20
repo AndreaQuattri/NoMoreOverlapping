@@ -33,24 +33,29 @@ public class Controller
 		this.view = view;
 
 		// Set all the listener of the view
-		//view.addInfoListener(new MyInfoListener());
+		view.selectTableToView(new MyInfoListener());
 		//view.addLoadFromFileListener(new MyLoadFromFileListener());
 		//view.addDocumentListener(new MyDocumentListener());
 		//view.addCompileListener(new MyCompileListener());
 		//view.addMakeLaTeXlistener(new MyMakeLaTeXlistener());
 	}
 	
-	/*
+	
 	private class MyInfoListener implements  ActionListener
 	{
 		@Override
 		public void actionPerformed(ActionEvent action)
 		{
-			InfoView infoView = new InfoView();
-			infoView.setVisible(true);
+			//InfoView infoView = new InfoView();
+			//infoView.getFrame().setVisible(true);
+			model.enableModificaTable(true);
+			model.enableEliminaTable(true);
+
 		}
 	}
 
+	
+	/*
 	private class MyLoadFromFileListener implements ActionListener
 	{
 		@Override

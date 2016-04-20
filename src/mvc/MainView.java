@@ -1,8 +1,10 @@
 package mvc;
 
+import java.awt.event.ActionListener;
 import java.util.Observable;
 import java.util.Observer;
 
+import javax.swing.ButtonModel;
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -25,6 +27,7 @@ public class MainView extends JFrame implements Observer {
 	
 	private JFrame frame;
 	private JButton buttonAggiorna;
+	private JButton buttonInfo;
 	private JLabel labelTableSelection;
 	private JButton buttonAcquisisci;
 	private JComboBox comboBoxTable;
@@ -55,21 +58,16 @@ public class MainView extends JFrame implements Observer {
 		model.addObserver(this);
 
 		// Init view like model
-		//initViewLikeModel();
+		initViewLikeModel();
 
 	
 	}
 
-	
-	
-	
-	
-	
-	@Override
-	public void update(Observable arg0, Object arg1) {
-		// TODO Auto-generated method stub
-		
+	public void selectTableToView(ActionListener listener)
+	{
+		comboBoxTable.addActionListener(listener);
 	}
+	
 	
 	
 	private void initUI(){
@@ -104,45 +102,54 @@ public class MainView extends JFrame implements Observer {
 		lblTableShown = new JLabel("Tabella mostrata:");
 		
 		scrollPane = new JScrollPane();
+		
+		buttonInfo = new JButton("I");
 		groupLayout = new GroupLayout(frame.getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(66)
-					.addComponent(labelTableSelection)
-					.addGap(85)
-					.addComponent(comboBoxTable, GroupLayout.PREFERRED_SIZE, 189, GroupLayout.PREFERRED_SIZE)
-					.addGap(87)
-					.addComponent(buttonAcquisisci, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
-					.addGap(75)
-					.addComponent(buttonAggiorna, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE))
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(66)
-					.addComponent(buttonInsertNewTable, GroupLayout.PREFERRED_SIZE, 335, GroupLayout.PREFERRED_SIZE)
-					.addGap(87)
-					.addComponent(comboBoxRecord, GroupLayout.PREFERRED_SIZE, 309, GroupLayout.PREFERRED_SIZE))
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(66)
-					.addComponent(labelDeleteTable, GroupLayout.PREFERRED_SIZE, 107, GroupLayout.PREFERRED_SIZE)
-					.addGap(39)
-					.addComponent(buttonDeleteTable, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE))
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(294)
-					.addComponent(lblTableShown, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE))
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(66)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 550, GroupLayout.PREFERRED_SIZE)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(labelUpdateTable, GroupLayout.PREFERRED_SIZE, 107, GroupLayout.PREFERRED_SIZE)
+							.addGap(66)
+							.addComponent(buttonInsertNewTable, GroupLayout.PREFERRED_SIZE, 335, GroupLayout.PREFERRED_SIZE)
+							.addGap(87)
+							.addComponent(comboBoxRecord, GroupLayout.PREFERRED_SIZE, 309, GroupLayout.PREFERRED_SIZE))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(66)
+							.addComponent(labelDeleteTable, GroupLayout.PREFERRED_SIZE, 107, GroupLayout.PREFERRED_SIZE)
 							.addGap(39)
-							.addComponent(buttonUpdateTable, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)))
-					.addGap(284))
+							.addComponent(buttonDeleteTable, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(294)
+							.addComponent(lblTableShown, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(66)
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 550, GroupLayout.PREFERRED_SIZE)
+								.addGroup(groupLayout.createSequentialGroup()
+									.addComponent(labelUpdateTable, GroupLayout.PREFERRED_SIZE, 107, GroupLayout.PREFERRED_SIZE)
+									.addGap(39)
+									.addComponent(buttonUpdateTable, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE))))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(66)
+							.addComponent(labelTableSelection)
+							.addGap(85)
+							.addComponent(comboBoxTable, GroupLayout.PREFERRED_SIZE, 189, GroupLayout.PREFERRED_SIZE)
+							.addGap(87)
+							.addComponent(buttonAcquisisci, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
+							.addGap(75)
+							.addComponent(buttonAggiorna, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addContainerGap()
+							.addComponent(buttonInfo, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)))
+					.addContainerGap(103, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(72)
+					.addContainerGap()
+					.addComponent(buttonInfo, GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE)
+					.addGap(37)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(5)
@@ -197,7 +204,39 @@ public class MainView extends JFrame implements Observer {
 	public JFrame getFrame(){
 		return frame;
 	}
+	
+	private void initViewLikeModel()
+	{
+		
+		buttonUpdateTable.setEnabled(model.isEnableModificaTable());
+		buttonDeleteTable.setEnabled(model.isEnableModificaTable());
 
+	}
+	
+	private void enableUpdateTable()
+	{
+		buttonUpdateTable.setEnabled(model.isEnableModificaTable());
+	}
 
+	private void enableDeleteTable()
+	{
+		buttonDeleteTable.setEnabled(model.isEnableEliminaTable());
 
+	}
+	
+	// Update the view with the notify send by model
+		@Override
+		public void update(Observable o, Object arg)
+		{
+			MyNotify notify = (MyNotify) arg;
+
+			switch (notify.getNotifyID())
+			{
+			case MyNotify.ENABLE_COMPILE:
+				enableUpdateTable();
+				enableDeleteTable();
+			}
+
+		}
+	
 }

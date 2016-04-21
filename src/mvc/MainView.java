@@ -36,6 +36,8 @@ public class MainView extends JFrame implements Observer {
 	private JButton buttonDeleteTable;
 	private JButton buttonUpdateTable;
 	private JComboBox comboBoxRecord;
+	
+
 	private JLabel lblTableShown;
 	private JScrollPane scrollPane;
 	private GroupLayout groupLayout;
@@ -65,6 +67,12 @@ public class MainView extends JFrame implements Observer {
 	public void selectedTableToView(ActionListener listener)
 	{
 		getComboBoxTable().addActionListener(listener);
+	}
+	
+	public void pressButtonAcquisisci(ActionListener listener) {
+		// TODO Auto-generated method stub
+		buttonAcquisisci.addActionListener(listener);
+		
 	}
 	
 	
@@ -218,7 +226,6 @@ public class MainView extends JFrame implements Observer {
 		scrollPane.setViewportView(table);
 		frame.getContentPane().setLayout(groupLayout);
 		
-		System.out.println("ecco il contenuto di Jtable"+tableRecords);
 
 	}
 	
@@ -309,5 +316,15 @@ public class MainView extends JFrame implements Observer {
 		public void setTableRecords(DefaultTableModel tableRecords) {
 			this.tableRecords = tableRecords;
 		}
+		
+		public JComboBox getComboBoxRecord() {
+			return comboBoxRecord;
+		}
+
+		public void setComboBoxRecord(JComboBox comboBoxRecord) {
+			this.comboBoxRecord = comboBoxRecord;
+		}
+
+
 	
 }

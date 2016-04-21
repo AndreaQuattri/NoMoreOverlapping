@@ -38,7 +38,8 @@ public class Controller
 		this.view = view;
 
 		// Set all the listener of the view
-		view.selectedTableToView(new MyInfoListener());
+		view.selectedTableToView(new SelectedTableListener());
+		view.pressButtonAcquisisci(new InsertInTableListener());
 		//view.addLoadFromFileListener(new MyLoadFromFileListener());
 		//view.addDocumentListener(new MyDocumentListener());
 		//view.addCompileListener(new MyCompileListener());
@@ -46,7 +47,7 @@ public class Controller
 	}
 	
 	
-	private class MyInfoListener implements  ActionListener
+	private class SelectedTableListener implements  ActionListener
 	{
 		@Override
 		public void actionPerformed(ActionEvent action)
@@ -58,10 +59,26 @@ public class Controller
 			model.enableButtonAcquisisci(true);
 			model.enableButtonAggiorna(true);
 			
+			//TODO
+			/*
+			 * 
+			 * cancellare tabella, ecc..
+			 * 
+			 */
+			
+
+		}
+	}
+	
+	private class InsertInTableListener implements  ActionListener
+	{
+		@Override
+		public void actionPerformed(ActionEvent action)
+		{
 			InsertInTable insertInTable = new InsertInTable(view.getComboBoxTable().getSelectedItem());
 			try {
 				String toView[][] = insertInTable.getValues();
-				
+				String toInsertComboBox = "";
 				for (int i=0; i<toView[0].length; i++){
 					view.getTableRecords().addColumn(toView[0][i]);
 				}
@@ -69,6 +86,11 @@ public class Controller
 								
 				for (int i=1; i<toView.length; i++){
 						view.getTableRecords().addRow(toView[i]);
+						for(int j=0; j<toView[i].length-1; j++)
+							toInsertComboBox+=toView[i][j]+", ";
+						toInsertComboBox+=toView[i][toView[i].length-1];
+						view.getComboBoxRecord().addItem(toInsertComboBox);
+						toInsertComboBox = "";
 				}
 				
 				
@@ -80,8 +102,8 @@ public class Controller
 				e.printStackTrace();
 			}
 			
-
 		}
+	
 	}
 
 	

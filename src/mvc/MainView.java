@@ -279,9 +279,7 @@ public class MainView extends JFrame implements Observer {
 			case MyNotify.ENABLE_BUTTON_AGGIORNA:
 				enableButtonAggiorna();
 			break;
-			case MyNotify.ENABLE_INSERT_VALUES:
-				
-			break;
+
 				
 				
 			}

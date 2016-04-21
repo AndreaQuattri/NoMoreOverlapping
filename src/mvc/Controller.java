@@ -57,7 +57,6 @@ public class Controller
 			model.enableEliminaTable(true);
 			model.enableButtonAcquisisci(true);
 			model.enableButtonAggiorna(true);
-			model.insertRecordsInTable();
 			
 			InsertInTable insertInTable = new InsertInTable(view.getComboBoxTable().getSelectedItem());
 			try {

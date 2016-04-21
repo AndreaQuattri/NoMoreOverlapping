@@ -183,12 +183,6 @@ public class Model extends Observable{
 	}
 
 
-
-
-	public void insertRecordsInTable() {
-		sendNotify(MyNotify.ENABLE_INSERT_VALUES);
-		
-	}
 	
 	
 

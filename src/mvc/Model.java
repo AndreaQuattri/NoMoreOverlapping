@@ -160,26 +160,34 @@ public class Model extends Observable{
 
 	public void enableModificaTable(boolean enableModificaTable) {
 		this.enableModificaTable = enableModificaTable;
-		sendNotify(MyNotify.TABLE_SELECTED);
+		sendNotify(MyNotify.ENABLE_BUTTON_MODIFICA);
 
 	}
 	
 	public void enableEliminaTable(boolean enableEliminaTable) {
 		this.enableEliminaTable = enableEliminaTable;
-		sendNotify(MyNotify.TABLE_SELECTED);
+		sendNotify(MyNotify.ENABLE_BUTTON_ELIMINA);
 
 	}
 
 	public void enableButtonAcquisisci(boolean enableButtonAcquisisci) {
 		this.enableButtonAcquisisci = enableButtonAcquisisci;
-		sendNotify(MyNotify.TABLE_SELECTED);
+		sendNotify(MyNotify.ENABLE_BUTTON_ACQUISISCI);
 
 	}
 	
 	public void enableButtonAggiorna(boolean enableButtonAggiorna) {
 		this.enableButtonAggiorna = enableButtonAggiorna;
-		sendNotify(MyNotify.TABLE_SELECTED);
+		sendNotify(MyNotify.ENABLE_BUTTON_AGGIORNA);
 
+	}
+
+
+
+
+	public void insertRecordsInTable() {
+		sendNotify(MyNotify.ENABLE_INSERT_VALUES);
+		
 	}
 	
 	

@@ -10,6 +10,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.net.URISyntaxException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
@@ -18,6 +19,10 @@ import javax.swing.JOptionPane;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.filechooser.FileFilter;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
+
+import ElaborazioneDati.InsertInTable;
 
 
 
@@ -33,7 +38,7 @@ public class Controller
 		this.view = view;
 
 		// Set all the listener of the view
-		view.selectTableToView(new MyInfoListener());
+		view.selectedTableToView(new MyInfoListener());
 		//view.addLoadFromFileListener(new MyLoadFromFileListener());
 		//view.addDocumentListener(new MyDocumentListener());
 		//view.addCompileListener(new MyCompileListener());
@@ -52,6 +57,29 @@ public class Controller
 			model.enableEliminaTable(true);
 			model.enableButtonAcquisisci(true);
 			model.enableButtonAggiorna(true);
+			model.insertRecordsInTable();
+			
+			InsertInTable insertInTable = new InsertInTable(view.getComboBoxTable().getSelectedItem());
+			try {
+				String toView[][] = insertInTable.getValues();
+				
+				for (int i=0; i<toView[0].length; i++){
+					view.getTableRecords().addColumn(toView[0][i]);
+				}
+				
+								
+				for (int i=1; i<toView.length; i++){
+						view.getTableRecords().addRow(toView[i]);
+				}
+				
+				
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (URISyntaxException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			
 
 		}

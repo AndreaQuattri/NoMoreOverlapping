@@ -9,6 +9,7 @@ public class Launcher
 				Model model = new Model();
 				
 				MainView view = new MainView(model);
+
 				
 				@SuppressWarnings("unused")
 				Controller controller = new Controller(model, view);

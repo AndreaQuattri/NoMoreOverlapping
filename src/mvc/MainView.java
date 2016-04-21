@@ -4,7 +4,6 @@ import java.awt.event.ActionListener;
 import java.util.Observable;
 import java.util.Observer;
 
-import javax.swing.ButtonModel;
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -63,9 +62,9 @@ public class MainView extends JFrame implements Observer {
 	
 	}
 
-	public void selectTableToView(ActionListener listener)
+	public void selectedTableToView(ActionListener listener)
 	{
-		comboBoxTable.addActionListener(listener);
+		getComboBoxTable().addActionListener(listener);
 	}
 	
 	
@@ -84,23 +83,23 @@ public class MainView extends JFrame implements Observer {
 		
 		buttonAcquisisci = new JButton("Acquisisci");
 		
-		comboBoxTable = new JComboBox();
-		comboBoxTable.addItem("");
-		comboBoxTable.addItem("Attività");
-		comboBoxTable.addItem("Aula");
-		comboBoxTable.addItem("Convegno");
-		comboBoxTable.addItem("Corso di studi");
-		comboBoxTable.addItem("Disciplina");
-		comboBoxTable.addItem("Docente");
-		comboBoxTable.addItem("Esame");
-		comboBoxTable.addItem("Fascia oraria");
-		comboBoxTable.addItem("Gita");
-		comboBoxTable.addItem("Insegna");
-		comboBoxTable.addItem("Piano di studio");
-		comboBoxTable.addItem("Preferenza aula");
-		comboBoxTable.addItem("Preferenza fascia oraria");
-		comboBoxTable.addItem("Studente");
-		comboBoxTable.addItem("Tirocinio");
+		setComboBoxTable(new JComboBox());
+		getComboBoxTable().addItem("");
+		getComboBoxTable().addItem("Attività");
+		getComboBoxTable().addItem("Aula");
+		getComboBoxTable().addItem("Convegno");
+		getComboBoxTable().addItem("Corso di studi");
+		getComboBoxTable().addItem("Disciplina");
+		getComboBoxTable().addItem("Docente");
+		getComboBoxTable().addItem("Esame");
+		getComboBoxTable().addItem("Fascia oraria");
+		getComboBoxTable().addItem("Gita");
+		getComboBoxTable().addItem("Insegna");
+		getComboBoxTable().addItem("Piano di studio");
+		getComboBoxTable().addItem("Preferenza aula");
+		getComboBoxTable().addItem("Preferenza fascia oraria");
+		getComboBoxTable().addItem("Studente");
+		getComboBoxTable().addItem("Tirocinio");
 		
 		buttonInsertNewTable = new JButton("Inserisci nuova tabella");
 		
@@ -126,25 +125,12 @@ public class MainView extends JFrame implements Observer {
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(66)
-							.addComponent(buttonInsertNewTable, GroupLayout.PREFERRED_SIZE, 335, GroupLayout.PREFERRED_SIZE)
-							.addGap(87)
-							.addComponent(comboBoxRecord, GroupLayout.PREFERRED_SIZE, 309, GroupLayout.PREFERRED_SIZE))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(66)
 							.addComponent(labelDeleteTable, GroupLayout.PREFERRED_SIZE, 107, GroupLayout.PREFERRED_SIZE)
 							.addGap(39)
 							.addComponent(buttonDeleteTable, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE))
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(294)
 							.addComponent(lblTableShown, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(66)
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 550, GroupLayout.PREFERRED_SIZE)
-								.addGroup(groupLayout.createSequentialGroup()
-									.addComponent(labelUpdateTable, GroupLayout.PREFERRED_SIZE, 107, GroupLayout.PREFERRED_SIZE)
-									.addGap(39)
-									.addComponent(buttonUpdateTable, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE))))
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(66)
 							.addComponent(labelTableSelection)
@@ -156,8 +142,21 @@ public class MainView extends JFrame implements Observer {
 							.addComponent(buttonAggiorna, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE))
 						.addGroup(groupLayout.createSequentialGroup()
 							.addContainerGap()
-							.addComponent(buttonInfo, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)))
-					.addContainerGap(103, Short.MAX_VALUE))
+							.addComponent(buttonInfo, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(66)
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING, false)
+									.addComponent(scrollPane, Alignment.LEADING)
+									.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
+										.addComponent(buttonInsertNewTable, GroupLayout.PREFERRED_SIZE, 335, GroupLayout.PREFERRED_SIZE)
+										.addGap(87)
+										.addComponent(comboBoxRecord, GroupLayout.PREFERRED_SIZE, 309, GroupLayout.PREFERRED_SIZE)))
+								.addGroup(groupLayout.createSequentialGroup()
+									.addComponent(labelUpdateTable, GroupLayout.PREFERRED_SIZE, 107, GroupLayout.PREFERRED_SIZE)
+									.addGap(39)
+									.addComponent(buttonUpdateTable, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)))))
+					.addContainerGap(59, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -199,21 +198,28 @@ public class MainView extends JFrame implements Observer {
 					.addGap(42))
 		);
 		
-		DefaultTableModel tableRecords = new DefaultTableModel();
-		JTable table = new JTable(tableRecords); 
-		
+
+		tableRecords = new DefaultTableModel(0, 0);
+		table = new JTable();
+		table.setModel(tableRecords);
+
+		/*
 		table.setModel(new DefaultTableModel(
 				new String[][]{
 					
 				},
 				new String[]{
-						//"Edificio","Numero"
+						"Edificio","Numero"
 				}
 				
 		));
+		*/
 		
 		scrollPane.setViewportView(table);
 		frame.getContentPane().setLayout(groupLayout);
+		
+		System.out.println("ecco il contenuto di Jtable"+tableRecords);
+
 	}
 	
 	public JFrame getFrame(){
@@ -261,15 +267,49 @@ public class MainView extends JFrame implements Observer {
 
 			switch (notify.getNotifyID())
 			{
-			case MyNotify.TABLE_SELECTED:
-				
+			case MyNotify.ENABLE_BUTTON_MODIFICA:
 				enableUpdateTable();
+			break;
+			case MyNotify.ENABLE_BUTTON_ELIMINA:
 				enableDeleteTable();
+			break;
+			case MyNotify.ENABLE_BUTTON_ACQUISISCI:
 				enableButtonAcquisisci();
+			break;
+			case MyNotify.ENABLE_BUTTON_AGGIORNA:
 				enableButtonAggiorna();
+			break;
+			case MyNotify.ENABLE_INSERT_VALUES:
+				
+			break;
+				
 				
 			}
 
+		}
+
+		public JComboBox getComboBoxTable() {
+			return comboBoxTable;
+		}
+
+		public void setComboBoxTable(JComboBox comboBoxTable) {
+			this.comboBoxTable = comboBoxTable;
+		}
+
+		public JTable getTable() {
+			return table;
+		}
+
+		public void setTable(JTable table) {
+			this.table = table;
+		}
+
+		public DefaultTableModel getTableRecords() {
+			return tableRecords;
+		}
+
+		public void setTableRecords(DefaultTableModel tableRecords) {
+			this.tableRecords = tableRecords;
 		}
 	
 }

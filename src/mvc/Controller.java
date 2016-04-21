@@ -50,6 +50,9 @@ public class Controller
 			//infoView.getFrame().setVisible(true);
 			model.enableModificaTable(true);
 			model.enableEliminaTable(true);
+			model.enableButtonAcquisisci(true);
+			model.enableButtonAggiorna(true);
+			
 
 		}
 	}

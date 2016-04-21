@@ -80,14 +80,29 @@ public class MainView extends JFrame implements Observer {
 		
 		buttonAggiorna = new JButton("Aggiorna");
 		
-		labelTableSelection = new JLabel("New label");
+		labelTableSelection = new JLabel("Selezione tabella");
 		
 		buttonAcquisisci = new JButton("Acquisisci");
 		
 		comboBoxTable = new JComboBox();
-		comboBoxTable.addItem("ciao");
+		comboBoxTable.addItem("");
+		comboBoxTable.addItem("Attività");
+		comboBoxTable.addItem("Aula");
+		comboBoxTable.addItem("Convegno");
+		comboBoxTable.addItem("Corso di studi");
+		comboBoxTable.addItem("Disciplina");
+		comboBoxTable.addItem("Docente");
+		comboBoxTable.addItem("Esame");
+		comboBoxTable.addItem("Fascia oraria");
+		comboBoxTable.addItem("Gita");
+		comboBoxTable.addItem("Insegna");
+		comboBoxTable.addItem("Piano di studio");
+		comboBoxTable.addItem("Preferenza aula");
+		comboBoxTable.addItem("Preferenza fascia oraria");
+		comboBoxTable.addItem("Studente");
+		comboBoxTable.addItem("Tirocinio");
 		
-		buttonInsertNewTable = new JButton("New button");
+		buttonInsertNewTable = new JButton("Inserisci nuova tabella");
 		
 		labelDeleteTable = new JLabel("Elimina tabella");
 		
@@ -210,6 +225,8 @@ public class MainView extends JFrame implements Observer {
 		
 		buttonUpdateTable.setEnabled(model.isEnableModificaTable());
 		buttonDeleteTable.setEnabled(model.isEnableModificaTable());
+		buttonAcquisisci.setEnabled(model.isEnableButtonAcquisisci());
+		buttonAggiorna.setEnabled(model.isEnableButtonAggiorna());
 
 	}
 	
@@ -224,6 +241,18 @@ public class MainView extends JFrame implements Observer {
 
 	}
 	
+	private void enableButtonAcquisisci()
+	{
+		buttonAcquisisci.setEnabled(model.isEnableButtonAcquisisci());
+
+	}
+	
+	private void enableButtonAggiorna()
+	{
+		buttonAggiorna.setEnabled(model.isEnableButtonAggiorna());
+
+	}
+	
 	// Update the view with the notify send by model
 		@Override
 		public void update(Observable o, Object arg)
@@ -232,9 +261,13 @@ public class MainView extends JFrame implements Observer {
 
 			switch (notify.getNotifyID())
 			{
-			case MyNotify.ENABLE_COMPILE:
+			case MyNotify.TABLE_SELECTED:
+				
 				enableUpdateTable();
 				enableDeleteTable();
+				enableButtonAcquisisci();
+				enableButtonAggiorna();
+				
 			}
 
 		}

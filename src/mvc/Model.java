@@ -23,6 +23,8 @@ public class Model extends Observable{
 	
 	private boolean enableModificaTable;
 	private boolean enableEliminaTable;
+	private boolean enableButtonAcquisisci;
+	private boolean enableButtonAggiorna;
 
 	
 	
@@ -44,6 +46,8 @@ public class Model extends Observable{
 
 		enableModificaTable = false;
 		enableEliminaTable = false;
+		enableButtonAcquisisci = false;
+		enableButtonAggiorna = false;
 		
 	}
 	
@@ -142,22 +146,41 @@ public class Model extends Observable{
 	public boolean isEnableEliminaTable() {
 		return enableEliminaTable;
 	}
+	
+	public boolean isEnableButtonAcquisisci() {
+		return enableButtonAcquisisci;
+	}
+	
+	public boolean isEnableButtonAggiorna() {
+		return enableButtonAggiorna;
+	}
 
 
 
 
 	public void enableModificaTable(boolean enableModificaTable) {
 		this.enableModificaTable = enableModificaTable;
-		sendNotify(MyNotify.ENABLE_COMPILE);
+		sendNotify(MyNotify.TABLE_SELECTED);
 
 	}
 	
 	public void enableEliminaTable(boolean enableEliminaTable) {
 		this.enableEliminaTable = enableEliminaTable;
-		sendNotify(MyNotify.ENABLE_COMPILE);
+		sendNotify(MyNotify.TABLE_SELECTED);
+
+	}
+
+	public void enableButtonAcquisisci(boolean enableButtonAcquisisci) {
+		this.enableButtonAcquisisci = enableButtonAcquisisci;
+		sendNotify(MyNotify.TABLE_SELECTED);
 
 	}
 	
+	public void enableButtonAggiorna(boolean enableButtonAggiorna) {
+		this.enableButtonAggiorna = enableButtonAggiorna;
+		sendNotify(MyNotify.TABLE_SELECTED);
+
+	}
 	
 	
 

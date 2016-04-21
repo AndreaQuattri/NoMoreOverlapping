@@ -2,7 +2,7 @@ package mvc;
 
 public class MyNotify {
 	
-	public final static int ENABLE_COMPILE 	   = 0;
+	public final static int TABLE_SELECTED = 0;
 	public final static int ENABLE_MAKE_PDF    = 1;
 	public final static int COMPILE_SUCCESFULL = 2;
 	public final static int LATEX_SUCCESFULL   = 3;

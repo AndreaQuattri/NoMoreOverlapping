@@ -81,6 +81,12 @@ public class MainView extends JFrame implements Observer {
 		
 	}
 	
+	public void pressButtonGestisciOrario(ActionListener listener) {
+		// TODO Auto-generated method stub
+		buttonGestioneOrario.addActionListener(listener);
+		
+	}
+	
 	
 	
 	private void initUI(){
@@ -351,5 +357,7 @@ public class MainView extends JFrame implements Observer {
 		public void setLabelTableInTable(JLabel labelTableInTable) {
 			this.labelTableInTable = labelTableInTable;
 		}
+
+
 
 }

@@ -23,6 +23,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
 import ElaborazioneDati.InsertInTable;
+import memorizzazioneDati.InsertValuesAula;
 
 
 
@@ -40,6 +41,7 @@ public class Controller
 		// Set all the listener of the view
 		view.selectedTableToView(new SelectedTableListener());
 		view.pressButtonAcquisisci(new InsertInTableListener());
+		view.pressButtonGestisciOrario(new OpenViewGestisciOrario());
 		//view.addLoadFromFileListener(new MyLoadFromFileListener());
 		//view.addDocumentListener(new MyDocumentListener());
 		//view.addCompileListener(new MyCompileListener());
@@ -108,7 +110,29 @@ public class Controller
 		}
 	
 	}
+	
+	private class OpenViewGestisciOrario implements  ActionListener
+	{
+		@Override
+		public void actionPerformed(ActionEvent action)
+		{
+			InsertValuesAula insertAula = new InsertValuesAula(model);
+			
 
+			
+			try {
+				insertAula.getValue();
+				for (int i=0; i<model.getListAula().size(); i++)
+					System.out.println(model.getListAula().get(i).toString());
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (URISyntaxException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
 	
 	/*
 	private class MyLoadFromFileListener implements ActionListener

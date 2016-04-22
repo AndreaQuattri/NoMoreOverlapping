@@ -75,6 +75,9 @@ public class Controller
 		@Override
 		public void actionPerformed(ActionEvent action)
 		{
+			
+			view.getLabelTableInTable().setText((String)view.getComboBoxTable().getSelectedItem());
+			
 			InsertInTable insertInTable = new InsertInTable(view.getComboBoxTable().getSelectedItem());
 			try {
 				String toView[][] = insertInTable.getValues();

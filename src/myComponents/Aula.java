@@ -13,6 +13,12 @@ public class Aula {
 		this.capienza = capienza;
 		this.descrizione = descrizione;
 	}
+	public Aula(String edificio, int numero, int capienza) {
+		this.edificio = edificio;
+		this.numero = numero;
+		this.capienza = capienza;
+		this.descrizione = "";
+	}
 	
 	@Override
 	public String toString() {

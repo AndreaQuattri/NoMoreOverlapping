@@ -1,13 +1,9 @@
 package ElaborazioneDati;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.MalformedURLException;
 import java.net.URISyntaxException;
-import java.net.URL;
-import java.net.URLConnection;
-
+import connectToDatabase.Connect;
+import connectToDatabase.NumberOfRows;
 import urlPhp.GiveAll;
 
 public class InsertInTable {
@@ -36,47 +32,16 @@ public class InsertInTable {
 		
 	}
 	
-	private String connectDb(String tabella) throws IOException, URISyntaxException{
-		
-		URL yahoo = new URL(GiveAll.giveAllAula);
-        URLConnection yc = yahoo.openConnection();
-        BufferedReader in = new BufferedReader(
-                                new InputStreamReader(
-                                yc.getInputStream()));
-        String inputLine, toReturn = "";
-
-
-        while ((inputLine = in.readLine()) != null) 
-        {
-        	toReturn = inputLine;
-        	//System.out.println(inputLine);            
-        }
-        
-        in.close();
-                
-        return toReturn;
-		
-		
-	}
 	
-	private int numOfRows (String input){
-		
-		int toReturn = 0;
-		
-		for (int i=0; i<input.length(); i++){
-			if (input.charAt(i)=='_')
-				toReturn++;
-		}
-		
-		return toReturn;
-	}
+	
+
 	
 	private String[][] getAula() throws IOException, URISyntaxException {
 	
 		
 		int numAule = 0;
-		String input = connectDb("GiveAll.giveAllAula");
-		numAule = numOfRows(input);
+		String input = Connect.connectDb(GiveAll.giveAllAula);
+		numAule = NumberOfRows.numOfRows(input);
 		
         
 		String[][] values = new String[numAule+1][4];

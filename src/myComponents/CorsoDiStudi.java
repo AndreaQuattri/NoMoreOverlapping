@@ -100,8 +100,7 @@ public class CorsoDiStudi {
 
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
-		return super.toString();
+		return nomePrincipale;
 	}
 
 

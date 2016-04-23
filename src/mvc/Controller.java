@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.net.URISyntaxException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
@@ -23,7 +24,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
 import ElaborazioneDati.InsertInTable;
-import memorizzazioneDati.InsertValuesAula;
+import memorizzazioneDati.InsertValues;
 
 
 
@@ -111,23 +112,40 @@ public class Controller
 	
 	}
 	
-	private class OpenViewGestisciOrario implements  ActionListener
+	private class OpenViewGestisciOrario implements  ActionListener 
 	{
 		@Override
 		public void actionPerformed(ActionEvent action)
 		{
-			InsertValuesAula insertAula = new InsertValuesAula(model);
+			InsertValues insert = new InsertValues(model);
 			
 
 			
 			try {
-				insertAula.getValue();
+				insert.getValueAula();
+				insert.getValueDocente();
+				insert.getValueCorsoDiStudi();
+				insert.getValueStudente();
+				
+				
+				
 				for (int i=0; i<model.getListAula().size(); i++)
 					System.out.println(model.getListAula().get(i).toString());
+				
+				System.out.println();
+				
+				for (int i=0; i<model.getListStudente().size(); i++)
+					System.out.println(model.getListStudente().get(i).toString());
+				
+				
+				
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (URISyntaxException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (ParseException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}

@@ -8,7 +8,7 @@ import myComponents.*;
 public class Model extends Observable{
 	
 	//private ArrayList<Assegnamento> listAssegnamento;
-	private ArrayList<Aula> listAula;
+	private ArrayList<Aula> listAula;					//Fatto
 	private ArrayList<Convegno> listConvegno;
 	private ArrayList<CorsoDiStudi> listCorsoDiStudi;
 	private ArrayList<Disciplina> listDisciplina;

@@ -39,7 +39,6 @@ public class Studente {
 	
 	public String toString() {
         return matricola+", "+nome+", "+cognome+", "+email+", "+nascita+", "+annoIscrizione;
-
 	}
 	
 	

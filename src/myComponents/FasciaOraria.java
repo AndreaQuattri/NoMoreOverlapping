@@ -1,15 +1,15 @@
 package myComponents;
 
-import java.text.DateFormat;
+import java.util.Date;
 
 public class FasciaOraria {
 	
-	private DateFormat inizio;
-	private DateFormat fine;
+	private Date inizio;
+	private Date fine;
 	private String giorno;
 	private int idFascia;
 	
-	public FasciaOraria(DateFormat inizio, DateFormat fine, String giorno, int idFascia) {
+	public FasciaOraria(Date inizio, Date fine, String giorno, int idFascia) {
 		this.inizio = inizio;
 		this.fine = fine;
 		this.giorno = giorno;
@@ -18,18 +18,23 @@ public class FasciaOraria {
 	
 		
 	
+	@Override
+	public String toString() {
+		return idFascia+", "+giorno;
+	}
 	
 	
-	public DateFormat getInizio() {
+	
+	public Date getInizio() {
 		return inizio;
 	}
-	public void setInizio(DateFormat inizio) {
+	public void setInizio(Date inizio) {
 		this.inizio = inizio;
 	}
-	public DateFormat getFine() {
+	public Date getFine() {
 		return fine;
 	}
-	public void setFine(DateFormat fine) {
+	public void setFine(Date fine) {
 		this.fine = fine;
 	}
 	public String getGiorno() {

@@ -1,6 +1,6 @@
 package myComponents;
 
-import java.text.DateFormat;
+import java.util.Date;
 import java.util.ArrayList;
 
 public class Attività {
@@ -9,13 +9,13 @@ public class Attività {
 	private String id;
 	private String descrizione;
 	private String nome;
-	private DateFormat inizio;
-	private DateFormat fine;
+	private Date inizio;
+	private Date fine;
 	private int semestre;
 	
 	private ArrayList<Docente> elencoResponsabili;
 	
-	public Attività(int ore, String id, String descrizione, String nome, DateFormat inizio, DateFormat fine, int semestre, ArrayList<Docente> elencoResponsabili) {
+	public Attività(int ore, String id, String descrizione, String nome, Date inizio, Date fine, int semestre, ArrayList<Docente> elencoResponsabili) {
 		this.ore = ore;
 		this.id = id;
 		this.descrizione=descrizione;
@@ -26,11 +26,22 @@ public class Attività {
 		this.elencoResponsabili = elencoResponsabili;
 	}
 	
+	public Attività(int ore, String id, String descrizione, String nome, Date inizio, Date fine, int semestre) {
+		this.ore = ore;
+		this.id = id;
+		this.descrizione=descrizione;
+		this.nome = nome;
+		this.inizio = inizio;
+		this.fine = fine;
+		this.semestre = semestre;
+		this.elencoResponsabili = null;
+	}
+	
   public String toString()
   {
-      String toReturn = id + "," + nome + "," + descrizione + "," + ore + "," + semestre + "," + inizio + "," + fine+"\n";
-      for (int i = 0; i < elencoResponsabili.size(); i++)
-          toReturn += elencoResponsabili.get(i).toString() + " ; ";
+      String toReturn = id + "," + nome + "," + descrizione + "," + ore + "," + semestre + "," + inizio.toString() + "," + fine+"\n";
+      //for (int i = 0; i < elencoResponsabili.size(); i++)
+         // toReturn += elencoResponsabili.get(i).toString() + " ; ";
       return toReturn;
   }
 	
@@ -59,16 +70,16 @@ public class Attività {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	public DateFormat getInizio() {
+	public Date getInizio() {
 		return inizio;
 	}
-	public void setInizio(DateFormat inizio) {
+	public void setInizio(Date inizio) {
 		this.inizio = inizio;
 	}
-	public DateFormat getFine() {
+	public Date getFine() {
 		return fine;
 	}
-	public void setFine(DateFormat fine) {
+	public void setFine(Date fine) {
 		this.fine = fine;
 	}
 	public int getSemestre() {

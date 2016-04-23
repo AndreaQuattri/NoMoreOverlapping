@@ -1,6 +1,6 @@
 package myComponents;
 
-import java.text.DateFormat;
+import java.util.Date;
 
 public class Studente {
 	
@@ -8,12 +8,14 @@ public class Studente {
 	private String cognome;
 	private String matricola;
 	private String email;
-	private DateFormat nascita;
+	private Date nascita;
 	private int annoIscrizione;
+	
+	
 	private CorsoDiStudi corso;
 	
 	public Studente(String nome, String cognome, String matricola, String email, 
-			DateFormat nascita, int annoIscrizione, CorsoDiStudi corso) {
+			Date nascita, int annoIscrizione, CorsoDiStudi corso) {
 		this.nome = nome;
 		this.cognome = cognome;
 		this.matricola = matricola;
@@ -23,9 +25,20 @@ public class Studente {
 		this.corso = corso;
 	}
 	
+	public Studente(String nome, String cognome, String matricola, String email, 
+			Date date, int annoIscrizione) {
+		this.nome = nome;
+		this.cognome = cognome;
+		this.matricola = matricola;
+		this.email = email;
+		this.nascita = date;
+		this.annoIscrizione = annoIscrizione;
+		this.corso = null;
+	}
+	
 	
 	public String toString() {
-        return matricola+", "+nome+", "+cognome+", "+email+", "+nascita+", "+annoIscrizione+", "+nascita.toString();
+        return matricola+", "+nome+", "+cognome+", "+email+", "+nascita+", "+annoIscrizione;
 
 	}
 	
@@ -55,10 +68,10 @@ public class Studente {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public DateFormat getNascita() {
+	public Date getNascita() {
 		return nascita;
 	}
-	public void setNascita(DateFormat nascita) {
+	public void setNascita(Date nascita) {
 		this.nascita = nascita;
 	}
 	public int getAnnoIscrizione() {

@@ -3,7 +3,7 @@ package myComponents;
 import java.util.ArrayList;
 
 public class CorsoDiStudi {
-	
+
 	private short anno;
 	private String nomePrincipale;
 	private String indirizzo;
@@ -12,13 +12,13 @@ public class CorsoDiStudi {
 	private String codice;
 	private String descrizione;
 	private int totCrediti;
-	
+
 	private ArrayList<PianoDiStudi> elencoPianiPossibili;
 	private ArrayList<Studente> elencoStudenti;
-	
+
 	public CorsoDiStudi(short anno, String nomePrincipale, String indirizzo, String tipoLaurea, 
-						String facoltà, String codice, String descrizione, int totCrediti, 
-						ArrayList<PianoDiStudi> elencoPianiPossibili, ArrayList<Studente> elencoStudenti) {
+			String facoltà, String codice, String descrizione, int totCrediti, 
+			ArrayList<PianoDiStudi> elencoPianiPossibili, ArrayList<Studente> elencoStudenti) {
 		this.anno = anno;
 		this.nomePrincipale = nomePrincipale;
 		this.indirizzo = indirizzo;
@@ -30,67 +30,81 @@ public class CorsoDiStudi {
 		this.elencoPianiPossibili = elencoPianiPossibili;
 		this.elencoStudenti = elencoStudenti;
 	}
-	
+
+	public CorsoDiStudi(short anno, String nomePrincipale, String indirizzo, String tipoLaurea, 
+			String facoltà, String codice, String descrizione, int totCrediti) {
+		this.anno = anno;
+		this.nomePrincipale = nomePrincipale;
+		this.indirizzo = indirizzo;
+		this.tipoLaurea = tipoLaurea;
+		this.facoltà = facoltà;
+		this.codice = codice;
+		this.descrizione = descrizione;
+		this.totCrediti = totCrediti;
+	}
+
+
+
 	public Boolean iscriviStudente(Studente s)
-    {
-        // TODO da completare.
-        return false;
-    }
+	{
+		// TODO da completare.
+		return false;
+	}
 
-    public Boolean cancellaStudente(Studente s)
-    {
-        // TODO da completare.
-        return false;
-    }
+	public Boolean cancellaStudente(Studente s)
+	{
+		// TODO da completare.
+		return false;
+	}
 
-    public Studente trovaStudente(String matricola)
-    {
-        // TODO da completare.
-        return null;
-    }
+	public Studente trovaStudente(String matricola)
+	{
+		// TODO da completare.
+		return null;
+	}
 
-    public ArrayList<Studente> trovaStudente(String nome, String cognome)
-    {
-        // TODO da completSare.
-        return null;
-    }
+	public ArrayList<Studente> trovaStudente(String nome, String cognome)
+	{
+		// TODO da completSare.
+		return null;
+	}
 
-    public Studente trovaStudentePerEmail(String email)
-    {
-        // TODO da completare.
-        return null;
-    }
+	public Studente trovaStudentePerEmail(String email)
+	{
+		// TODO da completare.
+		return null;
+	}
 
-    public int getNumIscritti()
-    {
-        // TODO da completare.
-        return -1;
-    }
+	public int getNumIscritti()
+	{
+		// TODO da completare.
+		return -1;
+	}
 
-    public Boolean aggiungiPianoDiStudi(PianoDiStudi m)
-    {
-        // TODO da completare.
-        return false;
-    }
+	public Boolean aggiungiPianoDiStudi(PianoDiStudi m)
+	{
+		// TODO da completare.
+		return false;
+	}
 
-    public Boolean eliminaPianoDiStudi(PianoDiStudi m)
-    {
-        // TODO da completare.
-        return false;
-    }
+	public Boolean eliminaPianoDiStudi(PianoDiStudi m)
+	{
+		// TODO da completare.
+		return false;
+	}
 
-    public Boolean verificaPiani() { 
-        //TODO crediti corretti
-        return false;
-    }
-	
-    @Override
-    public String toString() {
-    	// TODO Auto-generated method stub
-    	return super.toString();
-    }
-	
-	
+	public Boolean verificaPiani() { 
+		//TODO crediti corretti
+		return false;
+	}
+
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return super.toString();
+	}
+
+
 	public short getAnno() {
 		return anno;
 	}
@@ -151,7 +165,7 @@ public class CorsoDiStudi {
 	public void setElencoStudenti(ArrayList<Studente> elencoStudenti) {
 		this.elencoStudenti = elencoStudenti;
 	}
-	
-	
+
+
 
 }

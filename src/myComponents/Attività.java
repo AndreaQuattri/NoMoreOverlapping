@@ -30,7 +30,7 @@ public class Attività {
   {
       String toReturn = id + "," + nome + "," + descrizione + "," + ore + "," + semestre + "," + inizio + "," + fine+"\n";
       for (int i = 0; i < elencoResponsabili.size(); i++)
-          toReturn += elencoResponsabili.get(i).ToString() + " ; ";
+          toReturn += elencoResponsabili.get(i).toString() + " ; ";
       return toReturn;
   }
 	

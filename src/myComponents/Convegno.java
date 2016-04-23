@@ -13,6 +13,7 @@ public class Convegno extends Attività {
 
 	public Convegno(int ore, String id, String descrizione, String nome, DateFormat inizio, DateFormat fine,
 			int semestre, ArrayList<Docente> elencoResponsabili, String relatoreNome, String relatoreCognome, String relatoreEmail, String relatoreQualifica, int idConvegno) {
+		
 		super(ore, id, descrizione, nome, inizio, fine, semestre, elencoResponsabili);
 		this.relatoreNome = relatoreNome;
 		this.relatoreCognome = relatoreCognome;

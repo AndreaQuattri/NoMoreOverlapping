@@ -150,8 +150,8 @@ public class Controller
 				
 				System.out.println();
 				
-				for (int i=0; i<model.getListEsame().size(); i++)
-					System.out.println(model.getListEsame().get(i).toString());
+				for (int i=0; i<model.getListTirocinio().size(); i++)
+					System.out.println(model.getListTirocinio().get(i).toString());
 				
 				
 				

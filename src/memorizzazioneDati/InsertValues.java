@@ -18,7 +18,9 @@ import myComponents.Disciplina;
 import myComponents.Docente;
 import myComponents.Esame;
 import myComponents.FasciaOraria;
+import myComponents.Gita;
 import myComponents.Studente;
+import myComponents.Tirocinio;
 import urlPhp.GiveAll;
 
 public class InsertValues {
@@ -158,6 +160,8 @@ public class InsertValues {
 		String splitEsami[] = inputEsame.split("_");
 		String splitDiscipline[] = inputDisciplina.split("_");
 		String splitGite[] = inputGita.split("_");
+		String splitTirocini[] = inputTirocinio.split("_");
+
 
 
 
@@ -170,6 +174,9 @@ public class InsertValues {
 			Date dateInizio = format.parse(splitColonne[5]);
 			Date dateFine = format.parse(splitColonne[6]);
 
+			
+			
+			//aggiungere il controllo che, fatto un for, salta i successivi
 
 			for(int j=0; j<numConvegni; j++){
 				String splitColConvegni[] = splitConvegni[j].split(",");
@@ -204,6 +211,30 @@ public class InsertValues {
 					model.getListEsame().add(new Esame(Integer.parseInt(splitColonne[3]),splitColonne[0],splitColonne[2],
 							splitColonne[1],dateInizio, dateFine, Integer.parseInt(splitColonne[4]),
 							splitColEsami[2], Integer.parseInt(splitColEsami[0])));
+					break;
+				}
+			}
+			
+			for(int j=0; j<numGite; j++){
+				String splitColGite[] = splitGite[j].split(",");
+
+				if (splitColGite[1].equals(splitColonne[0]))
+				{
+					model.getListGita().add(new Gita(Integer.parseInt(splitColonne[3]),splitColonne[0],splitColonne[2],
+							splitColonne[1],dateInizio, dateFine, Integer.parseInt(splitColonne[4]),
+							splitColGite[2], Integer.parseInt(splitColGite[0]) ));
+					break;
+				}
+			}
+			
+			for(int j=0; j<numTirocini; j++){
+				String splitColTirocini[] = splitTirocini[j].split(",");
+
+				if (splitColTirocini[1].equals(splitColonne[0]))
+				{
+					model.getListTirocinio().add(new Tirocinio(Integer.parseInt(splitColonne[3]),splitColonne[0],splitColonne[2],
+							splitColonne[1],dateInizio, dateFine, Integer.parseInt(splitColonne[4]),
+							splitColTirocini[2], splitColTirocini[4], splitColTirocini[3], Integer.parseInt(splitColTirocini[0])));
 					break;
 				}
 			}

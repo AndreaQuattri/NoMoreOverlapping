@@ -122,10 +122,26 @@ public class Controller
 
 			
 			try {
+				
+				//aula inserita in arraylist<Aula> correttamente
 				insert.getValueAula();
+				
+				//docente inseriti in arraylist<Docente>
+				//mancano elencoAttività, orariPreferiti e aulePreferite
 				insert.getValueDocente();
+				
+				//corsi di studi inseriti in arraylist<CorsoDiStudi>
+				//mancano elencoPianiPossibili e elencoStudenti
 				insert.getValueCorsoDiStudi();
+				
+				//studenti inseriti in arrayList<Studente>
+				//manca CorsoDiStudi
 				insert.getValueStudente();
+				
+				//fascie orarie inserite in arraylist<FasciaOraria>
+				insert.getValueFasciaOraria();
+				
+				insert.getValueAttività();
 				
 				
 				
@@ -134,8 +150,9 @@ public class Controller
 				
 				System.out.println();
 				
-				for (int i=0; i<model.getListStudente().size(); i++)
-					System.out.println(model.getListStudente().get(i).toString());
+				for (int i=0; i<model.getListEsame().size(); i++)
+					System.out.println(model.getListEsame().get(i).toString());
+				
 				
 				
 				

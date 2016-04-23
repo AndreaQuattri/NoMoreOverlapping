@@ -1,14 +1,14 @@
 package myComponents;
 
-import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Gita extends Attività {
 	
 	private String luogo;
 	private int idGita;
 
-	public Gita(int ore, String id, String descrizione, String nome, DateFormat inizio, DateFormat fine, int semestre,
+	public Gita(int ore, String id, String descrizione, String nome, Date inizio, Date fine, int semestre,
 			ArrayList<Docente> elencoResponsabili, String luogo, int idGita) {
 		super(ore, id, descrizione, nome, inizio, fine, semestre, elencoResponsabili);
 		this.luogo = luogo;

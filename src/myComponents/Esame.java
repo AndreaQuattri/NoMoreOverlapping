@@ -1,19 +1,34 @@
 package myComponents;
 
-import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Esame extends Attività {
 	
 	private String tipologia;
-	private Disciplina materia;
+	//private Disciplina materia;
 	private int idEsame;
 
-	public Esame(int ore, String id, String descrizione, String nome, DateFormat inizio, DateFormat fine, int semestre,
+	public Esame(int ore, String id, String descrizione, String nome, Date inizio, Date fine, int semestre,
 			ArrayList<Docente> elencoResponsabili, String tipologia, Disciplina materia, int idEsame) {
 		super(ore, id, descrizione, nome, inizio, fine, semestre, elencoResponsabili);
 		this.tipologia = tipologia;
-		this.materia = materia;
+		//this.materia = materia;
+		this.idEsame = idEsame;
+	}
+	
+	public Esame(int ore, String id, String descrizione, String nome, Date inizio, Date fine, int semestre,
+			String tipologia, Disciplina materia, int idEsame) {
+		super(ore, id, descrizione, nome, inizio, fine, semestre);
+		this.tipologia = tipologia;
+		//this.materia = materia;
+		this.idEsame = idEsame;
+	}
+	
+	public Esame(int ore, String id, String descrizione, String nome, Date inizio, Date fine, int semestre,
+			String tipologia, int idEsame) {
+		super(ore, id, descrizione, nome, inizio, fine, semestre);
+		this.tipologia = tipologia;
 		this.idEsame = idEsame;
 	}
 	
@@ -31,13 +46,13 @@ public class Esame extends Attività {
 		this.tipologia = tipologia;
 	}
 
-	public Disciplina getMateria() {
-		return materia;
-	}
+	//public Disciplina getMateria() {
+		//return materia;
+	//}
 
-	public void setMateria(Disciplina materia) {
-		this.materia = materia;
-	}
+	//public void setMateria(Disciplina materia) {
+		//this.materia = materia;
+	//}
 
 	public int getIdEsame() {
 		return idEsame;

@@ -1,7 +1,7 @@
 package myComponents;
 
-import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Tirocinio extends Attività {
 
@@ -10,7 +10,7 @@ public class Tirocinio extends Attività {
 	private String descrizioneAzienda;
 	private int idTirocinio;
 	
-	public Tirocinio(int ore, String id, String descrizione, String nome, DateFormat inizio, DateFormat fine,
+	public Tirocinio(int ore, String id, String descrizione, String nome, Date inizio, Date fine,
 			int semestre, ArrayList<Docente> elencoResponsabili, String azienda, String emailAzienda, String descrizioneAzienda, int idTirocinio) {
 		super(ore, id, descrizione, nome, inizio, fine, semestre, elencoResponsabili);
 		this.azienda = azienda;

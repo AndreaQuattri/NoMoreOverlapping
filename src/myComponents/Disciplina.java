@@ -1,16 +1,23 @@
 package myComponents;
 
-import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Disciplina extends Attività{
 	
 	private String codice;
-	private int crediti;
+	private float crediti;
 
-	public Disciplina(int ore, String id, String descrizione, String nome, DateFormat inizio, DateFormat fine,
-			int semestre, ArrayList<Docente> elencoResponsabili, String codice, int crediti) {
+	public Disciplina(int ore, String id, String descrizione, String nome, Date inizio, Date fine,
+			int semestre, ArrayList<Docente> elencoResponsabili, String codice, float crediti) {
 		super(ore, id, descrizione, nome, inizio, fine, semestre, elencoResponsabili);
+		this.codice = codice;
+		this.crediti = crediti;
+	}
+	
+	public Disciplina(int ore, String id, String descrizione, String nome, Date inizio, Date fine,
+			int semestre, String codice, float crediti) {
+		super(ore, id, descrizione, nome, inizio, fine, semestre);
 		this.codice = codice;
 		this.crediti = crediti;
 	}
@@ -29,11 +36,11 @@ public class Disciplina extends Attività{
 		this.codice = codice;
 	}
 
-	public int getCrediti() {
+	public float getCrediti() {
 		return crediti;
 	}
 
-	public void setCrediti(int crediti) {
+	public void setCrediti(float crediti) {
 		this.crediti = crediti;
 	}
 	

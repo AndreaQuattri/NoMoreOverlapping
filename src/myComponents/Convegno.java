@@ -1,7 +1,7 @@
 package myComponents;
 
-import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Convegno extends Attività {
 	
@@ -11,7 +11,7 @@ public class Convegno extends Attività {
 	private String relatoreQualifica;
 	private int idConvegno;
 
-	public Convegno(int ore, String id, String descrizione, String nome, DateFormat inizio, DateFormat fine,
+	public Convegno(int ore, String id, String descrizione, String nome, Date inizio, Date fine,
 			int semestre, ArrayList<Docente> elencoResponsabili, String relatoreNome, String relatoreCognome, String relatoreEmail, String relatoreQualifica, int idConvegno) {
 		
 		super(ore, id, descrizione, nome, inizio, fine, semestre, elencoResponsabili);
@@ -22,9 +22,19 @@ public class Convegno extends Attività {
 		this.idConvegno = idConvegno;
 	}
 	
+	public Convegno(int ore, String id, String descrizione, String nome, Date inizio, Date fine,
+			int semestre, String relatoreNome, String relatoreCognome, String relatoreEmail, String relatoreQualifica, int idConvegno) {
+		
+		super(ore, id, descrizione, nome, inizio, fine, semestre);
+		this.relatoreNome = relatoreNome;
+		this.relatoreCognome = relatoreCognome;
+		this.relatoreEmail = relatoreEmail;
+		this.relatoreQualifica = relatoreQualifica;
+		this.idConvegno = idConvegno;
+	}
+	
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
 		return super.toString();
 	}
 	

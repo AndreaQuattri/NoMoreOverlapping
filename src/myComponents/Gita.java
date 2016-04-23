@@ -15,6 +15,13 @@ public class Gita extends Attività {
 		this.idGita = idGita;
 	}
 	
+	public Gita(int ore, String id, String descrizione, String nome, Date inizio, Date fine, int semestre,
+			String luogo, int idGita) {
+		super(ore, id, descrizione, nome, inizio, fine, semestre);
+		this.luogo = luogo;
+		this.idGita = idGita;
+	}
+	
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub

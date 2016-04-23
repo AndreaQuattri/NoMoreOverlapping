@@ -19,6 +19,15 @@ public class Tirocinio extends Attività {
 		this.idTirocinio = idTirocinio;
 	}
 	
+	public Tirocinio(int ore, String id, String descrizione, String nome, Date inizio, Date fine,
+			int semestre, String azienda, String emailAzienda, String descrizioneAzienda, int idTirocinio) {
+		super(ore, id, descrizione, nome, inizio, fine, semestre);
+		this.azienda = azienda;
+		this.emailAzienda = emailAzienda;
+		this.descrizioneAzienda = descrizioneAzienda;
+		this.idTirocinio = idTirocinio;
+	}
+	
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub

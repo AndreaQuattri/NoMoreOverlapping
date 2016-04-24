@@ -2,6 +2,7 @@ package mvc;
 
 import javax.swing.JFrame;
 
+import java.awt.event.ActionListener;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -10,6 +11,7 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.JTable;
+import javax.swing.JTextArea;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 public class ViewOrario extends JFrame implements Observer{
@@ -23,7 +25,7 @@ public class ViewOrario extends JFrame implements Observer{
 	private JFrame frame;
 	
 
-	private JTextField textLoad;
+	private JTextArea textLoad;
 	private JTable table;
 	private JButton buttonNewOrario;
 	private JButton buttonLoadOrario;
@@ -50,6 +52,15 @@ public class ViewOrario extends JFrame implements Observer{
 
 		
 	}
+	
+	
+	
+	public void addLoadFromFileListener(ActionListener listener) {
+		// TODO Auto-generated method stub
+		buttonBrowse.addActionListener(listener);
+
+		
+	}
 
 	private void initViewLikeModel() {
 		// TODO Auto-generated method stub
@@ -70,7 +81,7 @@ public class ViewOrario extends JFrame implements Observer{
 		
 		buttonLoadOrario = new JButton("Carica orario");
 		
-		textLoad = new JTextField();
+		textLoad = new JTextArea();
 		textLoad.setColumns(10);
 		
 		buttonBrowse = new JButton("Browse");
@@ -141,5 +152,18 @@ public class ViewOrario extends JFrame implements Observer{
 		// TODO Auto-generated method stub
 		
 	}
+
+	public void clearUserInput() {
+		textLoad.setText("");
+	}
+
+	public void appendUserInput(String line) {
+		textLoad.append(line);
+		textLoad.setCaretPosition(textLoad.getDocument().getLength());
+		
+	}
+
+
+
 	
 }

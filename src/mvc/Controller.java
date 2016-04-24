@@ -2,10 +2,16 @@ package mvc;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.text.ParseException;
 
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 import ElaborazioneDati.InsertInTable;
 import memorizzazioneDati.InsertValues;
@@ -17,18 +23,20 @@ public class Controller
 
 	private Model model;
 	private MainView view;
+	private ViewOrario viewOrario;
 
-	public Controller(Model model, MainView view)
+	public Controller(Model model, MainView view, ViewOrario viewOrario)
 	{
 		this.model = model;
 		this.view = view;
+		this.viewOrario = viewOrario;
 
 
 		// Set all the listener of the view
 		view.selectedTableToView(new SelectedTableListener());
 		view.pressButtonAcquisisci(new InsertInTableListener());
 		view.pressButtonGestisciOrario(new OpenViewGestisciOrario());
-		//view.addLoadFromFileListener(new MyLoadFromFileListener());
+		viewOrario.addLoadFromFileListener(new MyLoadFromFileListener());
 		//view.addDocumentListener(new MyDocumentListener());
 		//view.addCompileListener(new MyCompileListener());
 		//view.addMakeLaTeXlistener(new MyMakeLaTeXlistener());
@@ -104,8 +112,7 @@ public class Controller
 		{
 			InsertValues insert = new InsertValues(model);
 			
-			//ViewOrario viewOrario = new ViewOrario(model);
-			//viewOrario.getFrame().setVisible(true);
+			viewOrario.getFrame().setVisible(true);
 
 			
 			try {
@@ -167,7 +174,7 @@ public class Controller
 	
 	
 	
-	/*
+	
 	private class MyLoadFromFileListener implements ActionListener
 	{
 		@Override
@@ -178,13 +185,18 @@ public class Controller
 			fileChooser.setDialogTitle("Select a Petri Net");
 			fileChooser.setApproveButtonText("Open");
 			fileChooser.setCurrentDirectory(new java.io.File("."));
-			fileChooser.setFileFilter(new MyFileFilter());
-
-			int n = fileChooser.showOpenDialog(view);
+			//fileChooser.setFileFilter(new MyFileFilter());
+			//da rivedere questa istruzione
+			fileChooser.setFileFilter(new FileNameExtensionFilter(".txt" , ".txt"));
+			
+			
+			int n = fileChooser.showOpenDialog(viewOrario);
 
 			if (n == JFileChooser.APPROVE_OPTION)
 			{
-				view.clearUserInput();
+				
+				//serve per cancellare textbox prima di usarla
+				viewOrario.clearUserInput();
 
 				File inputFile = fileChooser.getSelectedFile();
 				try
@@ -194,7 +206,7 @@ public class Controller
 					String line ;
 					while ((line = brd.readLine()) != null)
 					{
-						view.appendUserInput(line + "\n");
+						viewOrario.appendUserInput(line + "\n");
 					}
 					brd.close();
 				}
@@ -205,10 +217,8 @@ public class Controller
 				}
 			}
 
-			model.enableCompile(true);
-			model.enableMakePDF(false);
 		}
-
+/*
 		// Private classe for filter only *.txt files
 		private class MyFileFilter extends FileFilter
 		{
@@ -227,9 +237,11 @@ public class Controller
 				return "*.txt";
 			}
 		}
-
+*/
 	}
 
+	/*
+	
 	private class MyDocumentListener implements DocumentListener
 	{
 

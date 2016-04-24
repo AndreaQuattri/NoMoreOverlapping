@@ -12,7 +12,7 @@ public class Model extends Observable{
 	private ArrayList<Convegno> listConvegno;			//Fatto
 	private ArrayList<CorsoDiStudi> listCorsoDiStudi;	//
 	private ArrayList<Disciplina> listDisciplina;		//Fatto
-	private ArrayList<Docente> listDocente;				//
+	private ArrayList<Docente> listDocente;				//Fatto
 	private ArrayList<Esame> listEsame;					//Da controllare un campo che ho tolto
 	private ArrayList<FasciaOraria> listFasciaOraria;	//Fatto
 	private ArrayList<Gita> listGita;					//Fatto

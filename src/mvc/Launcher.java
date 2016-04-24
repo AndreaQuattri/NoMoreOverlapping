@@ -9,9 +9,10 @@ public class Launcher
 				Model model = new Model();
 				
 				MainView view = new MainView(model);
+				ViewOrario viewOrario = new ViewOrario(model);
 				
 				@SuppressWarnings("unused")
-				Controller controller = new Controller(model, view);
+				Controller controller = new Controller(model, view, viewOrario);
 				
 				view.getFrame().setVisible(true);
 			

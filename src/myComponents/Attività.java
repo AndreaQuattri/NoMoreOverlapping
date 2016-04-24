@@ -1,6 +1,8 @@
 package myComponents;
 
 import java.util.Date;
+import java.text.Format;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public class Attività {
@@ -34,12 +36,16 @@ public class Attività {
 		this.inizio = inizio;
 		this.fine = fine;
 		this.semestre = semestre;
-		this.elencoResponsabili = null;
+		this.elencoResponsabili = new ArrayList<Docente>();
 	}
 	
   public String toString()
   {
-      String toReturn = id + "," + nome + "," + descrizione + "," + ore + "," + semestre + "," + inizio + "," + fine+"\n";
+	  Format formatter = new SimpleDateFormat("yyyy-mm-dd");
+		String dateInizio = formatter.format(inizio);
+		String dateFine = formatter.format(fine);
+	  
+      String toReturn = id + "," + nome + "," + descrizione + "," + ore + "," + semestre + "," + dateInizio + "," + dateFine+"\n";
       //for (int i = 0; i < elencoResponsabili.size(); i++)
          // toReturn += elencoResponsabili.get(i).toString() + " ; ";
       return toReturn;

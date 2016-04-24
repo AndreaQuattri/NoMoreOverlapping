@@ -24,21 +24,11 @@ public class Studente {
 		this.annoIscrizione = annoIscrizione;
 		this.corso = corso;
 	}
-	
-	public Studente(String nome, String cognome, String matricola, String email, 
-			Date date, int annoIscrizione) {
-		this.nome = nome;
-		this.cognome = cognome;
-		this.matricola = matricola;
-		this.email = email;
-		this.nascita = date;
-		this.annoIscrizione = annoIscrizione;
-		this.corso = null;
-	}
+
 	
 	
 	public String toString() {
-        return matricola+", "+nome+", "+cognome+", "+email+", "+nascita+", "+annoIscrizione;
+        return matricola+", "+nome+", "+cognome+", "+email+", "+nascita+", "+annoIscrizione + corso.getNomePrincipale();
 	}
 	
 	

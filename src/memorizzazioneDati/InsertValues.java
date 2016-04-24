@@ -3,7 +3,6 @@ package memorizzazioneDati;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.text.DateFormat;
-import java.text.Format;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -19,6 +18,9 @@ import myComponents.Docente;
 import myComponents.Esame;
 import myComponents.FasciaOraria;
 import myComponents.Gita;
+import myComponents.PianoDiStudi;
+import myComponents.SceltaAula;
+import myComponents.SceltaOraria;
 import myComponents.Studente;
 import myComponents.Tirocinio;
 import urlPhp.GiveAll;
@@ -57,22 +59,88 @@ public class InsertValues {
 
 	public void getValueDocente() throws IOException, URISyntaxException{
 
-		String input = Connect.connectDb(GiveAll.giveAllDocente);
-		int numDocenti = NumberOfRows.numOfRows(input);
+		String inputDocenti = Connect.connectDb(GiveAll.giveAllDocente);
+		String inputInsegna = Connect.connectDb(GiveAll.giveAllInsegna);
+		String inputPreferenzaFascia = Connect.connectDb(GiveAll.giveAllPreferenzaFasciaOraria);
+		String inputPreferenzaAula = Connect.connectDb(GiveAll.giveAllPreferenzaAula);
+		
+		int numDocenti = NumberOfRows.numOfRows(inputDocenti);
+		int numInsegna = NumberOfRows.numOfRows(inputInsegna);
+		int numPreferenzeFasce = NumberOfRows.numOfRows(inputPreferenzaFascia);
+		int numPreferenzeAule = NumberOfRows.numOfRows(inputPreferenzaAula);
 
-		String splitRighe[] = input.split("_");
+		String splitRighe[] = inputDocenti.split("_");
+		String splitInsegna[] = inputInsegna.split("_");
+		String splitFasciaOraria[] = inputPreferenzaFascia.split("_");
+		String splitPreferenzaAula[] = inputPreferenzaAula.split("_");
 
 
 		for (int i=0; i<numDocenti; i++){
 
 			String splitColonne[] = splitRighe[i].split(",");
+			
 			model.getListDocente().add(new Docente(splitColonne[1], splitColonne[2], Boolean.parseBoolean(splitColonne[5]), splitColonne[0], splitColonne[3], splitColonne[4]));
+
+			
+			//attività
+			for (int j=0; j<numInsegna; j++){
+				String splitColInsegna[] = splitInsegna[j].split(",");
+				if (model.getListDocente().get(i).getMatricola().equals(splitColInsegna[0])){
+					
+					for (int k=0; k<model.getListDisciplina().size(); k++){
+						if(model.getListDisciplina().get(k).getId().equals(splitColInsegna[1])){
+							model.getListDocente().get(i).aggiungiAttività(model.getListDisciplina().get(k));
+							break;
+						}
+					}
+					
+					
+				}
+			}
+			
+			//preferenza orari
+			for (int j=0; j<numPreferenzeFasce; j++){
+				String splitColFasciaOraria[] = splitFasciaOraria[j].split(",");
+				if (model.getListDocente().get(i).getMatricola().equals(splitColFasciaOraria[0])){
+					
+					for (int k=0; k<model.getListFasciaOraria().size(); k++){
+						if (model.getListFasciaOraria().get(k).getIdFascia() == Integer.parseInt(splitColFasciaOraria[1])){
+							model.getListDocente().get(i).aggiungiPreferenza(new SceltaOraria(model.getListFasciaOraria().get(k),Integer.parseInt(splitColFasciaOraria[2])));
+							break;
+						}
+					}
+					
+					
+				}
+			}
+			
+			
+			//preferenza aule
+			for (int j=0; j<numPreferenzeAule; j++){
+				String splitColPreferenzaAula[] = splitPreferenzaAula[j].split(",");
+				if (model.getListDocente().get(i).getMatricola().equals(splitColPreferenzaAula[0])){
+					
+					for (int k=0; k<model.getListAula().size(); k++){
+						if (model.getListAula().get(k).getEdificio().equals(splitColPreferenzaAula[1]) && 
+							model.getListAula().get(k).getNumero() == Integer.parseInt(splitColPreferenzaAula[2])){
+							
+							model.getListDocente().get(i).aggiungiPreferenza(new SceltaAula(model.getListAula().get(k),Integer.parseInt(splitColPreferenzaAula[2])));
+							break;
+						}
+					}
+					
+					
+				}
+			}
+			
+			
+			
 
 		}
 
 	}
 
-	public void getValueCorsoDiStudi() throws IOException, URISyntaxException{
+	public void getValueCorsoDiStudi_1() throws IOException, URISyntaxException{
 
 		String input = Connect.connectDb(GiveAll.giveAllCorsoDiStudi);
 		int numCorsoDiStudi = NumberOfRows.numOfRows(input);
@@ -86,6 +154,23 @@ public class InsertValues {
 
 			model.getListCorsoDiStudi().add(new CorsoDiStudi(Short.parseShort(splitColonne[4]), splitColonne[1], splitColonne[5], splitColonne[7], splitColonne[6], splitColonne[0], splitColonne[2], Integer.parseInt(splitColonne[3])));			
 
+		}
+
+	}
+
+	public void getValueCorsoDiStudi_2() throws IOException, URISyntaxException{
+
+
+
+
+		for (int i=0; i<model.getListCorsoDiStudi().size(); i++){
+
+			for (int j=0; j<model.getListStudente().size(); j++){
+				if (model.getListCorsoDiStudi().get(i).getCodice().equals(model.getListStudente().get(j).getCorso().getCodice())){
+					model.getListCorsoDiStudi().get(i).iscriviStudente(model.getListStudente().get(j));
+				}
+
+			}
 		}
 
 	}
@@ -106,7 +191,12 @@ public class InsertValues {
 			DateFormat format = new SimpleDateFormat("yyyy-mm-dd");
 			Date date = format.parse(splitColonne[4]);
 
-			model.getListStudente().add(new Studente(splitColonne[1], splitColonne[2], splitColonne[0], splitColonne[3], date, Integer.parseInt(splitColonne[5])));
+			for (int j=0; j<model.getListCorsoDiStudi().size(); j++){
+				if(model.getListCorsoDiStudi().get(j).getCodice().equals(splitColonne[6])){
+					model.getListStudente().add(new Studente(splitColonne[1], splitColonne[2], splitColonne[0], splitColonne[3], date, Integer.parseInt(splitColonne[5]), model.getListCorsoDiStudi().get(j)));
+					break;
+				}
+			}
 
 		}
 
@@ -163,9 +253,6 @@ public class InsertValues {
 		String splitTirocini[] = inputTirocinio.split("_");
 
 
-
-
-
 		for (int i=0; i<numAttività; i++){
 
 			String splitColonne[] = splitRighe[i].split(",");
@@ -174,8 +261,8 @@ public class InsertValues {
 			Date dateInizio = format.parse(splitColonne[5]);
 			Date dateFine = format.parse(splitColonne[6]);
 
-			
-			
+
+
 			//aggiungere il controllo che, fatto un for, salta i successivi
 
 			for(int j=0; j<numConvegni; j++){
@@ -189,7 +276,7 @@ public class InsertValues {
 					break;
 				}
 			}
-			
+
 			for(int j=0; j<numDiscipline; j++){
 				String splitColDiscipline[] = splitDiscipline[j].split(",");
 
@@ -202,7 +289,7 @@ public class InsertValues {
 				}
 			}
 
-			
+
 			for(int j=0; j<numEsami; j++){
 				String splitColEsami[] = splitEsami[j].split(",");
 
@@ -214,7 +301,7 @@ public class InsertValues {
 					break;
 				}
 			}
-			
+
 			for(int j=0; j<numGite; j++){
 				String splitColGite[] = splitGite[j].split(",");
 
@@ -226,7 +313,7 @@ public class InsertValues {
 					break;
 				}
 			}
-			
+
 			for(int j=0; j<numTirocini; j++){
 				String splitColTirocini[] = splitTirocini[j].split(",");
 
@@ -239,10 +326,55 @@ public class InsertValues {
 				}
 			}
 
-
 		}
 
 	}
 
+
+	public void getValuePianoDiStudi() throws IOException, URISyntaxException, ParseException{
+
+		String input = Connect.connectDb(GiveAll.giveAllPianoDiStudio);
+		int numPianiDiStudio = NumberOfRows.numOfRows(input);
+
+		String splitRighe[] = input.split("_");
+
+
+		for (int i=0, k=0; i<numPianiDiStudio; i++){
+
+			String splitColonne[] = splitRighe[i].split(",");
+
+			if (model.getListPianoDiStudi().size() == 0 || !model.getListPianoDiStudi().get(k-1).getCorso().getCodice().equals(splitColonne[0])){
+
+				for(int j=0; j<model.getListCorsoDiStudi().size(); j++){
+					if(splitColonne[0].equals(model.getListCorsoDiStudi().get(j).getCodice())){
+						model.getListPianoDiStudi().add(new PianoDiStudi(model.getListCorsoDiStudi().get(j)));
+						k++;
+						break;
+					}
+				}
+			}
+
+
+			//per ora controllo solo le discipline
+			for(int j=0; j<model.getListDisciplina().size(); j++){
+				if(model.getListDisciplina().get(j).getId().equals(splitColonne[1])){
+					if(Integer.parseInt(splitColonne[2]) == 1){
+						//aggiungo nelle attività opzionali
+						model.getListPianoDiStudi().get(k-1).aggiungiAttivitàOpzionale(model.getListDisciplina().get(j));
+					}
+					else{
+						//aggiungo nelle attività obbligatorie
+						model.getListPianoDiStudi().get(k-1).aggiungiAttivitàObbligatoria(model.getListDisciplina().get(j));
+
+					}
+					break;
+				}
+			}
+
+
+
+		}
+
+	}
 
 }

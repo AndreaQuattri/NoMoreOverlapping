@@ -1,5 +1,7 @@
 package myComponents;
 
+import java.text.Format;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class FasciaOraria {
@@ -20,7 +22,12 @@ public class FasciaOraria {
 	
 	@Override
 	public String toString() {
-		return idFascia+", "+giorno;
+		
+		Format formatter = new SimpleDateFormat("hh:mm:ss");
+		String dateInizio = formatter.format(inizio);
+		String dateFine = formatter.format(fine);
+		
+		return idFascia+", "+giorno +", " + dateInizio + ", " + dateFine;
 	}
 	
 	

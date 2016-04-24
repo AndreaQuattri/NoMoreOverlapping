@@ -41,14 +41,15 @@ public class CorsoDiStudi {
 		this.codice = codice;
 		this.descrizione = descrizione;
 		this.totCrediti = totCrediti;
+		this.elencoPianiPossibili = new ArrayList<PianoDiStudi>();
+		this.elencoStudenti = new ArrayList<Studente>();
 	}
 
 
 
-	public Boolean iscriviStudente(Studente s)
+	public void iscriviStudente(Studente s)
 	{
-		// TODO da completare.
-		return false;
+		this.getElencoStudenti().add(s);
 	}
 
 	public Boolean cancellaStudente(Studente s)
@@ -100,7 +101,14 @@ public class CorsoDiStudi {
 
 	@Override
 	public String toString() {
-		return nomePrincipale;
+		String toRet = codice + ", " + nomePrincipale + ", " + anno + ", " + totCrediti + "\n";
+		for (int i=0; i<this.getElencoStudenti().size(); i++){
+			toRet += this.getElencoStudenti().get(i).toString();
+			toRet += "\n";
+		}
+		
+		
+		return toRet;
 	}
 
 

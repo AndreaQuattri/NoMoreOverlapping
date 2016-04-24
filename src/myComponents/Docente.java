@@ -37,21 +37,34 @@ public class Docente {
 		this.matricola = matricola;
 		this.email = email;
 		this.qualifica = qualifica;
+		this.elencoAttività = new ArrayList<Attività>();
+		this.orariPreferiti = new ArrayList<SceltaOraria>();
+		this.aulePreferite = new ArrayList<SceltaAula>();
 		
 	}
 
 	@Override
 	public String toString() {
 		
-		return this.matricola+", "+this.nome+", "+this.cognome+", "+this.email+", "+this.qualifica+", "+this.associato;
-		
+		String toRet = this.matricola+", "+this.nome+", "+this.cognome+", "+this.email+", "+this.qualifica+", "+this.associato+ "\n\n";
+			for (int i=0; i<elencoAttività.size(); i++){
+				toRet += elencoAttività.get(i).toString();
+			}
+			toRet += "\n";
+			for (int i=0; i<orariPreferiti.size(); i++){
+				toRet += orariPreferiti.get(i).toString() + "\n";
+			}
+			toRet += "\n";
+			for (int i=0; i<aulePreferite.size(); i++){
+				toRet += aulePreferite.get(i).toString() + "\n";
+			}
+		return toRet;
 	}
 
 
-	public Boolean aggiungiAttività(Attività a)
+	public void aggiungiAttività(Attività a)
 	{
-		// TODO da completare.
-		return false;
+		elencoAttività.add(a);
 	}
 
 	public Boolean cancellaAttività(Attività a)
@@ -65,16 +78,14 @@ public class Docente {
 		// TODO da completare.
 	}
 
-	public Boolean aggiungiPreferenza(SceltaOraria so)
+	public void aggiungiPreferenza(SceltaOraria so)
 	{
-		// TODO da completare.
-		return false;
+		orariPreferiti.add(so);
 	}
 
-	public Boolean aggiungiPreferenza(SceltaAula sa)
+	public void aggiungiPreferenza(SceltaAula sa)
 	{
-		// TODO da completare.
-		return false;
+		aulePreferite.add(sa);
 	}
 
 	public Boolean cancellaPreferenza(SceltaOraria so)

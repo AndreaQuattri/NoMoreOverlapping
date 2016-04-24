@@ -10,6 +10,12 @@ public class SceltaAula {
 		this.priorità = priorità;
 	}
 	
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return scelta.toString() + ", " + priorità;
+	}
+	
 	
 	
 	public Aula getScelta() {

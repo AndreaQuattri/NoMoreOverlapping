@@ -2,26 +2,10 @@ package mvc;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.StringWriter;
 import java.net.URISyntaxException;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 
-import javax.swing.JFileChooser;
-import javax.swing.JOptionPane;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
-import javax.swing.filechooser.FileFilter;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumn;
 
 import ElaborazioneDati.InsertInTable;
 import memorizzazioneDati.InsertValues;
@@ -38,6 +22,7 @@ public class Controller
 	{
 		this.model = model;
 		this.view = view;
+
 
 		// Set all the listener of the view
 		view.selectedTableToView(new SelectedTableListener());
@@ -119,6 +104,8 @@ public class Controller
 		{
 			InsertValues insert = new InsertValues(model);
 			
+			//ViewOrario viewOrario = new ViewOrario(model);
+			//viewOrario.getFrame().setVisible(true);
 
 			
 			try {
@@ -126,33 +113,38 @@ public class Controller
 				//aula inserita in arraylist<Aula> correttamente
 				insert.getValueAula();
 				
-				//docente inseriti in arraylist<Docente>
-				//mancano elencoAttività, orariPreferiti e aulePreferite
-				insert.getValueDocente();
-				
 				//corsi di studi inseriti in arraylist<CorsoDiStudi>
 				//mancano elencoPianiPossibili e elencoStudenti
-				insert.getValueCorsoDiStudi();
+				insert.getValueCorsoDiStudi_1();
 				
 				//studenti inseriti in arrayList<Studente>
-				//manca CorsoDiStudi
 				insert.getValueStudente();
+				
+				//corsi di studi inseriti in arraylist<CorsoDiStudi>
+				//mancano elencoPianiPossibili
+				insert.getValueCorsoDiStudi_2();
 				
 				//fascie orarie inserite in arraylist<FasciaOraria>
 				insert.getValueFasciaOraria();
 				
+				//le sottoclassi di attività inserite nei rispettivi arraylist
 				insert.getValueAttività();
 				
 				
+				insert.getValuePianoDiStudi();
 				
-				for (int i=0; i<model.getListAula().size(); i++)
-					System.out.println(model.getListAula().get(i).toString());
+				//docente inseriti in arraylist<Docente>
+				insert.getValueDocente();
 				
-				System.out.println();
 				
-				for (int i=0; i<model.getListTirocinio().size(); i++)
-					System.out.println(model.getListTirocinio().get(i).toString());
 				
+				//for (int i=0; i<model.getListDocente().size(); i++)
+					//System.out.println(model.getListDocente().get(i).toString());
+				
+				//System.out.println();
+				
+				//for (int i=0; i<model.getListCorsoDiStudi().size(); i++)
+					//System.out.println(model.getListCorsoDiStudi().get(i).toString());
 				
 				
 				
@@ -167,7 +159,13 @@ public class Controller
 				e.printStackTrace();
 			}
 		}
+		
+
+		
 	}
+	
+	
+	
 	
 	/*
 	private class MyLoadFromFileListener implements ActionListener

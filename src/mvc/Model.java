@@ -9,17 +9,17 @@ public class Model extends Observable{
 	
 	//private ArrayList<Assegnamento> listAssegnamento;
 	private ArrayList<Aula> listAula;					//Fatto
-	private ArrayList<Convegno> listConvegno;			//
+	private ArrayList<Convegno> listConvegno;			//Fatto
 	private ArrayList<CorsoDiStudi> listCorsoDiStudi;	//
-	private ArrayList<Disciplina> listDisciplina;		//
+	private ArrayList<Disciplina> listDisciplina;		//Fatto
 	private ArrayList<Docente> listDocente;				//
 	private ArrayList<Esame> listEsame;					//Da controllare un campo che ho tolto
-	private ArrayList<FasciaOraria> listFasciaOraria;	//
-	private ArrayList<Gita> listGita;					//
+	private ArrayList<FasciaOraria> listFasciaOraria;	//Fatto
+	private ArrayList<Gita> listGita;					//Fatto
 	private ArrayList<Orario> listOrario;
-	private ArrayList<PianoDiStudi> listPianoDiStudi;
-	private ArrayList<Studente> listStudente;			//
-	private ArrayList<Tirocinio> listTirocinio;			//
+	private ArrayList<PianoDiStudi> listPianoDiStudi;	//Fatto
+	private ArrayList<Studente> listStudente;			//Fatto
+	private ArrayList<Tirocinio> listTirocinio;			//Fatto
 	
 	private boolean enableModificaTable;
 	private boolean enableEliminaTable;

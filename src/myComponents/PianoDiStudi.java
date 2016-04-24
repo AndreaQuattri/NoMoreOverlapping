@@ -17,8 +17,8 @@ public class PianoDiStudi {
 
 	public PianoDiStudi(CorsoDiStudi corso) {
 		this.corso = corso;
-		elencoAttivitàObbligatorie = null;
-		elencoAttivitàOpzionali = null;
+		elencoAttivitàObbligatorie = new ArrayList<Attività>();
+		elencoAttivitàOpzionali = new ArrayList<Attività>();
 	}
 
 	@Override
@@ -44,6 +44,14 @@ public class PianoDiStudi {
 	}
 	public void setElencoAttivitàOpzionali(ArrayList<Attività> elencoAttivitàOpzionali) {
 		this.elencoAttivitàOpzionali = elencoAttivitàOpzionali;
+	}
+	
+	public void aggiungiAttivitàObbligatoria(Attività attivitàObbligatoria){
+		this.elencoAttivitàObbligatorie.add(attivitàObbligatoria);
+	}
+	
+	public void aggiungiAttivitàOpzionale(Attività attivitàOpzionale){
+		this.elencoAttivitàOpzionali.add(attivitàOpzionale);
 	}
 
 

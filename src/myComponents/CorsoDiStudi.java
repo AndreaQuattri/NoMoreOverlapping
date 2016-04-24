@@ -12,9 +12,13 @@ public class CorsoDiStudi {
 	private String codice;
 	private String descrizione;
 	private int totCrediti;
+	
+	private ArrayList<Studente> elencoStudenti;
+
 
 	private ArrayList<PianoDiStudi> elencoPianiPossibili;
-	private ArrayList<Studente> elencoStudenti;
+	
+	
 
 	public CorsoDiStudi(short anno, String nomePrincipale, String indirizzo, String tipoLaurea, 
 			String facoltà, String codice, String descrizione, int totCrediti, 

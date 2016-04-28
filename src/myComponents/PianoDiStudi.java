@@ -10,7 +10,7 @@ public class PianoDiStudi {
 	
 	
 	//dovrà andare qui il campo di CorsoDiStudi
-	private ArrayList<Disciplina> elencoPianiPossibili;
+	private ArrayList<ArrayList<Disciplina>> elencoPianiPossibili;
 
 
 	public PianoDiStudi(CorsoDiStudi corso, ArrayList<Attività> elencoAttivitàObbligatore,
@@ -18,20 +18,19 @@ public class PianoDiStudi {
 		this.corso = corso;
 		this.elencoAttivitàObbligatorie = elencoAttivitàObbligatore;
 		this.elencoAttivitàOpzionali = elencoAttivitàOpzionali;
-		this.elencoPianiPossibili = new ArrayList<Disciplina>();
+		this.elencoPianiPossibili = new ArrayList<ArrayList<Disciplina>>();
 	}
 
 	public PianoDiStudi(CorsoDiStudi corso) {
 		this.corso = corso;
 		elencoAttivitàObbligatorie = new ArrayList<Attività>();
 		elencoAttivitàOpzionali = new ArrayList<Attività>();
-		this.elencoPianiPossibili = new ArrayList<Disciplina>();
+		this.elencoPianiPossibili = new ArrayList<ArrayList<Disciplina>>();
 	}
 
 	@Override
 	public String toString() {
 		
-		//if (corso.getTipoLaurea().equals("Magistale")){
 			
 		int totC = 0;
 		
@@ -39,24 +38,26 @@ public class PianoDiStudi {
 		
 		toRet += "Obbligatorie\n";
 		for (int i=0; i<elencoAttivitàObbligatorie.size(); i++){
-			toRet += elencoAttivitàObbligatorie.get(i).toString() + "\n";
+			toRet += elencoAttivitàObbligatorie.get(i).toString();
 			totC += ((Disciplina)elencoAttivitàObbligatorie.get(i)).getCrediti();
 		}
 		
 		
 		toRet += "\nOpzionale\n";
 		for (int i=0; i<elencoAttivitàOpzionali.size(); i++)
-			toRet += elencoAttivitàOpzionali.get(i).toString() + "\n";
+			toRet += elencoAttivitàOpzionali.get(i).toString();
 		
 		
 
 		toRet += "\nPiani possibili\n";
-		for (int i=0; i<elencoPianiPossibili.size(); i++)
-			toRet += elencoPianiPossibili.get(i).toString() + "\n";
+		for (int i=0; i<elencoPianiPossibili.size(); i++){
+			for (int j=0; j<elencoPianiPossibili.get(i).size(); j++)
+				toRet += elencoPianiPossibili.get(i).get(j).toString();
+			toRet += "\n";
+		}
 		
 		return toRet+"\n"+totC;
-		//}
-		//return "";
+	
 	}
 
 
@@ -87,11 +88,11 @@ public class PianoDiStudi {
 		this.elencoAttivitàOpzionali.add(attivitàOpzionale);
 	}
 
-	public ArrayList<Disciplina> getElencoPianiPossibili() {
+	public ArrayList<ArrayList<Disciplina>> getElencoPianiPossibili() {
 		return elencoPianiPossibili;
 	}
 
-	public void setElencoPianiPossibili(ArrayList<Disciplina> elencoPianiPossibili) {
+	public void setElencoPianiPossibili(ArrayList<ArrayList<Disciplina>> elencoPianiPossibili) {
 		this.elencoPianiPossibili = elencoPianiPossibili;
 	}
 

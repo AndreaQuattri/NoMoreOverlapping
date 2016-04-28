@@ -164,5 +164,13 @@ public class ViewOrario extends JFrame implements Observer{
 
 
 
+	public void pressButtonNewOrario(ActionListener listener) {
+		// TODO Auto-generated method stub
+		buttonNewOrario.addActionListener(listener);
+
+	}
+
+
+
 	
 }

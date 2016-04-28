@@ -14,6 +14,7 @@ import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import ElaborazioneDati.InsertInTable;
+import memorizzazioneDati.GeneraPianiDiStudio;
 import memorizzazioneDati.InsertValues;
 
 
@@ -41,8 +42,8 @@ public class Controller
 		//view.addCompileListener(new MyCompileListener());
 		//view.addMakeLaTeXlistener(new MyMakeLaTeXlistener());
 	}
-	
-	
+
+
 	private class SelectedTableListener implements  ActionListener
 	{
 		@Override
@@ -54,26 +55,26 @@ public class Controller
 			model.enableEliminaTable(true);
 			model.enableButtonAcquisisci(true);
 			model.enableButtonAggiorna(true);
-			
+
 			//TODO
 			/*
 			 * 
 			 * cancellare tabella, ecc..
 			 * 
 			 */
-			
+
 
 		}
 	}
-	
+
 	private class InsertInTableListener implements  ActionListener
 	{
 		@Override
 		public void actionPerformed(ActionEvent action)
 		{
-			
+
 			view.getLabelTableInTable().setText((String)view.getComboBoxTable().getSelectedItem());
-			
+
 			InsertInTable insertInTable = new InsertInTable(view.getComboBoxTable().getSelectedItem());
 			try {
 				String toView[][] = insertInTable.getValues();
@@ -81,18 +82,18 @@ public class Controller
 				for (int i=0; i<toView[0].length; i++){
 					view.getTableRecords().addColumn(toView[0][i]);
 				}
-				
-								
+
+
 				for (int i=1; i<toView.length; i++){
-						view.getTableRecords().addRow(toView[i]);
-						for(int j=0; j<toView[i].length-1; j++)
-							toInsertComboBox+=toView[i][j]+", ";
-						toInsertComboBox+=toView[i][toView[i].length-1];
-						view.getComboBoxRecord().addItem(toInsertComboBox);
-						toInsertComboBox = "";
+					view.getTableRecords().addRow(toView[i]);
+					for(int j=0; j<toView[i].length-1; j++)
+						toInsertComboBox+=toView[i][j]+", ";
+					toInsertComboBox+=toView[i][toView[i].length-1];
+					view.getComboBoxRecord().addItem(toInsertComboBox);
+					toInsertComboBox = "";
 				}
-				
-				
+
+
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -100,61 +101,67 @@ public class Controller
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
+
 		}
-	
+
 	}
-	
+
 	private class OpenViewGestisciOrario implements  ActionListener 
 	{
 		@Override
 		public void actionPerformed(ActionEvent action)
 		{
 			InsertValues insert = new InsertValues(model);
-			
+
 			viewOrario.getFrame().setVisible(true);
 
-			
+
 			try {
-				
+
 				//aula inserita in arraylist<Aula> correttamente
 				insert.getValueAula();
-				
+
 				//corsi di studi inseriti in arraylist<CorsoDiStudi>
 				//mancano elencoPianiPossibili e elencoStudenti
 				insert.getValueCorsoDiStudi_1();
-				
+
 				//studenti inseriti in arrayList<Studente>
 				insert.getValueStudente();
-				
+
 				//corsi di studi inseriti in arraylist<CorsoDiStudi>
 				//mancano elencoPianiPossibili
 				insert.getValueCorsoDiStudi_2();
-				
+
 				//fascie orarie inserite in arraylist<FasciaOraria>
 				insert.getValueFasciaOraria();
-				
+
 				//le sottoclassi di attività inserite nei rispettivi arraylist
 				insert.getValueAttività();
-				
-				
+
+
 				insert.getValuePianoDiStudi();
-				
+
 				//docente inseriti in arraylist<Docente>
 				insert.getValueDocente();
-				
-				
-				
+
+				//System.out.println(model.getListPianoDiStudi().get(2).toString());
+
+
+
+
+
+				GeneraPianiDiStudio generaPiani = new GeneraPianiDiStudio(model);
+				generaPiani.generaPiani();
+
+
+
 				//for (int i=0; i<model.getListDocente().size(); i++)
-					//System.out.println(model.getListDocente().get(i).toString());
-				
-				//System.out.println();
-				
-				//for (int i=0; i<model.getListCorsoDiStudi().size(); i++)
-					//System.out.println(model.getListCorsoDiStudi().get(i).toString());
-				
-				
-				
+				//System.out.println(model.getListDocente().get(i).toString());
+
+				for (int i=0; i<model.getListPianoDiStudi().size(); i++)
+					System.out.println(model.getListPianoDiStudi().get(i).toString());
+
+
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -166,15 +173,15 @@ public class Controller
 				e.printStackTrace();
 			}
 		}
-		
 
-		
+
+
 	}
-	
-	
-	
-	
-	
+
+
+
+
+
 	private class MyLoadFromFileListener implements ActionListener
 	{
 		@Override
@@ -188,13 +195,13 @@ public class Controller
 			//fileChooser.setFileFilter(new MyFileFilter());
 			//da rivedere questa istruzione
 			fileChooser.setFileFilter(new FileNameExtensionFilter(".txt" , ".txt"));
-			
-			
+
+
 			int n = fileChooser.showOpenDialog(viewOrario);
 
 			if (n == JFileChooser.APPROVE_OPTION)
 			{
-				
+
 				//serve per cancellare textbox prima di usarla
 				viewOrario.clearUserInput();
 
@@ -218,7 +225,7 @@ public class Controller
 			}
 
 		}
-/*
+		/*
 		// Private classe for filter only *.txt files
 		private class MyFileFilter extends FileFilter
 		{
@@ -237,11 +244,11 @@ public class Controller
 				return "*.txt";
 			}
 		}
-*/
+		 */
 	}
 
 	/*
-	
+
 	private class MyDocumentListener implements DocumentListener
 	{
 
@@ -355,6 +362,6 @@ public class Controller
 			}
 		}
 	}
-	*/
+	 */
 
 }

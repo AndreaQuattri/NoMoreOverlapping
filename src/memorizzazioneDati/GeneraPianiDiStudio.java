@@ -1,5 +1,6 @@
 package memorizzazioneDati;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import connectToDatabase.Comb;
@@ -44,15 +45,23 @@ public class GeneraPianiDiStudio {
 
 			GetDisciplina getDisplina = new GetDisciplina(model);
 			int cred;
+			ArrayList<Disciplina> listSupport;
 
-			for (int i=0; i<elencoAttività.size(); i++){
+			for (int i=0, indicePiani = 0; i<elencoAttività.size(); i++){
 				String riga[] = elencoAttività.get(i).split(" ");
 				cred = 0;
 				for (int j=0; j<riga.length; j++)
 					cred+=getDisplina.fromIdToDisciplina(riga[j]).getCrediti();
-				if (cred == creditiMancanti)
+				if (cred == creditiMancanti){
+					listSupport = new ArrayList<Disciplina>();
+					for (int j=0; j<piano.getElencoAttivitàObbligatorie().size(); j++){
+						listSupport.add((Disciplina)piano.getElencoAttivitàObbligatorie().get(j));
+					}
+					piano.getElencoPianiPossibili().add(listSupport);
 					for (int j=0; j<riga.length; j++)
-						piano.getElencoPianiPossibili().add(getDisplina.fromIdToDisciplina(riga[j]));
+						piano.getElencoPianiPossibili().get(indicePiani).add(getDisplina.fromIdToDisciplina(riga[j]));
+					indicePiani++;
+				}
 
 			}
 

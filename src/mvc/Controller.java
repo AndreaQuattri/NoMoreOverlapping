@@ -38,7 +38,7 @@ public class Controller
 		view.pressButtonAcquisisci(new InsertInTableListener());
 		view.pressButtonGestisciOrario(new OpenViewGestisciOrario());
 		viewOrario.addLoadFromFileListener(new MyLoadFromFileListener());
-		//view.addDocumentListener(new MyDocumentListener());
+		viewOrario.pressButtonNewOrario(new CreateNewOrario());
 		//view.addCompileListener(new MyCompileListener());
 		//view.addMakeLaTeXlistener(new MyMakeLaTeXlistener());
 	}
@@ -158,8 +158,8 @@ public class Controller
 				//for (int i=0; i<model.getListDocente().size(); i++)
 				//System.out.println(model.getListDocente().get(i).toString());
 
-				for (int i=0; i<model.getListPianoDiStudi().size(); i++)
-					System.out.println(model.getListPianoDiStudi().get(i).toString());
+				//				for (int i=0; i<model.getListPianoDiStudi().size(); i++)
+				//					System.out.println(model.getListPianoDiStudi().get(i).toString());
 
 
 			} catch (IOException e) {
@@ -247,121 +247,21 @@ public class Controller
 		 */
 	}
 
-	/*
 
-	private class MyDocumentListener implements DocumentListener
-	{
-
-		@Override
-		public void changedUpdate(DocumentEvent e)
-		{
-
-		}
-
-		@Override
-		public void insertUpdate(DocumentEvent e)
-		{
-			// Enable only Compile
-			model.enableCompile(true);
-			model.enableMakePDF(false);
-		}
-
-		@Override
-		public void removeUpdate(DocumentEvent e)
-		{
-			// Enable only Compile
-			model.enableCompile(true);
-			model.enableMakePDF(false);
-		}
-
-	}
-
-	private class MyCompileListener implements ActionListener
+	private class CreateNewOrario implements  ActionListener
 	{
 		@Override
 		public void actionPerformed(ActionEvent action)
 		{
-			// Update the model like the view (user input) 
-			model.setUserInput(view.getUserInput());
-			model.enableCompile(false);
-			model.enableMakePDF(false);
 
-			// Run the compiler thread
-			CompilerThread compiler = new CompilerThread(model);
-			new Thread(compiler).start();
+			
+			
+
 		}
 	}
 
-	private class MyMakeLaTeXlistener implements ActionListener
-	{
-		@Override
-		public void actionPerformed(ActionEvent action)
-		{
-			LaTeXConverter converter = new LaTeXConverter(model);
 
-			// Get Latex code from Petri Net
-			String outputString = converter.makeLatexCode();
-			String compilerOutput = "";
 
-			try
-			{
-				// Write Latex code to file "PetriNet.tex"
-				BufferedWriter bwr = new BufferedWriter(new FileWriter(".\\PetriNet.tex"));
-				bwr.write(outputString);
-				bwr.flush();
-				bwr.close();
-
-				// Test if "PetriNet.tex" exist
-				File texFile = new File(".\\PetriNet.tex");
-				if (texFile.exists())
-				{
-					compilerOutput = "Petri Net Diagram Generator 1.0 - "
-							+ new SimpleDateFormat("MM-dd-yyy HH:mm:ss").format(Calendar.getInstance().getTime()) + ".\n"
-							+ "GENERATE LaTeX SUCCESSFULL > 'PetriNet.tex'";
-
-					model.setCompilerOutput(MyNotify.LATEX_SUCCESFULL, compilerOutput);
-
-					// Open "PetriNet.tex" to start LaTeX compiler
-					Desktop desktop = Desktop.getDesktop();
-					desktop.open(texFile);
-				}
-				else
-				{
-					compilerOutput = "Petri Net Diagram Generator 1.0 - "
-							+ new SimpleDateFormat("MM-dd-yyy HH:mm:ss").format(Calendar.getInstance().getTime()) + ".\n"
-							+ "CAN'T GENERATE THE LaTeX FILE > 'PetriNet.tex'";
-
-					model.setCompilerOutput(MyNotify.FILE_ERROR, compilerOutput);
-				}
-
-			}
-			catch (RuntimeException e1)
-			{
-				e1.printStackTrace();
-
-				// Converts StackTrace to String
-				StringWriter sw = new StringWriter();
-				PrintWriter pw = new PrintWriter(sw);
-				e1.printStackTrace(pw);
-
-				// Update the model
-				model.setCompilerOutput(MyNotify.FILE_ERROR, sw.toString());
-			}
-
-			catch (IOException e2)
-			{
-				e2.printStackTrace();
-
-				// Converts StackTrace to String
-				StringWriter sw = new StringWriter();
-				PrintWriter pw = new PrintWriter(sw);
-				e2.printStackTrace(pw);
-
-				// Update the model
-				model.setCompilerOutput(MyNotify.GENERIC_ERROR, sw.toString());
-			}
-		}
-	}
-	 */
+	
 
 }

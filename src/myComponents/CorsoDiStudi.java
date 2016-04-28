@@ -16,7 +16,8 @@ public class CorsoDiStudi {
 	private ArrayList<Studente> elencoStudenti;
 
 
-	private ArrayList<PianoDiStudi> elencoPianiPossibili;
+	//da rivedere questo campo
+	//private ArrayList<PianoDiStudi> elencoPianiPossibili;
 	
 	
 
@@ -31,7 +32,7 @@ public class CorsoDiStudi {
 		this.codice = codice;
 		this.descrizione = descrizione;
 		this.totCrediti = totCrediti;
-		this.elencoPianiPossibili = elencoPianiPossibili;
+		//this.elencoPianiPossibili = elencoPianiPossibili;
 		this.elencoStudenti = elencoStudenti;
 	}
 
@@ -45,7 +46,7 @@ public class CorsoDiStudi {
 		this.codice = codice;
 		this.descrizione = descrizione;
 		this.totCrediti = totCrediti;
-		this.elencoPianiPossibili = new ArrayList<PianoDiStudi>();
+		//this.elencoPianiPossibili = new ArrayList<PianoDiStudi>();
 		this.elencoStudenti = new ArrayList<Studente>();
 	}
 
@@ -164,12 +165,14 @@ public class CorsoDiStudi {
 	public void setTotCrediti(int totCrediti) {
 		this.totCrediti = totCrediti;
 	}
+	/*
 	public ArrayList<PianoDiStudi> getElencoPianiPossibili() {
 		return elencoPianiPossibili;
 	}
 	public void setElencoPianiPossibili(ArrayList<PianoDiStudi> elencoPianiPossibili) {
 		this.elencoPianiPossibili = elencoPianiPossibili;
 	}
+	*/
 	public ArrayList<Studente> getElencoStudenti() {
 		return elencoStudenti;
 	}

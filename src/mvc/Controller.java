@@ -10,8 +10,12 @@ import java.text.ParseException;
 
 
 import ElaborazioneDati.InsertInTable;
+import connectToDatabase.DisciplinaGiàInserita;
 import memorizzazioneDati.GeneraPianiDiStudio;
 import memorizzazioneDati.InsertValues;
+import myComponents.Assegnamento;
+import myComponents.CorsoDiStudi;
+import myComponents.PianoDiStudi;
 
 
 
@@ -72,7 +76,7 @@ public class Controller
 			view.getLabelTableInTable().setText((String)view.getComboBoxTable().getSelectedItem());
 
 			InsertInTable insertInTable = new InsertInTable(view.getComboBoxTable().getSelectedItem());
-			
+
 			try {
 				String toView[][] = insertInTable.getValues();
 				String toInsertComboBox = "";
@@ -142,12 +146,15 @@ public class Controller
 
 				GeneraPianiDiStudio generaPiani = new GeneraPianiDiStudio(model);
 				generaPiani.generaPiani();
-				
-				
+
+
+
+
+
 				viewOrario.getFrame().setVisible(true);
-				
-			
-				
+
+
+
 
 
 			} catch (IOException e) {
@@ -174,32 +181,80 @@ public class Controller
 
 
 
-			
-			
-				viewOrario.getTableRecords().addColumn("Lunedì");
-				viewOrario.getTableRecords().addColumn("Martedì");
-				viewOrario.getTableRecords().addColumn("Mercoledì");
-				viewOrario.getTableRecords().addColumn("Giovedì");
-				viewOrario.getTableRecords().addColumn("Venerdì");
-				
 
-/*
-				for (int i=1; i<toView.length; i++){
-					viewOrario.getTableRecords().addRow(toView[i]);
-					
+
+			viewOrario.getTableRecords().addColumn("Lunedì");
+			viewOrario.getTableRecords().addColumn("Martedì");
+			viewOrario.getTableRecords().addColumn("Mercoledì");
+			viewOrario.getTableRecords().addColumn("Giovedì");
+			viewOrario.getTableRecords().addColumn("Venerdì");
+
+
+
+			for (int indice = 0, k = 0 ; indice < 3; indice++){
+
+				CorsoDiStudi corso1 = model.getListCorsoDiStudi().get(indice);
+				PianoDiStudi piano1 = null;
+				//System.out.println(corso1.toString());
+
+				for (int i=0; i<model.getListPianoDiStudi().size(); i++){
+					if (model.getListPianoDiStudi().get(i).getCorso().equals(corso1)){
+						piano1 = model.getListPianoDiStudi().get(i);
+						break;
+					}
 				}
-*/
 
-			
+				int hour = 0;
 
-			
+				DisciplinaGiàInserita disciplinaInserita = new DisciplinaGiàInserita(model);
+
+
+
+
+				for (int i=0; i<piano1.getElencoPianiPossibili().size();i++){
+					for (int j=0; j<piano1.getElencoPianiPossibili().get(i).size(); j++){
+						if(piano1.getElencoPianiPossibili().get(i).get(j).getSemestre()==1 && !disciplinaInserita.giàInserita(piano1.getElencoPianiPossibili().get(i).get(j).getId())){
+							hour = piano1.getElencoPianiPossibili().get(i).get(j).getOre()/12;
+							if(model.getListFasciaOraria().get(k).getGiorno().equals(model.getListFasciaOraria().get(k+hour).getGiorno())){
+								while (hour>0){
+									model.getListAssegnamento().add(new Assegnamento(piano1.getElencoPianiPossibili().get(i).get(j), model.getListFasciaOraria().get(k), model.getListAula().get(0)));
+									k = ((k + 1)%model.getListFasciaOraria().size());
+									hour--;
+								}
+							}
+							else{
+								while(model.getListFasciaOraria().get(k).getGiorno().equals(model.getListFasciaOraria().get(k+1).getGiorno())){
+									k++;
+								}
+								k++;
+								while (hour>0){
+									model.getListAssegnamento().add(new Assegnamento(piano1.getElencoPianiPossibili().get(i).get(j), model.getListFasciaOraria().get(k), model.getListAula().get(0)));
+									k = ((k + 1)%model.getListFasciaOraria().size());
+									hour--;
+								}
+							}
+						}
+					}
+				}
+
+			}
+
+
+			for (int i=0; i<model.getListAssegnamento().size(); i++){
+				System.out.println(model.getListAssegnamento().get(i).toString()+"\n");
+			}
+
+
+
+
+
 
 
 		}
 	}
 
 
-/*
+	/*
 	private class MyLoadFromFileListener implements ActionListener
 	{
 		@Override
@@ -210,7 +265,7 @@ public class Controller
 			fileChooser.setDialogTitle("Select a Petri Net");
 			fileChooser.setApproveButtonText("Open");
 			fileChooser.setCurrentDirectory(new java.io.File("."));
-			
+
 			//fileChooser.setFileFilter(new MyFileFilter());
 			//da rivedere questa istruzione
 			fileChooser.setFileFilter(new FileNameExtensionFilter(".txt" , ".txt"));
@@ -244,7 +299,7 @@ public class Controller
 			}
 
 		}
-		
+
 		/*
 		// Private classe for filter only *.txt files
 		private class MyFileFilter extends FileFilter
@@ -264,12 +319,12 @@ public class Controller
 				return "*.txt";
 			}
 		}
-		 
-		
-	}
-*/
 
-	
+
+	}
+	 */
+
+
 
 
 

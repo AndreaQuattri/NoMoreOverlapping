@@ -2,16 +2,12 @@ package mvc;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
+
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.text.ParseException;
 
-import javax.swing.JFileChooser;
-import javax.swing.JOptionPane;
-import javax.swing.filechooser.FileNameExtensionFilter;
+
 
 import ElaborazioneDati.InsertInTable;
 import memorizzazioneDati.GeneraPianiDiStudio;
@@ -24,9 +20,9 @@ public class Controller
 
 	private Model model;
 	private MainView view;
-	private ViewOrario viewOrario;
+	private ViewTimeTable viewOrario;
 
-	public Controller(Model model, MainView view, ViewOrario viewOrario)
+	public Controller(Model model, MainView view, ViewTimeTable viewOrario)
 	{
 		this.model = model;
 		this.view = view;
@@ -37,8 +33,8 @@ public class Controller
 		view.selectedTableToView(new SelectedTableListener());
 		view.pressButtonAcquisisci(new InsertInTableListener());
 		view.pressButtonGestisciOrario(new OpenViewGestisciOrario());
-		viewOrario.addLoadFromFileListener(new MyLoadFromFileListener());
 		viewOrario.pressButtonNewOrario(new CreateNewOrario());
+
 		//view.addCompileListener(new MyCompileListener());
 		//view.addMakeLaTeXlistener(new MyMakeLaTeXlistener());
 	}
@@ -76,6 +72,7 @@ public class Controller
 			view.getLabelTableInTable().setText((String)view.getComboBoxTable().getSelectedItem());
 
 			InsertInTable insertInTable = new InsertInTable(view.getComboBoxTable().getSelectedItem());
+			
 			try {
 				String toView[][] = insertInTable.getValues();
 				String toInsertComboBox = "";
@@ -113,7 +110,6 @@ public class Controller
 		{
 			InsertValues insert = new InsertValues(model);
 
-			viewOrario.getFrame().setVisible(true);
 
 
 			try {
@@ -122,7 +118,6 @@ public class Controller
 				insert.getValueAula();
 
 				//corsi di studi inseriti in arraylist<CorsoDiStudi>
-				//mancano elencoPianiPossibili e elencoStudenti
 				insert.getValueCorsoDiStudi_1();
 
 				//studenti inseriti in arrayList<Studente>
@@ -144,22 +139,15 @@ public class Controller
 				//docente inseriti in arraylist<Docente>
 				insert.getValueDocente();
 
-				//System.out.println(model.getListPianoDiStudi().get(2).toString());
-
-
-
-
 
 				GeneraPianiDiStudio generaPiani = new GeneraPianiDiStudio(model);
 				generaPiani.generaPiani();
-
-
-
-				//for (int i=0; i<model.getListDocente().size(); i++)
-				//System.out.println(model.getListDocente().get(i).toString());
-
-				//				for (int i=0; i<model.getListPianoDiStudi().size(); i++)
-				//					System.out.println(model.getListPianoDiStudi().get(i).toString());
+				
+				
+				viewOrario.getFrame().setVisible(true);
+				
+			
+				
 
 
 			} catch (IOException e) {
@@ -178,10 +166,40 @@ public class Controller
 
 	}
 
+	private class CreateNewOrario implements  ActionListener
+	{
+		@Override
+		public void actionPerformed(ActionEvent action)
+		{
 
 
 
+			
+			
+				viewOrario.getTableRecords().addColumn("Lunedì");
+				viewOrario.getTableRecords().addColumn("Martedì");
+				viewOrario.getTableRecords().addColumn("Mercoledì");
+				viewOrario.getTableRecords().addColumn("Giovedì");
+				viewOrario.getTableRecords().addColumn("Venerdì");
+				
 
+/*
+				for (int i=1; i<toView.length; i++){
+					viewOrario.getTableRecords().addRow(toView[i]);
+					
+				}
+*/
+
+			
+
+			
+
+
+		}
+	}
+
+
+/*
 	private class MyLoadFromFileListener implements ActionListener
 	{
 		@Override
@@ -192,6 +210,7 @@ public class Controller
 			fileChooser.setDialogTitle("Select a Petri Net");
 			fileChooser.setApproveButtonText("Open");
 			fileChooser.setCurrentDirectory(new java.io.File("."));
+			
 			//fileChooser.setFileFilter(new MyFileFilter());
 			//da rivedere questa istruzione
 			fileChooser.setFileFilter(new FileNameExtensionFilter(".txt" , ".txt"));
@@ -225,6 +244,7 @@ public class Controller
 			}
 
 		}
+		
 		/*
 		// Private classe for filter only *.txt files
 		private class MyFileFilter extends FileFilter
@@ -244,24 +264,14 @@ public class Controller
 				return "*.txt";
 			}
 		}
-		 */
+		 
+		
 	}
-
-
-	private class CreateNewOrario implements  ActionListener
-	{
-		@Override
-		public void actionPerformed(ActionEvent action)
-		{
-
-			
-			
-
-		}
-	}
-
-
+*/
 
 	
+
+
+
 
 }

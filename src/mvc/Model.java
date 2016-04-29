@@ -7,7 +7,7 @@ import myComponents.*;
 
 public class Model extends Observable{
 	
-	//private ArrayList<Assegnamento> listAssegnamento;
+	private ArrayList<Assegnamento> listAssegnamento;
 	private ArrayList<Aula> listAula;					//Fatto
 	private ArrayList<Convegno> listConvegno;			//Fatto
 	private ArrayList<CorsoDiStudi> listCorsoDiStudi;	//Fatto
@@ -30,6 +30,7 @@ public class Model extends Observable{
 	
 	public Model() {
 
+		listAssegnamento = new ArrayList<Assegnamento>();
 		listAula = new ArrayList<Aula>();
 		listConvegno = new ArrayList<Convegno>();
 		listCorsoDiStudi = new ArrayList<CorsoDiStudi>();
@@ -180,6 +181,20 @@ public class Model extends Observable{
 		this.enableButtonAggiorna = enableButtonAggiorna;
 		sendNotify(MyNotify.ENABLE_BUTTON_AGGIORNA);
 
+	}
+
+
+
+
+	public ArrayList<Assegnamento> getListAssegnamento() {
+		return listAssegnamento;
+	}
+
+
+
+
+	public void setListAssegnamento(ArrayList<Assegnamento> listAssegnamento) {
+		this.listAssegnamento = listAssegnamento;
 	}
 
 

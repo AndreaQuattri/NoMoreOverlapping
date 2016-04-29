@@ -44,8 +44,16 @@ public class GeneraPianiDiStudio {
 
 			GetDisciplina getDisplina = new GetDisciplina(model);
 			int cred;
-			ArrayList<Disciplina> listSupport;
+			ArrayList<Disciplina> listSupport = new ArrayList<Disciplina>();
 
+			if(elencoAttività.size()==0){
+				for (int j=0; j<piano.getElencoAttivitàObbligatorie().size(); j++){
+					listSupport.add((Disciplina)piano.getElencoAttivitàObbligatorie().get(j));
+				}
+				piano.getElencoPianiPossibili().add(listSupport);
+
+			}
+			
 			for (int i=0, indicePiani = 0; i<elencoAttività.size(); i++){
 				String riga[] = elencoAttività.get(i).split(" ");
 				cred = 0;

@@ -23,7 +23,7 @@ public class FasciaOraria {
 	@Override
 	public String toString() {
 		
-		Format formatter = new SimpleDateFormat("hh:mm:ss");
+		Format formatter = new SimpleDateFormat("HH:mm:ss");
 		String dateInizio = formatter.format(inizio);
 		String dateFine = formatter.format(fine);
 		

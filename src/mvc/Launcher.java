@@ -9,7 +9,7 @@ public class Launcher
 				Model model = new Model();
 				
 				MainView view = new MainView(model);
-				ViewOrario viewOrario = new ViewOrario(model);
+				ViewTimeTable viewOrario = new ViewTimeTable(model);
 				
 				@SuppressWarnings("unused")
 				Controller controller = new Controller(model, view, viewOrario);

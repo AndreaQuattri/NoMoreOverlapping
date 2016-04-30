@@ -22,4 +22,30 @@ public class DisciplinaGiàInserita {
 		
 	}
 
+	public boolean èVuotaeCiSta(int hour, int k){
+		
+		while(hour>0){
+			
+			if (valutaOra(k))
+				return false;
+			
+			hour--;
+		}
+		
+		
+		return true;
+	}
+	
+	private boolean valutaOra(int k){
+		
+		for (int i=0; i<model.getListAssegnamento().size(); i++){
+			if (model.getListAssegnamento().get(i).getFasciaOraria().equals(model.getListFasciaOraria().get(k))){
+				return true;
+			}
+		}
+		return false;
+		
+	}
+	
+	
 }

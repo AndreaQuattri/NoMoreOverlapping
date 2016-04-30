@@ -149,6 +149,9 @@ public class Controller
 
 
 
+				//for (int i=0; i<6; i++)
+				//System.out.println(model.getListCorsoDiStudi().get(i).toString());
+
 
 
 				viewOrario.getFrame().setVisible(true);
@@ -191,11 +194,10 @@ public class Controller
 
 
 
-			for (int indice = 0, k = 0 ; indice < 3; indice++){
+			for (int indice = 0, k = 0 ; indice < 6; indice++){
 
 				CorsoDiStudi corso1 = model.getListCorsoDiStudi().get(indice);
 				PianoDiStudi piano1 = null;
-				//System.out.println(corso1.toString());
 
 				for (int i=0; i<model.getListPianoDiStudi().size(); i++){
 					if (model.getListPianoDiStudi().get(i).getCorso().equals(corso1)){
@@ -215,25 +217,23 @@ public class Controller
 					for (int j=0; j<piano1.getElencoPianiPossibili().get(i).size(); j++){
 						if(piano1.getElencoPianiPossibili().get(i).get(j).getSemestre()==1 && !disciplinaInserita.giàInserita(piano1.getElencoPianiPossibili().get(i).get(j).getId())){
 							hour = piano1.getElencoPianiPossibili().get(i).get(j).getOre()/12;
-							if(model.getListFasciaOraria().get(k).getGiorno().equals(model.getListFasciaOraria().get(k+hour).getGiorno())){
+
+							if(!model.getListFasciaOraria().get(k).getGiorno().equals(model.getListFasciaOraria().get((k+hour)%model.getListFasciaOraria().size()).getGiorno())){
+								while(model.getListFasciaOraria().get( ((k + model.getListFasciaOraria().size() - 1)%model.getListFasciaOraria().size()) ).getGiorno().equals(model.getListFasciaOraria().get(k).getGiorno())){
+									k = ((k + 1)%model.getListFasciaOraria().size());
+								}
+							}
+
+							if (disciplinaInserita.èVuotaeCiSta(hour, k))	
+
 								while (hour>0){
 									model.getListAssegnamento().add(new Assegnamento(piano1.getElencoPianiPossibili().get(i).get(j), model.getListFasciaOraria().get(k), model.getListAula().get(0)));
 									k = ((k + 1)%model.getListFasciaOraria().size());
 									hour--;
 								}
-							}
-							else{
-								while(model.getListFasciaOraria().get(k).getGiorno().equals(model.getListFasciaOraria().get(k+1).getGiorno())){
-									k++;
-								}
-								k++;
-								while (hour>0){
-									model.getListAssegnamento().add(new Assegnamento(piano1.getElencoPianiPossibili().get(i).get(j), model.getListFasciaOraria().get(k), model.getListAula().get(0)));
-									k = ((k + 1)%model.getListFasciaOraria().size());
-									hour--;
-								}
-							}
+							
 						}
+
 					}
 				}
 

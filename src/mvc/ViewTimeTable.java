@@ -71,7 +71,6 @@ public class ViewTimeTable extends JFrame implements Observer {
 
 		frame = new JFrame();
 		frame.setBounds(100, 100, 900, 700);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		buttonInsertNewTable = new JButton("Modifica esistente");
 		

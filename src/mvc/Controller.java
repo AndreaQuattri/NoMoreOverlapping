@@ -6,8 +6,7 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.text.ParseException;
-
-
+import java.util.ArrayList;
 
 import ElaborazioneDati.InsertInTable;
 import connectToDatabase.DisciplinaGiàInserita;
@@ -159,7 +158,6 @@ public class Controller
 
 
 
-
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -182,19 +180,18 @@ public class Controller
 		public void actionPerformed(ActionEvent action)
 		{
 
-
-
-
-
 			viewOrario.getTableRecords().addColumn("Lunedì");
 			viewOrario.getTableRecords().addColumn("Martedì");
 			viewOrario.getTableRecords().addColumn("Mercoledì");
 			viewOrario.getTableRecords().addColumn("Giovedì");
 			viewOrario.getTableRecords().addColumn("Venerdì");
 
+			model.getListAssegnamento().add(new ArrayList<Assegnamento>());
+			model.getListAssegnamento().add(new ArrayList<Assegnamento>());
+			model.getListAssegnamento().add(new ArrayList<Assegnamento>());
 
 
-			for (int indice = 0, k = 0 ; indice < 6; indice++){
+			for (int indice = 0, k = 0 ; indice < 3; indice++){
 
 				CorsoDiStudi corso1 = model.getListCorsoDiStudi().get(indice);
 				PianoDiStudi piano1 = null;
@@ -211,39 +208,58 @@ public class Controller
 				DisciplinaGiàInserita disciplinaInserita = new DisciplinaGiàInserita(model);
 
 
-
-
 				for (int i=0; i<piano1.getElencoPianiPossibili().size();i++){
-					for (int j=0; j<piano1.getElencoPianiPossibili().get(i).size(); j++){
-						if(piano1.getElencoPianiPossibili().get(i).get(j).getSemestre()==1 && !disciplinaInserita.giàInserita(piano1.getElencoPianiPossibili().get(i).get(j).getId())){
-							hour = piano1.getElencoPianiPossibili().get(i).get(j).getOre()/12;
 
-							if(!model.getListFasciaOraria().get(k).getGiorno().equals(model.getListFasciaOraria().get((k+hour)%model.getListFasciaOraria().size()).getGiorno())){
-								while(model.getListFasciaOraria().get( ((k + model.getListFasciaOraria().size() - 1)%model.getListFasciaOraria().size()) ).getGiorno().equals(model.getListFasciaOraria().get(k).getGiorno())){
-									k = ((k + 1)%model.getListFasciaOraria().size());
+					for (int j=0; j<piano1.getElencoPianiPossibili().get(i).size(); j++){
+
+						for (int numAss = 0; numAss < model.getListAssegnamento().size(); numAss++){
+
+							if(piano1.getElencoPianiPossibili().get(i).get(j).getSemestre()==1 && !disciplinaInserita.giàInserita(piano1.getElencoPianiPossibili().get(i).get(j).getId())){
+								hour = piano1.getElencoPianiPossibili().get(i).get(j).getOre()/6;
+
+								/*if(!model.getListFasciaOraria().get(k).getGiorno().equals(model.getListFasciaOraria().get((k+hour)%model.getListFasciaOraria().size()).getGiorno())){
+									while(model.getListFasciaOraria().get( ((k + model.getListFasciaOraria().size() - 1)%model.getListFasciaOraria().size()) ).getGiorno().equals(model.getListFasciaOraria().get(k).getGiorno())){
+										k = ((k + 1)%model.getListFasciaOraria().size());
+									}
+								}
+
+								if (disciplinaInserita.èVuotaeCiSta(hour, k , numAss)){
+
+									while (hour>0){
+										model.getListAssegnamento().get(numAss).add(new Assegnamento(piano1.getElencoPianiPossibili().get(i).get(j), model.getListFasciaOraria().get(k), model.getListAula().get(0)));
+										k = ((k + 1)%model.getListFasciaOraria().size());
+										hour--;
+									}
+									break;
+								}
+
+								else{
+								 */
+
+
+								int n = disciplinaInserita.fasciaOrariaDisponibile(hour, numAss);
+								if (n!=-1){
+									while (hour>0){
+										model.getListAssegnamento().get(numAss).add(new Assegnamento(piano1.getElencoPianiPossibili().get(i).get(j), model.getListFasciaOraria().get(n), model.getListAula().get(0)));
+										n = ((n + 1)%model.getListFasciaOraria().size());
+										hour--;
+									}
+									break;
 								}
 							}
 
-							if (disciplinaInserita.èVuotaeCiSta(hour, k))	
-
-								while (hour>0){
-									model.getListAssegnamento().add(new Assegnamento(piano1.getElencoPianiPossibili().get(i).get(j), model.getListFasciaOraria().get(k), model.getListAula().get(0)));
-									k = ((k + 1)%model.getListFasciaOraria().size());
-									hour--;
-								}
-							
 						}
-
 					}
+					//}
 				}
-
 			}
 
-
-			for (int i=0; i<model.getListAssegnamento().size(); i++){
-				System.out.println(model.getListAssegnamento().get(i).toString()+"\n");
+			for (int j=0; j<model.getListAssegnamento().size(); j++){
+				for (int i=0; i<model.getListAssegnamento().get(j).size(); i++){
+					System.out.println(model.getListAssegnamento().get(j).get(i).toString()+"\n");
+				}
+				System.out.println("\n");
 			}
-
 
 
 

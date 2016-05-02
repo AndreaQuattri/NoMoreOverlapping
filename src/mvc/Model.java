@@ -2,6 +2,7 @@ package mvc;
 
 import java.util.ArrayList;
 import java.util.Observable;
+import java.util.Vector;
 
 import myComponents.*;
 
@@ -20,6 +21,7 @@ public class Model extends Observable{
 	private ArrayList<PianoDiStudi> listPianoDiStudi;	//Fatto
 	private ArrayList<Studente> listStudente;			//Fatto
 	private ArrayList<Tirocinio> listTirocinio;			//Fatto
+	Vector<Vector<String>> tabella;
 	
 	private boolean enableModificaTable;
 	private boolean enableEliminaTable;
@@ -43,7 +45,7 @@ public class Model extends Observable{
 		listPianoDiStudi = new ArrayList<PianoDiStudi>();
 		listStudente = new ArrayList<Studente>();
 		listTirocinio = new ArrayList<Tirocinio>();
-		
+		tabella = new Vector<Vector<String>>();
 
 		enableModificaTable = false;
 		enableEliminaTable = false;

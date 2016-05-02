@@ -48,8 +48,7 @@ public class Controller
 		@Override
 		public void actionPerformed(ActionEvent action)
 		{
-			//InfoView infoView = new InfoView();
-			//infoView.getFrame().setVisible(true);
+			
 			model.enableModificaTable(true);
 			model.enableEliminaTable(true);
 			model.enableButtonAcquisisci(true);
@@ -156,8 +155,6 @@ public class Controller
 				viewOrario.getFrame().setVisible(true);
 
 
-
-
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -187,18 +184,20 @@ public class Controller
 			viewOrario.getTableRecords().addColumn("Venerdì");
 
 			model.getListAssegnamento().add(new ArrayList<Assegnamento>());
-			//model.getListAssegnamento().add(new ArrayList<Assegnamento>());
-			//model.getListAssegnamento().add(new ArrayList<Assegnamento>());
-			
+
 			CorsoDiStudi corso1;
 			PianoDiStudi piano1;
-			int hour, n;
+			int hour, n, numAss = 0;
+			int indice;
 
-			for (int indice = 0; indice < 2; indice++){
+
+			//corsi di studio da valutare
+			for (indice = 0; indice < 3; indice++){
 
 				corso1 = model.getListCorsoDiStudi().get(indice);
 				piano1 = null;
 
+				//individuo l'indice del corso di studio
 				for (int i=0; i<model.getListPianoDiStudi().size(); i++){
 					if (model.getListPianoDiStudi().get(i).getCorso().equals(corso1)){
 						piano1 = model.getListPianoDiStudi().get(i);
@@ -210,16 +209,20 @@ public class Controller
 
 				DisciplinaGiàInserita disciplinaInserita = new DisciplinaGiàInserita(model);
 
-
+				//piani di studio relativi al corso di studio selezionato
 				for (int i=0; i<piano1.getElencoPianiPossibili().size();i++){
 
+					//corsi del piano di studio i-esimo
 					for (int j=0; j<piano1.getElencoPianiPossibili().get(i).size(); j++){
 
-						for (int numAss = 0; numAss < model.getListAssegnamento().size(); numAss++){
+						//numero di arrayList<Assegnamento>
+						for (numAss = 0; numAss < model.getListAssegnamento().size(); numAss++){
 
 							if(piano1.getElencoPianiPossibili().get(i).get(j).getSemestre()==1 && !disciplinaInserita.giàInserita(piano1.getElencoPianiPossibili().get(i).get(j).getId())){
 								hour = piano1.getElencoPianiPossibili().get(i).get(j).getOre()/6;
 
+								System.out.println(piano1.getElencoPianiPossibili().get(i).get(j).toString());
+								
 								n = disciplinaInserita.fasciaOrariaDisponibile(hour, numAss);
 								if (n!=-1){
 									while (hour>0){
@@ -227,14 +230,31 @@ public class Controller
 										n = ((n + 1)%model.getListFasciaOraria().size());
 										hour--;
 									}
+
 									break;
 								}
+							}
+
+						}
+						if (numAss == model.getListAssegnamento().size() &&
+								piano1.getElencoPianiPossibili().get(i).get(j).getSemestre()==1 &&
+								!disciplinaInserita.giàInserita(piano1.getElencoPianiPossibili().get(i).get(j).getId())){
+
+							model.getListAssegnamento().add(new ArrayList<Assegnamento>());
+							n = 0;
+							while (hour>0){
+								model.getListAssegnamento().get(numAss).add(new Assegnamento(piano1.getElencoPianiPossibili().get(i).get(j), model.getListFasciaOraria().get(n), model.getListAula().get(0)));
+								n = ((n + 1)%model.getListFasciaOraria().size());
+								hour--;
 							}
 
 						}
 					}
 				}
 			}
+
+
+			System.out.println("Per memorizzare "+indice+" corsi di studio ho bisogno di "+ model.getListAssegnamento().size() +" arraylist");
 
 			for (int j=0; j<model.getListAssegnamento().size(); j++){
 				for (int i=0; i<model.getListAssegnamento().get(j).size(); i++){

@@ -1,14 +1,26 @@
 package mvc;
 
+import java.awt.Color;
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.text.Format;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Vector;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JTable;
+import javax.swing.table.TableCellRenderer;
 
 import ElaborazioneDati.InsertInTable;
+import connectToDatabase.CreateTimeTable;
 import connectToDatabase.DisciplinaGiàInserita;
 import memorizzazioneDati.GeneraPianiDiStudio;
 import memorizzazioneDati.InsertValues;
@@ -48,7 +60,7 @@ public class Controller
 		@Override
 		public void actionPerformed(ActionEvent action)
 		{
-			
+
 			model.enableModificaTable(true);
 			model.enableEliminaTable(true);
 			model.enableButtonAcquisisci(true);
@@ -173,15 +185,19 @@ public class Controller
 
 	private class CreateNewOrario implements  ActionListener
 	{
+		@SuppressWarnings("deprecation")
 		@Override
 		public void actionPerformed(ActionEvent action)
 		{
 
+			viewOrario.getTableRecords().addColumn("Orario");
 			viewOrario.getTableRecords().addColumn("Lunedì");
 			viewOrario.getTableRecords().addColumn("Martedì");
 			viewOrario.getTableRecords().addColumn("Mercoledì");
 			viewOrario.getTableRecords().addColumn("Giovedì");
 			viewOrario.getTableRecords().addColumn("Venerdì");
+			viewOrario.getTableRecords().addColumn("Sabato");
+
 
 			model.getListAssegnamento().add(new ArrayList<Assegnamento>());
 
@@ -192,7 +208,7 @@ public class Controller
 
 
 			//corsi di studio da valutare
-			for (indice = 0; indice < 3; indice++){
+			for (indice = 0; indice < 5; indice++){
 
 				corso1 = model.getListCorsoDiStudi().get(indice);
 				piano1 = null;
@@ -221,8 +237,7 @@ public class Controller
 							if(piano1.getElencoPianiPossibili().get(i).get(j).getSemestre()==1 && !disciplinaInserita.giàInserita(piano1.getElencoPianiPossibili().get(i).get(j).getId())){
 								hour = piano1.getElencoPianiPossibili().get(i).get(j).getOre()/6;
 
-								System.out.println(piano1.getElencoPianiPossibili().get(i).get(j).toString());
-								
+
 								n = disciplinaInserita.fasciaOrariaDisponibile(hour, numAss);
 								if (n!=-1){
 									while (hour>0){
@@ -253,18 +268,108 @@ public class Controller
 				}
 			}
 
+			CreateTimeTable create = new CreateTimeTable(model);
+			create.fromAssegnamentoToOrarioPerGiorno();
 
-			System.out.println("Per memorizzare "+indice+" corsi di studio ho bisogno di "+ model.getListAssegnamento().size() +" arraylist");
 
-			for (int j=0; j<model.getListAssegnamento().size(); j++){
-				for (int i=0; i<model.getListAssegnamento().get(j).size(); i++){
-					System.out.println(model.getListAssegnamento().get(j).get(i).toString()+"\n");
+			System.out.println(model.getListOrario().size());
+
+
+			ArrayList<String> listGiorni = new ArrayList<String>();
+			listGiorni.add("Lunedi");
+			listGiorni.add("Martedi");
+			listGiorni.add("Mercoledi");
+			listGiorni.add("Giovedi");
+			listGiorni.add("Venerdi");
+			listGiorni.add("Sabato");
+
+			
+			int countDay=0;
+			int iRighe=0;
+			int iColonne=0;
+			
+			int inizioOra = 8;
+			int inizioMinuto = 30;
+
+			int fineOra = 9;
+			int fineMinuto = 00;
+			
+			
+			@SuppressWarnings("deprecation")
+			Date inizio = new Date(1111, 1, 1, inizioOra, inizioMinuto);
+			@SuppressWarnings("deprecation")
+			Date fine = new Date(1111, 1, 1, fineOra, fineMinuto);
+			
+			Format formatter = new SimpleDateFormat("HH:mm");
+			String oraInizio = formatter.format(inizio);
+			String oraFine = formatter.format(fine);
+			
+			
+
+			
+			
+			for (int i=0; i<model.getListOrario().size(); i++){
+				countDay = 0;
+				model.tabella.addElement(new Vector<String>());
+				for (int j=0; j<model.getListOrario().get(i).getElencoAssegnamenti().size(); j++){
+					System.out.println(model.getListOrario().get(i).getElencoAssegnamenti().get(j).toString());
+					countDay++;
 				}
-				System.out.println("\n");
+				if (iColonne == 0){
+					model.tabella.get(iRighe).add(String.valueOf(oraInizio + " - " + oraFine));
+					inizioMinuto+=30;
+					fineMinuto+=30;
+					
+					inizio = new Date(1111, 1, 1, inizioOra, inizioMinuto);
+					fine = new Date(1111, 1, 1, fineOra, fineMinuto);
+					oraInizio = formatter.format(inizio);
+					oraFine = formatter.format(fine);
+				}
+				
+				model.tabella.get(iRighe).add(String.valueOf(countDay));
+
+				iColonne = iColonne + iRighe/20;
+				iRighe = (iRighe + 1)%21;
+
 			}
 
 
 
+
+			/*			
+			viewOrario.getTable().setDefaultRenderer(Object.class, new TableCellRenderer() {
+		           //metodo dell'interfaccia
+		           @Override
+		           public Component getTableCellRendererComponent(JTable table,
+		                   Object value, boolean isSelected, boolean hasFocus,
+		                   int row, int column){
+		               //dobbiamo rappresentare oggetti testuali, quindi ci serve una JLabel
+		               JLabel label = new JLabel(value.toString());
+		               //appena creata una jlabel non può avere lo sfondo (o meglio, è trasparente);
+		               //per renderlo possibile rendiamo la nostra label opaca
+		               label.setOpaque(true);
+		               //le assegnamo lo sfondo che una cella non selezionata e non colorata dovrà avere
+		               label.setBackground(Color.BLACK);
+
+
+
+		               return label;
+
+		               }
+		       });
+
+			 */
+
+			//viewOrario.getFrame().add(viewOrario.getTable());
+			//viewOrario.getFrame().pack();
+			//frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			//frame.setVisible(true);
+
+
+			for(int i=0; i<model.tabella.size(); i++){
+				viewOrario.getTableRecords().addRow(model.tabella.get(i));
+
+			}
 
 
 

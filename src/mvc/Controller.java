@@ -14,10 +14,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Vector;
 
-import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JTable;
-import javax.swing.table.TableCellRenderer;
+import javax.swing.table.DefaultTableCellRenderer;
 
 import ElaborazioneDati.InsertInTable;
 import connectToDatabase.CreateTimeTable;
@@ -208,10 +206,12 @@ public class Controller
 
 
 			//corsi di studio da valutare
-			for (indice = 0; indice < 5; indice++){
+			for (indice = 0; indice < model.getListCorsoDiStudi().size(); indice++){
 
+							
 				corso1 = model.getListCorsoDiStudi().get(indice);
 				piano1 = null;
+				
 
 				//individuo l'indice del corso di studio
 				for (int i=0; i<model.getListPianoDiStudi().size(); i++){
@@ -221,6 +221,9 @@ public class Controller
 					}
 				}
 
+				if (piano1 == null)
+					break;
+				
 				hour = 0;
 
 				DisciplinaGiàInserita disciplinaInserita = new DisciplinaGiàInserita(model);
@@ -283,31 +286,29 @@ public class Controller
 			listGiorni.add("Venerdi");
 			listGiorni.add("Sabato");
 
-			
+
 			int countDay=0;
 			int iRighe=0;
 			int iColonne=0;
-			
+
 			int inizioOra = 8;
 			int inizioMinuto = 30;
 
 			int fineOra = 9;
 			int fineMinuto = 00;
-			
-			
-			@SuppressWarnings("deprecation")
+
+
 			Date inizio = new Date(1111, 1, 1, inizioOra, inizioMinuto);
-			@SuppressWarnings("deprecation")
 			Date fine = new Date(1111, 1, 1, fineOra, fineMinuto);
-			
+
 			Format formatter = new SimpleDateFormat("HH:mm");
 			String oraInizio = formatter.format(inizio);
 			String oraFine = formatter.format(fine);
-			
-			
 
-			
-			
+
+
+
+
 			for (int i=0; i<model.getListOrario().size(); i++){
 				countDay = 0;
 				model.tabella.addElement(new Vector<String>());
@@ -319,13 +320,13 @@ public class Controller
 					model.tabella.get(iRighe).add(String.valueOf(oraInizio + " - " + oraFine));
 					inizioMinuto+=30;
 					fineMinuto+=30;
-					
+
 					inizio = new Date(1111, 1, 1, inizioOra, inizioMinuto);
 					fine = new Date(1111, 1, 1, fineOra, fineMinuto);
 					oraInizio = formatter.format(inizio);
 					oraFine = formatter.format(fine);
 				}
-				
+
 				model.tabella.get(iRighe).add(String.valueOf(countDay));
 
 				iColonne = iColonne + iRighe/20;
@@ -336,44 +337,44 @@ public class Controller
 
 
 
-			/*			
-			viewOrario.getTable().setDefaultRenderer(Object.class, new TableCellRenderer() {
-		           //metodo dell'interfaccia
-		           @Override
-		           public Component getTableCellRendererComponent(JTable table,
-		                   Object value, boolean isSelected, boolean hasFocus,
-		                   int row, int column){
-		               //dobbiamo rappresentare oggetti testuali, quindi ci serve una JLabel
-		               JLabel label = new JLabel(value.toString());
-		               //appena creata una jlabel non può avere lo sfondo (o meglio, è trasparente);
-		               //per renderlo possibile rendiamo la nostra label opaca
-		               label.setOpaque(true);
-		               //le assegnamo lo sfondo che una cella non selezionata e non colorata dovrà avere
-		               label.setBackground(Color.BLACK);
 
 
-
-		               return label;
-
-		               }
-		       });
-
-			 */
-
-			//viewOrario.getFrame().add(viewOrario.getTable());
-			//viewOrario.getFrame().pack();
-			//frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			//frame.setVisible(true);
-
-
-			for(int i=0; i<model.tabella.size(); i++){
+			for(int i=0; i<21; i++){
 				viewOrario.getTableRecords().addRow(model.tabella.get(i));
+			}
+	
+			
+	/*		
+System.out.println();
+			
+			//for (int i=1; i<7; i++){
+					viewOrario.getTable().getColumnModel().getColumn(0).setCellRenderer(new DefaultTableCellRenderer() {
+						public Component getTableCellRendererComponent (JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) 
+						{
+							Component cell = super.getTableCellRendererComponent (table, value, isSelected, hasFocus, row, column);
+							
+							
+							if (false)
+								cell.setBackground( Color.green );
+							else
+								cell.setBackground( Color.red );
 
+							
+								System.out.println(value.toString());
+								
+							/*
+							 if(row==0)
+								cell.setBackground( Color.green );
+							else
+								cell.setBackground( Color.white );
+								
+							return cell;
+
+						}});
+						*/
 			}
 
-
-
-		}
+		//}
 	}
 
 

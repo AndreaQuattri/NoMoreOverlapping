@@ -1,6 +1,9 @@
 package mvc;
 
 import javax.swing.JFrame;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.JButton;
 
 public class ManagementTableView extends JFrame {
 
@@ -11,6 +14,11 @@ public class ManagementTableView extends JFrame {
 
 	public ManagementTableView()
 	{
+		getContentPane().setLayout(null);
+		
+		JButton btnProva = new JButton("Prova");
+		btnProva.setBounds(42, 38, 117, 29);
+		getContentPane().add(btnProva);
 		
 
 		

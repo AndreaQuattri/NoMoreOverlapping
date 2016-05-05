@@ -204,14 +204,18 @@ public class Controller
 			int hour, n, numAss = 0;
 			int indice;
 
+			DisciplinaGiàInserita disciplinaInserita = new DisciplinaGiàInserita(model);
+			
+			//ArrayList<Attività> listAttività;
+
 
 			//corsi di studio da valutare
 			for (indice = 0; indice < model.getListCorsoDiStudi().size(); indice++){
 
-							
+
 				corso1 = model.getListCorsoDiStudi().get(indice);
 				piano1 = null;
-				
+
 
 				//individuo l'indice del corso di studio
 				for (int i=0; i<model.getListPianoDiStudi().size(); i++){
@@ -223,11 +227,18 @@ public class Controller
 
 				if (piano1 == null)
 					break;
-				
+
 				hour = 0;
 
-				DisciplinaGiàInserita disciplinaInserita = new DisciplinaGiàInserita(model);
-
+				
+				/*
+				listAttività = new ArrayList<Attività>();
+				
+				listAttività.addAll(piano1.getElencoAttivitàObbligatorie());
+				listAttività.addAll(piano1.getElencoAttivitàOpzionali());
+				*/
+				
+				
 				//piani di studio relativi al corso di studio selezionato
 				for (int i=0; i<piano1.getElencoPianiPossibili().size();i++){
 
@@ -275,7 +286,6 @@ public class Controller
 			create.fromAssegnamentoToOrarioPerGiorno();
 
 
-			System.out.println(model.getListOrario().size());
 
 
 			ArrayList<String> listGiorni = new ArrayList<String>();
@@ -313,7 +323,6 @@ public class Controller
 				countDay = 0;
 				model.tabella.addElement(new Vector<String>());
 				for (int j=0; j<model.getListOrario().get(i).getElencoAssegnamenti().size(); j++){
-					System.out.println(model.getListOrario().get(i).getElencoAssegnamenti().get(j).toString());
 					countDay++;
 				}
 				if (iColonne == 0){
@@ -338,43 +347,49 @@ public class Controller
 
 
 
-
 			for(int i=0; i<21; i++){
 				viewOrario.getTableRecords().addRow(model.tabella.get(i));
 			}
-	
-			
-	/*		
-System.out.println();
-			
-			//for (int i=1; i<7; i++){
-					viewOrario.getTable().getColumnModel().getColumn(0).setCellRenderer(new DefaultTableCellRenderer() {
-						public Component getTableCellRendererComponent (JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) 
-						{
-							Component cell = super.getTableCellRendererComponent (table, value, isSelected, hasFocus, row, column);
-							
-							
-							if (false)
+
+			for (int i=1; i<7; i++){
+				viewOrario.getTable().getColumnModel().getColumn(i).setCellRenderer(new DefaultTableCellRenderer() {
+					/**
+					 * 
+					 */
+					private static final long serialVersionUID = 1L;
+
+					public Component getTableCellRendererComponent (JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) 
+					{
+						Component cell = super.getTableCellRendererComponent (table, value, isSelected, hasFocus, row, column);
+
+						if (value == null)
+							return null;
+
+						if (value.equals("0")){
+							cell.setBackground( Color.gray );
+							cell.setForeground(Color.gray);
+						}
+						else{
+							if (value.equals("1")){
 								cell.setBackground( Color.green );
-							else
+								cell.setForeground(Color.green);
+							}
+							else{
 								cell.setBackground( Color.red );
+								cell.setForeground(Color.red);
+							}
 
-							
-								System.out.println(value.toString());
-								
-							/*
-							 if(row==0)
-								cell.setBackground( Color.green );
-							else
-								cell.setBackground( Color.white );
-								
-							return cell;
+						}
 
-						}});
-						*/
+						return cell;
+
+					}});
+
 			}
 
-		//}
+
+
+		}
 	}
 
 

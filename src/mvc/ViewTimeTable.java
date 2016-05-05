@@ -88,7 +88,7 @@ public class ViewTimeTable extends JFrame implements Observer {
 		tableRecords = new DefaultTableModel(0, 0);
 		table = new JTable();
 		table.setModel(tableRecords);
-
+		table.addMouseListener(new DoubleClickListener());
 
 		
 		scrollPane.setViewportView(table);

@@ -16,7 +16,7 @@ public class Launcher
 
 				view.getFrame().setVisible(true);
 
-		 
+		 // commento di prova porcoChillu
 		
 		//ProvaJTable prova = new ProvaJTable();
 		

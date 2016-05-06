@@ -44,8 +44,8 @@ public class DoubleClickListener implements MouseListener {
 		//.....
 
 
-		ManagementTableView m = new ManagementTableView();
-		m.setVisible(true);
+		//ManagementTableView m = new ManagementTableView(null);
+		//m.setVisible(true);
 
 
 	}

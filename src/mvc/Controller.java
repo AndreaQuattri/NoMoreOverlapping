@@ -45,6 +45,7 @@ public class Controller
 		// Set all the listener of the view
 		view.selectedTableToView(new SelectedTableListener());
 		view.pressButtonAcquisisci(new InsertInTableListener());
+		view.pressButtonModifica(new UpdateRecordListener());
 		view.pressButtonGestisciOrario(new OpenViewGestisciOrario());
 		viewOrario.pressButtonNewOrario(new CreateNewOrario());
 
@@ -70,6 +71,21 @@ public class Controller
 			 * cancellare tabella, ecc..
 			 * 
 			 */
+			
+
+
+		}
+	}
+	
+	private class UpdateRecordListener implements  ActionListener
+	{
+		@Override
+		public void actionPerformed(ActionEvent action)
+		{
+
+					
+			ManagementTableView managment = new ManagementTableView((String)view.getComboBoxTable().getSelectedItem());
+			managment.setVisible(true);
 
 
 		}

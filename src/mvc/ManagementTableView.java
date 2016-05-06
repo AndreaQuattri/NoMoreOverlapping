@@ -1,26 +1,45 @@
 package mvc;
 
 import javax.swing.JFrame;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
+import javax.swing.JLabel;
 import javax.swing.JButton;
 
 public class ManagementTableView extends JFrame {
-
-
+	
+	
 	private static final long serialVersionUID = 1L;
+	private JFrame frame;
+	private JButton btnSs;
 
 
-
-	public ManagementTableView()
+	public ManagementTableView(String tabella)
 	{
-		getContentPane().setLayout(null);
+
+		setResizable(false);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setBounds(100, 100, 620, 600);
 		
-		JButton btnProva = new JButton("Prova");
-		btnProva.setBounds(42, 38, 117, 29);
-		getContentPane().add(btnProva);
 		
+		
+		if (tabella.equals("Aula"))
+			initAula();
+	
 
 		
+		getContentPane().setLayout(null);
+
+		
+		
+	}
+	
+	private void initAula(){
+		JLabel labelEdificio = new JLabel("Edificio");
+		labelEdificio.setBounds(69, 71, 117, 29);
+		JLabel labelNumero = new JLabel("Numero");
+		labelNumero.setBounds(69, 101, 117, 29);
+		
+		getContentPane().add(labelEdificio);
+		getContentPane().add(labelNumero);
+
 	}
 }

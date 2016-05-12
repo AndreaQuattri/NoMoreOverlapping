@@ -22,11 +22,15 @@ public class Model extends Observable{
 	private ArrayList<Studente> listStudente;			//Fatto
 	private ArrayList<Tirocinio> listTirocinio;			//Fatto
 	Vector<Vector<String>> tabella;
+	private ArrayList<Attività> listAttivitàInserite;
 	
 	private boolean enableModificaTable;
 	private boolean enableEliminaTable;
 	private boolean enableButtonAcquisisci;
 	private boolean enableButtonAggiorna;
+	private boolean enableButtonInserisciGita;
+	
+	private int numSovrapposizioni;
 
 	
 	
@@ -46,11 +50,13 @@ public class Model extends Observable{
 		listStudente = new ArrayList<Studente>();
 		listTirocinio = new ArrayList<Tirocinio>();
 		tabella = new Vector<Vector<String>>();
+		setListAttivitàInserite(new ArrayList<Attività>());
 
 		enableModificaTable = false;
 		enableEliminaTable = false;
 		enableButtonAcquisisci = false;
 		enableButtonAggiorna = false;
+		enableButtonInserisciGita = false;
 		
 	}
 	
@@ -157,6 +163,11 @@ public class Model extends Observable{
 	public boolean isEnableButtonAggiorna() {
 		return enableButtonAggiorna;
 	}
+	
+	public boolean isEnabledInserisciGita() {
+		return enableButtonInserisciGita;
+	}
+
 
 
 
@@ -184,6 +195,12 @@ public class Model extends Observable{
 		sendNotify(MyNotify.ENABLE_BUTTON_AGGIORNA);
 
 	}
+	
+	public void enableButtonInserisciGita(boolean enableButtonInserisciGita) {
+		this.enableButtonInserisciGita = enableButtonInserisciGita;
+		sendNotify(MyNotify.ENABLE_BUTTON_GITA);
+
+	}
 
 
 
@@ -199,6 +216,38 @@ public class Model extends Observable{
 		this.listAssegnamento = listAssegnamento;
 	}
 
+
+
+
+	public int getNumSovrapposizioni() {
+		return numSovrapposizioni;
+	}
+
+
+
+
+	public void setNumSovrapposizioni(int numSovrapposizioni) {
+		this.numSovrapposizioni = numSovrapposizioni;
+	}
+
+
+
+
+	public ArrayList<Attività> getListAttivitàInserite() {
+		return listAttivitàInserite;
+	}
+
+
+
+
+	public void setListAttivitàInserite(ArrayList<Attività> listAttivitàInserite) {
+		this.listAttivitàInserite = listAttivitàInserite;
+	}
+
+
+
+
+	
 
 	
 	

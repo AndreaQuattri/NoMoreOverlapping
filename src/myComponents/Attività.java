@@ -5,7 +5,7 @@ import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
-public class Attivit√† {
+public class Attivit‡ {
 	
 	private int ore;
 	private String id;
@@ -17,7 +17,7 @@ public class Attivit√† {
 	
 	private ArrayList<Docente> elencoResponsabili;
 	
-	public Attivit√†(int ore, String id, String descrizione, String nome, Date inizio, Date fine, int semestre, ArrayList<Docente> elencoResponsabili) {
+	public Attivit‡(int ore, String id, String descrizione, String nome, Date inizio, Date fine, int semestre, ArrayList<Docente> elencoResponsabili) {
 		this.ore = ore;
 		this.id = id;
 		this.descrizione=descrizione;
@@ -28,7 +28,7 @@ public class Attivit√† {
 		this.elencoResponsabili = elencoResponsabili;
 	}
 	
-	public Attivit√†(int ore, String id, String descrizione, String nome, Date inizio, Date fine, int semestre) {
+	public Attivit‡(int ore, String id, String descrizione, String nome, Date inizio, Date fine, int semestre) {
 		this.ore = ore;
 		this.id = id;
 		this.descrizione=descrizione;

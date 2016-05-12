@@ -24,6 +24,13 @@ public class Orario {
 	}
 
 
+
+	public Orario(ArrayList<Assegnamento> elencoAssegnamenti, ArrayList<Attività> elencoAttività) {
+		this.elencoAssegnamenti = elencoAssegnamenti;
+		this.elencoAttività = elencoAttività;
+	}
+
+	
 	public int trovaSovrapposizioni()
 	{
 		// TODO da completare.

@@ -16,8 +16,6 @@ public class CreateTimeTable {
 	}
 
 
-
-
 	public void fromAssegnamentoToOrarioPerGiorno (){
 
 
@@ -60,8 +58,6 @@ public class CreateTimeTable {
 			model.getListOrario().add(new Orario(listAssegnamento,listAttività));
 
 		}
-
-
 
 	}
 

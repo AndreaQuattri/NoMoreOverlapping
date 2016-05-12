@@ -16,7 +16,6 @@ import java.util.Vector;
 
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
-import javax.swing.table.DefaultTableModel;
 
 import ElaborazioneDati.CalcolaSovrapposizioni;
 import ElaborazioneDati.GeneraListaDiscipline;
@@ -27,18 +26,11 @@ import memorizzazioneDati.GeneraPianiDiStudio;
 import memorizzazioneDati.InsertValues;
 import myComponents.Assegnamento;
 import myComponents.Attività;
-import myComponents.Aula;
-import myComponents.Convegno;
 import myComponents.CorsoDiStudi;
 import myComponents.Disciplina;
-import myComponents.Docente;
-import myComponents.Esame;
-import myComponents.FasciaOraria;
-import myComponents.Gita;
+
 import myComponents.Orario;
 import myComponents.PianoDiStudi;
-import myComponents.Studente;
-import myComponents.Tirocinio;
 
 
 
@@ -338,7 +330,7 @@ public class Controller2
 			create.fromAssegnamentoToOrarioPerGiorno();
 
 			CalcolaSovrapposizioni calcola = new CalcolaSovrapposizioni(model);
-			//			calcola.numSovrapposizioni();
+			//calcola.numSovrapposizioni();
 
 			for (int i=0; i<model.getListAttivitàInserite().size(); i++)
 				viewOrario.getComboBoxAttivitàInserite().addItem(model.getListAttivitàInserite().get(i).getNome());
@@ -456,9 +448,64 @@ public class Controller2
 		{
 
 
+			model.tabella = new Vector<Vector<String>>();
 			
 			for (int i = 0; i<21; i++){
 				viewOrario.getTableRecords().removeRow(0);
+			}
+			
+			
+			ArrayList<String> listGiorni = new ArrayList<String>();
+			listGiorni.add("Lunedi");
+			listGiorni.add("Martedi");
+			listGiorni.add("Mercoledi");
+			listGiorni.add("Giovedi");
+			listGiorni.add("Venerdi");
+			listGiorni.add("Sabato");
+
+
+			int countDay=0;
+			int iRighe=0;
+			int iColonne=0;
+
+			int inizioOra = 8;
+			int inizioMinuto = 30;
+
+			int fineOra = 9;
+			int fineMinuto = 00;
+
+
+			Date inizio = new Date(1111, 1, 1, inizioOra, inizioMinuto);
+			Date fine = new Date(1111, 1, 1, fineOra, fineMinuto);
+
+			Format formatter = new SimpleDateFormat("HH:mm");
+			String oraInizio = formatter.format(inizio);
+			String oraFine = formatter.format(fine);
+			
+			
+			for (int i=0; i<model.getListOrario().size(); i++){
+				countDay = 0;
+				model.tabella.addElement(new Vector<String>());
+				for (int j=0; j<model.getListOrario().get(i).getElencoAssegnamenti().size(); j++){
+					if (model.getListOrario().get(i).getElencoAssegnamenti().get(j).getAttività().getNome().equals(viewOrario.getComboBoxAttivitàInserite().getSelectedItem()))
+					countDay++;
+				}
+				if (iColonne == 0){
+					model.tabella.get(iRighe).add(String.valueOf(oraInizio + " - " + oraFine));
+					inizioMinuto+=30;
+					fineMinuto+=30;
+
+					inizio = new Date(1111, 1, 1, inizioOra, inizioMinuto);
+					fine = new Date(1111, 1, 1, fineOra, fineMinuto);
+					oraInizio = formatter.format(inizio);
+					oraFine = formatter.format(fine);
+				}
+
+				model.tabella.get(iRighe).add(String.valueOf(countDay));
+
+				iColonne = iColonne + iRighe/20;
+				iRighe = (iRighe + 1)%21;
+
 			}
 			
 			for(int i=0; i<21; i++){
@@ -481,18 +528,24 @@ public class Controller2
 					{
 						Component cell = super.getTableCellRendererComponent (table, value, isSelected, hasFocus, row, column);
 						
-						//System.out.println(model.getListOrario().get(0).getElencoAssegnamenti().get(prova).getAttività().toString());
-						
-						prova = (prova + 1)%21;
-						
-						
 						if (value == null)
 							return null;
 
-						else
-							cell.setForeground(Color.BLUE);
+						if (value.equals("0")){
+							cell.setBackground( Color.gray );
+							cell.setForeground(Color.gray);
+						}
+						else{
+							if (value.equals("1")){
+								cell.setBackground( Color.BLUE );
+								cell.setForeground(Color.BLUE);
+							}
+							else{
+								cell.setBackground( Color.red );
+								cell.setForeground(Color.red);
+							}
 
-
+						}
 						return cell;
 
 					}});

@@ -1,6 +1,5 @@
 package mvc;
 
-import java.awt.BorderLayout;
 import java.awt.event.ActionListener;
 import java.util.Observable;
 import java.util.Observer;

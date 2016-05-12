@@ -7,7 +7,10 @@ public class MyNotify {
 	public final static int ENABLE_BUTTON_ACQUISISCI = 2;
 	public final static int ENABLE_BUTTON_AGGIORNA   = 3;
 	public final static int ENABLE_INSERT_VALUES 	   = 4;
-	public final static int SEMANTIC_ERRORS    = 5;
+	public final static int ENABLE_BUTTON_GITA = 5;
+
+	
+	public final static int SEMANTIC_ERRORS    = 8;
 	public final static int GENERIC_ERROR 	   = 6;
 	public final static int FILE_ERROR 	   	   = 7;
 

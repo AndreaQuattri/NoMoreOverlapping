@@ -16,31 +16,47 @@ import java.util.Vector;
 
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
 
+import ElaborazioneDati.CalcolaSovrapposizioni;
+import ElaborazioneDati.GeneraListaDiscipline;
 import ElaborazioneDati.InsertInTable;
 import connectToDatabase.CreateTimeTable;
 import connectToDatabase.DisciplinaGiàInserita;
 import memorizzazioneDati.GeneraPianiDiStudio;
 import memorizzazioneDati.InsertValues;
 import myComponents.Assegnamento;
+import myComponents.Attività;
+import myComponents.Aula;
+import myComponents.Convegno;
 import myComponents.CorsoDiStudi;
+import myComponents.Disciplina;
+import myComponents.Docente;
+import myComponents.Esame;
+import myComponents.FasciaOraria;
+import myComponents.Gita;
+import myComponents.Orario;
 import myComponents.PianoDiStudi;
+import myComponents.Studente;
+import myComponents.Tirocinio;
 
 
 
-public class Controller
+public class Controller2
 {
 
 	private Model model;
 	private MainView view;
 	private ViewTimeTable viewOrario;
+	
+	int prova;
 
-	public Controller(Model model, MainView view, ViewTimeTable viewOrario)
+	public Controller2(Model model, MainView view, ViewTimeTable viewOrario)
 	{
 		this.model = model;
 		this.view = view;
 		this.viewOrario = viewOrario;
-
+		prova = 0;
 
 		// Set all the listener of the view
 		view.selectedTableToView(new SelectedTableListener());
@@ -48,6 +64,7 @@ public class Controller
 		view.pressButtonModifica(new UpdateRecordListener());
 		view.pressButtonGestisciOrario(new OpenViewGestisciOrario());
 		viewOrario.pressButtonNewOrario(new CreateNewOrario());
+		viewOrario.selectedActivityToView(new SelectedActivityListener());
 
 		//view.addCompileListener(new MyCompileListener());
 		//view.addMakeLaTeXlistener(new MyMakeLaTeXlistener());
@@ -71,19 +88,19 @@ public class Controller
 			 * cancellare tabella, ecc..
 			 * 
 			 */
-			
+
 
 
 		}
 	}
-	
+
 	private class UpdateRecordListener implements  ActionListener
 	{
 		@Override
 		public void actionPerformed(ActionEvent action)
 		{
 
-					
+
 			ManagementTableView managment = new ManagementTableView((String)view.getComboBoxTable().getSelectedItem());
 			managment.setVisible(true);
 
@@ -139,6 +156,21 @@ public class Controller
 			InsertValues insert = new InsertValues(model);
 
 
+//			model.setListAssegnamento(new ArrayList<ArrayList<Assegnamento>>());
+//			model.setListAula(new ArrayList<Aula>());
+//			model.setListConvegno(new ArrayList<Convegno>());
+//			model.setListCorsoDiStudi(new ArrayList<CorsoDiStudi>());
+//			model.setListDisciplina(new ArrayList<Disciplina>());
+//			model.setListDocente(new ArrayList<Docente>());
+//			model.setListEsame(new ArrayList<Esame>());
+//			model.setListFasciaOraria(new ArrayList<FasciaOraria>());
+//			model.setListGita(new ArrayList<Gita>());
+//			model.setListOrario(new ArrayList<Orario>());
+//			model.setListPianoDiStudi(new ArrayList<PianoDiStudi>());
+//			model.setListStudente(new ArrayList<Studente>());
+//			model.setListTirocinio(new ArrayList<Tirocinio>());
+//			model.tabella = new Vector<Vector<String>>();
+//			model.setListAttivitàInserite(new ArrayList<Attività>());
 
 			try {
 
@@ -172,12 +204,6 @@ public class Controller
 				generaPiani.generaPiani();
 
 
-
-				for (int i=0; i<model.getListDisciplina().size(); i++)
-				System.out.println(model.getListDisciplina().get(i).toString());
-
-
-
 				viewOrario.getFrame().setVisible(true);
 
 
@@ -204,6 +230,21 @@ public class Controller
 		public void actionPerformed(ActionEvent action)
 		{
 
+			
+			for (int i = 0; i<viewOrario.getTableRecords().getRowCount(); i++){
+				viewOrario.getTableRecords().removeRow(0);
+			}
+			
+			
+			model.setListOrario(null);
+			model.setListOrario(new ArrayList<Orario>());
+			
+			model.setListAssegnamento(null);
+			model.setListAssegnamento(new ArrayList<ArrayList<Assegnamento>>());
+			
+			
+
+
 			viewOrario.getTableRecords().addColumn("Orario");
 			viewOrario.getTableRecords().addColumn("Lunedì");
 			viewOrario.getTableRecords().addColumn("Martedì");
@@ -212,6 +253,7 @@ public class Controller
 			viewOrario.getTableRecords().addColumn("Venerdì");
 			viewOrario.getTableRecords().addColumn("Sabato");
 
+			
 
 			model.getListAssegnamento().add(new ArrayList<Assegnamento>());
 
@@ -219,11 +261,12 @@ public class Controller
 			PianoDiStudi piano1;
 			int hour, n, numAss = 0;
 			int indice;
+			int semestre = Integer.parseInt((String)viewOrario.getComboBoxSemestre().getSelectedItem());
 
 			DisciplinaGiàInserita disciplinaInserita = new DisciplinaGiàInserita(model);
-			
-			//ArrayList<Attività> listAttività;
 
+			ArrayList<Attività> listAttività = null;
+			ArrayList<Disciplina> listDisciplina = null;
 
 			//corsi di studio da valutare
 			for (indice = 0; indice < model.getListCorsoDiStudi().size(); indice++){
@@ -246,67 +289,59 @@ public class Controller
 
 				hour = 0;
 
-				
-				/*
+
+
 				listAttività = new ArrayList<Attività>();
-				
+
 				listAttività.addAll(piano1.getElencoAttivitàObbligatorie());
 				listAttività.addAll(piano1.getElencoAttivitàOpzionali());
-				*/
-				
-				
-				//piani di studio relativi al corso di studio selezionato
-				for (int i=0; i<piano1.getElencoPianiPossibili().size();i++){
 
-					//corsi del piano di studio i-esimo
-					for (int j=0; j<piano1.getElencoPianiPossibili().get(i).size(); j++){
+
+				listDisciplina = GeneraListaDiscipline.generaLista(listAttività);
+
+				for (int iDisciplina = 0; iDisciplina < listDisciplina.size(); iDisciplina++){
+
+					if(listDisciplina.get(iDisciplina).getSemestre()==semestre && !disciplinaInserita.giàInserita2(listDisciplina.get(iDisciplina).getId(), listDisciplina.get(iDisciplina).getSubId())){
+						hour = listDisciplina.get(iDisciplina).getSubOre();
+
+						if (!disciplinaInserita.giàInserita(listDisciplina.get(iDisciplina).getId()))
+							model.getListAttivitàInserite().add(listDisciplina.get(iDisciplina));
 
 						//numero di arrayList<Assegnamento>
 						for (numAss = 0; numAss < model.getListAssegnamento().size(); numAss++){
 
-							if(piano1.getElencoPianiPossibili().get(i).get(j).getSemestre()==1 && !disciplinaInserita.giàInserita(piano1.getElencoPianiPossibili().get(i).get(j).getId())){
-								hour = piano1.getElencoPianiPossibili().get(i).get(j).getOre()/6;
+							n = disciplinaInserita.fasciaOrariaDisponibile(hour, numAss);
 
-
-								n = disciplinaInserita.fasciaOrariaDisponibile(hour, numAss);
-								if (n!=-1){
-									while (hour>0){
-										model.getListAssegnamento().get(numAss).add(new Assegnamento(piano1.getElencoPianiPossibili().get(i).get(j), model.getListFasciaOraria().get(n), model.getListAula().get(0)));
-										n = ((n + 1)%model.getListFasciaOraria().size());
-										hour--;
-									}
-
-									break;
+							if (n!=-1){
+								while (hour>0){
+									model.getListAssegnamento().get(numAss).add(new Assegnamento(listDisciplina.get(iDisciplina), model.getListFasciaOraria().get(n), model.getListAula().get((int) (Math.random()*model.getListAula().size()))));
+									n = ((n + 1)%model.getListFasciaOraria().size());
+									hour--;
 								}
-								else{
-									if (numAss == model.getListAssegnamento().size()-1){
-										model.getListAssegnamento().add(new ArrayList<Assegnamento>());
-									}
-								}
+
+								break;
 							}
+							else{
+								if (numAss == model.getListAssegnamento().size()-1)
+									model.getListAssegnamento().add(new ArrayList<Assegnamento>());
 
+							}
 						}
-//						
-//						if (numAss == model.getListAssegnamento().size() &&
-//								piano1.getElencoPianiPossibili().get(i).get(j).getSemestre()==1 &&
-//								!disciplinaInserita.giàInserita(piano1.getElencoPianiPossibili().get(i).get(j).getId())){
-//
-//							model.getListAssegnamento().add(new ArrayList<Assegnamento>());
-//							n = 0;
-//							while (hour>0){
-//								model.getListAssegnamento().get(numAss).add(new Assegnamento(piano1.getElencoPianiPossibili().get(i).get(j), model.getListFasciaOraria().get(n), model.getListAula().get(0)));
-//								n = ((n + 1)%model.getListFasciaOraria().size());
-//								hour--;
-//							}
-//
-//						}
+
 					}
+
 				}
+
 			}
 
 			CreateTimeTable create = new CreateTimeTable(model);
 			create.fromAssegnamentoToOrarioPerGiorno();
 
+			CalcolaSovrapposizioni calcola = new CalcolaSovrapposizioni(model);
+			//			calcola.numSovrapposizioni();
+
+			for (int i=0; i<model.getListAttivitàInserite().size(); i++)
+				viewOrario.getComboBoxAttivitàInserite().addItem(model.getListAttivitàInserite().get(i).getNome());
 
 
 
@@ -402,6 +437,61 @@ public class Controller
 							}
 
 						}
+
+						return cell;
+
+					}});
+
+			}
+
+
+		}
+	}
+
+
+	private class SelectedActivityListener implements  ActionListener
+	{
+		@Override
+		public void actionPerformed(ActionEvent action)
+		{
+
+
+			
+			for (int i = 0; i<21; i++){
+				viewOrario.getTableRecords().removeRow(0);
+			}
+			
+			for(int i=0; i<21; i++){
+				viewOrario.getTableRecords().addRow(model.tabella.get(i));
+			}
+			
+			
+			prova = 0;
+			
+			for (int i=1; i<7; i++){
+				viewOrario.getTable().getColumnModel().getColumn(i).setCellRenderer(new DefaultTableCellRenderer() {
+					/**
+					 * 
+					 */
+					private static final long serialVersionUID = 1L;
+					
+					
+
+					public Component getTableCellRendererComponent (JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) 
+					{
+						Component cell = super.getTableCellRendererComponent (table, value, isSelected, hasFocus, row, column);
+						
+						//System.out.println(model.getListOrario().get(0).getElencoAssegnamenti().get(prova).getAttività().toString());
+						
+						prova = (prova + 1)%21;
+						
+						
+						if (value == null)
+							return null;
+
+						else
+							cell.setForeground(Color.BLUE);
+
 
 						return cell;
 

@@ -2,14 +2,11 @@ package mvc;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JButton;
 
 public class ManagementTableView extends JFrame {
 	
 	
 	private static final long serialVersionUID = 1L;
-	private JFrame frame;
-	private JButton btnSs;
 
 
 	public ManagementTableView(String tabella)

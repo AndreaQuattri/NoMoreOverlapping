@@ -45,9 +45,9 @@ public class Attività {
 		String dateInizio = formatter.format(inizio);
 		String dateFine = formatter.format(fine);
 	  
-      String toReturn = id + "," + nome + "," + descrizione + "," + ore + "," + semestre + "," + dateInizio + "," + dateFine+"\n";
-      //for (int i = 0; i < elencoResponsabili.size(); i++)
-         // toReturn += elencoResponsabili.get(i).toString() + " ; ";
+      String toReturn = id + "," + nome + "," + descrizione + "," + ore + "," + semestre + "," + dateInizio + "," + dateFine;
+      for (int i = 0; i < elencoResponsabili.size(); i++)
+          toReturn += elencoResponsabili.get(i).toString() + " ; ";
       return toReturn;
   }
 	
@@ -108,6 +108,8 @@ public class Attività {
 	public void setElencoResponsabili(ArrayList<Docente> elencoResponsabili) {
 		this.elencoResponsabili = elencoResponsabili;
 	}
+	
+
 	
 
 }

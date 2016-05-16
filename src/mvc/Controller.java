@@ -284,22 +284,7 @@ public class Controller
 									}
 								}
 							}
-
 						}
-//						
-//						if (numAss == model.getListAssegnamento().size() &&
-//								piano1.getElencoPianiPossibili().get(i).get(j).getSemestre()==1 &&
-//								!disciplinaInserita.giàInserita(piano1.getElencoPianiPossibili().get(i).get(j).getId())){
-//
-//							model.getListAssegnamento().add(new ArrayList<Assegnamento>());
-//							n = 0;
-//							while (hour>0){
-//								model.getListAssegnamento().get(numAss).add(new Assegnamento(piano1.getElencoPianiPossibili().get(i).get(j), model.getListFasciaOraria().get(n), model.getListAula().get(0)));
-//								n = ((n + 1)%model.getListFasciaOraria().size());
-//								hour--;
-//							}
-//
-//						}
 					}
 				}
 			}
@@ -343,12 +328,12 @@ public class Controller
 
 			for (int i=0; i<model.getListOrario().size(); i++){
 				countDay = 0;
-				model.tabella.addElement(new Vector<String>());
+				model.getTabella().addElement(new Vector<String>());
 				for (int j=0; j<model.getListOrario().get(i).getElencoAssegnamenti().size(); j++){
 					countDay++;
 				}
 				if (iColonne == 0){
-					model.tabella.get(iRighe).add(String.valueOf(oraInizio + " - " + oraFine));
+					model.getTabella().get(iRighe).add(String.valueOf(oraInizio + " - " + oraFine));
 					inizioMinuto+=30;
 					fineMinuto+=30;
 
@@ -358,7 +343,7 @@ public class Controller
 					oraFine = formatter.format(fine);
 				}
 
-				model.tabella.get(iRighe).add(String.valueOf(countDay));
+				model.getTabella().get(iRighe).add(String.valueOf(countDay));
 
 				iColonne = iColonne + iRighe/20;
 				iRighe = (iRighe + 1)%21;
@@ -370,7 +355,7 @@ public class Controller
 
 
 			for(int i=0; i<21; i++){
-				viewOrario.getTableRecords().addRow(model.tabella.get(i));
+				viewOrario.getTableRecords().addRow(model.getTabella().get(i));
 			}
 
 			for (int i=1; i<7; i++){

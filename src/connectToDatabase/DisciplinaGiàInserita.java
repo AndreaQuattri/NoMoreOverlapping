@@ -54,10 +54,10 @@ public class DisciplinaGiàInserita {
 
 		for (int i=0; i<model.getListAssegnamento().get(numAss).size(); i++){
 			if (model.getListAssegnamento().get(numAss).get(i).getFasciaOraria().equals(model.getListFasciaOraria().get(k))
-				
-
-			||
-			model.getListFasciaOraria().get(k).getInizio().toString().equals("Thu Jan 01 13:30:00 CET 1970") )
+					||
+			model.getListFasciaOraria().get(k).getInizio().toString().equals("Thu Jan 01 13:30:00 CET 1970") 
+										
+				)
 				
 				return true;
 				

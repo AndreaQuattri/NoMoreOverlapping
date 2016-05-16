@@ -13,7 +13,6 @@ import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import javax.swing.JPanel;
 import javax.swing.JRadioButtonMenuItem;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -29,17 +28,34 @@ public class ViewTimeTable extends JFrame implements Observer {
 	private static final long serialVersionUID = 1L;
 	
 	
-	private JPanel panelCenter;
 	
 	private JFrame frame;
 	private JButton buttonInsertNewTable;
 	private JButton buttonNewOrario;
+	private JButton buttonNewOrario2;
 	private JButton buttonLoadOrario;
 	private JLabel labelTableInTable;
 	private JComboBox comboBoxSemestre;
 	private JComboBox comboBoxAttivitàInserite;
+	private JComboBox comboBoxPiani;
 
 	
+	public JComboBox getComboBoxPiani() {
+		return comboBoxPiani;
+	}
+
+
+
+
+
+
+	public void setComboBoxPiani(JComboBox comboBoxPiani) {
+		this.comboBoxPiani = comboBoxPiani;
+	}
+
+
+
+
 	private JMenuBar menuBar;
 	private JMenu menuFile;
 	private JMenuItem apri;
@@ -149,6 +165,12 @@ public class ViewTimeTable extends JFrame implements Observer {
 		
 		comboBoxAttivitàInserite = new JComboBox();
 		comboBoxAttivitàInserite.addItem("");
+		
+		buttonNewOrario2 = new JButton("Nuovo Orario 2");
+		
+		comboBoxPiani = new JComboBox();
+		comboBoxPiani.addItem("");
+
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -157,21 +179,25 @@ public class ViewTimeTable extends JFrame implements Observer {
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(114)
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(buttonLoadOrario, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
 								.addGroup(groupLayout.createSequentialGroup()
 									.addComponent(buttonNewOrario, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
-									.addGap(138)
-									.addComponent(comboBoxSemestre, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-									.addGap(152)
-									.addComponent(comboBoxAttivitàInserite, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
+									.addGap(215)
+									.addComponent(comboBoxSemestre, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+								.addComponent(buttonLoadOrario, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE))
+							.addGap(75)
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addComponent(comboBoxPiani, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(comboBoxAttivitàInserite, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(66)
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 								.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 775, GroupLayout.PREFERRED_SIZE)
 								.addGroup(groupLayout.createSequentialGroup()
 									.addGap(193)
-									.addComponent(buttonInsertNewTable, GroupLayout.PREFERRED_SIZE, 335, GroupLayout.PREFERRED_SIZE)))))
-					.addContainerGap(59, Short.MAX_VALUE))
+									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+										.addComponent(buttonNewOrario2)
+										.addComponent(buttonInsertNewTable, GroupLayout.PREFERRED_SIZE, 335, GroupLayout.PREFERRED_SIZE))))))
+					.addContainerGap(259, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -179,10 +205,13 @@ public class ViewTimeTable extends JFrame implements Observer {
 					.addGap(52)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(buttonNewOrario)
+						.addComponent(comboBoxAttivitàInserite, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(comboBoxSemestre, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(comboBoxAttivitàInserite, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(buttonNewOrario2))
 					.addGap(22)
-					.addComponent(buttonLoadOrario)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(buttonLoadOrario)
+						.addComponent(comboBoxPiani, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(124)
 					.addComponent(buttonInsertNewTable)
 					.addGap(51)
@@ -279,11 +308,25 @@ public class ViewTimeTable extends JFrame implements Observer {
 			buttonNewOrario.addActionListener(listener);
 		}
 		
+
+		public void pressButtonNewOrario2(ActionListener listener) {
+			// TODO Auto-generated method stub
+			buttonNewOrario2.addActionListener(listener);
+
+		}
 		
 
 		public void selectedActivityToView(ActionListener listener) {
 			// TODO Auto-generated method stub
 			comboBoxAttivitàInserite.addActionListener(listener);
+			
+		}
+		
+		
+
+		public void selectedPianoToView(ActionListener listener) {
+			// TODO Auto-generated method stub
+			comboBoxPiani.addActionListener(listener);
 			
 		}
 		
@@ -297,6 +340,4 @@ public class ViewTimeTable extends JFrame implements Observer {
 		public void setComboBoxSemestre(JComboBox comboBoxSemestre) {
 			this.comboBoxSemestre = comboBoxSemestre;
 		}
-
-
 }

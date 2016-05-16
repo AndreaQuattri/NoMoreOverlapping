@@ -1,6 +1,9 @@
 package mvc;
 
+import java.text.Format;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Observable;
 import java.util.Vector;
 
@@ -21,7 +24,19 @@ public class Model extends Observable{
 	private ArrayList<PianoDiStudi> listPianoDiStudi;	//Fatto
 	private ArrayList<Studente> listStudente;			//Fatto
 	private ArrayList<Tirocinio> listTirocinio;			//Fatto
-	Vector<Vector<String>> tabella;
+	private Vector<Vector<String>> tabella;
+	public Vector<Vector<String>> getTabella() {
+		return tabella;
+	}
+
+
+
+
+	public void setTabella(Vector<Vector<String>> tabella) {
+		this.tabella = tabella;
+	}
+
+
 	private ArrayList<Attività> listAttivitàInserite;
 	
 	private boolean enableModificaTable;
@@ -245,10 +260,83 @@ public class Model extends Observable{
 	}
 
 
-
-
+	public boolean AttivitàInCorso(String idAtt, String codice){
+		
+		for (int i=0; i<this.getListPianoDiStudi().size(); i++){
+			if (getListPianoDiStudi().get(i).getCorso().getCodice().equals(codice)){
+				for (int j=0; j<getListPianoDiStudi().get(i).getElencoAttivitàObbligatorie().size(); j++){
+					if (getListPianoDiStudi().get(i).getElencoAttivitàObbligatorie().get(j).getId().equals(idAtt))
+						return true;
+				}
+				for (int j=0; j<getListPianoDiStudi().get(i).getElencoAttivitàOpzionali().size(); j++){
+					if (getListPianoDiStudi().get(i).getElencoAttivitàOpzionali().get(j).getId().equals(idAtt))
+						return true;
+				}
+			}
+		}
+		
+		
+		return false;
+	}
 	
 
+	public PianoDiStudi cercaPianoDatoCorso (String id){
+		
+		for (int i=0; i<getListPianoDiStudi().size(); i++){
+			if (getListPianoDiStudi().get(i).getCorso().getCodice().equals(id)){
+				return getListPianoDiStudi().get(i);
+			}
+		}
+		return null;
+		
+	}
+
+	
+	@SuppressWarnings("deprecation")
+	public void fromOrarioToTable(){
+		int countDay=0;
+		int iRighe=0;
+		int iColonne=0;
+
+		int inizioOra = 8;
+		int inizioMinuto = 30;
+
+		int fineOra = 9;
+		int fineMinuto = 00;
+
+
+		Date inizio = new Date(1111, 1, 1, inizioOra, inizioMinuto);
+		Date fine = new Date(1111, 1, 1, fineOra, fineMinuto);
+
+		Format formatter = new SimpleDateFormat("HH:mm");
+		String oraInizio = formatter.format(inizio);
+		String oraFine = formatter.format(fine);
+		
+		for (int i=0; i<getListOrario().size(); i++){
+			countDay = 0;
+			tabella.addElement(new Vector<String>());
+			for (int j=0; j<getListOrario().get(i).getElencoAssegnamenti().size(); j++){
+				countDay++;
+			}
+			if (iColonne == 0){
+				tabella.get(iRighe).add(String.valueOf(oraInizio + " - " + oraFine));
+				inizioMinuto+=30;
+				fineMinuto+=30;
+
+				inizio = new Date(1111, 1, 1, inizioOra, inizioMinuto);
+				fine = new Date(1111, 1, 1, fineOra, fineMinuto);
+				oraInizio = formatter.format(inizio);
+				oraFine = formatter.format(fine);
+			}
+
+			tabella.get(iRighe).add(String.valueOf(countDay));
+
+			iColonne = iColonne + iRighe/20;
+			iRighe = (iRighe + 1)%21;
+
+		}
+		
+	}
 	
 	
 

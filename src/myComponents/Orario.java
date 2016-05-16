@@ -57,6 +57,7 @@ public class Orario {
 	public Boolean aggiungiAssegnamento(Assegnamento a)
 	{
 		// TODO da completare.
+		this.elencoAssegnamenti.add(a);
 		return false;
 	}
 

@@ -1,4 +1,4 @@
-package ControllerListener;
+package controllerListener;
 
 import java.awt.Color;
 import java.awt.Component;

@@ -47,7 +47,7 @@ public class Attività {
 	  
       String toReturn = id + "," + nome + "," + descrizione + "," + ore + "," + semestre + "," + dateInizio + "," + dateFine;
       for (int i = 0; i < elencoResponsabili.size(); i++)
-          toReturn += elencoResponsabili.get(i).toString() + " ; ";
+          toReturn += elencoResponsabili.get(i).getCognome().toString() + " ; ";
       return toReturn;
   }
 	
@@ -107,6 +107,10 @@ public class Attività {
 
 	public void setElencoResponsabili(ArrayList<Docente> elencoResponsabili) {
 		this.elencoResponsabili = elencoResponsabili;
+	}
+	
+	public void aggiungiResponsabile (Docente d){
+		this.elencoResponsabili.add(d);
 	}
 	
 

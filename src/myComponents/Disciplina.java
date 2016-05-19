@@ -33,6 +33,15 @@ public class Disciplina extends Attività{
 		this.subOre = subOre;
 	}
 	
+	public Disciplina(int ore, String id, String descrizione, String nome, Date inizio, Date fine,
+			int semestre, ArrayList<Docente> elencoResponsabili, String codice, float crediti, int subId, int subOre) {
+		super(ore, id, descrizione, nome, inizio, fine, semestre, elencoResponsabili);
+		this.codice = codice;
+		this.crediti = crediti;
+		this.subId = subId;
+		this.subOre = subOre;
+	}
+	
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub

@@ -25,6 +25,8 @@ public class Model extends Observable{
 	private ArrayList<Studente> listStudente;			//Fatto
 	private ArrayList<Tirocinio> listTirocinio;			//Fatto
 	private Vector<Vector<String>> tabella;
+	
+	
 	public Vector<Vector<String>> getTabella() {
 		return tabella;
 	}
@@ -39,6 +41,9 @@ public class Model extends Observable{
 
 	private ArrayList<Attività> listAttivitàInserite;
 	private ArrayList<Docente> listDocentiInseriti;
+	private ArrayList<Attività> listAttivitàDeiDocenti;
+	private ArrayList<Disciplina> listAllAttivitàInserite;
+
 	
 	private boolean enableModificaTable;
 	private boolean enableEliminaTable;
@@ -68,6 +73,8 @@ public class Model extends Observable{
 		tabella = new Vector<Vector<String>>();
 		setListAttivitàInserite(new ArrayList<Attività>());
 		listDocentiInseriti = new ArrayList<Docente>();
+		setListAttivitàDeiDocenti(new ArrayList<Attività>());
+		setListAllAttivitàInserite(new ArrayList<Disciplina>());
 
 		enableModificaTable = false;
 		enableEliminaTable = false;
@@ -352,6 +359,34 @@ public class Model extends Observable{
 
 	public void setListDocentiInseriti(ArrayList<Docente> listDocentiInseriti) {
 		this.listDocentiInseriti = listDocentiInseriti;
+	}
+
+
+
+
+	public ArrayList<Attività> getListAttivitàDeiDocenti() {
+		return listAttivitàDeiDocenti;
+	}
+
+
+
+
+	public void setListAttivitàDeiDocenti(ArrayList<Attività> listAttivitàDeiDocenti) {
+		this.listAttivitàDeiDocenti = listAttivitàDeiDocenti;
+	}
+
+
+
+
+	public ArrayList<Disciplina> getListAllAttivitàInserite() {
+		return listAllAttivitàInserite;
+	}
+
+
+
+
+	public void setListAllAttivitàInserite(ArrayList<Disciplina> listAllAttivitàInserite) {
+		this.listAllAttivitàInserite = listAllAttivitàInserite;
 	}
 	
 	

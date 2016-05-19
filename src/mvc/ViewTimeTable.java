@@ -1,5 +1,6 @@
 package mvc;
 
+import java.awt.Desktop.Action;
 import java.awt.event.ActionListener;
 import java.util.Observable;
 import java.util.Observer;
@@ -38,6 +39,7 @@ public class ViewTimeTable extends JFrame implements Observer {
 	private JComboBox comboBoxSemestre;
 	private JComboBox comboBoxAttivitàInserite;
 	private JComboBox comboBoxPiani;
+	private JComboBox comboBoxDocenti;
 
 	
 	public JComboBox getComboBoxPiani() {
@@ -170,6 +172,9 @@ public class ViewTimeTable extends JFrame implements Observer {
 		
 		comboBoxPiani = new JComboBox();
 		comboBoxPiani.addItem("");
+		
+		comboBoxDocenti = new JComboBox();
+		comboBoxDocenti.addItem("");
 
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
 		groupLayout.setHorizontalGroup(
@@ -187,7 +192,8 @@ public class ViewTimeTable extends JFrame implements Observer {
 							.addGap(75)
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 								.addComponent(comboBoxPiani, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(comboBoxAttivitàInserite, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+								.addComponent(comboBoxAttivitàInserite, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(comboBoxDocenti, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)))
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(66)
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
@@ -212,7 +218,9 @@ public class ViewTimeTable extends JFrame implements Observer {
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(buttonLoadOrario)
 						.addComponent(comboBoxPiani, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(124)
+					.addGap(29)
+					.addComponent(comboBoxDocenti, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addGap(68)
 					.addComponent(buttonInsertNewTable)
 					.addGap(51)
 					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 228, GroupLayout.PREFERRED_SIZE)
@@ -330,6 +338,13 @@ public class ViewTimeTable extends JFrame implements Observer {
 			
 		}
 		
+		public void selectedDocenteToView(ActionListener listener) {
+			// TODO Auto-generated method stub
+			comboBoxDocenti.addActionListener(listener);
+
+		}
+		
+		
 		public JComboBox getComboBoxSemestre() {
 			return comboBoxSemestre;
 		}
@@ -340,4 +355,29 @@ public class ViewTimeTable extends JFrame implements Observer {
 		public void setComboBoxSemestre(JComboBox comboBoxSemestre) {
 			this.comboBoxSemestre = comboBoxSemestre;
 		}
+
+
+
+
+
+
+		public JComboBox getComboBoxDocenti() {
+			return comboBoxDocenti;
+		}
+
+
+
+
+
+
+		public void setComboBoxDocenti(JComboBox comboBoxDocenti) {
+			this.comboBoxDocenti = comboBoxDocenti;
+		}
+
+
+
+
+
+
+
 }

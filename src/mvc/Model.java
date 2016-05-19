@@ -38,6 +38,7 @@ public class Model extends Observable{
 
 
 	private ArrayList<Attività> listAttivitàInserite;
+	private ArrayList<Docente> listDocentiInseriti;
 	
 	private boolean enableModificaTable;
 	private boolean enableEliminaTable;
@@ -66,6 +67,7 @@ public class Model extends Observable{
 		listTirocinio = new ArrayList<Tirocinio>();
 		tabella = new Vector<Vector<String>>();
 		setListAttivitàInserite(new ArrayList<Attività>());
+		listDocentiInseriti = new ArrayList<Docente>();
 
 		enableModificaTable = false;
 		enableEliminaTable = false;
@@ -336,6 +338,20 @@ public class Model extends Observable{
 
 		}
 		
+	}
+
+
+
+
+	public ArrayList<Docente> getListDocentiInseriti() {
+		return listDocentiInseriti;
+	}
+
+
+
+
+	public void setListDocentiInseriti(ArrayList<Docente> listDocentiInseriti) {
+		this.listDocentiInseriti = listDocentiInseriti;
 	}
 	
 	

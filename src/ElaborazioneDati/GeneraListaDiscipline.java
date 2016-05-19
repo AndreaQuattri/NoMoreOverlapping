@@ -32,6 +32,7 @@ public class GeneraListaDiscipline {
 							listAttività.get(i).getInizio(),
 							listAttività.get(i).getFine(),
 							listAttività.get(i).getSemestre(),
+							listAttività.get(i).getElencoResponsabili(),
 							((Disciplina)listAttività.get(i)).getCodice(),
 							((Disciplina)listAttività.get(i)).getCrediti(),
 							j,6));
@@ -46,6 +47,7 @@ public class GeneraListaDiscipline {
 							listAttività.get(i).getInizio(),
 							listAttività.get(i).getFine(),
 							listAttività.get(i).getSemestre(),
+							listAttività.get(i).getElencoResponsabili(),
 							((Disciplina)listAttività.get(i)).getCodice(),
 							((Disciplina)listAttività.get(i)).getCrediti(),
 							j,4));
@@ -63,6 +65,7 @@ public class GeneraListaDiscipline {
 							listAttività.get(i).getInizio(),
 							listAttività.get(i).getFine(),
 							listAttività.get(i).getSemestre(),
+							listAttività.get(i).getElencoResponsabili(),
 							((Disciplina)listAttività.get(i)).getCodice(),
 							((Disciplina)listAttività.get(i)).getCrediti(),
 							j,4));
@@ -77,6 +80,7 @@ public class GeneraListaDiscipline {
 							listAttività.get(i).getInizio(),
 							listAttività.get(i).getFine(),
 							listAttività.get(i).getSemestre(),
+							listAttività.get(i).getElencoResponsabili(),
 							((Disciplina)listAttività.get(i)).getCodice(),
 							((Disciplina)listAttività.get(i)).getCrediti(),
 							j,4));
@@ -94,6 +98,7 @@ public class GeneraListaDiscipline {
 							listAttività.get(i).getInizio(),
 							listAttività.get(i).getFine(),
 							listAttività.get(i).getSemestre(),
+							listAttività.get(i).getElencoResponsabili(),
 							((Disciplina)listAttività.get(i)).getCodice(),
 							((Disciplina)listAttività.get(i)).getCrediti(),
 							j,6));
@@ -107,6 +112,7 @@ public class GeneraListaDiscipline {
 							listAttività.get(i).getInizio(),
 							listAttività.get(i).getFine(),
 							listAttività.get(i).getSemestre(),
+							listAttività.get(i).getElencoResponsabili(),
 							((Disciplina)listAttività.get(i)).getCodice(),
 							((Disciplina)listAttività.get(i)).getCrediti(),
 							j,6));
@@ -120,6 +126,7 @@ public class GeneraListaDiscipline {
 							listAttività.get(i).getInizio(),
 							listAttività.get(i).getFine(),
 							listAttività.get(i).getSemestre(),
+							listAttività.get(i).getElencoResponsabili(),
 							((Disciplina)listAttività.get(i)).getCodice(),
 							((Disciplina)listAttività.get(i)).getCrediti(),
 							j,4));
@@ -137,6 +144,7 @@ public class GeneraListaDiscipline {
 							listAttività.get(i).getInizio(),
 							listAttività.get(i).getFine(),
 							listAttività.get(i).getSemestre(),
+							listAttività.get(i).getElencoResponsabili(),
 							((Disciplina)listAttività.get(i)).getCodice(),
 							((Disciplina)listAttività.get(i)).getCrediti(),
 							j,8));
@@ -150,6 +158,7 @@ public class GeneraListaDiscipline {
 							listAttività.get(i).getInizio(),
 							listAttività.get(i).getFine(),
 							listAttività.get(i).getSemestre(),
+							listAttività.get(i).getElencoResponsabili(),
 							((Disciplina)listAttività.get(i)).getCodice(),
 							((Disciplina)listAttività.get(i)).getCrediti(),
 							j,8));
@@ -163,6 +172,7 @@ public class GeneraListaDiscipline {
 							listAttività.get(i).getInizio(),
 							listAttività.get(i).getFine(),
 							listAttività.get(i).getSemestre(),
+							listAttività.get(i).getElencoResponsabili(),
 							((Disciplina)listAttività.get(i)).getCodice(),
 							((Disciplina)listAttività.get(i)).getCrediti(),
 							j,4));
@@ -181,6 +191,7 @@ public class GeneraListaDiscipline {
 							listAttività.get(i).getInizio(),
 							listAttività.get(i).getFine(),
 							listAttività.get(i).getSemestre(),
+							listAttività.get(i).getElencoResponsabili(),
 							((Disciplina)listAttività.get(i)).getCodice(),
 							((Disciplina)listAttività.get(i)).getCrediti(),
 							j,6));
@@ -194,6 +205,7 @@ public class GeneraListaDiscipline {
 							listAttività.get(i).getInizio(),
 							listAttività.get(i).getFine(),
 							listAttività.get(i).getSemestre(),
+							listAttività.get(i).getElencoResponsabili(),
 							((Disciplina)listAttività.get(i)).getCodice(),
 							((Disciplina)listAttività.get(i)).getCrediti(),
 							j,6));
@@ -213,6 +225,7 @@ public class GeneraListaDiscipline {
 							listAttività.get(i).getInizio(),
 							listAttività.get(i).getFine(),
 							listAttività.get(i).getSemestre(),
+							listAttività.get(i).getElencoResponsabili(),
 							((Disciplina)listAttività.get(i)).getCodice(),
 							((Disciplina)listAttività.get(i)).getCrediti(),
 							j,6));
@@ -226,6 +239,7 @@ public class GeneraListaDiscipline {
 							listAttività.get(i).getInizio(),
 							listAttività.get(i).getFine(),
 							listAttività.get(i).getSemestre(),
+							listAttività.get(i).getElencoResponsabili(),
 							((Disciplina)listAttività.get(i)).getCodice(),
 							((Disciplina)listAttività.get(i)).getCrediti(),
 							j,6));
@@ -239,6 +253,7 @@ public class GeneraListaDiscipline {
 							listAttività.get(i).getInizio(),
 							listAttività.get(i).getFine(),
 							listAttività.get(i).getSemestre(),
+							listAttività.get(i).getElencoResponsabili(),
 							((Disciplina)listAttività.get(i)).getCodice(),
 							((Disciplina)listAttività.get(i)).getCrediti(),
 							j,4));
@@ -259,7 +274,7 @@ public class GeneraListaDiscipline {
 		
 		for (int i=0 ; i<listDisciplina.size()-1;i++){
 			for (int k=i+1; k<listDisciplina.size();k++){
-				if (listDisciplina.get(i).getSubOre()>listDisciplina.get(k).getSubOre()){
+				if (listDisciplina.get(i).getSubOre()<listDisciplina.get(k).getSubOre()){
 					scambio = listDisciplina.get(i);
 					listDisciplina.set(i, listDisciplina.get(k));
 					listDisciplina.set(k, scambio);

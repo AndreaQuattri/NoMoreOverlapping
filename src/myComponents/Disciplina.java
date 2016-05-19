@@ -45,7 +45,7 @@ public class Disciplina extends Attività{
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
-		return super.toString() + subId + ", " + subOre;
+		return super.toString() + subId + ", " + subOre + "\n";
 	}
 
 	public String getCodice() {

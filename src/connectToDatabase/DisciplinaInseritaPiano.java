@@ -37,6 +37,22 @@ public class DisciplinaInseritaPiano {
 		}
 		return false;	
 	}
+	
+	public boolean giàInsertDocente (String matricola){
+		
+		for (int numAss=0; numAss<model.getListAssegnamento().size(); numAss++){
+			for (int i=0; i<model.getListAssegnamento().get(numAss).size(); i++){
+					for (int iDocente = 0; iDocente<model.getListAssegnamento().get(numAss).get(i).getAttività().getElencoResponsabili().size(); iDocente++){
+						if (model.getListAssegnamento().get(numAss).get(i).getAttività().getElencoResponsabili().get(iDocente).equals(matricola))
+							return true;
+					}
+										
+			}
+				
+		}
+		
+		return false;
+	}
 
 
 	public void fasciaOrariaDisponibile(int hour, int[][] matrix, Disciplina d) {

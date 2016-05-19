@@ -224,7 +224,7 @@ public class InsertValues {
 
 	}
 
-	public void getValueAttività() throws IOException, URISyntaxException, ParseException{
+	public void getValueAttività_1() throws IOException, URISyntaxException, ParseException{
 
 		String inputAttività = Connect.connectDb(GiveAll.giveAllAttività);
 		int numAttività = NumberOfRows.numOfRows(inputAttività);
@@ -376,5 +376,29 @@ public class InsertValues {
 		}
 
 	}
+	
+	public void getValueAttività_2() throws IOException, URISyntaxException, ParseException{
+		
+		
+		for (int i=0; i<model.getListDisciplina().size(); i++){
+			
+			for (int j=0; j<model.getListDocente().size(); j++){
+				
+				for (int k=0; k<model.getListDocente().get(j).getElencoAttività().size();k++){
+					
+					if (model.getListDisciplina().get(i).getId().equals(
+							model.getListDocente().get(j).getElencoAttività().get(k).getId())){
+						model.getListDisciplina().get(i).aggiungiResponsabile(model.getListDocente().get(j));
+					}
+					
+				}
+				
+			}
+			
+		}
+		
+			
+	}
+
 
 }

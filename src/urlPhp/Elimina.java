@@ -2,7 +2,7 @@ package urlPhp;
 
 public class Elimina {
 	
-	public static final String eliminaAttivit√† = "http://nomoreoverlapping.altervista.org/elimina/eliminaAttivita.php";
+	public static final String eliminaAttivit‡ = "http://nomoreoverlapping.altervista.org/elimina/eliminaAttivita.php";
 	public static final String eliminaAula = "http://nomoreoverlapping.altervista.org/elimina/eliminaAula.php";
 	public static final String eliminaConvegno = "http://nomoreoverlapping.altervista.org/elimina/eliminaConvegno.php";
 	public static final String eliminaCorsoDiStudi = "http://nomoreoverlapping.altervista.org/elimina/eliminaCorsoDiStudi.php";

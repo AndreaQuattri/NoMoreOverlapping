@@ -2,7 +2,7 @@ package urlPhp;
 
 public class Insert {
 	
-	public static final String insertAttivit√† = "http://nomoreoverlapping.altervista.org/insert/insertAttivita.php";
+	public static final String insertAttivit‡ = "http://nomoreoverlapping.altervista.org/insert/insertAttivita.php";
 	public static final String insertAula = "http://nomoreoverlapping.altervista.org/insert/insertAula.php";
 	public static final String insertConvegno = "http://nomoreoverlapping.altervista.org/insert/insertConvegno.php";
 	public static final String insertCorsoDiStudi = "http://nomoreoverlapping.altervista.org/insert/insertCorsoDiStudi.php";

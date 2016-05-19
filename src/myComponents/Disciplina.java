@@ -3,7 +3,7 @@ package myComponents;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Disciplina extends Attivit√†{
+public class Disciplina extends Attivit‡{
 	
 	private String codice;
 	private float crediti;

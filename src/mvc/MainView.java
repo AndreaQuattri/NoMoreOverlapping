@@ -108,7 +108,7 @@ public class MainView extends JFrame implements Observer {
 		
 		setComboBoxTable(new JComboBox());
 		getComboBoxTable().addItem("");
-		getComboBoxTable().addItem("Attivit√†");
+		getComboBoxTable().addItem("Attivit‡");
 		getComboBoxTable().addItem("Aula");
 		getComboBoxTable().addItem("Convegno");
 		getComboBoxTable().addItem("Corso di studi");

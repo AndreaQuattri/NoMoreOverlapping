@@ -19,7 +19,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 
 import ElaborazioneDati.InsertInTable;
 import connectToDatabase.CreateTimeTable;
-import connectToDatabase.DisciplinaGi√†Inserita;
+import connectToDatabase.DisciplinaGi‡Inserita;
 import memorizzazioneDati.GeneraPianiDiStudio;
 import memorizzazioneDati.InsertValues;
 import myComponents.Assegnamento;
@@ -158,8 +158,8 @@ public class Controller
 				//fascie orarie inserite in arraylist<FasciaOraria>
 				insert.getValueFasciaOraria();
 
-				//le sottoclassi di attivit√† inserite nei rispettivi arraylist
-				insert.getValueAttivit√†();
+				//le sottoclassi di Attivit‡ inserite nei rispettivi arraylist
+				insert.getValueAttivit‡();
 
 
 				insert.getValuePianoDiStudi();
@@ -220,9 +220,9 @@ public class Controller
 			int hour, n, numAss = 0;
 			int indice;
 
-			DisciplinaGi√†Inserita disciplinaInserita = new DisciplinaGi√†Inserita(model);
+			DisciplinaGi‡Inserita disciplinaInserita = new DisciplinaGi‡Inserita(model);
 			
-			//ArrayList<Attivit√†> listAttivit√†;
+			//ArrayList<Attivit‡> listAttivit‡;
 
 
 			//corsi di studio da valutare
@@ -248,10 +248,10 @@ public class Controller
 
 				
 				/*
-				listAttivit√† = new ArrayList<Attivit√†>();
+				listAttivit‡ = new ArrayList<Attivit‡>();
 				
-				listAttivit√†.addAll(piano1.getElencoAttivit√†Obbligatorie());
-				listAttivit√†.addAll(piano1.getElencoAttivit√†Opzionali());
+				listAttivit‡.addAll(piano1.getElencoAttivit‡Obbligatorie());
+				listAttivit‡.addAll(piano1.getElencoAttivit‡Opzionali());
 				*/
 				
 				
@@ -264,7 +264,7 @@ public class Controller
 						//numero di arrayList<Assegnamento>
 						for (numAss = 0; numAss < model.getListAssegnamento().size(); numAss++){
 
-							if(piano1.getElencoPianiPossibili().get(i).get(j).getSemestre()==1 && !disciplinaInserita.gi√†Inserita(piano1.getElencoPianiPossibili().get(i).get(j).getId())){
+							if(piano1.getElencoPianiPossibili().get(i).get(j).getSemestre()==1 && !disciplinaInserita.Gi‡Inserita(piano1.getElencoPianiPossibili().get(i).get(j).getId())){
 								hour = piano1.getElencoPianiPossibili().get(i).get(j).getOre()/6;
 
 
@@ -289,7 +289,7 @@ public class Controller
 //						
 //						if (numAss == model.getListAssegnamento().size() &&
 //								piano1.getElencoPianiPossibili().get(i).get(j).getSemestre()==1 &&
-//								!disciplinaInserita.gi√†Inserita(piano1.getElencoPianiPossibili().get(i).get(j).getId())){
+//								!disciplinaInserita.Gi‡Inserita(piano1.getElencoPianiPossibili().get(i).get(j).getId())){
 //
 //							model.getListAssegnamento().add(new ArrayList<Assegnamento>());
 //							n = 0;

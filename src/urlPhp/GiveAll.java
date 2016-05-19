@@ -2,7 +2,7 @@ package urlPhp;
 
 public class GiveAll {
 	
-	public static String giveAllAttivit√† = "http://nomoreoverlapping.altervista.org/giveAll/giveAllAttivita.php";
+	public static String giveAllAttivit‡ = "http://nomoreoverlapping.altervista.org/giveAll/giveAllAttivita.php";
 	public static String giveAllAula = "http://nomoreoverlapping.altervista.org/giveAll/giveAllAula.php";
 	public static String giveAllConvegno = "http://nomoreoverlapping.altervista.org/giveAll/giveAllConvegno.php";
 	public static String giveAllCorsoDiStudi = "http://nomoreoverlapping.altervista.org/giveAll/giveAllCorsoDiStudi.php";

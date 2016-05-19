@@ -3,7 +3,7 @@ package myComponents;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Gita extends Attivit√† {
+public class Gita extends Attivit‡ {
 	
 	private String luogo;
 	private int idGita;

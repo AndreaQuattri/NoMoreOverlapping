@@ -3,20 +3,20 @@ package connectToDatabase;
 import mvc.Model;
 import myComponents.Disciplina;
 
-public class DisciplinaGi√†Inserita {
+public class DisciplinaGi‡Inserita {
 
 
 	private Model model;
 
-	public DisciplinaGi√†Inserita(Model model) {
+	public DisciplinaGi‡Inserita(Model model) {
 		this.model = model;
 	}
 
 
-	public boolean gi√†Inserita (String id){
+	public boolean Gi‡Inserita (String id){
 		for (int numAss=0; numAss<model.getListAssegnamento().size(); numAss++){
 			for (int i=0; i<model.getListAssegnamento().get(numAss).size(); i++){
-				if(model.getListAssegnamento().get(numAss).get(i).getAttivit√†().getId().equals(id))
+				if(model.getListAssegnamento().get(numAss).get(i).getAttivit‡().getId().equals(id))
 					return true;
 			}
 		}
@@ -24,11 +24,11 @@ public class DisciplinaGi√†Inserita {
 
 	}
 	
-	public boolean gi√†Inserita2 (String id, int subId){
+	public boolean Gi‡Inserita2 (String id, int subId){
 		for (int numAss=0; numAss<model.getListAssegnamento().size(); numAss++){
 			for (int i=0; i<model.getListAssegnamento().get(numAss).size(); i++){
-				if(model.getListAssegnamento().get(numAss).get(i).getAttivit√†().getId().equals(id) &&
-						((Disciplina)model.getListAssegnamento().get(numAss).get(i).getAttivit√†()).getSubId() == subId )
+				if(model.getListAssegnamento().get(numAss).get(i).getAttivit‡().getId().equals(id) &&
+						((Disciplina)model.getListAssegnamento().get(numAss).get(i).getAttivit‡()).getSubId() == subId )
 					return true;
 			}
 		}
@@ -36,7 +36,7 @@ public class DisciplinaGi√†Inserita {
 
 	}
 
-	public boolean √®VuotaeCiSta(int hour, int k, int numAss){
+	public boolean ËVuotaeCiSta(int hour, int k, int numAss){
 
 		while(hour>0){
 
@@ -86,7 +86,7 @@ public class DisciplinaGi√†Inserita {
 					i=1;
 			}
 
-			flag = √®VuotaeCiSta(hour, iFascia, numAss);
+			flag = ËVuotaeCiSta(hour, iFascia, numAss);
 
 
 

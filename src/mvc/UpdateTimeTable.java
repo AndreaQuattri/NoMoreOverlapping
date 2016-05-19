@@ -97,7 +97,7 @@ public class UpdateTimeTable extends JFrame implements Observer{
 		}
 		
 		for (int i=0; i<numDiscipline; i++){
-			labelDisciplina = new JLabel(model.getListOrario().get(indice).getElencoAssegnamenti().get(i).getAttivitÃ ().getNome().toString() + " - " + model.getListOrario().get(indice).getElencoAssegnamenti().get(i).getAula().toString());
+			labelDisciplina = new JLabel(model.getListOrario().get(indice).getElencoAssegnamenti().get(i).getAttività().getNome().toString() + " - " + model.getListOrario().get(indice).getElencoAssegnamenti().get(i).getAula().toString());
 			labelDisciplina.setBounds(69, bound, 500, 29);
 			getContentPane().add(labelDisciplina);
 			bound+=30;

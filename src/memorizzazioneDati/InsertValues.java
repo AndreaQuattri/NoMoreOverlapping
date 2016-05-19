@@ -82,14 +82,14 @@ public class InsertValues {
 			model.getListDocente().add(new Docente(splitColonne[1], splitColonne[2], Boolean.parseBoolean(splitColonne[5]), splitColonne[0], splitColonne[3], splitColonne[4]));
 
 			
-			//attivit√†
+			//Attivit‡
 			for (int j=0; j<numInsegna; j++){
 				String splitColInsegna[] = splitInsegna[j].split(",");
 				if (model.getListDocente().get(i).getMatricola().equals(splitColInsegna[0])){
 					
 					for (int k=0; k<model.getListDisciplina().size(); k++){
 						if(model.getListDisciplina().get(k).getId().equals(splitColInsegna[1])){
-							model.getListDocente().get(i).aggiungiAttivit√†(model.getListDisciplina().get(k));
+							model.getListDocente().get(i).aggiungiAttivit‡(model.getListDisciplina().get(k));
 							break;
 						}
 					}
@@ -224,10 +224,10 @@ public class InsertValues {
 
 	}
 
-	public void getValueAttivit√†() throws IOException, URISyntaxException, ParseException{
+	public void getValueAttivit‡() throws IOException, URISyntaxException, ParseException{
 
-		String inputAttivit√† = Connect.connectDb(GiveAll.giveAllAttivit√†);
-		int numAttivit√† = NumberOfRows.numOfRows(inputAttivit√†);
+		String inputAttivit‡ = Connect.connectDb(GiveAll.giveAllAttivit‡);
+		int numAttivit‡ = NumberOfRows.numOfRows(inputAttivit‡);
 
 		String inputTirocinio = Connect.connectDb(GiveAll.giveAllTirocinio);
 		int numTirocini = NumberOfRows.numOfRows(inputTirocinio);
@@ -245,7 +245,7 @@ public class InsertValues {
 		int numEsami = NumberOfRows.numOfRows(inputEsame);
 
 
-		String splitRighe[] = inputAttivit√†.split("_");
+		String splitRighe[] = inputAttivit‡.split("_");
 		String splitConvegni[] = inputConvegno.split("_");
 		String splitEsami[] = inputEsame.split("_");
 		String splitDiscipline[] = inputDisciplina.split("_");
@@ -253,7 +253,7 @@ public class InsertValues {
 		String splitTirocini[] = inputTirocinio.split("_");
 
 
-		for (int i=0; i<numAttivit√†; i++){
+		for (int i=0; i<numAttivit‡; i++){
 
 			String splitColonne[] = splitRighe[i].split(",");
 
@@ -359,12 +359,12 @@ public class InsertValues {
 			for(int j=0; j<model.getListDisciplina().size(); j++){
 				if(model.getListDisciplina().get(j).getId().equals(splitColonne[1])){
 					if(Integer.parseInt(splitColonne[2]) == 1){
-						//aggiungo nelle attivit√† opzionali
-						model.getListPianoDiStudi().get(k-1).aggiungiAttivit√†Opzionale(model.getListDisciplina().get(j));
+						//aggiungo nelle Attivit‡ opzionali
+						model.getListPianoDiStudi().get(k-1).aggiungiAttivit‡Opzionale(model.getListDisciplina().get(j));
 					}
 					else{
-						//aggiungo nelle attivit√† obbligatorie
-						model.getListPianoDiStudi().get(k-1).aggiungiAttivit√†Obbligatoria(model.getListDisciplina().get(j));
+						//aggiungo nelle Attivit‡ obbligatorie
+						model.getListPianoDiStudi().get(k-1).aggiungiAttivit‡Obbligatoria(model.getListDisciplina().get(j));
 
 					}
 					break;

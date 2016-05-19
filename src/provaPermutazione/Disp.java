@@ -1,4 +1,4 @@
-package provaPermutazione;
+/*package provaPermutazione;
 
 import java.util.Arrays;
 import java.util.ArrayList;
@@ -39,4 +39,4 @@ class Disp {
 		stampaArrayList(out);
 		System.out.println(out.size());
 	}
-}
+}*/

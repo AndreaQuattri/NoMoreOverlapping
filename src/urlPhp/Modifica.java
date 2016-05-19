@@ -2,7 +2,7 @@ package urlPhp;
 
 public class Modifica {
 	
-	public static final String modificaAttivit√† = "http://nomoreoverlapping.altervista.org/modifica/modificaAttivita.php";
+	public static final String modificaAttivit‡ = "http://nomoreoverlapping.altervista.org/modifica/modificaAttivita.php";
 	public static final String modificaAula = "http://nomoreoverlapping.altervista.org/modifica/modificaAula.php";
 	public static final String modificaConvegno = "http://nomoreoverlapping.altervista.org/modifica/modificaConvegno.php";
 	public static final String modificaCorsoDiStudi = "http://nomoreoverlapping.altervista.org/modifica/modificaCorsoDiStudi.php";

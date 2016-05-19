@@ -37,7 +37,7 @@ public class ViewTimeTable extends JFrame implements Observer {
 	private JButton buttonLoadOrario;
 	private JLabel labelTableInTable;
 	private JComboBox comboBoxSemestre;
-	private JComboBox comboBoxAttivit√†Inserite;
+	private JComboBox comboBoxAttivit‡Inserite;
 
 	
 	private JMenuBar menuBar;
@@ -50,8 +50,8 @@ public class ViewTimeTable extends JFrame implements Observer {
     private ButtonGroup group;
 
 
-	public JComboBox getComboBoxAttivit√†Inserite() {
-		return comboBoxAttivit√†Inserite;
+	public JComboBox getComboBoxAttivit‡Inserite() {
+		return comboBoxAttivit‡Inserite;
 	}
 
 
@@ -59,8 +59,8 @@ public class ViewTimeTable extends JFrame implements Observer {
 
 
 
-	public void setComboBoxAttivit√†Inserite(JComboBox comboBoxAttivit√†Inserite) {
-		this.comboBoxAttivit√†Inserite = comboBoxAttivit√†Inserite;
+	public void setComboBoxAttivit‡Inserite(JComboBox comboBoxAttivit‡Inserite) {
+		this.comboBoxAttivit‡Inserite = comboBoxAttivit‡Inserite;
 	}
 
 
@@ -147,8 +147,8 @@ public class ViewTimeTable extends JFrame implements Observer {
 		comboBoxSemestre.addItem("1");
 		comboBoxSemestre.addItem("2");
 		
-		comboBoxAttivit√†Inserite = new JComboBox();
-		comboBoxAttivit√†Inserite.addItem("");
+		comboBoxAttivit‡Inserite = new JComboBox();
+		comboBoxAttivit‡Inserite.addItem("");
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -163,7 +163,7 @@ public class ViewTimeTable extends JFrame implements Observer {
 									.addGap(138)
 									.addComponent(comboBoxSemestre, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 									.addGap(152)
-									.addComponent(comboBoxAttivit√†Inserite, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
+									.addComponent(comboBoxAttivit‡Inserite, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(66)
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
@@ -180,7 +180,7 @@ public class ViewTimeTable extends JFrame implements Observer {
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(buttonNewOrario)
 						.addComponent(comboBoxSemestre, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(comboBoxAttivit√†Inserite, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(comboBoxAttivit‡Inserite, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(22)
 					.addComponent(buttonLoadOrario)
 					.addGap(124)
@@ -283,7 +283,7 @@ public class ViewTimeTable extends JFrame implements Observer {
 
 		public void selectedActivityToView(ActionListener listener) {
 			// TODO Auto-generated method stub
-			comboBoxAttivit√†Inserite.addActionListener(listener);
+			comboBoxAttivit‡Inserite.addActionListener(listener);
 			
 		}
 		

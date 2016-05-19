@@ -8,7 +8,7 @@ public class CorsoDiStudi {
 	private String nomePrincipale;
 	private String indirizzo;
 	private String tipoLaurea;
-	private String facolt√†;
+	private String facolt‡;
 	private String codice;
 	private String descrizione;
 	private int totCrediti;
@@ -22,13 +22,13 @@ public class CorsoDiStudi {
 	
 
 	public CorsoDiStudi(short anno, String nomePrincipale, String indirizzo, String tipoLaurea, 
-			String facolt√†, String codice, String descrizione, int totCrediti, 
+			String facolt‡, String codice, String descrizione, int totCrediti, 
 			ArrayList<PianoDiStudi> elencoPianiPossibili, ArrayList<Studente> elencoStudenti) {
 		this.anno = anno;
 		this.nomePrincipale = nomePrincipale;
 		this.indirizzo = indirizzo;
 		this.tipoLaurea = tipoLaurea;
-		this.facolt√† = facolt√†;
+		this.facolt‡ = facolt‡;
 		this.codice = codice;
 		this.descrizione = descrizione;
 		this.totCrediti = totCrediti;
@@ -37,12 +37,12 @@ public class CorsoDiStudi {
 	}
 
 	public CorsoDiStudi(short anno, String nomePrincipale, String indirizzo, String tipoLaurea, 
-			String facolt√†, String codice, String descrizione, int totCrediti) {
+			String facolt‡, String codice, String descrizione, int totCrediti) {
 		this.anno = anno;
 		this.nomePrincipale = nomePrincipale;
 		this.indirizzo = indirizzo;
 		this.tipoLaurea = tipoLaurea;
-		this.facolt√† = facolt√†;
+		this.facolt‡ = facolt‡;
 		this.codice = codice;
 		this.descrizione = descrizione;
 		this.totCrediti = totCrediti;
@@ -141,11 +141,11 @@ public class CorsoDiStudi {
 	public void setTipoLaurea(String tipoLaurea) {
 		this.tipoLaurea = tipoLaurea;
 	}
-	public String getFacolt√†() {
-		return facolt√†;
+	public String getfacolt‡() {
+		return facolt‡;
 	}
-	public void setFacolt√†(String facolt√†) {
-		this.facolt√† = facolt√†;
+	public void setfacolt‡(String facolt‡) {
+		this.facolt‡ = facolt‡;
 	}
 	public String getCodice() {
 		return codice;

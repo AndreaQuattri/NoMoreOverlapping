@@ -11,12 +11,12 @@ public class Docente {
 	private String email;
 	private String qualifica;
 
-	private ArrayList<Attivit√†> elencoAttivit√†;
+	private ArrayList<Attivit‡> elencoAttivit‡;
 	private ArrayList<SceltaOraria> orariPreferiti;
 	private ArrayList<SceltaAula> aulePreferite;
 
 	public Docente(String nome, String cognome, boolean associato, String matricola,
-			String email, String qualifica, ArrayList<Attivit√†> elencoAttivit√†,
+			String email, String qualifica, ArrayList<Attivit‡> elencoAttivit‡,
 			ArrayList<SceltaOraria> orariPreferiti, ArrayList<SceltaAula> aulePreferite) {
 		this.nome = nome;
 		this.cognome = cognome;
@@ -24,7 +24,7 @@ public class Docente {
 		this.matricola = matricola;
 		this.email = email;
 		this.qualifica = qualifica;
-		this.elencoAttivit√† = elencoAttivit√†;
+		this.elencoAttivit‡ = elencoAttivit‡;
 		this.orariPreferiti = orariPreferiti;
 		this.aulePreferite = aulePreferite;
 	}
@@ -37,7 +37,7 @@ public class Docente {
 		this.matricola = matricola;
 		this.email = email;
 		this.qualifica = qualifica;
-		this.elencoAttivit√† = new ArrayList<Attivit√†>();
+		this.elencoAttivit‡ = new ArrayList<Attivit‡>();
 		this.orariPreferiti = new ArrayList<SceltaOraria>();
 		this.aulePreferite = new ArrayList<SceltaAula>();
 		
@@ -47,8 +47,8 @@ public class Docente {
 	public String toString() {
 		
 		String toRet = this.matricola+", "+this.nome+", "+this.cognome+", "+this.email+", "+this.qualifica+", "+this.associato+ "\n\n";
-			for (int i=0; i<elencoAttivit√†.size(); i++){
-				toRet += elencoAttivit√†.get(i).toString();
+			for (int i=0; i<elencoAttivit‡.size(); i++){
+				toRet += elencoAttivit‡.get(i).toString();
 			}
 			toRet += "\n";
 			for (int i=0; i<orariPreferiti.size(); i++){
@@ -62,18 +62,18 @@ public class Docente {
 	}
 
 
-	public void aggiungiAttivit√†(Attivit√† a)
+	public void aggiungiAttivit‡(Attivit‡ a)
 	{
-		elencoAttivit√†.add(a);
+		elencoAttivit‡.add(a);
 	}
 
-	public Boolean cancellaAttivit√†(Attivit√† a)
+	public Boolean cancellaAttivit‡(Attivit‡ a)
 	{
 		// TODO da completare.
 		return false;
 	}
 
-	public void cancellaTutteAttivit√†(Attivit√† a)
+	public void cancellaTutteAttivit‡(Attivit‡ a)
 	{
 		// TODO da completare.
 	}
@@ -161,12 +161,12 @@ public class Docente {
 		this.qualifica = qualifica;
 	}
 
-	public ArrayList<Attivit√†> getElencoAttivit√†() {
-		return elencoAttivit√†;
+	public ArrayList<Attivit‡> getElencoAttivit‡() {
+		return elencoAttivit‡;
 	}
 
-	public void setElencoAttivit√†(ArrayList<Attivit√†> elencoAttivit√†) {
-		this.elencoAttivit√† = elencoAttivit√†;
+	public void setElencoAttivit‡(ArrayList<Attivit‡> elencoAttivit‡) {
+		this.elencoAttivit‡ = elencoAttivit‡;
 	}
 
 	public ArrayList<SceltaOraria> getOrariPreferit() {

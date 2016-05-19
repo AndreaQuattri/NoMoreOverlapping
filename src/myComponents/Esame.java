@@ -3,7 +3,7 @@ package myComponents;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Esame extends Attivit√† {
+public class Esame extends Attivit‡ {
 	
 	private String tipologia;
 	//private Disciplina materia;

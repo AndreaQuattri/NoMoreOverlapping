@@ -3,7 +3,7 @@ package myComponents;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Convegno extends Attivit√† {
+public class Convegno extends Attivit‡ {
 	
 	private String relatoreNome;
 	private String relatoreCognome;

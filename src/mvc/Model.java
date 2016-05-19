@@ -22,7 +22,7 @@ public class Model extends Observable{
 	private ArrayList<Studente> listStudente;			//Fatto
 	private ArrayList<Tirocinio> listTirocinio;			//Fatto
 	Vector<Vector<String>> tabella;
-	private ArrayList<Attivit√†> listAttivit√†Inserite;
+	private ArrayList<Attivit‡> listAttivit‡Inserite;
 	
 	private boolean enableModificaTable;
 	private boolean enableEliminaTable;
@@ -50,7 +50,7 @@ public class Model extends Observable{
 		listStudente = new ArrayList<Studente>();
 		listTirocinio = new ArrayList<Tirocinio>();
 		tabella = new Vector<Vector<String>>();
-		setListAttivit√†Inserite(new ArrayList<Attivit√†>());
+		setListAttivit‡Inserite(new ArrayList<Attivit‡>());
 
 		enableModificaTable = false;
 		enableEliminaTable = false;
@@ -233,15 +233,15 @@ public class Model extends Observable{
 
 
 
-	public ArrayList<Attivit√†> getListAttivit√†Inserite() {
-		return listAttivit√†Inserite;
+	public ArrayList<Attivit‡> getListAttivit‡Inserite() {
+		return listAttivit‡Inserite;
 	}
 
 
 
 
-	public void setListAttivit√†Inserite(ArrayList<Attivit√†> listAttivit√†Inserite) {
-		this.listAttivit√†Inserite = listAttivit√†Inserite;
+	public void setListAttivit‡Inserite(ArrayList<Attivit‡> listAttivit‡Inserite) {
+		this.listAttivit‡Inserite = listAttivit‡Inserite;
 	}
 
 

@@ -3,7 +3,7 @@ package ElaborazioneDati;
 import java.util.ArrayList;
 
 import mvc.Model;
-import myComponents.Attivit√†;
+import myComponents.Attivit‡;
 import myComponents.CorsoDiStudi;
 import myComponents.Disciplina;
 import myComponents.PianoDiStudi;
@@ -25,7 +25,7 @@ public class CalcolaSovrapposizioni {
 
 		for (int i=0; i<model.getListOrario().size(); ){
 			for (int j=0; j<model.getListOrario().get(i).getElencoAssegnamenti().size(); j++){
-				System.out.println(model.getListOrario().get(i).getElencoAssegnamenti().get(j).getAttivit√†().toString() +
+				System.out.println(model.getListOrario().get(i).getElencoAssegnamenti().get(j).getAttivit‡().toString() +
 						model.getListOrario().get(i).getElencoAssegnamenti().get(j).getFasciaOraria().toString());
 				
 				

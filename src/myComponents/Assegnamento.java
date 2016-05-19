@@ -2,21 +2,21 @@ package myComponents;
 
 public class Assegnamento {
 
-	private Attivit√† attivit√†;
+	private Attivit‡ Attivit‡;
 	private FasciaOraria fasciaOraria;
 	private Aula aula;
 	//private String day;
 
 
-	public Assegnamento(Attivit√† attivit√†, FasciaOraria fasciaOraria, Aula aula, String day) {
-		this.attivit√† = attivit√†;
+	public Assegnamento(Attivit‡ Attivit‡, FasciaOraria fasciaOraria, Aula aula, String day) {
+		this.Attivit‡ = Attivit‡;
 		this.fasciaOraria = fasciaOraria;
 		this.aula = aula;
 		//this.day = day;
 	}
 
-	public Assegnamento(Attivit√† attivit√†, FasciaOraria fasciaOraria, Aula aula) {
-		this.attivit√† = attivit√†;
+	public Assegnamento(Attivit‡ Attivit‡, FasciaOraria fasciaOraria, Aula aula) {
+		this.Attivit‡ = Attivit‡;
 		this.fasciaOraria = fasciaOraria;
 		this.aula = aula;
 	}
@@ -25,7 +25,7 @@ public class Assegnamento {
 	@Override
 	public String toString() {
 
-		String toRet = attivit√†.toString() + fasciaOraria.toString() + aula.toString();
+		String toRet = Attivit‡.toString() + fasciaOraria.toString() + aula.toString();
 
 
 		return toRet;
@@ -34,11 +34,11 @@ public class Assegnamento {
 	}
 
 
-	public Attivit√† getAttivit√†() {
-		return attivit√†;
+	public Attivit‡ getAttivit‡() {
+		return Attivit‡;
 	}
-	public void setAttivit√†(Attivit√† attivit√†) {
-		this.attivit√† = attivit√†;
+	public void setAttivit‡(Attivit‡ Attivit‡) {
+		this.Attivit‡ = Attivit‡;
 	}
 	public FasciaOraria getFasciaOraria() {
 		return fasciaOraria;

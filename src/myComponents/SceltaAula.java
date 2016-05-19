@@ -3,17 +3,17 @@ package myComponents;
 public class SceltaAula {
 	
 	private Aula scelta;
-	private int priorit√†;
+	private int priorit‡;
 	
-	public SceltaAula(Aula scelta, int priorit√†) {
+	public SceltaAula(Aula scelta, int priorit‡) {
 		this.scelta = scelta;
-		this.priorit√† = priorit√†;
+		this.priorit‡ = priorit‡;
 	}
 	
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
-		return scelta.toString() + ", " + priorit√†;
+		return scelta.toString() + ", " + priorit‡;
 	}
 	
 	
@@ -24,11 +24,11 @@ public class SceltaAula {
 	public void setScelta(Aula scelta) {
 		this.scelta = scelta;
 	}
-	public int getPriorit√†() {
-		return priorit√†;
+	public int getpriorit‡() {
+		return priorit‡;
 	}
-	public void setPriorit√†(int priorit√†) {
-		this.priorit√† = priorit√†;
+	public void setpriorit‡(int priorit‡) {
+		this.priorit‡ = priorit‡;
 	}
 	
 	

@@ -9,14 +9,14 @@ public class Orario {
 	private boolean integrSovrap;
 
 	private ArrayList<Assegnamento> elencoAssegnamenti;
-	private ArrayList<Attivit√†> elencoAttivit√†;
+	private ArrayList<Attivit‡> elencoAttivit‡;
 
 	public Orario(int sovrapposizioni, boolean integrSovrap, ArrayList<Assegnamento> elencoAssegnamenti,
-			ArrayList<Attivit√†> elencoAttivit√†) {
+			ArrayList<Attivit‡> elencoAttivit‡) {
 		this.sovrapposizioni = sovrapposizioni;
 		this.integrSovrap = integrSovrap;
 		this.elencoAssegnamenti = elencoAssegnamenti;
-		this.elencoAttivit√† = elencoAttivit√†;
+		this.elencoAttivit‡ = elencoAttivit‡;
 	}
 
 	public Orario(ArrayList<Assegnamento> elencoAssegnamenti) {
@@ -30,19 +30,19 @@ public class Orario {
 		return 0;
 	}
 
-	public Boolean aggiungiAttivit√†(Attivit√† a)
+	public Boolean aggiungiAttivit‡(Attivit‡ a)
 	{
 		// TODO da completare.
 		return false;
 	}
 
-	public Boolean cancellaAttivit√†(Attivit√† a)
+	public Boolean cancellaAttivit‡(Attivit‡ a)
 	{
 		// TODO da completare.
 		return false;
 	}
 
-	public void cancellaTutteAttivit√†()
+	public void cancellaTutteAttivit‡()
 	{
 		// TODO da completare.
 	}
@@ -53,13 +53,13 @@ public class Orario {
 		return false;
 	}
 
-	public Boolean aggiungiAssegnamento(Attivit√† att, float o, Aula au, DateFormat d)
+	public Boolean aggiungiAssegnamento(Attivit‡ att, float o, Aula au, DateFormat d)
 	{
 		// TODO da completare.
 		return false;
 	}
 
-	public Boolean aggiungiAssegnamento(Attivit√† att, float o, Aula au, DateFormat inizio, DateFormat fine, String d)
+	public Boolean aggiungiAssegnamento(Attivit‡ att, float o, Aula au, DateFormat inizio, DateFormat fine, String d)
 	{
 		// TODO da completare.
 		return false;
@@ -82,7 +82,7 @@ public class Orario {
 		return false;
 	}
 
-	public ArrayList<Attivit√†> ottieniNonAssegnati()
+	public ArrayList<Attivit‡> ottieniNonAssegnati()
 	{
 		// TODO da completare.
 		return null;
@@ -118,11 +118,11 @@ public class Orario {
 	public void setElencoAssegnamenti(ArrayList<Assegnamento> elencoAssegnamenti) {
 		this.elencoAssegnamenti = elencoAssegnamenti;
 	}
-	public ArrayList<Attivit√†> getElencoAttivit√†() {
-		return elencoAttivit√†;
+	public ArrayList<Attivit‡> getElencoAttivit‡() {
+		return elencoAttivit‡;
 	}
-	public void setElencoAttivit√†(ArrayList<Attivit√†> elencoAttivit√†) {
-		this.elencoAttivit√† = elencoAttivit√†;
+	public void setElencoAttivit‡(ArrayList<Attivit‡> elencoAttivit‡) {
+		this.elencoAttivit‡ = elencoAttivit‡;
 	}
 
 

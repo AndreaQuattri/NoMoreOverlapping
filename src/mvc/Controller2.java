@@ -22,11 +22,11 @@ import ElaborazioneDati.CalcolaSovrapposizioni;
 import ElaborazioneDati.GeneraListaDiscipline;
 import ElaborazioneDati.InsertInTable;
 import connectToDatabase.CreateTimeTable;
-import connectToDatabase.DisciplinaGi√†Inserita;
+import connectToDatabase.DisciplinaGi‡Inserita;
 import memorizzazioneDati.GeneraPianiDiStudio;
 import memorizzazioneDati.InsertValues;
 import myComponents.Assegnamento;
-import myComponents.Attivit√†;
+import myComponents.Attivit‡;
 import myComponents.Aula;
 import myComponents.Convegno;
 import myComponents.CorsoDiStudi;
@@ -170,7 +170,7 @@ public class Controller2
 //			model.setListStudente(new ArrayList<Studente>());
 //			model.setListTirocinio(new ArrayList<Tirocinio>());
 //			model.tabella = new Vector<Vector<String>>();
-//			model.setListAttivit√†Inserite(new ArrayList<Attivit√†>());
+//			model.setListAttivit‡Inserite(new ArrayList<Attivit‡>());
 
 			try {
 
@@ -190,8 +190,8 @@ public class Controller2
 				//fascie orarie inserite in arraylist<FasciaOraria>
 				insert.getValueFasciaOraria();
 
-				//le sottoclassi di attivit√† inserite nei rispettivi arraylist
-				insert.getValueAttivit√†();
+				//le sottoclassi di Attivit‡ inserite nei rispettivi arraylist
+				insert.getValueAttivit‡();
 
 
 				insert.getValuePianoDiStudi();
@@ -263,9 +263,9 @@ public class Controller2
 			int indice;
 			int semestre = Integer.parseInt((String)viewOrario.getComboBoxSemestre().getSelectedItem());
 
-			DisciplinaGi√†Inserita disciplinaInserita = new DisciplinaGi√†Inserita(model);
+			DisciplinaGi‡Inserita disciplinaInserita = new DisciplinaGi‡Inserita(model);
 
-			ArrayList<Attivit√†> listAttivit√† = null;
+			ArrayList<Attivit‡> listAttivit‡ = null;
 			ArrayList<Disciplina> listDisciplina = null;
 
 			//corsi di studio da valutare
@@ -291,21 +291,21 @@ public class Controller2
 
 
 
-				listAttivit√† = new ArrayList<Attivit√†>();
+				listAttivit‡ = new ArrayList<Attivit‡>();
 
-				listAttivit√†.addAll(piano1.getElencoAttivit√†Obbligatorie());
-				listAttivit√†.addAll(piano1.getElencoAttivit√†Opzionali());
+				listAttivit‡.addAll(piano1.getElencoAttivit‡Obbligatorie());
+				listAttivit‡.addAll(piano1.getElencoAttivit‡Opzionali());
 
 
-				listDisciplina = GeneraListaDiscipline.generaLista(listAttivit√†);
+				listDisciplina = GeneraListaDiscipline.generaLista(listAttivit‡);
 
 				for (int iDisciplina = 0; iDisciplina < listDisciplina.size(); iDisciplina++){
 
-					if(listDisciplina.get(iDisciplina).getSemestre()==semestre && !disciplinaInserita.gi√†Inserita2(listDisciplina.get(iDisciplina).getId(), listDisciplina.get(iDisciplina).getSubId())){
+					if(listDisciplina.get(iDisciplina).getSemestre()==semestre && !disciplinaInserita.Gi‡Inserita2(listDisciplina.get(iDisciplina).getId(), listDisciplina.get(iDisciplina).getSubId())){
 						hour = listDisciplina.get(iDisciplina).getSubOre();
 
-						if (!disciplinaInserita.gi√†Inserita(listDisciplina.get(iDisciplina).getId()))
-							model.getListAttivit√†Inserite().add(listDisciplina.get(iDisciplina));
+						if (!disciplinaInserita.Gi‡Inserita(listDisciplina.get(iDisciplina).getId()))
+							model.getListAttivit‡Inserite().add(listDisciplina.get(iDisciplina));
 
 						//numero di arrayList<Assegnamento>
 						for (numAss = 0; numAss < model.getListAssegnamento().size(); numAss++){
@@ -340,8 +340,8 @@ public class Controller2
 			CalcolaSovrapposizioni calcola = new CalcolaSovrapposizioni(model);
 			//			calcola.numSovrapposizioni();
 
-			for (int i=0; i<model.getListAttivit√†Inserite().size(); i++)
-				viewOrario.getComboBoxAttivit√†Inserite().addItem(model.getListAttivit√†Inserite().get(i).getNome());
+			for (int i=0; i<model.getListAttivit‡Inserite().size(); i++)
+				viewOrario.getComboBoxAttivit‡Inserite().addItem(model.getListAttivit‡Inserite().get(i).getNome());
 
 
 
@@ -481,7 +481,7 @@ public class Controller2
 					{
 						Component cell = super.getTableCellRendererComponent (table, value, isSelected, hasFocus, row, column);
 						
-						//System.out.println(model.getListOrario().get(0).getElencoAssegnamenti().get(prova).getAttivit√†().toString());
+						//System.out.println(model.getListOrario().get(0).getElencoAssegnamenti().get(prova).getAttivit‡().toString());
 						
 						prova = (prova + 1)%21;
 						

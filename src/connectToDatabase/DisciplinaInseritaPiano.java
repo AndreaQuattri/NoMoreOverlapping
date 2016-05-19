@@ -53,7 +53,9 @@ public class DisciplinaInseritaPiano {
 					if (matrix[k][j]==iMatrice && 
 							model.getListFasciaOraria().get(iFascia).getGiorno().equals(model.getListFasciaOraria().get((iFascia+hour-1)%model.getListFasciaOraria().size()).getGiorno())){
 
-						if (èVuotaeCiSta(hour, k, j, matrix, iMatrice) && !giàOccupataDaStessaAtt(d.getId(), d.getSubId(), k, j)){
+						if (èVuotaeCiSta(hour, k, j, matrix, iMatrice) && 
+								!giàOccupataDaStessaAtt(d.getId(), hour, k, j) &&
+								!giàOccupataDaStessoProf(d, k, j)){
 							for (int i=0; i<hour; i++){
 								model.getListAssegnamento().get(0).add(new Assegnamento(d, model.getListFasciaOraria().get(iFascia), model.getListAula().get(0)));
 								matrix[k+i][j]++;
@@ -62,14 +64,45 @@ public class DisciplinaInseritaPiano {
 							flag = false;
 						}
 					}
-					iFascia++;
+					iFascia = (iFascia+1)%model.getListFasciaOraria().size();
+					if (iFascia==0){
+						iMatrice++;
+						j=6;
+						break;
+					}
 
 				}
 			}
-			iMatrice++;
 		}
 
 
+	}
+
+
+	private boolean giàOccupataDaStessoProf(Disciplina d, int riga, int colonna) {
+
+		String day = getGiorno(colonna);
+		String time = getTime(riga);
+
+		for (int i=0; i<model.getListAssegnamento().get(0).size(); i++){
+			if (model.getListAssegnamento().get(0).get(i).getFasciaOraria().getGiorno().equals(day) &&
+					model.getListAssegnamento().get(0).get(i).getFasciaOraria().getInizio().toString().substring(11, 19).equals(time)){
+
+				if (model.getListAssegnamento().get(0).get(i).getAttività().getId().equals(d.getId())){
+
+					for (int j=0; j<model.getListAssegnamento().get(0).get(i).getAttività().getElencoResponsabili().size(); j++){
+						for (int k=0; k<d.getElencoResponsabili().size(); k++){
+							if (model.getListAssegnamento().get(0).get(i).getAttività().getElencoResponsabili().get(j).getMatricola().equals(
+									d.getElencoResponsabili().get(k).getMatricola()))
+								return true;
+						}
+
+					}
+				}
+			}
+		}
+
+		return false;
 	}
 
 
@@ -173,30 +206,29 @@ public class DisciplinaInseritaPiano {
 	}
 
 
-	public boolean giàOccupataDaStessaAtt(String id, int subId, int riga, int colonna){
+	public boolean giàOccupataDaStessaAtt(String id, int hour, int riga, int colonna){
 
 		String day = getGiorno(colonna);
 		String time = getTime(riga);
-		
+
 		for (int i=0; i<model.getListAssegnamento().get(0).size(); i++){
 			if (model.getListAssegnamento().get(0).get(i).getFasciaOraria().getGiorno().equals(day) &&
 					model.getListAssegnamento().get(0).get(i).getFasciaOraria().getInizio().toString().substring(11, 19).equals(time)){
-				if (model.getListAssegnamento().get(0).get(i).getAttività().getId().equals(id) &&
-						((Disciplina)model.getListAssegnamento().get(0).get(i).getAttività()).getSubId() == subId){
+				if (model.getListAssegnamento().get(0).get(i).getAttività().getId().equals(id)){
 					return true;
 				}
 			}
 		}
-		
+
 		return false;
 
 	}
 
 
 	private String getTime(int riga) {
-		
+
 		switch (riga){
-		
+
 		case 0:
 			return "08:30:00";
 		case 1:
@@ -241,9 +273,9 @@ public class DisciplinaInseritaPiano {
 			return "18:30:00";
 		default:
 			return "20:00:00";
-		
+
 		}
-	
+
 	}
 
 
@@ -265,7 +297,7 @@ public class DisciplinaInseritaPiano {
 			return "Sabato";
 		default:
 			return "";
-			
+
 		}
 
 

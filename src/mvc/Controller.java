@@ -17,13 +17,17 @@ import java.util.Vector;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 
+import ElaborazioneDati.GeneraListaDiscipline;
 import ElaborazioneDati.InsertInTable;
 import connectToDatabase.CreateTimeTable;
 import connectToDatabase.DisciplinaGiàInserita;
 import memorizzazioneDati.GeneraPianiDiStudio;
 import memorizzazioneDati.InsertValues;
 import myComponents.Assegnamento;
+import myComponents.Attività;
 import myComponents.CorsoDiStudi;
+import myComponents.Disciplina;
+import myComponents.Orario;
 import myComponents.PianoDiStudi;
 
 
@@ -71,19 +75,19 @@ public class Controller
 			 * cancellare tabella, ecc..
 			 * 
 			 */
-			
+
 
 
 		}
 	}
-	
+
 	private class UpdateRecordListener implements  ActionListener
 	{
 		@Override
 		public void actionPerformed(ActionEvent action)
 		{
 
-					
+
 			ManagementTableView managment = new ManagementTableView((String)view.getComboBoxTable().getSelectedItem());
 			managment.setVisible(true);
 
@@ -159,7 +163,7 @@ public class Controller
 				insert.getValueFasciaOraria();
 
 				//le sottoclassi di attività inserite nei rispettivi arraylist
-				insert.getValueAttività();
+				insert.getValueAttività_1();
 
 
 				insert.getValuePianoDiStudi();
@@ -174,7 +178,7 @@ public class Controller
 
 
 				for (int i=0; i<model.getListDisciplina().size(); i++)
-				System.out.println(model.getListDisciplina().get(i).toString());
+					System.out.println(model.getListDisciplina().get(i).toString());
 
 
 
@@ -204,6 +208,21 @@ public class Controller
 		public void actionPerformed(ActionEvent action)
 		{
 
+
+			for (int i = 0; i<viewOrario.getTableRecords().getRowCount(); i++){
+				viewOrario.getTableRecords().removeRow(0);
+			}
+
+
+			model.setListOrario(null);
+			model.setListOrario(new ArrayList<Orario>());
+
+			model.setListAssegnamento(null);
+			model.setListAssegnamento(new ArrayList<ArrayList<Assegnamento>>());
+
+
+
+
 			viewOrario.getTableRecords().addColumn("Orario");
 			viewOrario.getTableRecords().addColumn("Lunedì");
 			viewOrario.getTableRecords().addColumn("Martedì");
@@ -213,17 +232,19 @@ public class Controller
 			viewOrario.getTableRecords().addColumn("Sabato");
 
 
+
 			model.getListAssegnamento().add(new ArrayList<Assegnamento>());
 
 			CorsoDiStudi corso1;
 			PianoDiStudi piano1;
 			int hour, n, numAss = 0;
 			int indice;
+			int semestre = Integer.parseInt((String)viewOrario.getComboBoxSemestre().getSelectedItem());
 
 			DisciplinaGiàInserita disciplinaInserita = new DisciplinaGiàInserita(model);
-			
-			//ArrayList<Attività> listAttività;
 
+			ArrayList<Attività> listAttività = null;
+			ArrayList<Disciplina> listDisciplina = null;
 
 			//corsi di studio da valutare
 			for (indice = 0; indice < model.getListCorsoDiStudi().size(); indice++){
@@ -246,52 +267,59 @@ public class Controller
 
 				hour = 0;
 
-				
-				/*
+
+
 				listAttività = new ArrayList<Attività>();
-				
+
 				listAttività.addAll(piano1.getElencoAttivitàObbligatorie());
 				listAttività.addAll(piano1.getElencoAttivitàOpzionali());
-				*/
-				
-				
-				//piani di studio relativi al corso di studio selezionato
-				for (int i=0; i<piano1.getElencoPianiPossibili().size();i++){
 
-					//corsi del piano di studio i-esimo
-					for (int j=0; j<piano1.getElencoPianiPossibili().get(i).size(); j++){
+
+				listDisciplina = GeneraListaDiscipline.generaLista(listAttività);
+
+				for (int iDisciplina = 0; iDisciplina < listDisciplina.size(); iDisciplina++){
+
+					if(listDisciplina.get(iDisciplina).getSemestre()==semestre && !disciplinaInserita.giàInserita2(listDisciplina.get(iDisciplina).getId(), listDisciplina.get(iDisciplina).getSubId())){
+						hour = listDisciplina.get(iDisciplina).getSubOre();
+
+						if (!disciplinaInserita.giàInserita(listDisciplina.get(iDisciplina).getId()))
+							model.getListAttivitàInserite().add(listDisciplina.get(iDisciplina));
 
 						//numero di arrayList<Assegnamento>
 						for (numAss = 0; numAss < model.getListAssegnamento().size(); numAss++){
 
-							if(piano1.getElencoPianiPossibili().get(i).get(j).getSemestre()==1 && !disciplinaInserita.giàInserita(piano1.getElencoPianiPossibili().get(i).get(j).getId())){
-								hour = piano1.getElencoPianiPossibili().get(i).get(j).getOre()/6;
+							n = disciplinaInserita.fasciaOrariaDisponibile(hour, numAss);
 
-
-								n = disciplinaInserita.fasciaOrariaDisponibile(hour, numAss);
-								if (n!=-1){
-									while (hour>0){
-										model.getListAssegnamento().get(numAss).add(new Assegnamento(piano1.getElencoPianiPossibili().get(i).get(j), model.getListFasciaOraria().get(n), model.getListAula().get(0)));
-										n = ((n + 1)%model.getListFasciaOraria().size());
-										hour--;
-									}
-
-									break;
+							if (n!=-1){
+								while (hour>0){
+									model.getListAssegnamento().get(numAss).add(new Assegnamento(listDisciplina.get(iDisciplina), model.getListFasciaOraria().get(n), model.getListAula().get((int) (Math.random()*model.getListAula().size()))));
+									n = ((n + 1)%model.getListFasciaOraria().size());
+									hour--;
 								}
-								else{
-									if (numAss == model.getListAssegnamento().size()-1){
-										model.getListAssegnamento().add(new ArrayList<Assegnamento>());
-									}
-								}
+
+								break;
+							}
+							else{
+								if (numAss == model.getListAssegnamento().size()-1)
+									model.getListAssegnamento().add(new ArrayList<Assegnamento>());
+
 							}
 						}
+
 					}
+
 				}
+
 			}
 
 			CreateTimeTable create = new CreateTimeTable(model);
 			create.fromAssegnamentoToOrarioPerGiorno();
 
+			//CalcolaSovrapposizioni calcola = new CalcolaSovrapposizioni(model);
+			//calcola.numSovrapposizioni();
+
+			for (int i=0; i<model.getListAttivitàInserite().size(); i++)
+				viewOrario.getComboBoxAttivitàInserite().addItem(model.getListAttivitàInserite().get(i).getNome());
 
 
 
@@ -321,7 +349,6 @@ public class Controller
 			Format formatter = new SimpleDateFormat("HH:mm");
 			String oraInizio = formatter.format(inizio);
 			String oraFine = formatter.format(fine);
-
 
 
 
@@ -395,9 +422,9 @@ public class Controller
 			}
 
 
-
 		}
 	}
+
 
 
 	/*

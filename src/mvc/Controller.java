@@ -400,16 +400,16 @@ public class Controller
 							return null;
 
 						if (value.equals("0")){
-							cell.setBackground( Color.gray );
+							cell.setBackground(Color.gray);
 							cell.setForeground(Color.gray);
 						}
 						else{
 							if (value.equals("1")){
-								cell.setBackground( Color.green );
+								cell.setBackground(Color.green);
 								cell.setForeground(Color.green);
 							}
 							else{
-								cell.setBackground( Color.red );
+								cell.setBackground(Color.red);
 								cell.setForeground(Color.red);
 							}
 

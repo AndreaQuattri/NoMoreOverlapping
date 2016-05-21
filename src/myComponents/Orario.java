@@ -11,6 +11,13 @@ public class Orario {
 	private ArrayList<Assegnamento> elencoAssegnamenti;
 	private ArrayList<Attività> elencoAttività;
 
+	public Orario() {
+		// TODO Auto-generated constructor stub
+		elencoAssegnamenti = new ArrayList<Assegnamento>();
+		elencoAttività = new ArrayList<Attività>();
+	}
+	
+	
 	public Orario(int sovrapposizioni, boolean integrSovrap, ArrayList<Assegnamento> elencoAssegnamenti,
 			ArrayList<Attività> elencoAttività) {
 		this.sovrapposizioni = sovrapposizioni;

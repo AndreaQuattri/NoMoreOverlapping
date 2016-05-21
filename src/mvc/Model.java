@@ -25,6 +25,7 @@ public class Model extends Observable{
 	private ArrayList<Studente> listStudente;			//Fatto
 	private ArrayList<Tirocinio> listTirocinio;			//Fatto
 	private Vector<Vector<String>> tabella;
+	private Orario orarioUfficiale;
 	
 	
 	public Vector<Vector<String>> getTabella() {
@@ -75,6 +76,7 @@ public class Model extends Observable{
 		listDocentiInseriti = new ArrayList<Docente>();
 		setListAttivitàDeiDocenti(new ArrayList<Attività>());
 		setListAllAttivitàInserite(new ArrayList<Disciplina>());
+		setOrarioUfficiale(new Orario());
 
 		enableModificaTable = false;
 		enableEliminaTable = false;
@@ -387,6 +389,20 @@ public class Model extends Observable{
 
 	public void setListAllAttivitàInserite(ArrayList<Disciplina> listAllAttivitàInserite) {
 		this.listAllAttivitàInserite = listAllAttivitàInserite;
+	}
+
+
+
+
+	public Orario getOrarioUfficiale() {
+		return orarioUfficiale;
+	}
+
+
+
+
+	public void setOrarioUfficiale(Orario orarioUfficiale) {
+		this.orarioUfficiale = orarioUfficiale;
 	}
 	
 	

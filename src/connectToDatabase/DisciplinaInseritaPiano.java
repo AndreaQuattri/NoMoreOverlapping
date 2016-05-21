@@ -38,12 +38,14 @@ public class DisciplinaInseritaPiano {
 		return false;	
 	}
 	
-	public boolean giàInsertDocente (String matricola){
+	public boolean giàInsertDocente (String matricola, String id, int subId){
 		
 		for (int numAss=0; numAss<model.getListAssegnamento().size(); numAss++){
 			for (int i=0; i<model.getListAssegnamento().get(numAss).size(); i++){
 					for (int iDocente = 0; iDocente<model.getListAssegnamento().get(numAss).get(i).getAttività().getElencoResponsabili().size(); iDocente++){
-						if (model.getListAssegnamento().get(numAss).get(i).getAttività().getElencoResponsabili().get(iDocente).equals(matricola))
+						if (model.getListAssegnamento().get(numAss).get(i).getAttività().getElencoResponsabili().get(iDocente).equals(matricola) &&
+							model.getListAssegnamento().get(numAss).get(i).getAttività().getId().equals(id) &&
+							((Disciplina)model.getListAssegnamento().get(numAss).get(i).getAttività()).getSubId()==subId)
 							return true;
 					}
 										

@@ -60,6 +60,14 @@ public class OpenViewGestisciOrario implements  ActionListener
 			model.setListTirocinio(new ArrayList<Tirocinio>());
 			model.setTabella(new Vector<Vector<String>>());
 			model.setListAttivitàInserite(new ArrayList<Attività>());
+			
+			model.setListOrario(null);
+			model.setListOrario(new ArrayList<Orario>());
+
+			model.setListAssegnamento(null);
+			model.setListAssegnamento(new ArrayList<ArrayList<Assegnamento>>());
+			
+			model.setTabella(new Vector<Vector<String>>());
 
 			try {
 
@@ -90,18 +98,12 @@ public class OpenViewGestisciOrario implements  ActionListener
 
 
 				insert.getValueAttività_2();
-
-
-				//				
-				//				CorsoDiStudi c = model.getListCorsoDiStudi().get(4);
-				//				model.getListCorsoDiStudi().set(4, model.getListCorsoDiStudi().get(6));
-				//				model.getListCorsoDiStudi().set(6, c);
-				//				 
+		 
 
 				GeneraPianiDiStudio generaPiani = new GeneraPianiDiStudio(model);
 				generaPiani.generaPiani();
-
-			
+				
+				
 
 				viewOrario.getFrame().setVisible(true);
 

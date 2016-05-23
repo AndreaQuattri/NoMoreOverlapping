@@ -24,6 +24,9 @@ public class Controller2
 		view.pressButtonModifica(new UpdateRecordListener((String)view.getComboBoxTable().getSelectedItem()));
 		view.pressButtonGestisciOrario(new OpenViewGestisciOrario(model,viewOrario));
 		viewOrario.pressButtonNewOrario2(new CreateNewOrario(model,viewOrario));
+		viewOrario.pressButtonCarica(new CaricaOrarioDaFile());
+		viewOrario.pressButtonSalva(new SalvaOrarioEsistente());
+		viewOrario.pressButtonEsci(new EsciViewTimeTable(viewOrario));
 
 		viewOrario.selectedActivityToView(new SelectedActivityListener(model, viewOrario));
 		viewOrario.selectedPianoToView(new SelectedPianoListener(model, viewOrario));

@@ -57,7 +57,7 @@ public class DisciplinaInseritaPiano {
 	}
 
 
-	public void fasciaOrariaDisponibile(int hour, int[][] matrix, Disciplina d) {
+	public void fasciaOrariaDisponibile(int hour, int[][] matrix, int[][] matrixSupporto, Disciplina d) {
 
 
 		int iFascia = 0, iMatrice = 0;
@@ -77,6 +77,7 @@ public class DisciplinaInseritaPiano {
 							for (int i=0; i<hour; i++){
 								model.getListAssegnamento().get(0).add(new Assegnamento(d, model.getListFasciaOraria().get(iFascia), model.getListAula().get(0)));
 								matrix[k+i][j]++;
+								matrixSupporto[k+i][j]++;
 								iFascia++;
 							}
 							flag = false;
@@ -106,7 +107,6 @@ public class DisciplinaInseritaPiano {
 			if (model.getListAssegnamento().get(0).get(i).getFasciaOraria().getGiorno().equals(day) &&
 					model.getListAssegnamento().get(0).get(i).getFasciaOraria().getInizio().toString().substring(11, 19).equals(time)){
 
-				if (model.getListAssegnamento().get(0).get(i).getAttività().getId().equals(d.getId())){
 
 					for (int j=0; j<model.getListAssegnamento().get(0).get(i).getAttività().getElencoResponsabili().size(); j++){
 						for (int k=0; k<d.getElencoResponsabili().size(); k++){
@@ -116,7 +116,6 @@ public class DisciplinaInseritaPiano {
 						}
 
 					}
-				}
 			}
 		}
 

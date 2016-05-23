@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class Disciplina extends Attività{
-	
+
 	private String codice;
 	private float crediti;
 	private int subId;
@@ -16,14 +16,14 @@ public class Disciplina extends Attività{
 		this.codice = codice;
 		this.crediti = crediti;
 	}
-	
+
 	public Disciplina(int ore, String id, String descrizione, String nome, Date inizio, Date fine,
 			int semestre, String codice, float crediti) {
 		super(ore, id, descrizione, nome, inizio, fine, semestre);
 		this.codice = codice;
 		this.crediti = crediti;
 	}
-	
+
 	public Disciplina(int ore, String id, String descrizione, String nome, Date inizio, Date fine,
 			int semestre, String codice, float crediti, int subId, int subOre) {
 		super(ore, id, descrizione, nome, inizio, fine, semestre);
@@ -32,7 +32,7 @@ public class Disciplina extends Attività{
 		this.subId = subId;
 		this.subOre = subOre;
 	}
-	
+
 	public Disciplina(int ore, String id, String descrizione, String nome, Date inizio, Date fine,
 			int semestre, ArrayList<Docente> elencoResponsabili, String codice, float crediti, int subId, int subOre) {
 		super(ore, id, descrizione, nome, inizio, fine, semestre, elencoResponsabili);
@@ -41,7 +41,7 @@ public class Disciplina extends Attività{
 		this.subId = subId;
 		this.subOre = subOre;
 	}
-	
+
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
@@ -79,7 +79,22 @@ public class Disciplina extends Attività{
 	public void setSubOre(int subOre) {
 		this.subOre = subOre;
 	}
-	
-	
+
+	@Override
+	public boolean equals(Object obj) {
+		if (obj == null) {
+			return false;
+		}
+
+		if (!(obj instanceof Disciplina)) {
+			return false; 
+		} 
+
+		Disciplina d = (Disciplina) obj;
+		return (d.getId().equals(this.getId()) &&
+				d.getSubId() == this.getSubId());
+
+	}
+
 
 }

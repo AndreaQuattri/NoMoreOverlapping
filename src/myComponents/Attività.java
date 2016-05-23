@@ -5,8 +5,8 @@ import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
-public class Attività {
-	
+public class Attività implements Comparable<Attività>{
+
 	private int ore;
 	private String id;
 	private String descrizione;
@@ -14,9 +14,9 @@ public class Attività {
 	private Date inizio;
 	private Date fine;
 	private int semestre;
-	
+
 	private ArrayList<Docente> elencoResponsabili;
-	
+
 	public Attività(int ore, String id, String descrizione, String nome, Date inizio, Date fine, int semestre, ArrayList<Docente> elencoResponsabili) {
 		this.ore = ore;
 		this.id = id;
@@ -27,7 +27,7 @@ public class Attività {
 		this.semestre = semestre;
 		this.elencoResponsabili = elencoResponsabili;
 	}
-	
+
 	public Attività(int ore, String id, String descrizione, String nome, Date inizio, Date fine, int semestre) {
 		this.ore = ore;
 		this.id = id;
@@ -38,20 +38,20 @@ public class Attività {
 		this.semestre = semestre;
 		this.elencoResponsabili = new ArrayList<Docente>();
 	}
-	
-  public String toString()
-  {
-	  Format formatter = new SimpleDateFormat("yyyy-mm-dd");
+
+	public String toString()
+	{
+		Format formatter = new SimpleDateFormat("yyyy-mm-dd");
 		String dateInizio = formatter.format(inizio);
 		String dateFine = formatter.format(fine);
-	  
-      String toReturn = id + "," + nome + "," + descrizione + "," + ore + "," + semestre + "," + dateInizio + "," + dateFine;
-      for (int i = 0; i < elencoResponsabili.size(); i++)
-          toReturn += elencoResponsabili.get(i).getCognome().toString() + " ; ";
-      return toReturn;
-  }
-	
-	
+
+		String toReturn = id + "," + nome + "," + descrizione + "," + ore + "," + semestre + "," + dateInizio + "," + dateFine;
+		for (int i = 0; i < elencoResponsabili.size(); i++)
+			toReturn += elencoResponsabili.get(i).getCognome().toString() + " ; ";
+		return toReturn;
+	}
+
+
 	public int getOre() {
 		return ore;
 	}
@@ -108,12 +108,31 @@ public class Attività {
 	public void setElencoResponsabili(ArrayList<Docente> elencoResponsabili) {
 		this.elencoResponsabili = elencoResponsabili;
 	}
-	
+
 	public void aggiungiResponsabile (Docente d){
 		this.elencoResponsabili.add(d);
 	}
-	
 
-	
+	@Override
+	public int compareTo(Attività o) {
+		// TODO Auto-generated method stub
+		return this.id.compareTo(o.id);
+	}
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (obj == null) {
+			return false;
+		}
+
+		if (!(obj instanceof Attività)) {
+			return false; 
+		} 
+
+		Attività a = (Attività) obj;
+		return a.id.equals(this.id);
+	}
+
 
 }

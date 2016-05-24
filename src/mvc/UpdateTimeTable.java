@@ -9,6 +9,7 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
+
 public class UpdateTimeTable extends JFrame implements Observer{
 
 
@@ -24,15 +25,17 @@ public class UpdateTimeTable extends JFrame implements Observer{
 	}
 
 	private Model model;
-	private JComboBox comboGita;
+	private JComboBox comboGitaConvegno;
+	private int row;
+	private int col;
 	
 	
 	public JComboBox getComboGita() {
-		return comboGita;
+		return comboGitaConvegno;
 	}
 
-	public void setComboGita(JComboBox comboGita) {
-		this.comboGita = comboGita;
+	public void setComboGita(JComboBox comboGitaConvegno) {
+		this.comboGitaConvegno = comboGitaConvegno;
 	}
 
 	private JLabel labelDisciplina;
@@ -51,6 +54,8 @@ public class UpdateTimeTable extends JFrame implements Observer{
 	{
 
 		this.model = model;
+		this.row = row;
+		this.col = col;
 		
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -104,20 +109,22 @@ public class UpdateTimeTable extends JFrame implements Observer{
 			
 		}
 		
-		comboGita = new JComboBox();
+		comboGitaConvegno = new JComboBox();
 		
-		comboGita.addItem("");
+		comboGitaConvegno.addItem("");
 		for (int i=0; i<model.getListGita().size();i++)
-			comboGita.addItem(model.getListGita().get(i).getNome() + " - " 
+			comboGitaConvegno.addItem(model.getListGita().get(i).getIdGita() 
+					+ " - " + model.getListGita().get(i).getNome() + " - " 
 					+ model.getListGita().get(i).getOre());
 		
 
 		for (int i=0; i<model.getListConvegno().size();i++)
-			comboGita.addItem(model.getListConvegno().get(i).getNome() + " - " 
+			comboGitaConvegno.addItem(model.getListConvegno().get(i).getIdConvegno() 
+					+ " - " + model.getListConvegno().get(i).getNome() + " - " 
 					+ model.getListConvegno().get(i).getOre());
 		
-		comboGita.setBounds(69, bound+50, 500, 29);
-		getContentPane().add(comboGita);
+		comboGitaConvegno.setBounds(69, bound+50, 500, 29);
+		getContentPane().add(comboGitaConvegno);
 		
 		buttonInserisci = new JButton("Inserisci gita/convegno");
 		buttonInserisci.setBounds(100, bound + 100, 100, 29);
@@ -150,8 +157,30 @@ public class UpdateTimeTable extends JFrame implements Observer{
 	}
 	
 	public void selectedGita(ActionListener listener) {
-		comboGita.addActionListener(listener);
+		comboGitaConvegno.addActionListener(listener);
 		
+	}
+
+	public void insertGitaConvegno(ActionListener listener) {
+		// TODO Auto-generated method stub
+		buttonInserisci.addActionListener(listener);
+		
+	}
+
+	public int getRow() {
+		return row;
+	}
+
+	public void setRow(int row) {
+		this.row = row;
+	}
+
+	public int getCol() {
+		return col;
+	}
+
+	public void setCol(int col) {
+		this.col = col;
 	}
 
 

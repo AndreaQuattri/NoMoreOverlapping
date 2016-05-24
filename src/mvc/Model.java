@@ -10,7 +10,7 @@ import java.util.Vector;
 import myComponents.*;
 
 public class Model extends Observable{
-	
+
 	private ArrayList<ArrayList<Assegnamento>> listAssegnamento;
 	private ArrayList<Aula> listAula;					//Fatto
 	private ArrayList<Convegno> listConvegno;			//Fatto
@@ -26,8 +26,9 @@ public class Model extends Observable{
 	private ArrayList<Tirocinio> listTirocinio;			//Fatto
 	private Vector<Vector<String>> tabella;
 	private Orario orarioUfficiale;
-	
-	
+	private int[][] matrix;
+
+
 	public Vector<Vector<String>> getTabella() {
 		return tabella;
 	}
@@ -45,17 +46,17 @@ public class Model extends Observable{
 	private ArrayList<Attività> listAttivitàDeiDocenti;
 	private ArrayList<Disciplina> listAllAttivitàInserite;
 
-	
+
 	private boolean enableModificaTable;
 	private boolean enableEliminaTable;
 	private boolean enableButtonAcquisisci;
 	private boolean enableButtonAggiorna;
 	private boolean enableButtonInserisciGita;
-	
+
 	private int numSovrapposizioni;
 
-	
-	
+
+
 	public Model() {
 
 		listAssegnamento = new ArrayList<ArrayList<Assegnamento>>();
@@ -77,18 +78,19 @@ public class Model extends Observable{
 		setListAttivitàDeiDocenti(new ArrayList<Attività>());
 		setListAllAttivitàInserite(new ArrayList<Disciplina>());
 		setOrarioUfficiale(new Orario());
+		matrix = new int[21][6];
 
 		enableModificaTable = false;
 		enableEliminaTable = false;
 		enableButtonAcquisisci = false;
 		enableButtonAggiorna = false;
 		enableButtonInserisciGita = false;
-		
+
 	}
-	
-	
-	
-	
+
+
+
+
 	public ArrayList<Aula> getListAula() {
 		return listAula;
 	}
@@ -161,13 +163,13 @@ public class Model extends Observable{
 	public void setListTirocinio(ArrayList<Tirocinio> listTirocinio) {
 		this.listTirocinio = listTirocinio;
 	}
-	
+
 	private void sendNotify(int notifyID)
 	{
 		MyNotify notify = new MyNotify(notifyID); 
-		
+
 		setChanged();
-		
+
 		notifyObservers(notify);
 	}
 
@@ -177,19 +179,19 @@ public class Model extends Observable{
 	public boolean isEnableModificaTable() {
 		return enableModificaTable;
 	}
-	
+
 	public boolean isEnableEliminaTable() {
 		return enableEliminaTable;
 	}
-	
+
 	public boolean isEnableButtonAcquisisci() {
 		return enableButtonAcquisisci;
 	}
-	
+
 	public boolean isEnableButtonAggiorna() {
 		return enableButtonAggiorna;
 	}
-	
+
 	public boolean isEnabledInserisciGita() {
 		return enableButtonInserisciGita;
 	}
@@ -203,7 +205,7 @@ public class Model extends Observable{
 		sendNotify(MyNotify.ENABLE_BUTTON_MODIFICA);
 
 	}
-	
+
 	public void enableEliminaTable(boolean enableEliminaTable) {
 		this.enableEliminaTable = enableEliminaTable;
 		sendNotify(MyNotify.ENABLE_BUTTON_ELIMINA);
@@ -215,13 +217,13 @@ public class Model extends Observable{
 		sendNotify(MyNotify.ENABLE_BUTTON_ACQUISISCI);
 
 	}
-	
+
 	public void enableButtonAggiorna(boolean enableButtonAggiorna) {
 		this.enableButtonAggiorna = enableButtonAggiorna;
 		sendNotify(MyNotify.ENABLE_BUTTON_AGGIORNA);
 
 	}
-	
+
 	public void enableButtonInserisciGita(boolean enableButtonInserisciGita) {
 		this.enableButtonInserisciGita = enableButtonInserisciGita;
 		sendNotify(MyNotify.ENABLE_BUTTON_GITA);
@@ -272,7 +274,7 @@ public class Model extends Observable{
 
 
 	public boolean AttivitàInCorso(String idAtt, String codice){
-		
+
 		for (int i=0; i<this.getListPianoDiStudi().size(); i++){
 			if (getListPianoDiStudi().get(i).getCorso().getCodice().equals(codice)){
 				for (int j=0; j<getListPianoDiStudi().get(i).getElencoAttivitàObbligatorie().size(); j++){
@@ -285,24 +287,24 @@ public class Model extends Observable{
 				}
 			}
 		}
-		
-		
+
+
 		return false;
 	}
-	
+
 
 	public PianoDiStudi cercaPianoDatoCorso (String id){
-		
+
 		for (int i=0; i<getListPianoDiStudi().size(); i++){
 			if (getListPianoDiStudi().get(i).getCorso().getCodice().equals(id)){
 				return getListPianoDiStudi().get(i);
 			}
 		}
 		return null;
-		
+
 	}
 
-	
+
 	@SuppressWarnings("deprecation")
 	public void fromOrarioToTable(){
 		int countDay=0;
@@ -322,7 +324,7 @@ public class Model extends Observable{
 		Format formatter = new SimpleDateFormat("HH:mm");
 		String oraInizio = formatter.format(inizio);
 		String oraFine = formatter.format(fine);
-		
+
 		for (int i=0; i<getListOrario().size(); i++){
 			countDay = 0;
 			tabella.addElement(new Vector<String>());
@@ -346,10 +348,31 @@ public class Model extends Observable{
 			iRighe = (iRighe + 1)%21;
 
 		}
-		
+
 	}
 
 
+	public Attività getAttivitàFromId (int id){
+
+		int i;
+		
+		for (i=0; i<listGita.size(); i++){
+			
+			if (listGita.get(i).getIdGita() == id){
+				break;
+			}
+
+		}
+		
+		if (i == listGita.size())
+			return null;
+		
+		Gita g = listGita.get(i);
+				
+
+		return g;
+
+	}
 
 
 	public ArrayList<Docente> getListDocentiInseriti() {
@@ -404,7 +427,21 @@ public class Model extends Observable{
 	public void setOrarioUfficiale(Orario orarioUfficiale) {
 		this.orarioUfficiale = orarioUfficiale;
 	}
-	
-	
+
+
+
+
+	public int[][] getMatrix() {
+		return matrix;
+	}
+
+
+
+
+	public void setMatrix(int[][] matrix) {
+		this.matrix = matrix;
+	}
+
+
 
 }

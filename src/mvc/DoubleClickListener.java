@@ -7,6 +7,8 @@ import java.awt.event.MouseListener;
 
 import javax.swing.JTable;
 
+import controllerListener.InsertInTimeTable;
+
 
 public class DoubleClickListener implements MouseListener {
 
@@ -59,63 +61,9 @@ public class DoubleClickListener implements MouseListener {
 		UpdateTimeTable updateTimeTable = new UpdateTimeTable(model, clickedRow, clickedCol);
 		updateTimeTable.setVisible(true);
 
-		/*
-		int countDay = 0;
-		int j=0;
-
-		for (; countDay<clickedCol; j++){
-			if(model.getListOrario().get(j).getElencoAssegnamenti().size()!=0 
-					&& model.getListOrario().get(j).getElencoAssegnamenti().get(0).getFasciaOraria().getInizio().toString().equals("Thu Jan 01 08:30:00 CET 1970")){
-				countDay++;
-			}
-
-		}
-
-		int numDiscipline = model.getListOrario().get(clickedRow + j - 1).getElencoAssegnamenti().size();
-		int indice = clickedRow + j - 1;
-		int bound = 100;
-
-
-		if (numDiscipline!=0){
-		updateOrario.setLabelDisciplina( new JLabel(model.getListOrario().get(indice).getElencoAssegnamenti().get(0).getFasciaOraria().getInizio().toString().substring(11, 19) + " - " + 
-				model.getListOrario().get(indice).getElencoAssegnamenti().get(0).getFasciaOraria().getFine().toString().substring(11, 19) ) );
-		updateTimeTable.getLabelDisciplina().setBounds(100, 70, 500, 29);
-		updateTimeTable.getContentPane().add(updateTimeTable.getLabelDisciplina());
-		}
-
-		for (int i=0; i<numDiscipline; i++){
-			updateOrario.setLabelDisciplina( new JLabel(model.getListOrario().get(indice).getElencoAssegnamenti().get(i).getAttività().getNome().toString() + " - " + model.getListOrario().get(indice).getElencoAssegnamenti().get(i).getAula().toString()) );
-			updateTimeTable.getLabelDisciplina().setBounds(69, bound, 500, 29);
-			updateTimeTable.getContentPane().add(updateTimeTable.getLabelDisciplina());
-			bound+=30;
-
-		}
-
-		updateTimeTable.setComboGita( new JComboBox() );
-
-		updateTimeTable.getComboGita().addItem("");
-		for (int i=0; i<model.getListGita().size();i++)
-			updateTimeTable.getComboGita().addItem(model.getListGita().get(i).getNome() + " - " 
-					+ model.getListGita().get(i).getOre());
-
-
-		for (int i=0; i<model.getListConvegno().size();i++)
-			updateTimeTable.getComboGita().addItem(model.getListConvegno().get(i).getNome() + " - " 
-					+ model.getListConvegno().get(i).getOre());
-
-		updateTimeTable.getComboGita().setBounds(69, bound+50, 500, 29);
-		updateTimeTable.getContentPane().add(updateTimeTable.getComboGita());
-
-		updateTimeTable.setButtonInserisci( new JButton("Inserisci gita/convegno") );
-		updateTimeTable.getButtonInserisci().setBounds(100, bound + 100, 100, 29);
-		updateTimeTable.getContentPane().add(updateTimeTable.getButtonInserisci());
-
-
-		updateTimeTable.getContentPane().setLayout(null);
-
-		 */
+		
 		updateTimeTable.selectedGita(new SelectedGitaListener());
-
+		updateTimeTable.insertGitaConvegno(new InsertInTimeTable(model, updateTimeTable));
 
 
 	}

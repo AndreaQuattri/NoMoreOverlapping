@@ -94,6 +94,21 @@ public class InsertValues {
 						}
 					}
 					
+					for (int k=0; k<model.getListGita().size(); k++){
+						if(model.getListGita().get(k).getId().equals(splitColInsegna[1])){
+							model.getListDocente().get(i).aggiungiAttività(model.getListGita().get(k));
+							break;
+						}
+					}
+					
+					for (int k=0; k<model.getListConvegno().size(); k++){
+						if(model.getListConvegno().get(k).getId().equals(splitColInsegna[1])){
+							model.getListDocente().get(i).aggiungiAttività(model.getListConvegno().get(k));
+							break;
+						}
+					}
+
+					
 					
 				}
 			}
@@ -395,6 +410,28 @@ public class InsertValues {
 				
 			}
 			
+		}
+		
+		for (int i=0; i<model.getListGita().size(); i++){	
+			for (int j=0; j<model.getListDocente().size(); j++){
+				for (int k=0; k<model.getListDocente().get(j).getElencoAttività().size();k++){
+					if (model.getListGita().get(i).getId().equals(
+							model.getListDocente().get(j).getElencoAttività().get(k).getId())){
+						model.getListGita().get(i).aggiungiResponsabile(model.getListDocente().get(j));
+					}
+				}
+			}
+		}
+		
+		for (int i=0; i<model.getListConvegno().size(); i++){	
+			for (int j=0; j<model.getListDocente().size(); j++){
+				for (int k=0; k<model.getListDocente().get(j).getElencoAttività().size();k++){
+					if (model.getListConvegno().get(i).getId().equals(
+							model.getListDocente().get(j).getElencoAttività().get(k).getId())){
+						model.getListConvegno().get(i).aggiungiResponsabile(model.getListDocente().get(j));
+					}
+				}
+			}
 		}
 		
 			

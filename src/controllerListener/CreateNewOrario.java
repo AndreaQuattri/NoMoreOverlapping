@@ -110,7 +110,7 @@ public class CreateNewOrario implements  ActionListener
 
 		int[] v = g.generaSequenza();
 
-
+/*
 		v[0] = 11;
 		v[1] = 1;
 		v[2] = 5;
@@ -133,7 +133,7 @@ public class CreateNewOrario implements  ActionListener
 		v[19] = 17;
 		v[20] = 0;
 		v[21] = 20;
-
+*/
 
 		for (int i=0; i<v.length; i++)
 			System.out.print(v[i]+", ");
@@ -253,9 +253,11 @@ public class CreateNewOrario implements  ActionListener
 				numSov = 0;
 
 				for (int j=0; j<6; j++)
-					for (int k=0; k<21; k++)
+					for (int k=0; k<21; k++){
+						model.getMatrix()[k][j] += matrixSupporto[k][j];
 						if (matrixSupporto[k][j]>1)
 							numSov++;
+					}
 				System.out.println("-----"+numSov+"-----");
 
 

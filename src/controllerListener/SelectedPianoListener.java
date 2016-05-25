@@ -71,8 +71,6 @@ public class SelectedPianoListener implements  ActionListener
 		String oraFine = formatter.format(fine);
 
 
-		System.out.println("ciao");
-
 		String[] app;
 
 		for (int i=0; i<model.getListOrario().size(); i++){
@@ -130,13 +128,13 @@ public class SelectedPianoListener implements  ActionListener
 					}
 					else{
 						if (value.equals("1")){
-							cell.setBackground( Color.YELLOW );
-							cell.setForeground(Color.YELLOW);
+							cell.setBackground(Color.BLUE);
+							cell.setForeground(Color.BLUE);
 						}
 						else{
 							if (value.equals("2")){
-								cell.setBackground( Color.ORANGE );
-								cell.setForeground(Color.ORANGE);
+								cell.setBackground( Color.PINK );
+								cell.setForeground(Color.PINK);
 							}
 							else{
 								cell.setBackground( Color.RED );

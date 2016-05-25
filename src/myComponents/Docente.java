@@ -2,7 +2,7 @@ package myComponents;
 
 import java.util.ArrayList;
 
-public class Docente {
+public class Docente implements Comparable<Docente>{
 
 	private String nome;
 	private String cognome;
@@ -183,6 +183,26 @@ public class Docente {
 
 	public void setAulePreferite(ArrayList<SceltaAula> aulePreferite) {
 		this.aulePreferite = aulePreferite;
+	}
+
+	@Override
+	public int compareTo(Docente o) {
+		// TODO Auto-generated method stub
+		return this.matricola.compareTo(o.matricola);
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (obj == null) {
+			return false;
+		}
+
+		if (!(obj instanceof Docente)) {
+			return false; 
+		} 
+
+		Docente a = (Docente) obj;
+		return a.getMatricola().equals(this.matricola);
 	}
 
 }

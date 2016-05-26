@@ -2,6 +2,7 @@ package myComponents;
 
 import java.util.Date;
 import java.text.Format;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
@@ -95,7 +96,16 @@ public class Attività {
 		this.semestre = semestre;
 	}
 
-
+	public void setInizioByString(String i) throws ParseException {
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		this.inizio = format.parse(i);
+	}
+	
+	public void setFineByString(String f) throws ParseException {
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		this.inizio = format.parse(f);
+	}
+	
 
 
 	public ArrayList<Docente> getElencoResponsabili() {

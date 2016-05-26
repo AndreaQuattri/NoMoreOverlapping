@@ -85,7 +85,11 @@ public class MainView extends JFrame implements Observer {
 		
 	}
 
-	
+	public void pressButtonModifica(ActionListener listener) {
+		// TODO Auto-generated method stub
+		buttonUpdateTable.addActionListener(listener);
+		
+	}
 	
 	
 	private void initUI(){
@@ -272,6 +276,8 @@ public class MainView extends JFrame implements Observer {
 
 	}
 	
+	
+	
 	// Update the view with the notify send by model
 		@Override
 		public void update(Observable o, Object arg)
@@ -338,4 +344,6 @@ public class MainView extends JFrame implements Observer {
 		public void setLabelTableInTable(JLabel labelTableInTable) {
 			this.labelTableInTable = labelTableInTable;
 		}
+
+
 }

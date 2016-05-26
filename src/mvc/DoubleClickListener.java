@@ -1,16 +1,30 @@
 package mvc;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import javax.swing.JTable;
 
+import controllerListener.InsertInTimeTable;
+
+
 public class DoubleClickListener implements MouseListener {
+
+	private Model model;
+	private ViewTimeTable viewOrario;
+
+	public DoubleClickListener(Model model) {
+		this.setModel(model);
+	}
+
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
 		//se non è doppio click ritorno		
+
 
 
 		System.out.println("Nella funzione");
@@ -22,6 +36,8 @@ public class DoubleClickListener implements MouseListener {
 		}
 		 */
 
+		/*
+
 		//Considero solo i click del pulsante sinistro;
 		//se vuoi gestire l'evento anche se si fa dopppio
 		//click col tasto destro commenta questo if
@@ -29,25 +45,49 @@ public class DoubleClickListener implements MouseListener {
 			System.out.println("Tasto destro");
 			return;
 		}
+
+		 */
+
+
 		//Ricavo la tabella che ha prodotto l'evento
 		JTable table = (JTable)e.getSource();
 		//Calcolo la riga su cui si è fatto click
 		int clickedRow = table.rowAtPoint(e.getPoint());
+		int clickedCol = table.columnAtPoint(e.getPoint());
 		//Se non è la riga che mi interessa ritorno
-		if(clickedRow != 1){
-			System.out.println("Riga diversa da 1");
-			return;
+
+
+
+		UpdateTimeTable updateTimeTable = new UpdateTimeTable(model, clickedRow, clickedCol);
+		updateTimeTable.setVisible(true);
+
+		
+		updateTimeTable.selectedGita(new SelectedGitaListener());
+		updateTimeTable.insertGitaConvegno(new InsertInTimeTable(model, updateTimeTable));
+
+
+	}
+
+
+	private class SelectedGitaListener implements  ActionListener
+	{
+		@Override
+		public void actionPerformed(ActionEvent action)
+		{
+
+
+			model.enableButtonInserisciGita(true);
+
+			//TODO
+			/*
+			 * 
+			 * cancellare tabella, ecc..
+			 * 
+			 */
+
+
+
 		}
-		//Altrimenti costruisco la nuova finestra
-		//.....
-		//......
-		//.....
-
-
-		ManagementTableView m = new ManagementTableView();
-		m.setVisible(true);
-
-
 	}
 
 	@Override
@@ -72,6 +112,26 @@ public class DoubleClickListener implements MouseListener {
 	public void mouseReleased(MouseEvent arg0) {
 		// TODO Auto-generated method stub
 
+	}
+
+
+	public Model getModel() {
+		return model;
+	}
+
+
+	public void setModel(Model model) {
+		this.model = model;
+	}
+
+
+	public ViewTimeTable getViewOrario() {
+		return viewOrario;
+	}
+
+
+	public void setViewOrario(ViewTimeTable viewOrario) {
+		this.viewOrario = viewOrario;
 	}
 
 }

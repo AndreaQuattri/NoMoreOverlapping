@@ -9,7 +9,6 @@ public class PianoDiStudi {
 	private ArrayList<Attività> elencoAttivitàOpzionali;
 	
 	
-	//dovrà andare qui il campo di CorsoDiStudi
 	private ArrayList<ArrayList<Disciplina>> elencoPianiPossibili;
 
 

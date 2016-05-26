@@ -3,11 +3,8 @@ package controllerListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
-
 import javax.xml.stream.XMLStreamException;
-
 import mvc.Model;
-import myComponents.Orario;
 import xmlParser.XMLOrarioParserDOM;
 
 public class CaricaOrarioDaFile implements ActionListener{

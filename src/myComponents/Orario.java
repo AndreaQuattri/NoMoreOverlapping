@@ -1,5 +1,6 @@
 package myComponents;
 
+import java.beans.IntrospectionException;
 import java.text.DateFormat;
 import java.util.ArrayList;
 
@@ -28,6 +29,9 @@ public class Orario {
 
 	public Orario(ArrayList<Assegnamento> elencoAssegnamenti) {
 		this.elencoAssegnamenti = elencoAssegnamenti;
+		sovrapposizioni = -1;
+		integrSovrap = false;
+		elencoAttività = new ArrayList<Attività>();
 	}
 
 
@@ -35,6 +39,8 @@ public class Orario {
 	public Orario(ArrayList<Assegnamento> elencoAssegnamenti, ArrayList<Attività> elencoAttività) {
 		this.elencoAssegnamenti = elencoAssegnamenti;
 		this.elencoAttività = elencoAttività;
+		sovrapposizioni = -1;
+		integrSovrap = false;
 	}
 
 	

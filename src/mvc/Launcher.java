@@ -16,15 +16,6 @@ public class Launcher
 
 				view.getFrame().setVisible(true);
 
-<<<<<<< HEAD
-		 // commento di prova porcoChillu
-		
-		//ProvaJTable prova = new ProvaJTable();
-		
-=======
-		 		
->>>>>>> master
-
 	}
 
 }

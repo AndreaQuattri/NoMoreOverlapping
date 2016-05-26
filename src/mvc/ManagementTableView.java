@@ -1,11 +1,8 @@
 package mvc;
 
 import javax.swing.JFrame;
-<<<<<<< HEAD
-import javax.swing.JButton;
-=======
 import javax.swing.JLabel;
->>>>>>> master
+
 
 public class ManagementTableView extends JFrame {
 	

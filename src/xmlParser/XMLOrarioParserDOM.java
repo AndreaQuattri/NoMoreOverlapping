@@ -64,7 +64,7 @@ public class XMLOrarioParserDOM{
 						Node docenteNod = resp.item(j);
 						if (docenteNod.getNodeType() == Node.ELEMENT_NODE) {
 							Element docenteEl = (Element) docenteNod ;
-							Docente d = new Docente("", "", false, "", "");
+							Docente d = new Docente();
 							
 							d.setNome( docenteEl.getElementsByTagName("Nome").item(0).getTextContent() );
 							d.setCognome( docenteEl.getElementsByTagName("Cognome").item(0).getTextContent());

@@ -221,9 +221,6 @@ public class XMLOrarioParserDOM{
 			DOMSource source = new DOMSource(doc);
 			StreamResult result = new StreamResult(new File(file));
 
-			// Output to console for testing
-			// StreamResult result = new StreamResult(System.out);
-
 			transformer.transform(source, result);
 
 			System.out.println("File saved! Name: " + file );

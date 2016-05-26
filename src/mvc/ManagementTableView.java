@@ -1,8 +1,6 @@
 package mvc;
 
 import javax.swing.JFrame;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 
 public class ManagementTableView extends JFrame {

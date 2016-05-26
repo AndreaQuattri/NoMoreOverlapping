@@ -10,19 +10,7 @@ public class Orario {
 
 	private ArrayList<Assegnamento> elencoAssegnamenti;
 	private ArrayList<Attività> elencoAttività;
-
-	public Orario(int sovrapposizioni, boolean integrSovrap, ArrayList<Assegnamento> elencoAssegnamenti,
-			ArrayList<Attività> elencoAttività) {
-		this.sovrapposizioni = sovrapposizioni;
-		this.integrSovrap = integrSovrap;
-		this.elencoAssegnamenti = elencoAssegnamenti;
-		this.elencoAttività = elencoAttività;
-	}
-
-	public Orario(ArrayList<Assegnamento> elencoAssegnamenti) {
-		this.elencoAssegnamenti = elencoAssegnamenti;
-	}
-
+	private ArrayList<CorsoDiStudi> elencoCorsi;
 
 	public int trovaSovrapposizioni()
 	{
@@ -124,7 +112,11 @@ public class Orario {
 	public void setElencoAttività(ArrayList<Attività> elencoAttività) {
 		this.elencoAttività = elencoAttività;
 	}
-
-
+	public ArrayList<CorsoDiStudi> getElencoCorsi() {
+		return elencoCorsi;
+	}
+	public void setElencoCorsi(ArrayList<CorsoDiStudi> elencoCorsi) {
+		this.elencoCorsi = elencoCorsi;
+	}
 
 }

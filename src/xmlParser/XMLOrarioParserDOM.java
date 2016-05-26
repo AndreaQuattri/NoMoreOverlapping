@@ -56,7 +56,6 @@ public class XMLOrarioParserDOM{
 					att.setSemestre( Integer.parseInt( eElement.getElementsByTagName("Semestre").item(0).getTextContent() ) );
 					att.setDescrizione( eElement.getElementsByTagName("Descrizione").item(0).getTextContent() );
 					
-					//TODO finire inserimento
 					ArrayList<Docente> elresp = new ArrayList<Docente>();
 					NodeList resp = eElement.getElementsByTagName("Docente");
 					for (int j = 0; resp != null && j < resp.getLength(); j++) {
@@ -162,7 +161,6 @@ public class XMLOrarioParserDOM{
 				// saving attributes
 				a.appendChild(createElem(doc,"Id",att.getId()));
 				a.appendChild(createElem(doc,"Nome",att.getNome()));	
-				// TODO non salva data corretta
 				Format formatter = new SimpleDateFormat("yyyy-MM-dd");
 				String dateInizio = formatter.format(att.getInizio());
 				String dateFine = formatter.format(att.getFine());
@@ -214,7 +212,6 @@ public class XMLOrarioParserDOM{
 				aula.appendChild(createElem(doc,"Numero",""+aula_.getNumero()));
 				aula.appendChild(createElem(doc,"Capienza",""+aula_.getCapienza()));
 				
-				//TODO salva fascia oraria intera
 				a.appendChild(createElem(doc,"FasciaOraria",""+ass.getFasciaOraria().getIdFascia()));
 	  		}
 			

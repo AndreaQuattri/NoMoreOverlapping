@@ -63,19 +63,13 @@ public class CreateNewOrario implements  ActionListener
 
 		model.setListOrario(null);
 		model.setListOrario(new ArrayList<Orario>());
-
 		model.setListAssegnamento(null);
 		model.setListAssegnamento(new ArrayList<ArrayList<Assegnamento>>());
-
 		model.setTabella(new Vector<Vector<String>>());
-
-
-
-
-
-
 		model.getListAssegnamento().add(new ArrayList<Assegnamento>());
 
+	
+		
 		CorsoDiStudi corso1;
 		PianoDiStudi piano1;
 		int hour;

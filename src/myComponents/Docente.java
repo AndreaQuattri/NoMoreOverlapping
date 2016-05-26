@@ -28,6 +28,18 @@ public class Docente implements Comparable<Docente>{
 		this.orariPreferiti = orariPreferiti;
 		this.aulePreferite = aulePreferite;
 	}
+	
+	public Docente() {
+		this.nome = "";
+		this.cognome = "";
+		this.associato = true;
+		this.matricola = "";
+		this.email = "";
+		this.qualifica = "";
+		this.elencoAttività = new ArrayList<Attività>();
+		this.orariPreferiti = new ArrayList<SceltaOraria>();
+		this.aulePreferite = new ArrayList<SceltaAula>();
+	}
 
 	public Docente(String nome, String cognome, boolean associato, String matricola,
 			String email, String qualifica) {

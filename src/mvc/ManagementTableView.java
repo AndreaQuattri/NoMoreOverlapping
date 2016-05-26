@@ -1,7 +1,9 @@
 package mvc;
 
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JTextField;
 
 
 public class ManagementTableView extends JFrame {
@@ -15,53 +17,53 @@ public class ManagementTableView extends JFrame {
 
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 620, 600);
+		setBounds(400, 80, 500, 500);
 		
 		
 		
-		if (tabella.equals("Attività"))
+		//if (tabella.equals("Attività"))
 			initAttività();
 		
-		if (tabella.equals("Aula"))
+		//if (tabella.equals("Aula"))
 			initAula();
 	
-		if (tabella.equals("Convegno"))
+		//if (tabella.equals("Convegno"))
 			initConvegno();
 		
-		if (tabella.equals("Corso Di Studi"))
+		//if (tabella.equals("Corso Di Studi"))
 			initCorsoDiStudi();
 		
-		if (tabella.equals("Disciplina"))
+		//if (tabella.equals("Disciplina"))
 			initDisciplina();
 		
-		if (tabella.equals("Docente"))
+		//if (tabella.equals("Docente"))
 			initDocente();
 		
-		if (tabella.equals("Esame"))
+		//if (tabella.equals("Esame"))
 			initEsame();
 		
-		if (tabella.equals("Fascia Oraria"))
+		//if (tabella.equals("Fascia Oraria"))
 			initFasciaOraria();
 		
-		if (tabella.equals("Gita"))
+		//if (tabella.equals("Gita"))
 			initGita();
 		
-		if (tabella.equals("Insegna"))
+		//if (tabella.equals("Insegna"))
 			initInsegna();
 		
-		if (tabella.equals("Piano Di Studio"))
+		//if (tabella.equals("Piano Di Studio"))
 			initPianoDiStudio();
 		
-		if (tabella.equals("Preferenza Aula"))
+		//if (tabella.equals("Preferenza Aula"))
 			initPreferenzaAula();
 		
-		if (tabella.equals("Preferenza Fascia Oraria"))
+		//if (tabella.equals("Preferenza Fascia Oraria"))
 			initPreferenzaFasciaOraria();
 		
-		if (tabella.equals("Studente"))
+		//if (tabella.equals("Studente"))
 			initStudente();
 		
-		if (tabella.equals("Tirocinio"))
+		//if (tabella.equals("Tirocinio"))
 			initTirocinio();
 
 		
@@ -73,19 +75,33 @@ public class ManagementTableView extends JFrame {
 	
 	private void initAttività(){
 		JLabel labelID = new JLabel("ID Attività");
-		labelID.setBounds(69, 71, 117, 29);
+		labelID.setBounds(69, 81, 117, 29);
+		JTextField id = new JTextField();
+		id.setBounds(250, 81, 200, 29);
 		JLabel labelNome = new JLabel("Nome");
-		labelNome.setBounds(69, 101, 117, 29);
+		labelNome.setBounds(69, 121, 117, 29);
+		JTextField nome = new JTextField();
+		nome.setBounds(250, 121, 200, 29);
 		JLabel labelDescrizione = new JLabel ("Descrizione");
-		labelDescrizione.setBounds(69, 131, 117, 29);
+		labelDescrizione.setBounds(69, 161, 117, 29);
+		JTextField descrizione = new JTextField();
+		descrizione.setBounds(250, 161, 200, 29);
 		JLabel labelOre = new JLabel("Ore");
-		labelOre.setBounds(69, 161, 117, 29);
+		labelOre.setBounds(69, 201, 117, 29);
+		JTextField ore = new JTextField();
+		ore.setBounds(250, 201, 200, 29);
 		JLabel labelSemestre = new JLabel("Semestre");
-		labelSemestre.setBounds(69, 191, 117, 29);
+		labelSemestre.setBounds(69, 241, 117, 29);
+		JComboBox semestre = new JComboBox();
+		semestre.setBounds(250, 241, 200, 29);
 		JLabel labelDataInizio = new JLabel("Data Inizio");
-		labelDataInizio.setBounds(69, 221, 117, 29);
+		labelDataInizio.setBounds(69, 281, 117, 29);
+		//JDatePicker dataInizio = new JDatePicker();
+		//dataInizio.setBounds(250, 281, 200, 29);
 		JLabel labelDataFine = new JLabel("Data Fine");
-		labelDataFine.setBounds(69, 251, 117, 29);
+		labelDataFine.setBounds(69, 321, 117, 29);
+		//JDatePicker dataFine = new JDatePicker();
+		//dataFine.setBounds(250, 321, 200, 29);
 		
 		getContentPane().add(labelID);
 		getContentPane().add(labelNome);
@@ -94,22 +110,40 @@ public class ManagementTableView extends JFrame {
 		getContentPane().add(labelSemestre);
 		getContentPane().add(labelDataInizio);
 		getContentPane().add(labelDataFine);
+		getContentPane().add(id);
+		getContentPane().add(nome);
+		getContentPane().add(descrizione);
+		getContentPane().add(ore);
+		getContentPane().add(semestre);
+		
 	}
 	
 	private void initAula(){
 		JLabel labelEdificio = new JLabel("Edificio");
 		labelEdificio.setBounds(69, 71, 117, 29);
+		JTextField edificio = new JTextField();
+		edificio.setBounds(250, 71, 200, 29);
 		JLabel labelNumero = new JLabel("Numero");
-		labelNumero.setBounds(69, 101, 117, 29);
+		labelNumero.setBounds(69, 111, 117, 29);
+		JTextField numero = new JTextField();
+		numero.setBounds(250, 111, 200, 29);
 		JLabel labelCapienza = new JLabel ("Capienza");
-		labelCapienza.setBounds(69, 131, 117, 29);
+		labelCapienza.setBounds(69, 151, 117, 29);
+		JTextField capienza = new JTextField();
+		capienza.setBounds(250, 151, 200, 29);
 		JLabel labelDescrizione = new JLabel("Descrizione");
-		labelDescrizione.setBounds(69, 161, 117, 29);
+		labelDescrizione.setBounds(69, 191, 117, 29);
+		JTextField descrizione = new JTextField();
+		descrizione.setBounds(250, 191, 200, 29);
 		
 		getContentPane().add(labelEdificio);
 		getContentPane().add(labelNumero);
 		getContentPane().add(labelCapienza);
 		getContentPane().add(labelDescrizione);
+		getContentPane().add(edificio);
+		getContentPane().add(numero);
+		getContentPane().add(capienza);
+		getContentPane().add(descrizione);
 
 	}
 	

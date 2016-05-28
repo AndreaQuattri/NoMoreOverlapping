@@ -6,6 +6,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import javax.swing.JTable;
+import javax.swing.text.View;
 
 import controllerListener.InsertInTimeTable;
 
@@ -15,8 +16,9 @@ public class DoubleClickListener implements MouseListener {
 	private Model model;
 	private ViewTimeTable viewOrario;
 
-	public DoubleClickListener(Model model) {
+	public DoubleClickListener(Model model, ViewTimeTable viewOrario) {
 		this.setModel(model);
+		this.viewOrario = viewOrario;
 	}
 
 
@@ -63,7 +65,7 @@ public class DoubleClickListener implements MouseListener {
 
 		
 		updateTimeTable.selectedGita(new SelectedGitaListener());
-		updateTimeTable.insertGitaConvegno(new InsertInTimeTable(model, updateTimeTable));
+		updateTimeTable.insertGitaConvegno(new InsertInTimeTable(model, viewOrario , updateTimeTable));
 
 
 	}

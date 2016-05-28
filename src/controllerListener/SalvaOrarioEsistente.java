@@ -17,7 +17,6 @@ public class SalvaOrarioEsistente implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		String file = "provaorario.xml";
-		System.out.println("Pressed button salva");
 		XMLOrarioParserDOM.writeOrarioOnFile( file , this.o );
 	}
 

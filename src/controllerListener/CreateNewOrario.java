@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Vector;
 
+import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 
@@ -64,12 +65,12 @@ public class CreateNewOrario implements  ActionListener
 		model.setListOrario(null);
 		model.setListOrario(new ArrayList<Orario>());
 		model.setListAssegnamento(null);
-		model.setListAssegnamento(new ArrayList<ArrayList<Assegnamento>>());
+		model.setListAssegnamento(new ArrayList<Assegnamento>());
 		model.setTabella(new Vector<Vector<String>>());
-		model.getListAssegnamento().add(new ArrayList<Assegnamento>());
 
-	
+
 		
+
 		CorsoDiStudi corso1;
 		PianoDiStudi piano1;
 		int hour;
@@ -95,196 +96,197 @@ public class CreateNewOrario implements  ActionListener
 		ArrayList<Docente> listDocenteSupport = new ArrayList<Docente>();
 		model.setListDocentiInseriti(new ArrayList<Docente>());
 		model.setListAttivitàDeiDocenti(new ArrayList<Attività>());
-		//viewOrario.getComboBoxDocenti().removeAllItems();
-		//viewOrario.getComboBoxDocenti().addItem("");
+		model.setListAttivitàInserite(new ArrayList<Attività>());
 
 
 		GeneraSequenzaCasuale g = new GeneraSequenzaCasuale(model.getListCorsoDiStudi().size());
 
+		int numIt=0;
+		while(numIt<1){		
 
-		int[] v = g.generaSequenza();
+			numSov = 0;
+			
+			viewOrario.getVisualizzaAttività().removeAll();
+			viewOrario.getVisualizzaCorso().removeAll();
+			viewOrario.getVisualizzaDocente().removeAll();
+			int[] v = g.generaSequenza();
+	
 
-/*
-		v[0] = 11;
-		v[1] = 1;
-		v[2] = 5;
-		v[3] = 21;
-		v[4] = 16;
-		v[5] = 18;
-		v[6] = 10;
-		v[7] = 8;
-		v[8] = 4;
-		v[9] = 9;
-		v[10] = 15;
-		v[11] = 3;
-		v[12] = 2;
-		v[13] = 7;
-		v[14] = 12;
-		v[15] = 6;
-		v[16] = 13;
-		v[17] = 19;
-		v[18] = 14;
-		v[19] = 17;
-		v[20] = 0;
-		v[21] = 20;
-*/
-
-		for (int i=0; i<v.length; i++)
-			System.out.print(v[i]+", ");
-
-		System.out.println();
+			for (int i=0; i<v.length; i++)
+				System.out.print(v[i]+", ");
+			
+			System.out.println();
 
 
 
-		//corsi di studio da valutare
-		for (; indiceVettore < model.getListCorsoDiStudi().size() ; indiceVettore++){
+			//corsi di studio da valutare
+			for (; indiceVettore < model.getListCorsoDiStudi().size() ; indiceVettore++){
 
-			indice = v[indiceVettore];
+				indice = v[indiceVettore];
 
 
-			//for (indice = 0; indice<model.getListCorsoDiStudi().size(); indice++){
-
-			corso1 = model.getListCorsoDiStudi().get(indice);
-			piano1 = null;
+				corso1 = model.getListCorsoDiStudi().get(indice);
+				piano1 = null;
 
 
 
-			//individuo l'indice del corso di studio
-			piano1 = model.cercaPianoDatoCorso(corso1.getCodice());
+				//individuo l'indice del corso di studio
+				piano1 = model.cercaPianoDatoCorso(corso1.getCodice());
 
-			if (piano1 != null)
-			{
+				if (piano1 != null)
+				{
 
-				hour = 0;
+					hour = 0;
 
-				viewOrario.getComboBoxPiani().addItem(
-						model.getListCorsoDiStudi().get(indice).getCodice() + " - " +
-								model.getListCorsoDiStudi().get(indice).getNomePrincipale() + " - " +
-								model.getListCorsoDiStudi().get(indice).getAnno()
-						);
+					int iInizio = (int)(Math.random()*6);
+	
+					
+					viewOrario.setButtonCheckBox(new JCheckBoxMenuItem(model.getListCorsoDiStudi().get(indice).getCodice() + " - " +
+							model.getListCorsoDiStudi().get(indice).getNomePrincipale() + " - " +
+							model.getListCorsoDiStudi().get(indice).getAnno()));
+					viewOrario.getVisualizzaCorso().add(viewOrario.getButtonCheckBox());
+					viewOrario.getButtonCheckBox().addActionListener(new SelectedPianoListener(model, viewOrario,
+							model.getListCorsoDiStudi().get(indice).getCodice()));
 
-
-
-				listAttività = new ArrayList<Attività>();
-
-				listAttività.addAll(piano1.getElencoAttivitàObbligatorie());
-				listAttività.addAll(piano1.getElencoAttivitàOpzionali());
-
-
-				listDisciplina = GeneraListaDiscipline.generaLista(listAttività);
-
-				matrix = new int[21][6];
-				matrixSupporto = new int[21][6];
-
-				listDocenteSupport = new ArrayList<Docente>();
+					
+				
 
 
-				for (int iDisciplina = 0; iDisciplina < listDisciplina.size(); iDisciplina++){
+					listAttività = new ArrayList<Attività>();
 
-					if (listDisciplina.get(iDisciplina).getSemestre()==semestre){
-						for (int iDocente=0; iDocente < listDisciplina.get(iDisciplina).getElencoResponsabili().size(); iDocente++){
-							if (!listDocenteSupport.contains(listDisciplina.get(iDisciplina).getElencoResponsabili().get(iDocente))){
-								listDocenteSupport.add(listDisciplina.get(iDisciplina).getElencoResponsabili().get(iDocente));
-							}
-							if (!model.getListDocentiInseriti().contains(listDisciplina.get(iDisciplina).getElencoResponsabili().get(iDocente))){
-								model.getListDocentiInseriti().add(listDisciplina.get(iDisciplina).getElencoResponsabili().get(iDocente));
-
-							}
-						}
-					}
-
-				}
+					listAttività.addAll(piano1.getElencoAttivitàObbligatorie());
+					listAttività.addAll(piano1.getElencoAttivitàOpzionali());
 
 
-				listDisciplinaSupporto = new ArrayList<Disciplina>();
+					listDisciplina = GeneraListaDiscipline.generaLista(listAttività);
 
-				for (int iDocente = 0; iDocente<listDocenteSupport.size(); iDocente++){
-					for (int iDisciplina = 0; iDisciplina<listDisciplinaInseritaPerOra.size(); iDisciplina++){
-						for (int iDocDis = 0; iDocDis<listDisciplinaInseritaPerOra.get(iDisciplina).getElencoResponsabili().size(); iDocDis++){
-							if (listDisciplinaInseritaPerOra.get(iDisciplina).getSemestre()==semestre &&
-									listDisciplinaInseritaPerOra.get(iDisciplina).getElencoResponsabili().get(iDocDis).equals(listDocenteSupport.get(iDocente)) &&
-									!listDisciplinaSupporto.contains((Disciplina)listDisciplinaInseritaPerOra.get(iDisciplina))){
-								listDisciplinaSupporto.add(listDisciplinaInseritaPerOra.get(iDisciplina));
+					matrix = new int[21][6];
+					matrixSupporto = new int[21][6];
+
+					listDocenteSupport = new ArrayList<Docente>();
+
+
+					for (int iDisciplina = 0; iDisciplina < listDisciplina.size(); iDisciplina++){
+
+						if (listDisciplina.get(iDisciplina).getSemestre()==semestre){
+							for (int iDocente=0; iDocente < listDisciplina.get(iDisciplina).getElencoResponsabili().size(); iDocente++){
+								if (!listDocenteSupport.contains(listDisciplina.get(iDisciplina).getElencoResponsabili().get(iDocente))){
+									listDocenteSupport.add(listDisciplina.get(iDisciplina).getElencoResponsabili().get(iDocente));
+								}
+								if (!model.getListDocentiInseriti().contains(listDisciplina.get(iDisciplina).getElencoResponsabili().get(iDocente))){
+									model.getListDocentiInseriti().add(listDisciplina.get(iDisciplina).getElencoResponsabili().get(iDocente));
+
+								}
 							}
 						}
 
 					}
-				}
 
-				for (int iDisciplina = 0; iDisciplina<listDisciplina.size(); iDisciplina++){
-					if (disciplinaInserita.giàInsert(listDisciplina.get(iDisciplina).getId(), ((Disciplina)listDisciplina.get(iDisciplina)).getSubId())){
-						disciplinaInserita.FromAssToMatrix(listDisciplina.get(iDisciplina).getId(), ((Disciplina)listDisciplina.get(iDisciplina)).getSubId(), matrixSupporto);
+
+					listDisciplinaSupporto = new ArrayList<Disciplina>();
+
+					for (int iDocente = 0; iDocente<listDocenteSupport.size(); iDocente++){
+						for (int iDisciplina = 0; iDisciplina<listDisciplinaInseritaPerOra.size(); iDisciplina++){
+							for (int iDocDis = 0; iDocDis<listDisciplinaInseritaPerOra.get(iDisciplina).getElencoResponsabili().size(); iDocDis++){
+								if (listDisciplinaInseritaPerOra.get(iDisciplina).getSemestre()==semestre &&
+										listDisciplinaInseritaPerOra.get(iDisciplina).getElencoResponsabili().get(iDocDis).equals(listDocenteSupport.get(iDocente)) &&
+										!listDisciplinaSupporto.contains((Disciplina)listDisciplinaInseritaPerOra.get(iDisciplina))){
+									listDisciplinaSupporto.add(listDisciplinaInseritaPerOra.get(iDisciplina));
+								}
+							}
+
+						}
 					}
-				}
+
+					for (int iDisciplina = 0; iDisciplina<listDisciplina.size(); iDisciplina++){
+						if (disciplinaInserita.giàInsert(listDisciplina.get(iDisciplina).getId(), ((Disciplina)listDisciplina.get(iDisciplina)).getSubId())){
+							disciplinaInserita.FromAssToMatrix(listDisciplina.get(iDisciplina).getId(), ((Disciplina)listDisciplina.get(iDisciplina)).getSubId(), matrixSupporto);
+						}
+					}
 
 
-				for (int iDisciplina = 0; iDisciplina<listDisciplinaSupporto.size(); iDisciplina++){
-					disciplinaInserita.FromAssToMatrix(listDisciplinaSupporto.get(iDisciplina).getId(), listDisciplinaSupporto.get(iDisciplina).getSubId() , matrix);
-				}
+					for (int iDisciplina = 0; iDisciplina<listDisciplinaSupporto.size(); iDisciplina++){
+						disciplinaInserita.FromAssToMatrix(listDisciplinaSupporto.get(iDisciplina).getId(), listDisciplinaSupporto.get(iDisciplina).getSubId() , matrix);
+					}
 
 
-				for (int iDisciplina = 0; iDisciplina < listDisciplina.size(); iDisciplina++){
+					for (int iDisciplina = 0; iDisciplina < listDisciplina.size(); iDisciplina++){
 
-					if(listDisciplina.get(iDisciplina).getSemestre()==semestre){
+						if(listDisciplina.get(iDisciplina).getSemestre()==semestre){
 
-						if(!disciplinaInserita.giàInsert(listDisciplina.get(iDisciplina).getId(), listDisciplina.get(iDisciplina).getSubId())){
+							if(!disciplinaInserita.giàInsert(listDisciplina.get(iDisciplina).getId(), listDisciplina.get(iDisciplina).getSubId())){
 
-							hour = listDisciplina.get(iDisciplina).getSubOre();
+								hour = listDisciplina.get(iDisciplina).getSubOre();
 
 
-							if (!disciplinaInserita.giàInsert(listDisciplina.get(iDisciplina).getId()))
-								model.getListAttivitàInserite().add(listDisciplina.get(iDisciplina));
+								if (!disciplinaInserita.giàInsert(listDisciplina.get(iDisciplina).getId()))
+									model.getListAttivitàInserite().add(listDisciplina.get(iDisciplina));
 
-							disciplinaInserita.fasciaOrariaDisponibile(hour, matrix, matrixSupporto, listDisciplina.get(iDisciplina));
+								disciplinaInserita.fasciaOrariaDisponibile(hour, matrix, matrixSupporto, listDisciplina.get(iDisciplina), iInizio);
+
+							}
+
 
 						}
 
-
 					}
+
+
+					for (int j=0; j<6; j++)
+						for (int k=0; k<21; k++){
+							model.getMatrix()[k][j] += matrixSupporto[k][j];
+							if (matrixSupporto[k][j]>1)
+								numSov++;
+						}
+					//System.out.println("-----"+numSov+"-----");
+
 
 				}
 
-				numSov = 0;
 
-				for (int j=0; j<6; j++)
-					for (int k=0; k<21; k++){
-						model.getMatrix()[k][j] += matrixSupporto[k][j];
-						if (matrixSupporto[k][j]>1)
-							numSov++;
+				for (int i=0; i<listAttività.size(); i++){
+					if (listAttività.get(i).getSemestre()==semestre &&
+							!model.getListAllAttivitàInserite().contains(listAttività.get(i))){
+						model.getListAllAttivitàInserite().add((Disciplina)listAttività.get(i));
 					}
-				System.out.println("-----"+numSov+"-----");
+				}
 
 
+
+
+				for (int i=0; i<listDisciplina.size(); i++){
+					listDisciplinaInseritaPerOra.add(listDisciplina.get(i));
+				}
 			}
-		}
+			
 
+			System.out.println(numIt + " - " + numSov);
+			numIt++;
 
-		for (int i=0; i<listAttività.size(); i++){
-			if (listAttività.get(i).getSemestre()==semestre &&
-					!model.getListAllAttivitàInserite().contains(listAttività.get(i))){
-				model.getListAllAttivitàInserite().add((Disciplina)listAttività.get(i));
-			}
-		}
-
-
-
-
-		for (int i=0; i<listDisciplina.size(); i++){
-			listDisciplinaInseritaPerOra.add(listDisciplina.get(i));
+			
 		}
 
 
 
 
 
+		for (int i=0; i<model.getListAttivitàInserite().size(); i++){
+			viewOrario.setButtonCheckBox(new JCheckBoxMenuItem(model.getListAttivitàInserite().get(i).getNome()));
+			viewOrario.getVisualizzaAttività().add(viewOrario.getButtonCheckBox());
+			viewOrario.getButtonCheckBox().addActionListener(new SelectedActivityListener(model, viewOrario,
+					model.getListAttivitàInserite().get(i).getNome()));
 
+		}
 
-		for (int i=0; i<model.getListAttivitàInserite().size(); i++)
-			viewOrario.getComboBoxAttivitàInserite().addItem(model.getListAttivitàInserite().get(i).getNome());
+		for (int i=0; i<model.getListDocentiInseriti().size(); i++){
+	
+			viewOrario.setButtonCheckBox(new JCheckBoxMenuItem(model.getListDocentiInseriti().get(i).getMatricola() + " - " +
+					model.getListDocentiInseriti().get(i).getCognome()));
+			viewOrario.getVisualizzaDocente().add(viewOrario.getButtonCheckBox());
+			viewOrario.getButtonCheckBox().addActionListener(new SelectedDocenteListener(model, viewOrario,
+					model.getListDocentiInseriti().get(i).getMatricola()));
 
-		for (int i=0; i<model.getListDocentiInseriti().size(); i++)
-			viewOrario.getComboBoxDocenti().addItem(model.getListDocentiInseriti().get(i).getMatricola() + " - " +
-					model.getListDocentiInseriti().get(i).getCognome());
+		}
 
 
 		ArrayList<String> listGiorni = new ArrayList<String>();
@@ -301,57 +303,21 @@ public class CreateNewOrario implements  ActionListener
 		CreateTimeTable create = new CreateTimeTable(model);
 		create.fromAssegnamentoToOrarioPerGiorno();
 
-
+		model.setTabella(new Vector<Vector<String>>());
 		model.fromOrarioToTable();
+		viewOrario.visualizzaOrario();
 
 
 
 
 
-
-		for(int i=0; i<21; i++){
-			viewOrario.getTableRecords().addRow(model.getTabella().get(i));
-		}
-
-		for (int i=1; i<7; i++){
-			viewOrario.getTable().getColumnModel().getColumn(i).setCellRenderer(new DefaultTableCellRenderer() {
-				/**
-				 * 
-				 */
-				private static final long serialVersionUID = 1L;
-
-				public Component getTableCellRendererComponent (JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) 
-				{
-					Component cell = super.getTableCellRendererComponent (table, value, isSelected, hasFocus, row, column);
-
-					if (value == null)
-						return null;
-
-					if (value.equals("0")){
-						cell.setBackground( Color.gray );
-						cell.setForeground(Color.gray);
-					}
-					else{
-						if (value.equals("1")){
-							cell.setBackground( Color.green );
-							cell.setForeground(Color.green);
-						}
-						else{
-							cell.setBackground( Color.red );
-							cell.setForeground(Color.red);
-						}
-
-					}
-
-					return cell;
-
-				}});
-
-		}
+		
 
 		for (int i=0; i<model.getListOrario().size(); i++)
-			for (int j=0; j<model.getListOrario().get(i).getElencoAssegnamenti().size(); j++)
+			for (int j=0; j<model.getListOrario().get(i).getElencoAssegnamenti().size(); j++){
 				model.getOrarioUfficiale().aggiungiAssegnamento(model.getListOrario().get(i).getElencoAssegnamenti().get(j));
+				model.getOrarioUfficiale().getElencoAttività().addAll(model.getListOrario().get(i).getElencoAttività());	
+			}
 
 
 

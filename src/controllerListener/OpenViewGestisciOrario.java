@@ -45,7 +45,7 @@ public class OpenViewGestisciOrario implements  ActionListener
 			InsertValues insert = new InsertValues(model);
 
 
-			model.setListAssegnamento(new ArrayList<ArrayList<Assegnamento>>());
+			model.setListAssegnamento(new ArrayList<Assegnamento>());
 			model.setListAula(new ArrayList<Aula>());
 			model.setListConvegno(new ArrayList<Convegno>());
 			model.setListCorsoDiStudi(new ArrayList<CorsoDiStudi>());
@@ -65,7 +65,7 @@ public class OpenViewGestisciOrario implements  ActionListener
 			model.setListOrario(new ArrayList<Orario>());
 
 			model.setListAssegnamento(null);
-			model.setListAssegnamento(new ArrayList<ArrayList<Assegnamento>>());
+			model.setListAssegnamento(new ArrayList<Assegnamento>());
 			
 			model.setTabella(new Vector<Vector<String>>());
 
@@ -104,7 +104,6 @@ public class OpenViewGestisciOrario implements  ActionListener
 				generaPiani.generaPiani();
 				
 				
-
 				viewOrario.getFrame().setVisible(true);
 
 

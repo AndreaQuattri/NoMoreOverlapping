@@ -1,13 +1,14 @@
 package mvc;
 
+import java.awt.Color;
+import java.awt.Component;
 import java.awt.event.ActionListener;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.Vector;
 
 import javax.swing.ButtonGroup;
 import javax.swing.GroupLayout;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
@@ -17,10 +18,11 @@ import javax.swing.JRadioButtonMenuItem;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.JCheckBoxMenuItem;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 
-import javax.swing.LayoutStyle.ComponentPlacement;
 
 public class ViewTimeTable extends JFrame implements Observer {
 
@@ -33,78 +35,31 @@ public class ViewTimeTable extends JFrame implements Observer {
 
 
 	private JFrame frame;
-	private JButton buttonNewOrario2;
 	private JLabel labelTableInTable;
-	private JComboBox comboBoxAttivitàInserite;
-	private JComboBox comboBoxPiani;
-	private JComboBox comboBoxDocenti;
-
-
-	public JComboBox getComboBoxPiani() {
-		return comboBoxPiani;
-	}
 
 
 
-
-
-
-	public void setComboBoxPiani(JComboBox comboBoxPiani) {
-		this.comboBoxPiani = comboBoxPiani;
-	}
 
 
 
 
 	private JMenuBar menuBar;
+
 	private JMenu menuFile;
-	private JMenu menuParametri;
 	private JMenuItem salva;
 	private JMenuItem carica;
 	private JMenuItem esci;
+
+
+	private JMenu menuNuovoOrario;
+	private JMenuItem nuovoOrario;
 	private JMenu radioButtonMenu;
-
-
-	public JMenu getRadioButtonMenu() {
-		return radioButtonMenu;
-	}
-
-
-
-
-
-
-	public void setRadioButtonMenu(JMenu radioButtonMenu) {
-		this.radioButtonMenu = radioButtonMenu;
-	}
-
-
-
-
 	private JRadioButtonMenuItem buttonSem1;
-
-	public JRadioButtonMenuItem getButtonSem1() {
-		return buttonSem1;
-	}
-
-
-
-
-
-
-	public void setButtonSem1(JRadioButtonMenuItem buttonSem1) {
-		this.buttonSem1 = buttonSem1;
-	}
-
-
-
-
 	private JRadioButtonMenuItem buttonSem2;
 	private ButtonGroup group;
 
-
-	public JComboBox getComboBoxAttivitàInserite() {
-		return comboBoxAttivitàInserite;
+	public ButtonGroup getGroup() {
+		return group;
 	}
 
 
@@ -112,9 +67,20 @@ public class ViewTimeTable extends JFrame implements Observer {
 
 
 
-	public void setComboBoxAttivitàInserite(JComboBox comboBoxAttivitàInserite) {
-		this.comboBoxAttivitàInserite = comboBoxAttivitàInserite;
+	public void setGroup(ButtonGroup group) {
+		this.group = group;
 	}
+
+
+
+
+
+
+	private JMenu menuVisualizzaPer;
+	private JMenu visualizzaAttività;
+	private JMenu visualizzaDocente;
+	private JMenu visualizzaCorso;
+	private JCheckBoxMenuItem buttonCheckBox;
 
 
 
@@ -139,6 +105,8 @@ public class ViewTimeTable extends JFrame implements Observer {
 		initViewLikeModel();
 
 		menuBar = new JMenuBar();
+
+
 		menuFile = new JMenu("File");
 		salva = new JMenuItem("Salva");
 		carica = new JMenuItem("Carica");
@@ -146,15 +114,14 @@ public class ViewTimeTable extends JFrame implements Observer {
 
 		menuFile.add(salva);
 		menuFile.add(carica);
-
-
 		menuFile.addSeparator();
 		menuFile.add(esci);
 
 		menuBar.add(menuFile);
 
 
-		menuParametri = new JMenu("Parametri");
+		menuNuovoOrario = new JMenu("Crea un nuovo orario");
+		nuovoOrario = new JMenuItem("Nuovo Orario");
 		radioButtonMenu = new JMenu("Seleziona semestre");
 		buttonSem1 = new JRadioButtonMenuItem("1");
 		buttonSem2 = new JRadioButtonMenuItem("2");
@@ -164,14 +131,29 @@ public class ViewTimeTable extends JFrame implements Observer {
 		group.add(buttonSem2);
 		radioButtonMenu.add(buttonSem1);
 		radioButtonMenu.add(buttonSem2);
-		menuParametri.add(radioButtonMenu);//popup pull-right
+
+		menuNuovoOrario.add(nuovoOrario);
+		menuNuovoOrario.add(radioButtonMenu);//popup pull-right
+
+		menuBar.add(menuNuovoOrario);
 
 
-		menuBar.add(menuParametri);
+		menuVisualizzaPer = new JMenu("Visuallizza ...");
+		visualizzaDocente = new JMenu("Docente");
+		visualizzaAttività = new JMenu("Attività");
+		visualizzaCorso = new JMenu("Corso di Studi");
+
+		menuVisualizzaPer.add(visualizzaAttività);
+		menuVisualizzaPer.add(visualizzaCorso);
+		menuVisualizzaPer.add(visualizzaDocente);
+		//group = new ButtonGroup();
+		//buttonCombo = new JRadioButtonMenuItem("jj");
+		//visualizzaDocente.add(buttonCombo);
+
+		menuBar.add(menuVisualizzaPer);
+
 
 		frame.setJMenuBar(menuBar);
-		//        panelCenter = new JPanel();
-		//        super.getContentPane().add(panelCenter, BorderLayout.CENTER);
 
 
 
@@ -196,38 +178,14 @@ public class ViewTimeTable extends JFrame implements Observer {
 		tableRecords = new DefaultTableModel(0, 0);
 		table = new JTable();
 		table.setModel(tableRecords);
-		table.addMouseListener(new DoubleClickListener(model));
+		table.addMouseListener(new DoubleClickListener(model,this));
 
 
 		scrollPane.setViewportView(table);
 
-		comboBoxAttivitàInserite = new JComboBox();
-		comboBoxAttivitàInserite.addItem("");
-
-		buttonNewOrario2 = new JButton("Nuovo Orario");
-
-		comboBoxPiani = new JComboBox();
-		comboBoxPiani.addItem("");
-
-		comboBoxDocenti = new JComboBox();
-		comboBoxDocenti.addItem("");
-
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
 		groupLayout.setHorizontalGroup(
 				groupLayout.createParallelGroup(Alignment.TRAILING)
-				.addGroup(groupLayout.createSequentialGroup()
-						.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-								.addGroup(groupLayout.createSequentialGroup()
-										.addContainerGap(868, Short.MAX_VALUE)
-										.addComponent(comboBoxDocenti, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE))
-								.addGroup(groupLayout.createSequentialGroup()
-										.addGap(114)
-										.addComponent(buttonNewOrario2)
-										.addPreferredGap(ComponentPlacement.RELATED, 614, Short.MAX_VALUE)
-										.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-												.addComponent(comboBoxPiani, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-												.addComponent(comboBoxAttivitàInserite, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
-						.addGap(172))
 				.addGroup(groupLayout.createSequentialGroup()
 						.addGap(66)
 						.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 775, GroupLayout.PREFERRED_SIZE)
@@ -236,15 +194,7 @@ public class ViewTimeTable extends JFrame implements Observer {
 		groupLayout.setVerticalGroup(
 				groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
-						.addGap(52)
-						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-								.addComponent(comboBoxAttivitàInserite, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(buttonNewOrario2))
-						.addGap(22)
-						.addComponent(comboBoxPiani, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addGap(31)
-						.addComponent(comboBoxDocenti, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addGap(43)
+						.addGap(229)
 						.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addGap(19))
 				);
@@ -253,9 +203,7 @@ public class ViewTimeTable extends JFrame implements Observer {
 
 	}
 
-	public JFrame getFrame(){
-		return frame;
-	}
+
 
 	private void initViewLikeModel()
 	{
@@ -265,7 +213,74 @@ public class ViewTimeTable extends JFrame implements Observer {
 
 	}
 
+	public void visualizzaOrario(){
 
+		//model.setTabella(new Vector<Vector<String>>());
+
+		if (this.getTableRecords().getRowCount()!=0){
+			for (int i = 0; i<21; i++){
+				this.getTableRecords().removeRow(0);
+			}
+
+		}
+		else{
+			if(this.getTableRecords().getColumnCount()==0){
+				this.getTableRecords().addColumn("Orario");
+				this.getTableRecords().addColumn("Lunedì");
+				this.getTableRecords().addColumn("Martedì");
+				this.getTableRecords().addColumn("Mercoledì");
+				this.getTableRecords().addColumn("Giovedì");
+				this.getTableRecords().addColumn("Venerdì");
+				this.getTableRecords().addColumn("Sabato");
+			}
+
+		}
+
+
+		for(int i=0; i<21; i++){
+			this.getTableRecords().addRow(model.getTabella().get(i));
+		}
+
+		for (int i=1; i<7; i++){
+			this.getTable().getColumnModel().getColumn(i).setCellRenderer(new DefaultTableCellRenderer() {
+				/**
+				 * 
+				 */
+				private static final long serialVersionUID = 1L;
+
+				public Component getTableCellRendererComponent (JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) 
+				{
+					Component cell = super.getTableCellRendererComponent (table, value, isSelected, hasFocus, row, column);
+
+					if (value == null)
+						return null;
+
+					if (value.equals("0")){
+						cell.setBackground( Color.gray );
+						cell.setForeground(Color.gray);
+					}
+					else{
+						if (value.equals("1")){
+							cell.setBackground( Color.green );
+							cell.setForeground(Color.green);
+						}
+						else{
+							cell.setBackground( Color.red );
+							cell.setForeground(Color.red);
+						}
+
+					}
+
+					return cell;
+
+				}});
+
+		}
+	}
+
+
+
+	//listener methods
 
 
 	// Update the view with the notify send by model
@@ -275,26 +290,40 @@ public class ViewTimeTable extends JFrame implements Observer {
 
 	}
 
-
-
-	public void setComboBoxTable(JComboBox comboBoxTable) {
+	public void pressButtonNewOrario2(ActionListener listener) {
+		// TODO Auto-generated method stub
+		nuovoOrario.addActionListener(listener);
 	}
 
-	public JTable getTable() {
-		return table;
+
+	public void pressButtonCarica(ActionListener listener) {
+		// TODO Auto-generated method stub
+		carica.addActionListener(listener);
 	}
 
-	public void setTable(JTable table) {
-		this.table = table;
+	public void pressButtonSalva(ActionListener listener) {
+		// TODO Auto-generated method stub
+		salva.addActionListener(listener);
 	}
 
-	public DefaultTableModel getTableRecords() {
-		return tableRecords;
+	public void pressButtonEsci(ActionListener listener) {
+		esci.addActionListener(listener);
 	}
 
-	public void setTableRecords(DefaultTableModel tableRecords) {
-		this.tableRecords = tableRecords;
-	}
+
+
+
+
+
+
+
+
+
+
+
+
+	//get and set methods
+
 
 
 	public JLabel getLabelTableInTable() {
@@ -306,56 +335,44 @@ public class ViewTimeTable extends JFrame implements Observer {
 	}
 
 
+	public DefaultTableModel getTableRecords() {
+		return tableRecords;
+	}
 
-	public void pressButtonNewOrario2(ActionListener listener) {
-		// TODO Auto-generated method stub
-		buttonNewOrario2.addActionListener(listener);
-
+	public void setTableRecords(DefaultTableModel tableRecords) {
+		this.tableRecords = tableRecords;
 	}
 
 
-	public void selectedActivityToView(ActionListener listener) {
-		// TODO Auto-generated method stub
-		comboBoxAttivitàInserite.addActionListener(listener);
+	public JTable getTable() {
+		return table;
+	}
 
+	public void setTable(JTable table) {
+		this.table = table;
 	}
 
 
-
-	public void selectedPianoToView(ActionListener listener) {
-		// TODO Auto-generated method stub
-		comboBoxPiani.addActionListener(listener);
-
+	public JRadioButtonMenuItem getButtonSem1() {
+		return buttonSem1;
 	}
 
-	public void selectedDocenteToView(ActionListener listener) {
-		// TODO Auto-generated method stub
-		comboBoxDocenti.addActionListener(listener);
-
-	}
-
-
-
-
-
-	public void pressButtonCarica(ActionListener listener) {
-		// TODO Auto-generated method stub
-		carica.addActionListener(listener);
-
-	}
-	public void pressButtonSalva(ActionListener listener) {
-		// TODO Auto-generated method stub
-		salva.addActionListener(listener);
-	}
-	public void pressButtonEsci(ActionListener listener) {
-		esci.addActionListener(listener);
-		
+	public void setButtonSem1(JRadioButtonMenuItem buttonSem1) {
+		this.buttonSem1 = buttonSem1;
 	}
 
 
 
-	public JComboBox getComboBoxDocenti() {
-		return comboBoxDocenti;
+	public JMenu getRadioButtonMenu() {
+		return radioButtonMenu;
+	}
+
+	public void setRadioButtonMenu(JMenu radioButtonMenu) {
+		this.radioButtonMenu = radioButtonMenu;
+	}
+
+	public JFrame getFrame(){
+		return frame;
 	}
 
 
@@ -363,8 +380,48 @@ public class ViewTimeTable extends JFrame implements Observer {
 
 
 
-	public void setComboBoxDocenti(JComboBox comboBoxDocenti) {
-		this.comboBoxDocenti = comboBoxDocenti;
+	public JMenu getVisualizzaAttività() {
+		return visualizzaAttività;
+	}
+
+	public void setVisualizzaAttività(JMenu visualizzaAttività) {
+		this.visualizzaAttività = visualizzaAttività;
+	}
+
+
+
+
+
+
+	public JMenu getVisualizzaDocente() {
+		return visualizzaDocente;
+	}
+
+
+
+
+
+
+	public void setVisualizzaDocente(JMenu visualizzaDocente) {
+		this.visualizzaDocente = visualizzaDocente;
+	}
+
+
+
+
+
+
+	public JMenu getVisualizzaCorso() {
+		return visualizzaCorso;
+	}
+
+
+
+
+
+
+	public void setVisualizzaCorso(JMenu visualizzaCorso) {
+		this.visualizzaCorso = visualizzaCorso;
 	}
 
 
@@ -376,26 +433,16 @@ public class ViewTimeTable extends JFrame implements Observer {
 
 
 
+	public JCheckBoxMenuItem getButtonCheckBox() {
+		return buttonCheckBox;
+	}
 
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	public void setButtonCheckBox(JCheckBoxMenuItem buttonCheckBox) {
+		this.buttonCheckBox = buttonCheckBox;
+	}
 }

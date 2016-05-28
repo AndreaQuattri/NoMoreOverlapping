@@ -21,10 +21,12 @@ public class SelectedPianoListener implements  ActionListener
 
 	private Model model;
 	private ViewTimeTable viewOrario;
+	private String codice;
 
-	public SelectedPianoListener(Model model, ViewTimeTable viewOrario) {
+	public SelectedPianoListener(Model model, ViewTimeTable viewOrario, String codice) {
 		this.model = model;
 		this.viewOrario = viewOrario;
+		this.codice = codice;
 	}
 
 	@SuppressWarnings("deprecation")
@@ -33,7 +35,20 @@ public class SelectedPianoListener implements  ActionListener
 	{
 
 
-		//viewOrario.getComboBoxAttivitàInserite().setSelectedItem("");
+		String[] appoggio;
+		for (int i=0; i<viewOrario.getVisualizzaCorso().getItemCount(); i++){
+			 appoggio = viewOrario.getVisualizzaCorso().getItem(i).getText().split("-");
+			 if (appoggio[0].trim().equals(codice))
+				 viewOrario.getVisualizzaCorso().getItem(i).setSelected(true);
+			 else
+				 viewOrario.getVisualizzaCorso().getItem(i).setSelected(false);
+
+		}
+		for (int i=0; i<viewOrario.getVisualizzaAttività().getItemCount(); i++)
+			viewOrario.getVisualizzaAttività().getItem(i).setSelected(false);
+		for (int i=0; i<viewOrario.getVisualizzaDocente().getItemCount(); i++)
+			viewOrario.getVisualizzaDocente().getItem(i).setSelected(false);
+		
 
 
 		model.setTabella(new Vector<Vector<String>>());
@@ -71,15 +86,15 @@ public class SelectedPianoListener implements  ActionListener
 		String oraFine = formatter.format(fine);
 
 
-		String[] app;
+		String app;
 
 		for (int i=0; i<model.getListOrario().size(); i++){
 			countDay = 0;
 			model.getTabella().addElement(new Vector<String>());
 			for (int j=0; j<model.getListOrario().get(i).getElencoAssegnamenti().size(); j++){
-				app = viewOrario.getComboBoxPiani().getSelectedItem().toString().split("-");
+				app = codice;
 
-				if (model.AttivitàInCorso(model.getListOrario().get(i).getElencoAssegnamenti().get(j).getAttività().getId(), app[0].trim()))
+				if (model.AttivitàInCorso(model.getListOrario().get(i).getElencoAssegnamenti().get(j).getAttività().getId(), app))
 					countDay++;
 			}
 			if (iColonne == 0){

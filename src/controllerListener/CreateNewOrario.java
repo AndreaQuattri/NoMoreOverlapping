@@ -1,15 +1,12 @@
 package controllerListener;
 
-import java.awt.Color;
-import java.awt.Component;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Vector;
 
 import javax.swing.JCheckBoxMenuItem;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableCellRenderer;
 
 import ElaborazioneDati.GeneraListaDiscipline;
 import ElaborazioneDati.GeneraSequenzaCasuale;

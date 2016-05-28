@@ -6,7 +6,6 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import javax.swing.JTable;
-import javax.swing.text.View;
 
 import controllerListener.InsertInTimeTable;
 

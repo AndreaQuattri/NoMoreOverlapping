@@ -5,7 +5,6 @@ import java.awt.event.ActionListener;
 
 import mvc.MainView;
 import mvc.ManagementTableView;
-import mvc.ViewTimeTable;
 
 public class UpdateRecordListener implements  ActionListener
 {

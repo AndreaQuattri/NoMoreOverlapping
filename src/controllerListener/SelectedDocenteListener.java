@@ -4,10 +4,7 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ContainerEvent;
-import java.awt.event.ContainerListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
+
 import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -15,10 +12,6 @@ import java.util.Date;
 import java.util.Vector;
 
 import javax.swing.JTable;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
-import javax.swing.event.MenuEvent;
-import javax.swing.event.MenuListener;
 import javax.swing.table.DefaultTableCellRenderer;
 
 import mvc.Model;
@@ -38,6 +31,7 @@ public class SelectedDocenteListener implements  ActionListener
 		this.matricola = matricola;
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		

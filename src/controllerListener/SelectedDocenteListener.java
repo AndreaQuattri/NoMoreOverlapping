@@ -34,28 +34,31 @@ public class SelectedDocenteListener implements  ActionListener
 	@SuppressWarnings("deprecation")
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		
+
+
 
 		String[] appoggio;
 		for (int i=0; i<viewOrario.getVisualizzaDocente().getItemCount(); i++){
-			 appoggio = viewOrario.getVisualizzaDocente().getItem(i).getText().split("-");
-			 if (appoggio[0].trim().equals(matricola))
-				 viewOrario.getVisualizzaDocente().getItem(i).setSelected(true);
-			 else
-				 viewOrario.getVisualizzaDocente().getItem(i).setSelected(false);
+			appoggio = viewOrario.getVisualizzaDocente().getItem(i).getText().split("-");
+			if (appoggio[0].trim().equals(matricola))
+				viewOrario.getVisualizzaDocente().getItem(i).setSelected(true);
+			else
+				viewOrario.getVisualizzaDocente().getItem(i).setSelected(false);
 		}
 		for (int i=0; i<viewOrario.getVisualizzaAttività().getItemCount(); i++)
 			viewOrario.getVisualizzaAttività().getItem(i).setSelected(false);
 		for (int i=0; i<viewOrario.getVisualizzaCorso().getItemCount(); i++)
 			viewOrario.getVisualizzaCorso().getItem(i).setSelected(false);
-		
+		viewOrario.getVisualizzaTutto().getItem(0).setSelected(false);
 
-		
+
+
 		model.setTabella(new Vector<Vector<String>>());
 
-		for (int i = 0; i<21; i++){
-			viewOrario.getTableRecords().removeRow(0);
-		}
+		if(viewOrario.getTableRecords().getRowCount()!=0)
+			for (int i = 0; i<21; i++){
+				viewOrario.getTableRecords().removeRow(0);
+			}
 
 
 		ArrayList<String> listGiorni = new ArrayList<String>();
@@ -93,7 +96,7 @@ public class SelectedDocenteListener implements  ActionListener
 			model.getTabella().addElement(new Vector<String>());
 			for (int j=0; j<model.getListOrario().get(i).getElencoAssegnamenti().size(); j++){
 
-				
+
 				for (int iDoc = 0; iDoc < model.getListOrario().get(i).getElencoAssegnamenti().get(j).getAttività().getElencoResponsabili().size(); iDoc++){
 					if (model.getListOrario().get(i).getElencoAssegnamenti().get(j).getAttività().getElencoResponsabili().get(iDoc).getMatricola().equals(matricola))
 						countDay++;

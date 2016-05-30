@@ -16,46 +16,31 @@ public class UpdateTimeTable extends JFrame implements Observer{
 	private static final long serialVersionUID = 1L;
 	private JButton buttonInserisci;
 
-	public JButton getButtonInserisci() {
-		return buttonInserisci;
-	}
-
-	public void setButtonInserisci(JButton buttonInserisci) {
-		this.buttonInserisci = buttonInserisci;
-	}
+	
 
 	private Model model;
 	private JComboBox comboGitaConvegno;
 	private int row;
 	private int col;
+	private int semestre;
 
 
-	public JComboBox getComboGita() {
-		return comboGitaConvegno;
-	}
-
-	public void setComboGita(JComboBox comboGitaConvegno) {
-		this.comboGitaConvegno = comboGitaConvegno;
-	}
+	
 
 	private JLabel labelDisciplina;
 
 
 
-	public JLabel getLabelDisciplina() {
-		return labelDisciplina;
-	}
+	
 
-	public void setLabelDisciplina(JLabel labelDisciplina) {
-		this.labelDisciplina = labelDisciplina;
-	}
-
-	public UpdateTimeTable(Model model, int row, int col)
+	public UpdateTimeTable(Model model, int row, int col, int semestre)
 	{
 
 		this.model = model;
 		this.row = row;
 		this.col = col;
+		this.semestre = semestre;
+		
 
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -95,8 +80,9 @@ public class UpdateTimeTable extends JFrame implements Observer{
 
 
 		if (numDiscipline!=0){
-			labelDisciplina = new JLabel(model.getListOrario().get(indice).getElencoAssegnamenti().get(0).getFasciaOraria().getInizio().toString().substring(11, 19) + " - " + 
-					model.getListOrario().get(indice).getElencoAssegnamenti().get(0).getFasciaOraria().getFine().toString().substring(11, 19) );
+			labelDisciplina = new JLabel(model.getListOrario().get(indice).getElencoAssegnamenti().get(0).getFasciaOraria().getGiorno().toString() + " \t " +
+										model.getListOrario().get(indice).getElencoAssegnamenti().get(0).getFasciaOraria().getInizio().toString().substring(11, 19) + " - " + 
+										model.getListOrario().get(indice).getElencoAssegnamenti().get(0).getFasciaOraria().getFine().toString().substring(11, 19) );
 			labelDisciplina.setBounds(100, 70, 500, 29);
 			getContentPane().add(labelDisciplina);
 		}
@@ -112,32 +98,23 @@ public class UpdateTimeTable extends JFrame implements Observer{
 		comboGitaConvegno = new JComboBox();
 
 		comboGitaConvegno.addItem("");
-		for (int i=0; i<model.getListGita().size();i++)
-			comboGitaConvegno.addItem(model.getListGita().get(i).getIdGita() 
-					+ " - " + model.getListGita().get(i).getNome() + " - " 
-					+ model.getListGita().get(i).getOre());
-
-
-		for (int i=0; i<model.getListConvegno().size();i++)
-			comboGitaConvegno.addItem(model.getListConvegno().get(i).getIdConvegno() 
-					+ " - " + model.getListConvegno().get(i).getNome() + " - " 
-					+ model.getListConvegno().get(i).getOre());
-
-		for (int i=0, k; i<model.getListDisciplina().size(); i++){
-			if(model.getListDisciplina().get(i).getSemestre()==1){
-
-				for (k=0; k<model.getListAttivitàInserite().size(); k++){
-					if (model.getListDisciplina().get(i).getId().equals(model.getListAttivitàInserite().get(k).getId()))
-						break;
-				}
-				if (k==model.getListAttivitàInserite().size()){
-					comboGitaConvegno.addItem(model.getListDisciplina().get(i).getCodice() 
-							+ " - " + model.getListDisciplina().get(i).getNome() + " - " 
-							+ model.getListDisciplina().get(i).getOre());
-				}
+		for (int i=0; i<model.getListGita().size();i++){
+			if(model.getListGita().get(i).getSemestre()==semestre){
+				comboGitaConvegno.addItem(model.getListGita().get(i).getId() 
+						+ " - " + model.getListGita().get(i).getNome() + " - " 
+						+ model.getListGita().get(i).getOre());
 			}
 		}
 
+
+		for (int i=0; i<model.getListConvegno().size();i++){
+			if(model.getListConvegno().get(i).getSemestre()==semestre){
+			comboGitaConvegno.addItem(model.getListConvegno().get(i).getId() 
+					+ " - " + model.getListConvegno().get(i).getNome() + " - " 
+					+ model.getListConvegno().get(i).getOre());
+			}
+		}
+		
 		comboGitaConvegno.setBounds(69, bound+50, 500, 29);
 		getContentPane().add(comboGitaConvegno);
 
@@ -196,6 +173,30 @@ public class UpdateTimeTable extends JFrame implements Observer{
 
 	public void setCol(int col) {
 		this.col = col;
+	}
+	
+	public JButton getButtonInserisci() {
+		return buttonInserisci;
+	}
+
+	public void setButtonInserisci(JButton buttonInserisci) {
+		this.buttonInserisci = buttonInserisci;
+	}
+	
+	public JComboBox getComboGita() {
+		return comboGitaConvegno;
+	}
+
+	public void setComboGita(JComboBox comboGitaConvegno) {
+		this.comboGitaConvegno = comboGitaConvegno;
+	}
+	
+	public JLabel getLabelDisciplina() {
+		return labelDisciplina;
+	}
+
+	public void setLabelDisciplina(JLabel labelDisciplina) {
+		this.labelDisciplina = labelDisciplina;
 	}
 
 

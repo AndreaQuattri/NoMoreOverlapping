@@ -1,7 +1,5 @@
 package connectToDatabase;
 
-import javax.management.InstanceAlreadyExistsException;
-
 import mvc.Model;
 import myComponents.Assegnamento;
 import myComponents.Attività;
@@ -14,7 +12,6 @@ public class DisciplinaInseritaPiano {
 
 
 	public DisciplinaInseritaPiano(Model model) {
-		// TODO Auto-generated constructor stub
 		this.model = model;
 	}
 
@@ -28,6 +25,7 @@ public class DisciplinaInseritaPiano {
 		return false;
 	}
 
+	
 	public boolean giàInsert(String id){
 
 			for (int i=0; i<model.getListAssegnamento().size(); i++){
@@ -37,6 +35,7 @@ public class DisciplinaInseritaPiano {
 		return false;	
 	}
 
+	
 	public boolean giàInsertDocente (String matricola, String id, int subId){
 
 			for (int i=0; i<model.getListAssegnamento().size(); i++){
@@ -46,10 +45,7 @@ public class DisciplinaInseritaPiano {
 							((Disciplina)model.getListAssegnamento().get(i).getAttività()).getSubId()==subId)
 						return true;
 				}
-
 			}
-
-
 		return false;
 	}
 
@@ -82,8 +78,6 @@ public class DisciplinaInseritaPiano {
 		boolean flag = true;
 
 		while (flag){
-			
-			
 			int j = iInizioRandom;
 			for (int iScelta=0; iScelta<6 && flag; iScelta++, j = (j+1)%6){
 				for (int k=0; k<21 && flag ; k++){
@@ -110,11 +104,9 @@ public class DisciplinaInseritaPiano {
 						iMatrice++;
 						break;
 					}
-
 				}
 			}
 		}
-
 
 	}
 
@@ -149,11 +141,12 @@ public class DisciplinaInseritaPiano {
 			}
 		}
 		return false;
+		
 	}
 
 
 	public boolean èVuotaeCiSta(int hour, int k, int j, int[][] matrix, int iMatrice, boolean pausaPranzo) {
-		// TODO Auto-generated method stub
+
 		while(hour>0){
 
 			if (matrix[k][j]>iMatrice || (k==10 && pausaPranzo))
@@ -161,9 +154,8 @@ public class DisciplinaInseritaPiano {
 			k++;
 			hour--;
 		}
-
-
-		return true;	
+		return true;
+		
 	}
 
 
@@ -182,9 +174,9 @@ public class DisciplinaInseritaPiano {
 
 		}
 
-
 	}
 
+	
 	public int getColonna (String day){
 
 		if (day.equals("Lunedi"))
@@ -247,8 +239,8 @@ public class DisciplinaInseritaPiano {
 			return 19;
 		if (d.equals("18:30:00"))
 			return 20;
-
 		return 0;
+		
 	}
 
 
@@ -278,7 +270,6 @@ public class DisciplinaInseritaPiano {
 	public String getTime(int riga) {
 
 		switch (riga){
-
 		case 0:
 			return "08:30:00";
 		case 1:
@@ -323,7 +314,6 @@ public class DisciplinaInseritaPiano {
 			return "18:30:00";
 		default:
 			return "20:00:00";
-
 		}
 
 	}
@@ -332,7 +322,6 @@ public class DisciplinaInseritaPiano {
 	public String getGiorno(int colonna) {
 
 		switch (colonna){
-
 		case 0:
 			return "Lunedi";
 		case 1:
@@ -347,9 +336,7 @@ public class DisciplinaInseritaPiano {
 			return "Sabato";
 		default:
 			return "";
-
 		}
-
 
 	}
 

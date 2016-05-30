@@ -196,10 +196,6 @@ public class Model extends Observable{
 		return enableButtonInserisciGita;
 	}
 
-
-
-
-
 	public void enableModificaTable(boolean enableModificaTable) {
 		this.enableModificaTable = enableModificaTable;
 		sendNotify(MyNotify.ENABLE_BUTTON_MODIFICA);
@@ -355,7 +351,6 @@ public class Model extends Observable{
 	public Attività getAttivitàFromId (String id){
 
 		int i;
-		Attività a;
 
 		for (i=0; i<listGita.size(); i++){
 			if (listGita.get(i).getId().equals(id)){

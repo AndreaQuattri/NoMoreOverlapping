@@ -35,27 +35,30 @@ public class SelectedPianoListener implements  ActionListener
 	{
 
 
+
+
 		String[] appoggio;
 		for (int i=0; i<viewOrario.getVisualizzaCorso().getItemCount(); i++){
-			 appoggio = viewOrario.getVisualizzaCorso().getItem(i).getText().split("-");
-			 if (appoggio[0].trim().equals(codice))
-				 viewOrario.getVisualizzaCorso().getItem(i).setSelected(true);
-			 else
-				 viewOrario.getVisualizzaCorso().getItem(i).setSelected(false);
+			appoggio = viewOrario.getVisualizzaCorso().getItem(i).getText().split("-");
+			if (appoggio[0].trim().equals(codice))
+				viewOrario.getVisualizzaCorso().getItem(i).setSelected(true);
+			else
+				viewOrario.getVisualizzaCorso().getItem(i).setSelected(false);
 
 		}
 		for (int i=0; i<viewOrario.getVisualizzaAttività().getItemCount(); i++)
 			viewOrario.getVisualizzaAttività().getItem(i).setSelected(false);
 		for (int i=0; i<viewOrario.getVisualizzaDocente().getItemCount(); i++)
 			viewOrario.getVisualizzaDocente().getItem(i).setSelected(false);
-		
+		viewOrario.getVisualizzaTutto().getItem(0).setSelected(false);
 
 
 		model.setTabella(new Vector<Vector<String>>());
 
-		for (int i = 0; i<21; i++){
-			viewOrario.getTableRecords().removeRow(0);
-		}
+		if(viewOrario.getTableRecords().getRowCount()!=0)
+			for (int i = 0; i<21; i++){
+				viewOrario.getTableRecords().removeRow(0);
+			}
 
 
 		ArrayList<String> listGiorni = new ArrayList<String>();

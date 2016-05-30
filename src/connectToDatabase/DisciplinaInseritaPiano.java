@@ -1,7 +1,10 @@
 package connectToDatabase;
 
+import javax.management.InstanceAlreadyExistsException;
+
 import mvc.Model;
 import myComponents.Assegnamento;
+import myComponents.Attività;
 import myComponents.Disciplina;
 
 public class DisciplinaInseritaPiano {
@@ -88,7 +91,7 @@ public class DisciplinaInseritaPiano {
 					if (matrix[k][j]==iMatrice && 
 							model.getListFasciaOraria().get(iFascia).getGiorno().equals(model.getListFasciaOraria().get((iFascia+hour-1)%model.getListFasciaOraria().size()).getGiorno())){
 
-						if (èVuotaeCiSta(hour, k, j, matrix, iMatrice) && 
+						if (èVuotaeCiSta(hour, k, j, matrix, iMatrice, true) && 
 								!giàOccupataDaStessaAtt(d, hour, k, j) &&
 								!giàOccupataDaStessoProf(d, k, j)){
 							for (int i=0; i<hour; i++){
@@ -116,12 +119,17 @@ public class DisciplinaInseritaPiano {
 	}
 
 
-	private boolean giàOccupataDaStessoProf(Disciplina d, int riga, int colonna) {
+	public boolean giàOccupataDaStessoProf(Attività d, int riga, int colonna) {
 
 		String day = getGiorno(colonna);
+		int oreDaValutare;
+		if (d instanceof Disciplina)
+		oreDaValutare = d.getOre();
+		else
+			oreDaValutare = d.getOre()*2;
 
 
-		for (int iHour=0; iHour < d.getSubOre(); iHour++, riga++){
+		for (int iHour=0; iHour < oreDaValutare; iHour++, riga++){
 			String time = getTime(riga);
 
 			for (int i=0; i<model.getListAssegnamento().size(); i++){
@@ -144,11 +152,11 @@ public class DisciplinaInseritaPiano {
 	}
 
 
-	public boolean èVuotaeCiSta(int hour, int k, int j, int[][] matrix, int iMatrice) {
+	public boolean èVuotaeCiSta(int hour, int k, int j, int[][] matrix, int iMatrice, boolean pausaPranzo) {
 		// TODO Auto-generated method stub
 		while(hour>0){
 
-			if (matrix[k][j]>iMatrice || k==10)
+			if (matrix[k][j]>iMatrice || (k==10 && pausaPranzo))
 				return false;
 			k++;
 			hour--;

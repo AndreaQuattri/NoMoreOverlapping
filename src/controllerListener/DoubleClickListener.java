@@ -1,12 +1,13 @@
-package mvc;
+package controllerListener;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import javax.swing.JTable;
 
-import controllerListener.InsertInTimeTable;
-import controllerListener.SelectedGitaListener;
+import mvc.Model;
+import mvc.UpdateTimeTable;
+import mvc.ViewTimeTable;
 
 
 public class DoubleClickListener implements MouseListener {

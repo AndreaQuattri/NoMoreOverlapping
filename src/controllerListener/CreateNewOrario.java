@@ -1,12 +1,16 @@
 package controllerListener;
 
 
+import java.awt.Color;
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Vector;
 
 import javax.swing.JCheckBoxMenuItem;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
 
 import ElaborazioneDati.GeneraListaDiscipline;
 import ElaborazioneDati.GeneraSequenzaCasuale;
@@ -86,26 +90,55 @@ public class CreateNewOrario implements  ActionListener
 
 		DisciplinaInseritaPiano disciplinaInserita = new DisciplinaInseritaPiano(model);
 
-		ArrayList<Attività> listAttività = new ArrayList<Attività>();
-		ArrayList<Disciplina> listDisciplina = new ArrayList<Disciplina>();
-		ArrayList<Disciplina> listDisciplinaInseritaPerOra = new ArrayList<Disciplina>();
-		ArrayList<Disciplina> listDisciplinaSupporto = new ArrayList<Disciplina>();
-		ArrayList<Docente> listDocenteSupport = new ArrayList<Docente>();
+		ArrayList<Attività> listAttività;
+		ArrayList<Disciplina> listDisciplina;
+		ArrayList<Disciplina> listDisciplinaInseritaPerOra;
+		ArrayList<Disciplina> listDisciplinaSupporto;
+		ArrayList<Docente> listDocenteSupport;
 		model.setListDocentiInseriti(new ArrayList<Docente>());
 		model.setListAttivitàDeiDocenti(new ArrayList<Attività>());
 		model.setListAttivitàInserite(new ArrayList<Attività>());
+		
+		viewOrario.getVisualizzaTutto().removeAll();
+		viewOrario.setButtonCheckBox(new JCheckBoxMenuItem("Tutto"));
+		viewOrario.getVisualizzaTutto().add(viewOrario.getButtonCheckBox());
+		viewOrario.getButtonCheckBox().addActionListener(new SelectedAllListener(model, viewOrario));
 
+		viewOrario.getVisualizzaAttività().removeAll();
+		viewOrario.getVisualizzaDocente().removeAll();
 
 		GeneraSequenzaCasuale g = new GeneraSequenzaCasuale(model.getListCorsoDiStudi().size());
 
-		int numIt=0;
-		while(numIt<1){		
+		int numIt=0, numMaxIt;
+		if (viewOrario.getPocheIterazioni().isSelected())
+			numIt = 1;
+		else if (viewOrario.getMedieIterazioni().isSelected())
+			numIt = 100;
+		else
+			numIt = 10000;
+		numMaxIt = numIt;
+		
+		while(numIt>0 && numSov!=0){		
 
 			numSov = 0;
 			
-			viewOrario.getVisualizzaAttività().removeAll();
+			listAttività = new ArrayList<Attività>();
+			listDisciplina = new ArrayList<Disciplina>();
+			listDisciplinaInseritaPerOra = new ArrayList<Disciplina>();
+			listDisciplinaSupporto = new ArrayList<Disciplina>();
+			listDocenteSupport = new ArrayList<Docente>();
+			model.setListDocentiInseriti(new ArrayList<Docente>());
+			model.setListAttivitàDeiDocenti(new ArrayList<Attività>());
+			model.setListAttivitàInserite(new ArrayList<Attività>());
+			model.setListAssegnamento(new ArrayList<Assegnamento>());
+			
+			
+			
+			
+			
+			
+			
 			viewOrario.getVisualizzaCorso().removeAll();
-			viewOrario.getVisualizzaDocente().removeAll();
 			int[] v = g.generaSequenza();
 	
 
@@ -117,7 +150,7 @@ public class CreateNewOrario implements  ActionListener
 
 
 			//corsi di studio da valutare
-			for (; indiceVettore < model.getListCorsoDiStudi().size() ; indiceVettore++){
+			for (indiceVettore = 0; indiceVettore < model.getListCorsoDiStudi().size() ; indiceVettore++){
 
 				indice = v[indiceVettore];
 
@@ -228,6 +261,9 @@ public class CreateNewOrario implements  ActionListener
 
 					}
 
+					for(int j=0; j<6; j++)
+						for (int k=0; k<21; k++)
+							model.getMatrix()[k][j] = 0;
 
 					for (int j=0; j<6; j++)
 						for (int k=0; k<21; k++){
@@ -258,7 +294,7 @@ public class CreateNewOrario implements  ActionListener
 			
 
 			System.out.println(numIt + " - " + numSov);
-			numIt++;
+			numIt--;
 
 			
 		}
@@ -285,6 +321,8 @@ public class CreateNewOrario implements  ActionListener
 
 		}
 
+		viewOrario.getLabelNumIterazioni().setText("Iterazioni effettuate: "+(numMaxIt-numIt));
+		viewOrario.getLabelNumSovr().setText("Il numero di sovrapposizioni è: "+numSov);
 
 		ArrayList<String> listGiorni = new ArrayList<String>();
 		listGiorni.add("Lunedi");
@@ -295,14 +333,81 @@ public class CreateNewOrario implements  ActionListener
 		listGiorni.add("Sabato");
 
 
+		if (viewOrario.getTableRecords().getRowCount()!=0){
+			for (int i = 0; i<21; i++){
+				viewOrario.getTableRecords().removeRow(0);
+			}
+
+		}
+		else{
+			if(viewOrario.getTableRecords().getColumnCount()==0){
+				viewOrario.getTableRecords().addColumn("Orario");
+				viewOrario.getTableRecords().addColumn("Lunedì");
+				viewOrario.getTableRecords().addColumn("Martedì");
+				viewOrario.getTableRecords().addColumn("Mercoledì");
+				viewOrario.getTableRecords().addColumn("Giovedì");
+				viewOrario.getTableRecords().addColumn("Venerdì");
+				viewOrario.getTableRecords().addColumn("Sabato");
+			}
+
+		}
 
 
 		CreateTimeTable create = new CreateTimeTable(model);
 		create.fromAssegnamentoToOrarioPerGiorno();
 
+		
 		model.setTabella(new Vector<Vector<String>>());
 		model.fromOrarioToTable();
-		viewOrario.visualizzaOrario();
+		
+		viewOrario.getVisualizzaTutto().getItem(0).setSelected(true);
+		
+		if(viewOrario.getTableRecords().getRowCount()!=0)
+		for (int i = 0; i<21; i++){
+			viewOrario.getTableRecords().removeRow(0);
+		}
+
+
+				for(int i=0; i<21; i++){
+					viewOrario.getTableRecords().addRow(model.getTabella().get(i));
+				}
+
+				for (int i=1; i<7; i++){
+					viewOrario.getTable().getColumnModel().getColumn(i).setCellRenderer(new DefaultTableCellRenderer() {
+						/**
+						 * 
+						 */
+						private static final long serialVersionUID = 1L;
+
+						public Component getTableCellRendererComponent (JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) 
+						{
+							Component cell = super.getTableCellRendererComponent (table, value, isSelected, hasFocus, row, column);
+
+							if (value == null)
+								return null;
+
+							if (value.equals("0")){
+								cell.setBackground( Color.gray );
+								cell.setForeground(Color.gray);
+							}
+							else{
+								if (value.equals("1")){
+									cell.setBackground( Color.green );
+									cell.setForeground(Color.green);
+								}
+								else{
+									cell.setBackground( Color.red );
+									cell.setForeground(Color.red);
+								}
+
+							}
+
+							return cell;
+
+						}});
+
+				}
+		
 
 
 

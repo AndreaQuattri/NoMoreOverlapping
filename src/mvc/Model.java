@@ -352,25 +352,33 @@ public class Model extends Observable{
 	}
 
 
-	public Attività getAttivitàFromId (int id){
+	public Attività getAttivitàFromId (String id){
 
 		int i;
-		
+		Attività a;
+
 		for (i=0; i<listGita.size(); i++){
-			
-			if (listGita.get(i).getIdGita() == id){
+			if (listGita.get(i).getId().equals(id)){
 				break;
 			}
-
 		}
-		
-		if (i == listGita.size())
-			return null;
-		
-		Gita g = listGita.get(i);
-				
+		if (i<listGita.size())
+			return listGita.get(i);
 
-		return g;
+
+
+		for (i=0; i<listConvegno.size(); i++){
+			if (listConvegno.get(i).getId().equals(id)){
+				break;
+			}
+		}
+
+		if (i<listConvegno.size())
+			return listConvegno.get(i);
+
+
+
+		return null;
 
 	}
 

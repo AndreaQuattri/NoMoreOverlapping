@@ -8,8 +8,12 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Vector;
 
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+
 import memorizzazioneDati.GeneraPianiDiStudio;
 import memorizzazioneDati.InsertValues;
+import mvc.DoubleClickListener;
 import mvc.Model;
 import mvc.ViewTimeTable;
 import myComponents.Assegnamento;
@@ -104,7 +108,19 @@ public class OpenViewGestisciOrario implements  ActionListener
 				generaPiani.generaPiani();
 				
 				
+				if(viewOrario.getTableRecords().getRowCount()!=0)
+					for (int i = 0; i<21; i++){
+						viewOrario.getTableRecords().removeRow(0);
+					}
+
+				for (int i=0; i<viewOrario.getTableRecords().getColumnCount(); i++)
+					viewOrario.getTableRecords().setColumnCount(0);
+				
+				viewOrario.getLabelNumIterazioni().setText("");
+				viewOrario.getLabelNumSovr().setText("");
+				
 				viewOrario.getFrame().setVisible(true);
+				
 
 
 			} catch (IOException e) {

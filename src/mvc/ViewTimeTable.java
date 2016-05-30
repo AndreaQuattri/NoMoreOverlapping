@@ -42,14 +42,6 @@ public class ViewTimeTable extends JFrame implements Observer {
 	private JLabel labelNumSovr;
 
 
-
-	
-
-
-
-
-
-
 	private JMenuBar menuBar;
 
 	private JMenu menuFile;
@@ -66,8 +58,6 @@ public class ViewTimeTable extends JFrame implements Observer {
 	private ButtonGroup group;
 
 	
-
-
 	private JMenu menuVisualizzaPer;
 	private JMenu visualizzaAttività;
 	private JMenu visualizzaDocente;
@@ -91,12 +81,6 @@ public class ViewTimeTable extends JFrame implements Observer {
 
 	private Model model;
 	private JLabel labelNumIterazioni;
-
-
-
-
-
-
 
 
 
@@ -177,11 +161,7 @@ public class ViewTimeTable extends JFrame implements Observer {
 
 		frame.setJMenuBar(menuBar);
 
-
-
 	}
-
-
 
 
 

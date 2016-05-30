@@ -18,42 +18,46 @@ import mvc.ViewTimeTable;
 
 public class SelectedActivityListener implements  ActionListener
 {
-	
+
 	private Model model;
 	private ViewTimeTable viewOrario;
 	private String nomeAttività;
-	
+
 	public SelectedActivityListener(Model model, ViewTimeTable viewOrario, String nomeAttività) {
 		// TODO Auto-generated constructor stub
 		this.model = model;
 		this.viewOrario = viewOrario;
 		this.nomeAttività = nomeAttività;
 	}
-	
+
 	@SuppressWarnings("deprecation")
 	@Override
 	public void actionPerformed(ActionEvent action)
 	{
 
+
+
 		String appoggio;
 		for (int i=0; i<viewOrario.getVisualizzaAttività().getItemCount(); i++){
-			 appoggio = viewOrario.getVisualizzaAttività().getItem(i).getText();
-			 if (appoggio.equals(nomeAttività))
-				 viewOrario.getVisualizzaAttività().getItem(i).setSelected(true);
-			 else
-				 viewOrario.getVisualizzaAttività().getItem(i).setSelected(false);
+			appoggio = viewOrario.getVisualizzaAttività().getItem(i).getText();
+			if (appoggio.equals(nomeAttività))
+				viewOrario.getVisualizzaAttività().getItem(i).setSelected(true);
+			else
+				viewOrario.getVisualizzaAttività().getItem(i).setSelected(false);
 		}
 		for (int i=0; i<viewOrario.getVisualizzaCorso().getItemCount(); i++)
 			viewOrario.getVisualizzaCorso().getItem(i).setSelected(false);
 		for (int i=0; i<viewOrario.getVisualizzaDocente().getItemCount(); i++)
 			viewOrario.getVisualizzaDocente().getItem(i).setSelected(false);
-		
-		
+		viewOrario.getVisualizzaTutto().getItem(0).setSelected(false);
+
+
 		model.setTabella(new Vector<Vector<String>>());
 
-		for (int i = 0; i<21; i++){
-			viewOrario.getTableRecords().removeRow(0);
-		}
+		if(viewOrario.getTableRecords().getRowCount()!=0)
+			for (int i = 0; i<21; i++){
+				viewOrario.getTableRecords().removeRow(0);
+			}
 
 
 		ArrayList<String> listGiorni = new ArrayList<String>();

@@ -1,7 +1,5 @@
 package mvc;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -24,9 +22,6 @@ public class DoubleClickListener implements MouseListener {
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		
-
-		
 
 		//Ricavo la tabella che ha prodotto l'evento
 		JTable table = (JTable)e.getSource();
@@ -34,12 +29,9 @@ public class DoubleClickListener implements MouseListener {
 		int clickedRow = table.rowAtPoint(e.getPoint());
 		int clickedCol = table.columnAtPoint(e.getPoint());
 
-
 		if (!(clickedCol == 6 && clickedRow>9)){
 			UpdateTimeTable updateTimeTable = new UpdateTimeTable(model, clickedRow, clickedCol, viewOrario.getButtonSem1().isSelected()==true? 1 : 2);
 			updateTimeTable.setVisible(true);
-
-
 			updateTimeTable.selectedGita(new SelectedGitaListener(model));
 			updateTimeTable.insertGitaConvegno(new InsertInTimeTable(model, viewOrario , updateTimeTable));
 		}

@@ -8,12 +8,9 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Vector;
 
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
 
 import memorizzazioneDati.GeneraPianiDiStudio;
 import memorizzazioneDati.InsertValues;
-import mvc.DoubleClickListener;
 import mvc.Model;
 import mvc.ViewTimeTable;
 import myComponents.Assegnamento;
@@ -118,6 +115,15 @@ public class OpenViewGestisciOrario implements  ActionListener
 				
 				viewOrario.getLabelNumIterazioni().setText("");
 				viewOrario.getLabelNumSovr().setText("");
+				viewOrario.getSalva().setEnabled(false);
+				
+				viewOrario.getVisualizzaTutto().removeAll();
+				viewOrario.getVisualizzaAttività().removeAll();
+				viewOrario.getVisualizzaDocente().removeAll();
+				viewOrario.getVisualizzaCorso().removeAll();
+				viewOrario.getPocheIterazioni().setSelected(true);
+
+
 				
 				viewOrario.getFrame().setVisible(true);
 				

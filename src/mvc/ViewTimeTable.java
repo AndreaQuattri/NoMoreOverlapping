@@ -41,18 +41,7 @@ public class ViewTimeTable extends JFrame implements Observer {
 
 
 
-	public JLabel getLabelNumSovr() {
-		return labelNumSovr;
-	}
-
-
-
-
-
-
-	public void setLabelNumSovr(JLabel labelNumSovr) {
-		this.labelNumSovr = labelNumSovr;
-	}
+	
 
 
 
@@ -87,60 +76,6 @@ public class ViewTimeTable extends JFrame implements Observer {
 	private JMenu parametri;
 	private JMenu numeroIterazioni;
 	private JRadioButtonMenuItem pocheIterazioni;
-	public JRadioButtonMenuItem getPocheIterazioni() {
-		return pocheIterazioni;
-	}
-
-
-
-
-
-
-	public void setPocheIterazioni(JRadioButtonMenuItem pocheIterazioni) {
-		this.pocheIterazioni = pocheIterazioni;
-	}
-
-
-
-
-
-
-	public JRadioButtonMenuItem getMedieIterazioni() {
-		return medieIterazioni;
-	}
-
-
-
-
-
-
-	public void setMedieIterazioni(JRadioButtonMenuItem medieIterazioni) {
-		this.medieIterazioni = medieIterazioni;
-	}
-
-
-
-
-
-
-	public JRadioButtonMenuItem getTanteIterazioni() {
-		return tanteIterazioni;
-	}
-
-
-
-
-
-
-	public void setTanteIterazioni(JRadioButtonMenuItem tanteIterazioni) {
-		this.tanteIterazioni = tanteIterazioni;
-	}
-
-
-
-
-
-
 	private JRadioButtonMenuItem medieIterazioni;
 	private JRadioButtonMenuItem tanteIterazioni;
 
@@ -156,18 +91,7 @@ public class ViewTimeTable extends JFrame implements Observer {
 	private JLabel labelNumIterazioni;
 
 
-	public JLabel getLabelNumIterazioni() {
-		return labelNumIterazioni;
-	}
 
-
-
-
-
-
-	public void setLabelNumIterazioni(JLabel labelNumIterazioni) {
-		this.labelNumIterazioni = labelNumIterazioni;
-	}
 
 
 
@@ -182,8 +106,6 @@ public class ViewTimeTable extends JFrame implements Observer {
 		// View as observer of model
 		model.addObserver(this);
 
-		// Init view like model
-		initViewLikeModel();
 
 		menuBar = new JMenuBar();
 
@@ -312,19 +234,12 @@ public class ViewTimeTable extends JFrame implements Observer {
 					.addContainerGap(82, Short.MAX_VALUE))
 		);
 		frame.getContentPane().setLayout(groupLayout);
+		
 
 
 	}
 
 
-
-	private void initViewLikeModel()
-	{
-
-		//buttonLoadOrario.setEnabled(model.isEnableModificaTable());
-		//buttonNewOrario.setEnabled(model.isEnableModificaTable());
-
-	}
 
 	public void visualizzaOrario(){
 		if (this.getTableRecords().getRowCount()!=0){
@@ -402,18 +317,15 @@ public class ViewTimeTable extends JFrame implements Observer {
 	}
 
 	public void pressButtonNewOrario2(ActionListener listener) {
-		// TODO Auto-generated method stub
 		nuovoOrario.addActionListener(listener);
 	}
 
 
 	public void pressButtonCarica(ActionListener listener) {
-		// TODO Auto-generated method stub
 		carica.addActionListener(listener);
 	}
 
 	public void pressButtonSalva(ActionListener listener) {
-		// TODO Auto-generated method stub
 		salva.addActionListener(listener);
 	}
 
@@ -471,7 +383,6 @@ public class ViewTimeTable extends JFrame implements Observer {
 	}
 
 
-
 	public JMenu getRadioButtonMenu() {
 		return radioButtonMenu;
 	}
@@ -480,13 +391,10 @@ public class ViewTimeTable extends JFrame implements Observer {
 		this.radioButtonMenu = radioButtonMenu;
 	}
 
+	
 	public JFrame getFrame(){
 		return frame;
 	}
-
-
-
-
 
 
 	public JMenu getVisualizzaAttività() {
@@ -498,52 +406,21 @@ public class ViewTimeTable extends JFrame implements Observer {
 	}
 
 
-
-
-
-
 	public JMenu getVisualizzaDocente() {
 		return visualizzaDocente;
 	}
-
-
-
-
-
 
 	public void setVisualizzaDocente(JMenu visualizzaDocente) {
 		this.visualizzaDocente = visualizzaDocente;
 	}
 
 
-
-
-
-
 	public JMenu getVisualizzaCorso() {
 		return visualizzaCorso;
 	}
 
-
-
-
-
-
 	public void setVisualizzaCorso(JMenu visualizzaCorso) {
 		this.visualizzaCorso = visualizzaCorso;
-	}
-
-
-
-
-
-
-
-
-
-
-	public JCheckBoxMenuItem getButtonCheckBox() {
-		return buttonCheckBox;
 	}
 
 
@@ -554,46 +431,87 @@ public class ViewTimeTable extends JFrame implements Observer {
 	public void setVisualizzaTutto(JMenu visualizzaTutto) {
 		this.visualizzaTutto = visualizzaTutto;
 	}
+	
 
-
+	public JCheckBoxMenuItem getButtonCheckBox() {
+		return buttonCheckBox;
+	}
 
 	public void setButtonCheckBox(JCheckBoxMenuItem buttonCheckBox) {
 		this.buttonCheckBox = buttonCheckBox;
 	}
 
 
-
-
-
-
 	public JMenu getParametri() {
 		return parametri;
 	}
-
-
-
-
-
 
 	public void setParametri(JMenu parametri) {
 		this.parametri = parametri;
 	}
 
-
-
-
-
-
+	
 	public JMenu getNumeroIterazioni() {
 		return numeroIterazioni;
 	}
 
-
-
-
-
-
 	public void setNumeroIterazioni(JMenu numeroIterazioni) {
 		this.numeroIterazioni = numeroIterazioni;
 	}
+	
+	
+	public JRadioButtonMenuItem getPocheIterazioni() {
+		return pocheIterazioni;
+	}
+
+	public void setPocheIterazioni(JRadioButtonMenuItem pocheIterazioni) {
+		this.pocheIterazioni = pocheIterazioni;
+	}
+	
+
+	public JLabel getLabelNumIterazioni() {
+		return labelNumIterazioni;
+	}
+
+	public void setLabelNumIterazioni(JLabel labelNumIterazioni) {
+		this.labelNumIterazioni = labelNumIterazioni;
+	}
+	
+	
+	public JLabel getLabelNumSovr() {
+		return labelNumSovr;
+	}
+
+	public void setLabelNumSovr(JLabel labelNumSovr) {
+		this.labelNumSovr = labelNumSovr;
+	}
+	
+	
+	public JMenuItem getSalva() {
+		return salva;
+	}
+
+	public void setSalva(JMenuItem salva) {
+		this.salva = salva;
+	}
+	
+	
+	public JRadioButtonMenuItem getMedieIterazioni() {
+		return medieIterazioni;
+	}
+
+	public void setMedieIterazioni(JRadioButtonMenuItem medieIterazioni) {
+		this.medieIterazioni = medieIterazioni;
+	}
+	
+	
+	public JRadioButtonMenuItem getTanteIterazioni() {
+		return tanteIterazioni;
+	}
+
+	public void setTanteIterazioni(JRadioButtonMenuItem tanteIterazioni) {
+		this.tanteIterazioni = tanteIterazioni;
+	}
+
+
 }

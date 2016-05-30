@@ -24,6 +24,7 @@ import javax.swing.table.DefaultTableModel;
 
 
 
+
 public class ViewTimeTable extends JFrame implements Observer {
 
 
@@ -36,7 +37,22 @@ public class ViewTimeTable extends JFrame implements Observer {
 
 	private JFrame frame;
 	private JLabel labelTableInTable;
+	private JLabel labelNumSovr;
 
+
+
+	public JLabel getLabelNumSovr() {
+		return labelNumSovr;
+	}
+
+
+
+
+
+
+	public void setLabelNumSovr(JLabel labelNumSovr) {
+		this.labelNumSovr = labelNumSovr;
+	}
 
 
 
@@ -58,29 +74,75 @@ public class ViewTimeTable extends JFrame implements Observer {
 	private JRadioButtonMenuItem buttonSem2;
 	private ButtonGroup group;
 
-	public ButtonGroup getGroup() {
-		return group;
-	}
-
-
-
-
-
-
-	public void setGroup(ButtonGroup group) {
-		this.group = group;
-	}
-
-
-
-
+	
 
 
 	private JMenu menuVisualizzaPer;
 	private JMenu visualizzaAttività;
 	private JMenu visualizzaDocente;
 	private JMenu visualizzaCorso;
+	private JMenu visualizzaTutto;
 	private JCheckBoxMenuItem buttonCheckBox;
+	
+	private JMenu parametri;
+	private JMenu numeroIterazioni;
+	private JRadioButtonMenuItem pocheIterazioni;
+	public JRadioButtonMenuItem getPocheIterazioni() {
+		return pocheIterazioni;
+	}
+
+
+
+
+
+
+	public void setPocheIterazioni(JRadioButtonMenuItem pocheIterazioni) {
+		this.pocheIterazioni = pocheIterazioni;
+	}
+
+
+
+
+
+
+	public JRadioButtonMenuItem getMedieIterazioni() {
+		return medieIterazioni;
+	}
+
+
+
+
+
+
+	public void setMedieIterazioni(JRadioButtonMenuItem medieIterazioni) {
+		this.medieIterazioni = medieIterazioni;
+	}
+
+
+
+
+
+
+	public JRadioButtonMenuItem getTanteIterazioni() {
+		return tanteIterazioni;
+	}
+
+
+
+
+
+
+	public void setTanteIterazioni(JRadioButtonMenuItem tanteIterazioni) {
+		this.tanteIterazioni = tanteIterazioni;
+	}
+
+
+
+
+
+
+	private JRadioButtonMenuItem medieIterazioni;
+	private JRadioButtonMenuItem tanteIterazioni;
 
 
 
@@ -91,6 +153,25 @@ public class ViewTimeTable extends JFrame implements Observer {
 
 
 	private Model model;
+	private JLabel labelNumIterazioni;
+
+
+	public JLabel getLabelNumIterazioni() {
+		return labelNumIterazioni;
+	}
+
+
+
+
+
+
+	public void setLabelNumIterazioni(JLabel labelNumIterazioni) {
+		this.labelNumIterazioni = labelNumIterazioni;
+	}
+
+
+
+
 
 
 	public ViewTimeTable(Model model) {
@@ -142,15 +223,32 @@ public class ViewTimeTable extends JFrame implements Observer {
 		visualizzaDocente = new JMenu("Docente");
 		visualizzaAttività = new JMenu("Attività");
 		visualizzaCorso = new JMenu("Corso di Studi");
+		visualizzaTutto = new JMenu("Generale");
 
+		menuVisualizzaPer.add(visualizzaTutto);
 		menuVisualizzaPer.add(visualizzaAttività);
 		menuVisualizzaPer.add(visualizzaCorso);
 		menuVisualizzaPer.add(visualizzaDocente);
-		//group = new ButtonGroup();
-		//buttonCombo = new JRadioButtonMenuItem("jj");
-		//visualizzaDocente.add(buttonCombo);
-
+		
 		menuBar.add(menuVisualizzaPer);
+
+		
+		parametri = new JMenu("Elenco parametri");
+		numeroIterazioni = new JMenu("Numero iterazioni");
+		parametri.add(numeroIterazioni);
+		pocheIterazioni = new JRadioButtonMenuItem("1");
+		medieIterazioni = new JRadioButtonMenuItem("100");
+		tanteIterazioni = new JRadioButtonMenuItem("10000");
+		pocheIterazioni.setSelected(true);
+		group = new ButtonGroup();
+		group.add(pocheIterazioni);
+		group.add(medieIterazioni);
+		group.add(tanteIterazioni);
+		numeroIterazioni.add(pocheIterazioni);
+		numeroIterazioni.add(medieIterazioni);
+		numeroIterazioni.add(tanteIterazioni);
+		
+		menuBar.add(parametri);
 
 
 		frame.setJMenuBar(menuBar);
@@ -182,22 +280,37 @@ public class ViewTimeTable extends JFrame implements Observer {
 
 
 		scrollPane.setViewportView(table);
+		
+		labelNumSovr = new JLabel("");
+		
+		labelNumIterazioni = new JLabel("");
 
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
 		groupLayout.setHorizontalGroup(
-				groupLayout.createParallelGroup(Alignment.TRAILING)
+			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
-						.addGap(66)
-						.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 775, GroupLayout.PREFERRED_SIZE)
-						.addContainerGap(259, Short.MAX_VALUE))
-				);
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(46)
+							.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 997, GroupLayout.PREFERRED_SIZE))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(465)
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addComponent(labelNumIterazioni)
+								.addComponent(labelNumSovr))))
+					.addContainerGap(57, Short.MAX_VALUE))
+		);
 		groupLayout.setVerticalGroup(
-				groupLayout.createParallelGroup(Alignment.LEADING)
+			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
-						.addGap(229)
-						.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addGap(19))
-				);
+					.addGap(79)
+					.addComponent(labelNumSovr)
+					.addGap(28)
+					.addComponent(labelNumIterazioni)
+					.addGap(47)
+					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(82, Short.MAX_VALUE))
+		);
 		frame.getContentPane().setLayout(groupLayout);
 
 
@@ -214,9 +327,6 @@ public class ViewTimeTable extends JFrame implements Observer {
 	}
 
 	public void visualizzaOrario(){
-
-		//model.setTabella(new Vector<Vector<String>>());
-
 		if (this.getTableRecords().getRowCount()!=0){
 			for (int i = 0; i<21; i++){
 				this.getTableRecords().removeRow(0);
@@ -276,6 +386,7 @@ public class ViewTimeTable extends JFrame implements Observer {
 				}});
 
 		}
+		
 	}
 
 
@@ -309,8 +420,6 @@ public class ViewTimeTable extends JFrame implements Observer {
 	public void pressButtonEsci(ActionListener listener) {
 		esci.addActionListener(listener);
 	}
-
-
 
 
 
@@ -438,11 +547,53 @@ public class ViewTimeTable extends JFrame implements Observer {
 	}
 
 
-
+	public JMenu getVisualizzaTutto() {
+		return visualizzaTutto;
+	}
+	
+	public void setVisualizzaTutto(JMenu visualizzaTutto) {
+		this.visualizzaTutto = visualizzaTutto;
+	}
 
 
 
 	public void setButtonCheckBox(JCheckBoxMenuItem buttonCheckBox) {
 		this.buttonCheckBox = buttonCheckBox;
+	}
+
+
+
+
+
+
+	public JMenu getParametri() {
+		return parametri;
+	}
+
+
+
+
+
+
+	public void setParametri(JMenu parametri) {
+		this.parametri = parametri;
+	}
+
+
+
+
+
+
+	public JMenu getNumeroIterazioni() {
+		return numeroIterazioni;
+	}
+
+
+
+
+
+
+	public void setNumeroIterazioni(JMenu numeroIterazioni) {
+		this.numeroIterazioni = numeroIterazioni;
 	}
 }

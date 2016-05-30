@@ -43,6 +43,8 @@ public class CreateNewOrario implements  ActionListener
 
 
 		model.setTabella(new Vector<Vector<String>>());
+		viewOrario.getSalva().setEnabled(true);
+
 
 		if (viewOrario.getTableRecords().getRowCount()!=0){
 			for (int i = 0; i<21; i++){
@@ -133,11 +135,7 @@ public class CreateNewOrario implements  ActionListener
 			model.setListAssegnamento(new ArrayList<Assegnamento>());
 			
 			
-			
-			
-			
-			
-			
+					
 			viewOrario.getVisualizzaCorso().removeAll();
 			int[] v = g.generaSequenza();
 	

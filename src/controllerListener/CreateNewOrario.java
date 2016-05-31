@@ -140,10 +140,10 @@ public class CreateNewOrario implements  ActionListener
 			int[] v = g.generaSequenza();
 	
 
-			for (int i=0; i<v.length; i++)
-				System.out.print(v[i]+", ");
-			
-			System.out.println();
+//			for (int i=0; i<v.length; i++)
+//				System.out.print(v[i]+", ");
+//			
+//			System.out.println();
 
 
 
@@ -269,7 +269,6 @@ public class CreateNewOrario implements  ActionListener
 							if (matrixSupporto[k][j]>1)
 								numSov++;
 						}
-					//System.out.println("-----"+numSov+"-----");
 
 
 				}
@@ -291,7 +290,7 @@ public class CreateNewOrario implements  ActionListener
 			}
 			
 
-			System.out.println(numIt + " - " + numSov);
+			//System.out.println(numIt + " - " + numSov);
 			numIt--;
 
 			
@@ -320,7 +319,7 @@ public class CreateNewOrario implements  ActionListener
 		}
 
 		viewOrario.getLabelNumIterazioni().setText("Iterazioni effettuate: "+(numMaxIt-numIt));
-		viewOrario.getLabelNumSovr().setText("Il numero di sovrapposizioni è: "+numSov);
+		viewOrario.getLabelNumSovr().setText("L'orario contiene "+numSov/2+ " ore di sovrapposizione");
 
 		ArrayList<String> listGiorni = new ArrayList<String>();
 		listGiorni.add("Lunedi");

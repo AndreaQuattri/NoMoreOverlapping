@@ -12,10 +12,10 @@ import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 
-import ElaborazioneDati.GeneraListaDiscipline;
-import ElaborazioneDati.GeneraSequenzaCasuale;
 import connectToDatabase.CreateTimeTable;
 import connectToDatabase.DisciplinaInseritaPiano;
+import elaborazioneDati.GeneraListaDiscipline;
+import elaborazioneDati.GeneraSequenzaCasuale;
 import mvc.Model;
 import mvc.ViewTimeTable;
 import myComponents.Assegnamento;
@@ -65,11 +65,10 @@ public class CreateNewOrario implements  ActionListener
 		}
 
 
-		model.setListOrario(null);
-		model.setListOrario(new ArrayList<Orario>());
 		model.setListAssegnamento(null);
 		model.setListAssegnamento(new ArrayList<Assegnamento>());
 		model.setTabella(new Vector<Vector<String>>());
+		model.setOrarioUfficiale(new Orario());
 
 
 		
@@ -353,6 +352,8 @@ public class CreateNewOrario implements  ActionListener
 		CreateTimeTable create = new CreateTimeTable(model);
 		create.fromAssegnamentoToOrarioPerGiorno();
 
+
+
 		
 		model.setTabella(new Vector<Vector<String>>());
 		model.fromOrarioToTable();
@@ -412,11 +413,7 @@ public class CreateNewOrario implements  ActionListener
 
 		
 
-		for (int i=0; i<model.getListOrario().size(); i++)
-			for (int j=0; j<model.getListOrario().get(i).getElencoAssegnamenti().size(); j++){
-				model.getOrarioUfficiale().aggiungiAssegnamento(model.getListOrario().get(i).getElencoAssegnamenti().get(j));
-				model.getOrarioUfficiale().getElencoAttività().addAll(model.getListOrario().get(i).getElencoAttività());	
-			}
+		
 
 
 

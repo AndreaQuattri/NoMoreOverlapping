@@ -55,16 +55,14 @@ public class OpenViewGestisciOrario implements  ActionListener
 			model.setListEsame(new ArrayList<Esame>());
 			model.setListFasciaOraria(new ArrayList<FasciaOraria>());
 			model.setListGita(new ArrayList<Gita>());
-			model.setListOrario(new ArrayList<Orario>());
+			model.setOrarioUfficiale(new Orario());
 			model.setListPianoDiStudi(new ArrayList<PianoDiStudi>());
 			model.setListStudente(new ArrayList<Studente>());
 			model.setListTirocinio(new ArrayList<Tirocinio>());
 			model.setTabella(new Vector<Vector<String>>());
 			model.setListAttivitàInserite(new ArrayList<Attività>());
 			
-			model.setListOrario(null);
-			model.setListOrario(new ArrayList<Orario>());
-
+			
 			model.setListAssegnamento(null);
 			model.setListAssegnamento(new ArrayList<Assegnamento>());
 			

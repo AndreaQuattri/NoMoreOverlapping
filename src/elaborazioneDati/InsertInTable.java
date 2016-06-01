@@ -1,4 +1,4 @@
-package ElaborazioneDati;
+package elaborazioneDati;
 
 import java.io.IOException;
 import java.net.URISyntaxException;

@@ -20,7 +20,6 @@ public class Model extends Observable{
 	private ArrayList<Esame> listEsame;					//Da controllare un campo che ho tolto
 	private ArrayList<FasciaOraria> listFasciaOraria;	//Fatto
 	private ArrayList<Gita> listGita;					//Fatto
-	private ArrayList<Orario> listOrario;
 	private ArrayList<PianoDiStudi> listPianoDiStudi;	//Fatto
 	private ArrayList<Studente> listStudente;			//Fatto
 	private ArrayList<Tirocinio> listTirocinio;			//Fatto
@@ -68,7 +67,6 @@ public class Model extends Observable{
 		listEsame = new ArrayList<Esame>();
 		listFasciaOraria = new ArrayList<FasciaOraria>();
 		listGita = new ArrayList<Gita>();
-		listOrario = new ArrayList<Orario>();
 		listPianoDiStudi = new ArrayList<PianoDiStudi>();
 		listStudente = new ArrayList<Studente>();
 		listTirocinio = new ArrayList<Tirocinio>();
@@ -139,12 +137,7 @@ public class Model extends Observable{
 	public void setListGita(ArrayList<Gita> listGita) {
 		this.listGita = listGita;
 	}
-	public ArrayList<Orario> getListOrario() {
-		return listOrario;
-	}
-	public void setListOrario(ArrayList<Orario> listOrario) {
-		this.listOrario = listOrario;
-	}
+
 	public ArrayList<PianoDiStudi> getListPianoDiStudi() {
 		return listPianoDiStudi;
 	}
@@ -301,6 +294,8 @@ public class Model extends Observable{
 	}
 
 
+	
+
 	@SuppressWarnings("deprecation")
 	public void fromOrarioToTable(){
 		int countDay=0;
@@ -321,12 +316,18 @@ public class Model extends Observable{
 		String oraInizio = formatter.format(inizio);
 		String oraFine = formatter.format(fine);
 
-		for (int i=0; i<getListOrario().size(); i++){
+		
+		for (int i=0; i<getListFasciaOraria().size(); i++){
+						
 			countDay = 0;
 			tabella.addElement(new Vector<String>());
-			for (int j=0; j<getListOrario().get(i).getElencoAssegnamenti().size(); j++){
-				countDay++;
+			for (int j=0; j<getOrarioUfficiale().getElencoAssegnamenti().size(); j++){
+				if (getOrarioUfficiale().getElencoAssegnamenti().get(j).getFasciaOraria().equals(getListFasciaOraria().get(i)))
+					countDay++;
 			}
+			
+			
+			
 			if (iColonne == 0){
 				tabella.get(iRighe).add(String.valueOf(oraInizio + " - " + oraFine));
 				inizioMinuto+=30;
@@ -347,7 +348,8 @@ public class Model extends Observable{
 
 	}
 
-
+	
+	
 	public Attività getAttivitàFromId (String id){
 
 		int i;

@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.net.URISyntaxException;
 
-import ElaborazioneDati.InsertInTable;
+import elaborazioneDati.InsertInTable;
 import mvc.MainView;
 
 public class InsertInTableListener implements  ActionListener
@@ -42,7 +42,13 @@ public class InsertInTableListener implements  ActionListener
 				view.getComboBoxRecord().addItem(toInsertComboBox);
 				toInsertComboBox = "";
 			}
-
+			
+			view.getTable().getColumnModel().getColumn(0).setMinWidth(5);
+			view.getTable().getColumnModel().getColumn(0).setPreferredWidth(10);
+			view.getTable().getColumnModel().getColumn(1).setPreferredWidth(10);
+			view.getTable().getColumnModel().getColumn(2).setPreferredWidth(20);
+			view.getTable().getColumnModel().getColumn(3).setPreferredWidth(360);
+			
 
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

@@ -10,10 +10,10 @@ import xmlParser.XMLOrarioParserDOM;
 public class CaricaOrarioDaFile implements ActionListener{
 
 
-	Model m;
+	Model model;
 	
-	public CaricaOrarioDaFile( Model m ) {
-		this.m = m;
+	public CaricaOrarioDaFile( Model model ) {
+		this.model = model;
 	}
 
 	
@@ -24,7 +24,14 @@ public class CaricaOrarioDaFile implements ActionListener{
 		String file = "provaorario.xml";
 		System.out.println("Pressed button carica");
 		try {
-			m.setOrarioUfficiale( XMLOrarioParserDOM.getOrarioFromFile(file) );
+			model.setOrarioUfficiale( XMLOrarioParserDOM.getOrarioFromFile(file) );
+			//model.fromOrarioToTable();
+			
+			
+			for (int i=0; i<model.getOrarioUfficiale().getElencoAssegnamenti().size(); i++)
+				System.out.println(model.getOrarioUfficiale().getElencoAssegnamenti().get(i).getFasciaOraria().toString() +"\n"+
+									model.getOrarioUfficiale().getElencoAssegnamenti().get(i).getAttività().toString());
+
 		} catch (FileNotFoundException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();

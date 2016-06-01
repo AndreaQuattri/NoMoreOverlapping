@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import mvc.Model;
 import myComponents.Assegnamento;
 import myComponents.Attività;
-import myComponents.Orario;
 
 public class CreateTimeTable {
 
@@ -53,43 +52,13 @@ public class CreateTimeTable {
 
 			}
 
-			model.getListOrario().add(new Orario(listAssegnamento,listAttività));
+			model.getOrarioUfficiale().getElencoAssegnamenti().addAll(listAssegnamento);
 
 		}
 
 	}
 
 
-	public void fromAssegnamentoToOrarioPerFasciaOraria (){
-
-
-		ArrayList<Assegnamento> listAssegnamento;
-		ArrayList<Attività> listAttività;
-
-
-		for (int iFascia = 0; iFascia<model.getListFasciaOraria().size(); iFascia++){
-
-			listAssegnamento = new ArrayList<Assegnamento>();
-			listAttività = new ArrayList<Attività>();
-
-
-				for (int iAssegnamento = 0; iAssegnamento<model.getListAssegnamento().size(); iAssegnamento++){
-
-					if (model.getListFasciaOraria().get(iFascia).equals(model.getListAssegnamento().get(iAssegnamento).getFasciaOraria())){
-						listAssegnamento.add(model.getListAssegnamento().get(iAssegnamento));
-						listAttività.add(model.getListAssegnamento().get(iAssegnamento).getAttività());
-					}
-
-				}
-
-
-			model.getListOrario().add(new Orario(listAssegnamento,listAttività));
-
-		}
-
-
-
-	}
 
 
 

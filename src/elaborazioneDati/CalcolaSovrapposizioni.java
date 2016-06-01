@@ -1,4 +1,4 @@
-package ElaborazioneDati;
+package elaborazioneDati;
 
 
 import mvc.Model;

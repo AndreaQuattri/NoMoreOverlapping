@@ -30,7 +30,7 @@ public class DoubleClickListener implements MouseListener {
 		int clickedRow = table.rowAtPoint(e.getPoint());
 		int clickedCol = table.columnAtPoint(e.getPoint());
 
-		if (!(clickedCol == 6 && clickedRow>9)){
+		if (!(clickedCol == 6 && clickedRow>9) && clickedCol!=0){
 			UpdateTimeTable updateTimeTable = new UpdateTimeTable(model, clickedRow, clickedCol, viewOrario.getButtonSem1().isSelected()==true? 1 : 2);
 			updateTimeTable.setVisible(true);
 			updateTimeTable.selectedGita(new SelectedGitaListener(model));

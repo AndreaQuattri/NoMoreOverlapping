@@ -88,11 +88,13 @@ public class SelectedActivityListener implements  ActionListener
 		String oraFine = formatter.format(fine);
 
 
-		for (int i=0; i<model.getListOrario().size(); i++){
+		for (int i=0; i<model.getListFasciaOraria().size(); i++){
+			
 			countDay = 0;
 			model.getTabella().addElement(new Vector<String>());
-			for (int j=0; j<model.getListOrario().get(i).getElencoAssegnamenti().size(); j++){
-				if (model.getListOrario().get(i).getElencoAssegnamenti().get(j).getAttività().getNome().equals(nomeAttività))
+			for (int j=0; j<model.getOrarioUfficiale().getElencoAssegnamenti().size(); j++){
+				if (model.getOrarioUfficiale().getElencoAssegnamenti().get(j).getFasciaOraria().equals(model.getListFasciaOraria().get(i)) &&
+						model.getOrarioUfficiale().getElencoAssegnamenti().get(j).getAttività().getNome().equals(nomeAttività))
 					countDay++;
 			}
 			if (iColonne == 0){

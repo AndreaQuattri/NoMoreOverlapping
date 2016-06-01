@@ -91,13 +91,14 @@ public class SelectedPianoListener implements  ActionListener
 
 		String app;
 
-		for (int i=0; i<model.getListOrario().size(); i++){
+		for (int i=0; i<model.getListFasciaOraria().size(); i++){
 			countDay = 0;
 			model.getTabella().addElement(new Vector<String>());
-			for (int j=0; j<model.getListOrario().get(i).getElencoAssegnamenti().size(); j++){
+			for (int j=0; j<model.getOrarioUfficiale().getElencoAssegnamenti().size(); j++){
 				app = codice;
 
-				if (model.AttivitàInCorso(model.getListOrario().get(i).getElencoAssegnamenti().get(j).getAttività().getId(), app))
+				if (model.getOrarioUfficiale().getElencoAssegnamenti().get(j).getFasciaOraria().equals(model.getListFasciaOraria().get(i)) &&
+						model.AttivitàInCorso(model.getOrarioUfficiale().getElencoAssegnamenti().get(j).getAttività().getId(), app))
 					countDay++;
 			}
 			if (iColonne == 0){

@@ -91,15 +91,16 @@ public class SelectedDocenteListener implements  ActionListener
 
 
 
-		for (int i=0; i<model.getListOrario().size(); i++){
+		for (int i=0; i<model.getListFasciaOraria().size(); i++){
+
 			countDay = 0;
 			model.getTabella().addElement(new Vector<String>());
-			for (int j=0; j<model.getListOrario().get(i).getElencoAssegnamenti().size(); j++){
-
-
-				for (int iDoc = 0; iDoc < model.getListOrario().get(i).getElencoAssegnamenti().get(j).getAttività().getElencoResponsabili().size(); iDoc++){
-					if (model.getListOrario().get(i).getElencoAssegnamenti().get(j).getAttività().getElencoResponsabili().get(iDoc).getMatricola().equals(matricola))
-						countDay++;
+			for (int j=0; j<model.getOrarioUfficiale().getElencoAssegnamenti().size(); j++){
+				if (model.getOrarioUfficiale().getElencoAssegnamenti().get(j).getFasciaOraria().equals(model.getListFasciaOraria().get(i))){
+					for (int iDoc = 0; iDoc < model.getOrarioUfficiale().getElencoAssegnamenti().get(j).getAttività().getElencoResponsabili().size(); iDoc++){
+						if (model.getOrarioUfficiale().getElencoAssegnamenti().get(j).getAttività().getElencoResponsabili().get(iDoc).getMatricola().equals(matricola))
+							countDay++;
+					}
 				}
 			}
 			if (iColonne == 0){

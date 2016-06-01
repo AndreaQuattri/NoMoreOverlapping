@@ -2,7 +2,6 @@ package controllerListener;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.Vector;
 
 import javax.swing.JCheckBoxMenuItem;
@@ -83,7 +82,7 @@ public class InsertInTimeTable implements ActionListener{
 
 			CreateTimeTable c = new CreateTimeTable(model);
 
-			model.setListOrario(new ArrayList<Orario>());
+			model.setOrarioUfficiale(new Orario());
 			c.fromAssegnamentoToOrarioPerGiorno();
 
 			model.setTabella(new Vector<Vector<String>>());

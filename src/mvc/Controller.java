@@ -26,7 +26,7 @@ public class Controller
 		
 		viewOrario.pressButtonNewOrario2(new CreateNewOrario(model,viewOrario));
 		viewOrario.pressButtonCarica(new CaricaOrarioDaFile(model));
-		viewOrario.pressButtonSalva(new SalvaOrarioEsistente(model.getOrarioUfficiale()));
+		viewOrario.pressButtonSalva(new SalvaOrarioEsistente(model));
 		viewOrario.pressButtonEsci(new EsciViewTimeTable(viewOrario));
 		//viewOrario.selectedActivityToView(new SelectedActivityListener(model, viewOrario));
 		//viewOrario.selectedPianoToView(new SelectedPianoListener(model, viewOrario));

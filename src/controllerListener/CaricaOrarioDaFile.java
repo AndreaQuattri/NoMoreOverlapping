@@ -27,7 +27,6 @@ public class CaricaOrarioDaFile implements ActionListener{
 			model.setOrarioUfficiale( XMLOrarioParserDOM.getOrarioFromFile(file) );
 			//model.fromOrarioToTable();
 			
-			
 			for (int i=0; i<model.getOrarioUfficiale().getElencoAssegnamenti().size(); i++)
 				System.out.println(model.getOrarioUfficiale().getElencoAssegnamenti().get(i).getFasciaOraria().toString() +"\n"+
 									model.getOrarioUfficiale().getElencoAssegnamenti().get(i).getAttività().toString());

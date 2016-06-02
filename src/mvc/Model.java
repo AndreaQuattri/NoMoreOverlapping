@@ -44,6 +44,7 @@ public class Model extends Observable{
 	private ArrayList<Docente> listDocentiInseriti;
 	private ArrayList<Attività> listAttivitàDeiDocenti;
 	private ArrayList<Disciplina> listAllAttivitàInserite;
+	private ArrayList<CorsoDiStudi> listCorsoDiStudioInseriti;
 
 
 	private boolean enableModificaTable;
@@ -445,6 +446,20 @@ public class Model extends Observable{
 
 	public void setMatrix(int[][] matrix) {
 		this.matrix = matrix;
+	}
+
+
+
+
+	public ArrayList<CorsoDiStudi> getListCorsoDiStudioInseriti() {
+		return listCorsoDiStudioInseriti;
+	}
+
+
+
+
+	public void setListCorsoDiStudioInseriti(ArrayList<CorsoDiStudi> listCorsoDiStudioInseriti) {
+		this.listCorsoDiStudioInseriti = listCorsoDiStudioInseriti;
 	}
 
 

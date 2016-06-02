@@ -55,6 +55,8 @@ public class CreateTimeTable {
 			model.getOrarioUfficiale().getElencoAssegnamenti().addAll(listAssegnamento);
 
 		}
+		model.getOrarioUfficiale().setElencoAttività(model.getListAttivitàInserite());
+		model.getOrarioUfficiale().setElencoCorsi(model.getListCorsoDiStudioInseriti());
 
 	}
 

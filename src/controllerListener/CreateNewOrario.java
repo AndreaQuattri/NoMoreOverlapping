@@ -42,7 +42,6 @@ public class CreateNewOrario implements  ActionListener
 	{
 
 
-		model.setTabella(new Vector<Vector<String>>());
 		viewOrario.getSalva().setEnabled(true);
 
 
@@ -65,8 +64,6 @@ public class CreateNewOrario implements  ActionListener
 		}
 
 
-		model.setListAssegnamento(null);
-		model.setListAssegnamento(new ArrayList<Assegnamento>());
 		model.setTabella(new Vector<Vector<String>>());
 		model.setOrarioUfficiale(new Orario());
 
@@ -96,9 +93,6 @@ public class CreateNewOrario implements  ActionListener
 		ArrayList<Disciplina> listDisciplinaInseritaPerOra;
 		ArrayList<Disciplina> listDisciplinaSupporto;
 		ArrayList<Docente> listDocenteSupport;
-		model.setListDocentiInseriti(new ArrayList<Docente>());
-		model.setListAttivitàDeiDocenti(new ArrayList<Attività>());
-		model.setListAttivitàInserite(new ArrayList<Attività>());
 		
 		viewOrario.getVisualizzaTutto().removeAll();
 		viewOrario.setButtonCheckBox(new JCheckBoxMenuItem("Tutto"));
@@ -132,6 +126,7 @@ public class CreateNewOrario implements  ActionListener
 			model.setListAttivitàDeiDocenti(new ArrayList<Attività>());
 			model.setListAttivitàInserite(new ArrayList<Attività>());
 			model.setListAssegnamento(new ArrayList<Assegnamento>());
+			model.setListCorsoDiStudioInseriti(new ArrayList<CorsoDiStudi>());
 			
 			
 					
@@ -168,15 +163,9 @@ public class CreateNewOrario implements  ActionListener
 					int iInizio = (int)(Math.random()*6);
 	
 					
-					viewOrario.setButtonCheckBox(new JCheckBoxMenuItem(model.getListCorsoDiStudi().get(indice).getCodice() + " - " +
-							model.getListCorsoDiStudi().get(indice).getNomePrincipale() + " - " +
-							model.getListCorsoDiStudi().get(indice).getAnno()));
-					viewOrario.getVisualizzaCorso().add(viewOrario.getButtonCheckBox());
-					viewOrario.getButtonCheckBox().addActionListener(new SelectedPianoListener(model, viewOrario,
-							model.getListCorsoDiStudi().get(indice).getCodice()));
-
+					model.getListCorsoDiStudioInseriti().add(corso1);
 					
-				
+
 
 
 					listAttività = new ArrayList<Attività>();
@@ -316,6 +305,15 @@ public class CreateNewOrario implements  ActionListener
 					model.getListDocentiInseriti().get(i).getMatricola()));
 
 		}
+		
+		for (int i=0; i<model.getListCorsoDiStudioInseriti().size(); i++){
+			viewOrario.setButtonCheckBox(new JCheckBoxMenuItem(model.getListCorsoDiStudioInseriti().get(i).getCodice() + " - " +
+					model.getListCorsoDiStudioInseriti().get(i).getNomePrincipale() + " - " +
+					model.getListCorsoDiStudioInseriti().get(i).getAnno()));
+			viewOrario.getVisualizzaCorso().add(viewOrario.getButtonCheckBox());
+			viewOrario.getButtonCheckBox().addActionListener(new SelectedPianoListener(model, viewOrario,
+					model.getListCorsoDiStudioInseriti().get(i).getCodice()));
+		}
 
 		viewOrario.getLabelNumIterazioni().setText("Iterazioni effettuate: "+(numMaxIt-numIt));
 		viewOrario.getLabelNumSovr().setText("L'orario contiene "+numSov/2+ " ore di sovrapposizione");
@@ -350,8 +348,9 @@ public class CreateNewOrario implements  ActionListener
 
 
 		CreateTimeTable create = new CreateTimeTable(model);
+		
 		create.fromAssegnamentoToOrarioPerGiorno();
-
+		
 
 
 		

@@ -25,12 +25,13 @@ public class CaricaOrarioDaFile implements ActionListener{
 		System.out.println("Pressed button carica");
 		try {
 			model.setOrarioUfficiale( XMLOrarioParserDOM.getOrarioFromFile(file) );
-			//model.fromOrarioToTable();
+			
 			
 			for (int i=0; i<model.getOrarioUfficiale().getElencoAssegnamenti().size(); i++)
-				System.out.println(model.getOrarioUfficiale().getElencoAssegnamenti().get(i).getFasciaOraria().toString() +"\n"+
-									model.getOrarioUfficiale().getElencoAssegnamenti().get(i).getAttività().toString());
-
+				System.out.println(model.getOrarioUfficiale().getElencoAssegnamenti().get(i).getAttività().toString());
+			
+			model.fromOrarioToTable();
+		
 		} catch (FileNotFoundException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();

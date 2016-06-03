@@ -18,6 +18,17 @@ public class Attività implements Comparable<Attività>{
 
 	private ArrayList<Docente> elencoResponsabili;
 
+	public Attività( ) {
+		this.ore				= -1;
+		this.id					= "";
+		this.descrizione	 	= "";
+		this.nome 				= "";
+		this.inizio 			= null;
+		this.fine 				= null;
+		this.semestre 			= -1;
+		this.elencoResponsabili = null;
+	}
+	
 	public Attività(int ore, String id, String descrizione, String nome, Date inizio, Date fine, int semestre, ArrayList<Docente> elencoResponsabili) {
 		this.ore = ore;
 		this.id = id;

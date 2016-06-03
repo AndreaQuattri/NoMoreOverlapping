@@ -24,7 +24,7 @@ public class CaricaOrarioDaFile implements ActionListener{
 		String file = "provaorario.xml";
 		System.out.println("Pressed button carica");
 		try {
-			model.setOrarioUfficiale( XMLOrarioParserDOM.getOrarioFromFile(file) );
+			model.setOrarioUfficiale( XMLOrarioParserDOM.getOrarioFromFileFull(file) );
 			
 			
 			for (int i=0; i<model.getOrarioUfficiale().getElencoAssegnamenti().size(); i++)

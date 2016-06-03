@@ -25,7 +25,7 @@ public class SalvaOrarioEsistente implements ActionListener{
 								model.getOrarioUfficiale().getElencoAssegnamenti().get(i).getAttività().toString());
 
 		
-		XMLOrarioParserDOM.writeOrarioOnFile( file , this.model.getOrarioUfficiale() );
+		XMLOrarioParserDOM.writeOrarioOnFileFull( file , this.model.getOrarioUfficiale() );
 	}
 
 }

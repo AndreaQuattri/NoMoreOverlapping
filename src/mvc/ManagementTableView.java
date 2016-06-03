@@ -21,49 +21,49 @@ public class ManagementTableView extends JFrame {
 		
 		
 		
-		//if (tabella.equals("Attività"))
+		if (tabella.equals("Attività"))
 			initAttività();
 		
-		//if (tabella.equals("Aula"))
+		if (tabella.equals("Aula"))
 			initAula();
 	
-		//if (tabella.equals("Convegno"))
+		if (tabella.equals("Convegno"))
 			initConvegno();
 		
-		//if (tabella.equals("Corso Di Studi"))
+		if (tabella.equals("Corso Di Studi"))
 			initCorsoDiStudi();
 		
-		//if (tabella.equals("Disciplina"))
+		if (tabella.equals("Disciplina"))
 			initDisciplina();
 		
-		//if (tabella.equals("Docente"))
+		if (tabella.equals("Docente"))
 			initDocente();
 		
-		//if (tabella.equals("Esame"))
+		if (tabella.equals("Esame"))
 			initEsame();
 		
-		//if (tabella.equals("Fascia Oraria"))
+		if (tabella.equals("Fascia Oraria"))
 			initFasciaOraria();
 		
-		//if (tabella.equals("Gita"))
+		if (tabella.equals("Gita"))
 			initGita();
 		
-		//if (tabella.equals("Insegna"))
+		if (tabella.equals("Insegna"))
 			initInsegna();
 		
-		//if (tabella.equals("Piano Di Studio"))
+		if (tabella.equals("Piano Di Studio"))
 			initPianoDiStudio();
 		
-		//if (tabella.equals("Preferenza Aula"))
+		if (tabella.equals("Preferenza Aula"))
 			initPreferenzaAula();
 		
-		//if (tabella.equals("Preferenza Fascia Oraria"))
+		if (tabella.equals("Preferenza Fascia Oraria"))
 			initPreferenzaFasciaOraria();
 		
-		//if (tabella.equals("Studente"))
+		if (tabella.equals("Studente"))
 			initStudente();
 		
-		//if (tabella.equals("Tirocinio"))
+		if (tabella.equals("Tirocinio"))
 			initTirocinio();
 
 		

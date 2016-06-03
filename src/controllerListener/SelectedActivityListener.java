@@ -18,28 +18,46 @@ import mvc.ViewTimeTable;
 
 public class SelectedActivityListener implements  ActionListener
 {
-	
+
 	private Model model;
 	private ViewTimeTable viewOrario;
-	
-	public SelectedActivityListener(Model model, ViewTimeTable viewOrario) {
+	private String nomeAttività;
+
+	public SelectedActivityListener(Model model, ViewTimeTable viewOrario, String nomeAttività) {
 		// TODO Auto-generated constructor stub
 		this.model = model;
 		this.viewOrario = viewOrario;
+		this.nomeAttività = nomeAttività;
 	}
-	
+
 	@SuppressWarnings("deprecation")
 	@Override
 	public void actionPerformed(ActionEvent action)
 	{
 
-		//viewOrario.getComboBoxPiani().setSelectedItem("");
-		
+
+
+		String appoggio;
+		for (int i=0; i<viewOrario.getVisualizzaAttività().getItemCount(); i++){
+			appoggio = viewOrario.getVisualizzaAttività().getItem(i).getText();
+			if (appoggio.equals(nomeAttività))
+				viewOrario.getVisualizzaAttività().getItem(i).setSelected(true);
+			else
+				viewOrario.getVisualizzaAttività().getItem(i).setSelected(false);
+		}
+		for (int i=0; i<viewOrario.getVisualizzaCorso().getItemCount(); i++)
+			viewOrario.getVisualizzaCorso().getItem(i).setSelected(false);
+		for (int i=0; i<viewOrario.getVisualizzaDocente().getItemCount(); i++)
+			viewOrario.getVisualizzaDocente().getItem(i).setSelected(false);
+		viewOrario.getVisualizzaTutto().getItem(0).setSelected(false);
+
+
 		model.setTabella(new Vector<Vector<String>>());
 
-		for (int i = 0; i<21; i++){
-			viewOrario.getTableRecords().removeRow(0);
-		}
+		if(viewOrario.getTableRecords().getRowCount()!=0)
+			for (int i = 0; i<21; i++){
+				viewOrario.getTableRecords().removeRow(0);
+			}
 
 
 		ArrayList<String> listGiorni = new ArrayList<String>();
@@ -70,11 +88,13 @@ public class SelectedActivityListener implements  ActionListener
 		String oraFine = formatter.format(fine);
 
 
-		for (int i=0; i<model.getListOrario().size(); i++){
+		for (int i=0; i<model.getListFasciaOraria().size(); i++){
+			
 			countDay = 0;
 			model.getTabella().addElement(new Vector<String>());
-			for (int j=0; j<model.getListOrario().get(i).getElencoAssegnamenti().size(); j++){
-				if (model.getListOrario().get(i).getElencoAssegnamenti().get(j).getAttività().getNome().equals(viewOrario.getComboBoxAttivitàInserite().getSelectedItem()))
+			for (int j=0; j<model.getOrarioUfficiale().getElencoAssegnamenti().size(); j++){
+				if (model.getOrarioUfficiale().getElencoAssegnamenti().get(j).getFasciaOraria().equals(model.getListFasciaOraria().get(i)) &&
+						model.getOrarioUfficiale().getElencoAssegnamenti().get(j).getAttività().getNome().equals(nomeAttività))
 					countDay++;
 			}
 			if (iColonne == 0){

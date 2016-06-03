@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import mvc.Model;
 import myComponents.Assegnamento;
 import myComponents.Attività;
-import myComponents.Orario;
 
 public class CreateTimeTable {
 
@@ -38,62 +37,30 @@ public class CreateTimeTable {
 			for (int iGiorni = 0; iGiorni<listGiorni.size(); iGiorni++){
 
 
-				for (int iNumAssegnamento = 0; iNumAssegnamento<model.getListAssegnamento().size(); iNumAssegnamento++){
 
-					for (int iAssegnamento = 0; iAssegnamento<model.getListAssegnamento().get(iNumAssegnamento).size(); iAssegnamento++){
+					for (int iAssegnamento = 0; iAssegnamento<model.getListAssegnamento().size(); iAssegnamento++){
 						
-						if (model.getListFasciaOraria().get(iFascia).equals(model.getListAssegnamento().get(iNumAssegnamento).get(iAssegnamento).getFasciaOraria())){
+						if (model.getListFasciaOraria().get(iFascia).equals(model.getListAssegnamento().get(iAssegnamento).getFasciaOraria())){
 
-							if(model.getListAssegnamento().get(iNumAssegnamento).get(iAssegnamento).getFasciaOraria().getGiorno().equals(listGiorni.get(iGiorni))){
-								listAssegnamento.add(model.getListAssegnamento().get(iNumAssegnamento).get(iAssegnamento));
-								listAttività.add(model.getListAssegnamento().get(iNumAssegnamento).get(iAssegnamento).getAttività());
+							if(model.getListAssegnamento().get(iAssegnamento).getFasciaOraria().getGiorno().equals(listGiorni.get(iGiorni))){
+								listAssegnamento.add(model.getListAssegnamento().get(iAssegnamento));
+								listAttività.add(model.getListAssegnamento().get(iAssegnamento).getAttività());
 							}
 
 						}
 					}
-				}
 
 			}
 
-			model.getListOrario().add(new Orario(listAssegnamento,listAttività));
+			model.getOrarioUfficiale().getElencoAssegnamenti().addAll(listAssegnamento);
 
 		}
+		model.getOrarioUfficiale().setElencoAttività(model.getListAttivitàInserite());
+		model.getOrarioUfficiale().setElencoCorsi(model.getListCorsoDiStudioInseriti());
 
 	}
 
 
-	public void fromAssegnamentoToOrarioPerFasciaOraria (){
-
-
-		ArrayList<Assegnamento> listAssegnamento;
-		ArrayList<Attività> listAttività;
-
-
-		for (int iFascia = 0; iFascia<model.getListFasciaOraria().size(); iFascia++){
-
-			listAssegnamento = new ArrayList<Assegnamento>();
-			listAttività = new ArrayList<Attività>();
-
-			for (int iNumAssegnamento = 0; iNumAssegnamento<model.getListAssegnamento().size(); iNumAssegnamento++){
-
-				for (int iAssegnamento = 0; iAssegnamento<model.getListAssegnamento().get(iNumAssegnamento).size(); iAssegnamento++){
-
-					if (model.getListFasciaOraria().get(iFascia).equals(model.getListAssegnamento().get(iNumAssegnamento).get(iAssegnamento).getFasciaOraria())){
-						listAssegnamento.add(model.getListAssegnamento().get(iNumAssegnamento).get(iAssegnamento));
-						listAttività.add(model.getListAssegnamento().get(iNumAssegnamento).get(iAssegnamento).getAttività());
-					}
-
-				}
-
-			}
-
-			model.getListOrario().add(new Orario(listAssegnamento,listAttività));
-
-		}
-
-
-
-	}
 
 
 

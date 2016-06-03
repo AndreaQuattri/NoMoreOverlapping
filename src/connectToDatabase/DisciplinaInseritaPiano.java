@@ -2,6 +2,7 @@ package connectToDatabase;
 
 import mvc.Model;
 import myComponents.Assegnamento;
+import myComponents.Attività;
 import myComponents.Disciplina;
 
 public class DisciplinaInseritaPiano {
@@ -11,71 +12,84 @@ public class DisciplinaInseritaPiano {
 
 
 	public DisciplinaInseritaPiano(Model model) {
-		// TODO Auto-generated constructor stub
 		this.model = model;
 	}
 
 
 	public boolean giàInsert(String id, int subId){
-		for (int numAss=0; numAss<model.getListAssegnamento().size(); numAss++){
-			for (int i=0; i<model.getListAssegnamento().get(numAss).size(); i++){
-				if(model.getListAssegnamento().get(numAss).get(i).getAttività().getId().equals(id) &&
-						((Disciplina)model.getListAssegnamento().get(numAss).get(i).getAttività()).getSubId() == subId )
+			for (int i=0; i<model.getListAssegnamento().size(); i++){
+				if(model.getListAssegnamento().get(i).getAttività().getId().equals(id) &&
+						((Disciplina)model.getListAssegnamento().get(i).getAttività()).getSubId() == subId )
 					return true;
 			}
-		}
 		return false;
 	}
 
+	
 	public boolean giàInsert(String id){
 
-		for (int numAss=0; numAss<model.getListAssegnamento().size(); numAss++){
-			for (int i=0; i<model.getListAssegnamento().get(numAss).size(); i++){
-				if(model.getListAssegnamento().get(numAss).get(i).getAttività().getId().equals(id))
+			for (int i=0; i<model.getListAssegnamento().size(); i++){
+				if(model.getListAssegnamento().get(i).getAttività().getId().equals(id))
 					return true;
 			}
-		}
 		return false;	
 	}
 
+	
 	public boolean giàInsertDocente (String matricola, String id, int subId){
 
-		for (int numAss=0; numAss<model.getListAssegnamento().size(); numAss++){
-			for (int i=0; i<model.getListAssegnamento().get(numAss).size(); i++){
-				for (int iDocente = 0; iDocente<model.getListAssegnamento().get(numAss).get(i).getAttività().getElencoResponsabili().size(); iDocente++){
-					if (model.getListAssegnamento().get(numAss).get(i).getAttività().getElencoResponsabili().get(iDocente).equals(matricola) &&
-							model.getListAssegnamento().get(numAss).get(i).getAttività().getId().equals(id) &&
-							((Disciplina)model.getListAssegnamento().get(numAss).get(i).getAttività()).getSubId()==subId)
+			for (int i=0; i<model.getListAssegnamento().size(); i++){
+				for (int iDocente = 0; iDocente<model.getListAssegnamento().get(i).getAttività().getElencoResponsabili().size(); iDocente++){
+					if (model.getListAssegnamento().get(i).getAttività().getElencoResponsabili().get(iDocente).equals(matricola) &&
+							model.getListAssegnamento().get(i).getAttività().getId().equals(id) &&
+							((Disciplina)model.getListAssegnamento().get(i).getAttività()).getSubId()==subId)
 						return true;
 				}
-
 			}
-
-		}
-
 		return false;
 	}
 
 
-	public void fasciaOrariaDisponibile(int hour, int[][] matrix, int[][] matrixSupporto, Disciplina d) {
+	public void fasciaOrariaDisponibile(int hour, int[][] matrix, int[][] matrixSupporto, Disciplina d, int iInizio) {
 
+		int iInizioRandom = iInizio;
+		switch (iInizio){
+		case 0:
+			iInizio = 0;
+			break;
+		case 1:
+			iInizio = 21;
+			break;
+		case 2:
+			iInizio = 42;
+			break;
+		case 3:
+			iInizio = 63;
+			break;
+		case 4:
+			iInizio = 84;
+			break;
+		case 5:
+			iInizio = 105;
+			break;
+		}
 
-		int iFascia = 0, iMatrice = 0;
+		int iFascia = iInizio, iMatrice = 0;
 		boolean flag = true;
 
 		while (flag){
-
-			for (int j=0; j<6 && flag; j++){
-				for (int k=0; k<21 && flag; k++){
+			int j = iInizioRandom;
+			for (int iScelta=0; iScelta<6 && flag; iScelta++, j = (j+1)%6){
+				for (int k=0; k<21 && flag ; k++){
 
 					if (matrix[k][j]==iMatrice && 
 							model.getListFasciaOraria().get(iFascia).getGiorno().equals(model.getListFasciaOraria().get((iFascia+hour-1)%model.getListFasciaOraria().size()).getGiorno())){
 
-						if (èVuotaeCiSta(hour, k, j, matrix, iMatrice) && 
+						if (èVuotaeCiSta(hour, k, j, matrix, iMatrice, true) && 
 								!giàOccupataDaStessaAtt(d, hour, k, j) &&
 								!giàOccupataDaStessoProf(d, k, j)){
 							for (int i=0; i<hour; i++){
-								model.getListAssegnamento().get(0).add(new Assegnamento(d, model.getListFasciaOraria().get(iFascia), model.getListAula().get(0)));
+								model.getListAssegnamento().add(new Assegnamento(d, model.getListFasciaOraria().get(iFascia), model.getListAula().get(0)));
 								matrix[k+i][j]++;
 								matrixSupporto[k+i][j]++;
 								iFascia++;
@@ -84,36 +98,40 @@ public class DisciplinaInseritaPiano {
 						}
 					}
 					iFascia = (iFascia+1)%model.getListFasciaOraria().size();
-					if (iFascia==0){
+					if (iFascia == 0)
+						k=22;
+					if (iFascia==iInizio){
 						iMatrice++;
-						j=6;
 						break;
 					}
-
 				}
 			}
 		}
 
-
 	}
 
 
-	private boolean giàOccupataDaStessoProf(Disciplina d, int riga, int colonna) {
+	public boolean giàOccupataDaStessoProf(Attività d, int riga, int colonna) {
 
 		String day = getGiorno(colonna);
+		int oreDaValutare;
+		if (d instanceof Disciplina)
+		oreDaValutare = d.getOre();
+		else
+			oreDaValutare = d.getOre()*2;
 
 
-		for (int iHour=0; iHour < d.getSubOre(); iHour++, riga++){
+		for (int iHour=0; iHour < oreDaValutare; iHour++, riga++){
 			String time = getTime(riga);
 
-			for (int i=0; i<model.getListAssegnamento().get(0).size(); i++){
-				if (model.getListAssegnamento().get(0).get(i).getFasciaOraria().getGiorno().equals(day) &&
-						model.getListAssegnamento().get(0).get(i).getFasciaOraria().getInizio().toString().substring(11, 19).equals(time)){
+			for (int i=0; i<model.getListAssegnamento().size(); i++){
+				if (model.getListAssegnamento().get(i).getFasciaOraria().getGiorno().equals(day) &&
+						model.getListAssegnamento().get(i).getFasciaOraria().getInizio().toString().substring(11, 19).equals(time)){
 
 
-					for (int j=0; j<model.getListAssegnamento().get(0).get(i).getAttività().getElencoResponsabili().size(); j++){
+					for (int j=0; j<model.getListAssegnamento().get(i).getAttività().getElencoResponsabili().size(); j++){
 						for (int k=0; k<d.getElencoResponsabili().size(); k++){
-							if (model.getListAssegnamento().get(0).get(i).getAttività().getElencoResponsabili().get(j).getMatricola().equals(
+							if (model.getListAssegnamento().get(i).getAttività().getElencoResponsabili().get(j).getMatricola().equals(
 									d.getElencoResponsabili().get(k).getMatricola()))
 								return true;
 						}
@@ -123,21 +141,21 @@ public class DisciplinaInseritaPiano {
 			}
 		}
 		return false;
+		
 	}
 
 
-	public boolean èVuotaeCiSta(int hour, int k, int j, int[][] matrix, int iMatrice) {
-		// TODO Auto-generated method stub
+	public boolean èVuotaeCiSta(int hour, int k, int j, int[][] matrix, int iMatrice, boolean pausaPranzo) {
+
 		while(hour>0){
 
-			if (matrix[k][j]>iMatrice || k==10)
+			if (matrix[k][j]>iMatrice || (k==10 && pausaPranzo))
 				return false;
 			k++;
 			hour--;
 		}
-
-
-		return true;	
+		return true;
+		
 	}
 
 
@@ -145,20 +163,20 @@ public class DisciplinaInseritaPiano {
 
 		int riga, colonna;
 
-		for (int i=0; i<model.getListAssegnamento().get(0).size(); i++){
+		for (int i=0; i<model.getListAssegnamento().size(); i++){
 
-			if (model.getListAssegnamento().get(0).get(i).getAttività().getId().equals(id) &&
-					((Disciplina)model.getListAssegnamento().get(0).get(i).getAttività()).getSubId() == subId){
-				colonna = getColonna(model.getListAssegnamento().get(0).get(i).getFasciaOraria().getGiorno());
-				riga = getRiga(model.getListAssegnamento().get(0).get(i).getFasciaOraria().getInizio().toString().substring(11, 19));
+			if (model.getListAssegnamento().get(i).getAttività().getId().equals(id) &&
+					((Disciplina)model.getListAssegnamento().get(i).getAttività()).getSubId() == subId){
+				colonna = getColonna(model.getListAssegnamento().get(i).getFasciaOraria().getGiorno());
+				riga = getRiga(model.getListAssegnamento().get(i).getFasciaOraria().getInizio().toString().substring(11, 19));
 				matrix[riga][colonna]++;
 			}
 
 		}
 
-
 	}
 
+	
 	public int getColonna (String day){
 
 		if (day.equals("Lunedi"))
@@ -221,8 +239,8 @@ public class DisciplinaInseritaPiano {
 			return 19;
 		if (d.equals("18:30:00"))
 			return 20;
-
 		return 0;
+		
 	}
 
 
@@ -235,10 +253,10 @@ public class DisciplinaInseritaPiano {
 
 			String time = getTime(riga);
 
-			for (int i=0; i<model.getListAssegnamento().get(0).size(); i++){
-				if (model.getListAssegnamento().get(0).get(i).getFasciaOraria().getGiorno().equals(day) &&
-						model.getListAssegnamento().get(0).get(i).getFasciaOraria().getInizio().toString().substring(11, 19).equals(time)){
-					if (model.getListAssegnamento().get(0).get(i).getAttività().equals(d)){
+			for (int i=0; i<model.getListAssegnamento().size(); i++){
+				if (model.getListAssegnamento().get(i).getFasciaOraria().getGiorno().equals(day) &&
+						model.getListAssegnamento().get(i).getFasciaOraria().getInizio().toString().substring(11, 19).equals(time)){
+					if (model.getListAssegnamento().get(i).getAttività().equals(d)){
 						return true;
 					}
 				}
@@ -252,7 +270,6 @@ public class DisciplinaInseritaPiano {
 	public String getTime(int riga) {
 
 		switch (riga){
-
 		case 0:
 			return "08:30:00";
 		case 1:
@@ -297,7 +314,6 @@ public class DisciplinaInseritaPiano {
 			return "18:30:00";
 		default:
 			return "20:00:00";
-
 		}
 
 	}
@@ -306,7 +322,6 @@ public class DisciplinaInseritaPiano {
 	public String getGiorno(int colonna) {
 
 		switch (colonna){
-
 		case 0:
 			return "Lunedi";
 		case 1:
@@ -321,9 +336,7 @@ public class DisciplinaInseritaPiano {
 			return "Sabato";
 		default:
 			return "";
-
 		}
-
 
 	}
 

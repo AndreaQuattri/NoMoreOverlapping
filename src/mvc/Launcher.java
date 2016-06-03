@@ -12,7 +12,7 @@ public class Launcher
 				ViewTimeTable viewOrario = new ViewTimeTable(model);
 
 				@SuppressWarnings("unused")
-				Controller2 controller = new Controller2(model, view, viewOrario);
+				Controller controller = new Controller(model, view, viewOrario);
 
 				view.getFrame().setVisible(true);
 

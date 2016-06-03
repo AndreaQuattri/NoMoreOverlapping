@@ -11,7 +11,7 @@ import myComponents.*;
 
 public class Model extends Observable{
 
-	private ArrayList<ArrayList<Assegnamento>> listAssegnamento;
+	private ArrayList<Assegnamento> listAssegnamento;
 	private ArrayList<Aula> listAula;					//Fatto
 	private ArrayList<Convegno> listConvegno;			//Fatto
 	private ArrayList<CorsoDiStudi> listCorsoDiStudi;	//Fatto
@@ -20,7 +20,6 @@ public class Model extends Observable{
 	private ArrayList<Esame> listEsame;					//Da controllare un campo che ho tolto
 	private ArrayList<FasciaOraria> listFasciaOraria;	//Fatto
 	private ArrayList<Gita> listGita;					//Fatto
-	private ArrayList<Orario> listOrario;
 	private ArrayList<PianoDiStudi> listPianoDiStudi;	//Fatto
 	private ArrayList<Studente> listStudente;			//Fatto
 	private ArrayList<Tirocinio> listTirocinio;			//Fatto
@@ -45,6 +44,7 @@ public class Model extends Observable{
 	private ArrayList<Docente> listDocentiInseriti;
 	private ArrayList<Attività> listAttivitàDeiDocenti;
 	private ArrayList<Disciplina> listAllAttivitàInserite;
+	private ArrayList<CorsoDiStudi> listCorsoDiStudioInseriti;
 
 
 	private boolean enableModificaTable;
@@ -59,7 +59,7 @@ public class Model extends Observable{
 
 	public Model() {
 
-		listAssegnamento = new ArrayList<ArrayList<Assegnamento>>();
+		listAssegnamento = new ArrayList<Assegnamento>();
 		listAula = new ArrayList<Aula>();
 		listConvegno = new ArrayList<Convegno>();
 		listCorsoDiStudi = new ArrayList<CorsoDiStudi>();
@@ -68,7 +68,6 @@ public class Model extends Observable{
 		listEsame = new ArrayList<Esame>();
 		listFasciaOraria = new ArrayList<FasciaOraria>();
 		listGita = new ArrayList<Gita>();
-		listOrario = new ArrayList<Orario>();
 		listPianoDiStudi = new ArrayList<PianoDiStudi>();
 		listStudente = new ArrayList<Studente>();
 		listTirocinio = new ArrayList<Tirocinio>();
@@ -139,12 +138,7 @@ public class Model extends Observable{
 	public void setListGita(ArrayList<Gita> listGita) {
 		this.listGita = listGita;
 	}
-	public ArrayList<Orario> getListOrario() {
-		return listOrario;
-	}
-	public void setListOrario(ArrayList<Orario> listOrario) {
-		this.listOrario = listOrario;
-	}
+
 	public ArrayList<PianoDiStudi> getListPianoDiStudi() {
 		return listPianoDiStudi;
 	}
@@ -196,10 +190,6 @@ public class Model extends Observable{
 		return enableButtonInserisciGita;
 	}
 
-
-
-
-
 	public void enableModificaTable(boolean enableModificaTable) {
 		this.enableModificaTable = enableModificaTable;
 		sendNotify(MyNotify.ENABLE_BUTTON_MODIFICA);
@@ -233,14 +223,14 @@ public class Model extends Observable{
 
 
 
-	public ArrayList<ArrayList<Assegnamento>> getListAssegnamento() {
+	public ArrayList<Assegnamento> getListAssegnamento() {
 		return listAssegnamento;
 	}
 
 
 
 
-	public void setListAssegnamento(ArrayList<ArrayList<Assegnamento>> listAssegnamento) {
+	public void setListAssegnamento(ArrayList<Assegnamento> listAssegnamento) {
 		this.listAssegnamento = listAssegnamento;
 	}
 
@@ -305,6 +295,8 @@ public class Model extends Observable{
 	}
 
 
+	
+
 	@SuppressWarnings("deprecation")
 	public void fromOrarioToTable(){
 		int countDay=0;
@@ -325,12 +317,18 @@ public class Model extends Observable{
 		String oraInizio = formatter.format(inizio);
 		String oraFine = formatter.format(fine);
 
-		for (int i=0; i<getListOrario().size(); i++){
+		
+		for (int i=0; i<getListFasciaOraria().size(); i++){
+						
 			countDay = 0;
 			tabella.addElement(new Vector<String>());
-			for (int j=0; j<getListOrario().get(i).getElencoAssegnamenti().size(); j++){
-				countDay++;
+			for (int j=0; j<getOrarioUfficiale().getElencoAssegnamenti().size(); j++){
+				if (getOrarioUfficiale().getElencoAssegnamenti().get(j).getFasciaOraria().equals(getListFasciaOraria().get(i)))
+					countDay++;
 			}
+			
+			
+			
 			if (iColonne == 0){
 				tabella.get(iRighe).add(String.valueOf(oraInizio + " - " + oraFine));
 				inizioMinuto+=30;
@@ -351,26 +349,34 @@ public class Model extends Observable{
 
 	}
 
-
-	public Attività getAttivitàFromId (int id){
+	
+	
+	public Attività getAttivitàFromId (String id){
 
 		int i;
-		
+
 		for (i=0; i<listGita.size(); i++){
-			
-			if (listGita.get(i).getIdGita() == id){
+			if (listGita.get(i).getId().equals(id)){
 				break;
 			}
-
 		}
-		
-		if (i == listGita.size())
-			return null;
-		
-		Gita g = listGita.get(i);
-				
+		if (i<listGita.size())
+			return listGita.get(i);
 
-		return g;
+
+
+		for (i=0; i<listConvegno.size(); i++){
+			if (listConvegno.get(i).getId().equals(id)){
+				break;
+			}
+		}
+
+		if (i<listConvegno.size())
+			return listConvegno.get(i);
+
+
+
+		return null;
 
 	}
 
@@ -440,6 +446,20 @@ public class Model extends Observable{
 
 	public void setMatrix(int[][] matrix) {
 		this.matrix = matrix;
+	}
+
+
+
+
+	public ArrayList<CorsoDiStudi> getListCorsoDiStudioInseriti() {
+		return listCorsoDiStudioInseriti;
+	}
+
+
+
+
+	public void setListCorsoDiStudioInseriti(ArrayList<CorsoDiStudi> listCorsoDiStudioInseriti) {
+		this.listCorsoDiStudioInseriti = listCorsoDiStudioInseriti;
 	}
 
 

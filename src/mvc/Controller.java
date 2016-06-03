@@ -4,7 +4,7 @@ import controllerListener.*;;
 
 
 
-public class Controller2
+public class Controller
 {
 
 	private Model model;
@@ -12,7 +12,7 @@ public class Controller2
 	private ViewTimeTable viewOrario;
 	
 
-	public Controller2(Model model, MainView view, ViewTimeTable viewOrario)
+	public Controller(Model model, MainView view, ViewTimeTable viewOrario)
 	{
 		this.setModel(model);
 		this.setView(view);
@@ -21,16 +21,17 @@ public class Controller2
 		// Set all the listener of the view
 		view.selectedTableToView(new SelectedTableListener(model));
 		view.pressButtonAcquisisci(new InsertInTableListener(view));
-		view.pressButtonModifica(new UpdateRecordListener((String)view.getComboBoxTable().getSelectedItem()));
+		view.pressButtonModifica(new UpdateRecordListener(view));
 		view.pressButtonGestisciOrario(new OpenViewGestisciOrario(model,viewOrario));
+		
 		viewOrario.pressButtonNewOrario2(new CreateNewOrario(model,viewOrario));
-		viewOrario.pressButtonCarica(new CaricaOrarioDaFile());
-		viewOrario.pressButtonSalva(new SalvaOrarioEsistente());
+		viewOrario.pressButtonCarica(new CaricaOrarioDaFile(model));
+		viewOrario.pressButtonSalva(new SalvaOrarioEsistente(model));
 		viewOrario.pressButtonEsci(new EsciViewTimeTable(viewOrario));
-
-		viewOrario.selectedActivityToView(new SelectedActivityListener(model, viewOrario));
-		viewOrario.selectedPianoToView(new SelectedPianoListener(model, viewOrario));
-		viewOrario.selectedDocenteToView(new SelectedDocenteListener(model, viewOrario));
+		//viewOrario.selectedActivityToView(new SelectedActivityListener(model, viewOrario));
+		//viewOrario.selectedPianoToView(new SelectedPianoListener(model, viewOrario));
+		//viewOrario.selectedDocenteToView(new SelectedDocenteListener(model, viewOrario));
+		
 
 		//view.addCompileListener(new MyCompileListener());
 		//view.addMakeLaTeXlistener(new MyMakeLaTeXlistener());

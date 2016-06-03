@@ -8,6 +8,7 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Vector;
 
+
 import memorizzazioneDati.GeneraPianiDiStudio;
 import memorizzazioneDati.InsertValues;
 import mvc.Model;
@@ -45,7 +46,7 @@ public class OpenViewGestisciOrario implements  ActionListener
 			InsertValues insert = new InsertValues(model);
 
 
-			model.setListAssegnamento(new ArrayList<ArrayList<Assegnamento>>());
+			model.setListAssegnamento(new ArrayList<Assegnamento>());
 			model.setListAula(new ArrayList<Aula>());
 			model.setListConvegno(new ArrayList<Convegno>());
 			model.setListCorsoDiStudi(new ArrayList<CorsoDiStudi>());
@@ -54,18 +55,16 @@ public class OpenViewGestisciOrario implements  ActionListener
 			model.setListEsame(new ArrayList<Esame>());
 			model.setListFasciaOraria(new ArrayList<FasciaOraria>());
 			model.setListGita(new ArrayList<Gita>());
-			model.setListOrario(new ArrayList<Orario>());
+			model.setOrarioUfficiale(new Orario());
 			model.setListPianoDiStudi(new ArrayList<PianoDiStudi>());
 			model.setListStudente(new ArrayList<Studente>());
 			model.setListTirocinio(new ArrayList<Tirocinio>());
 			model.setTabella(new Vector<Vector<String>>());
 			model.setListAttivitàInserite(new ArrayList<Attività>());
 			
-			model.setListOrario(null);
-			model.setListOrario(new ArrayList<Orario>());
-
+			
 			model.setListAssegnamento(null);
-			model.setListAssegnamento(new ArrayList<ArrayList<Assegnamento>>());
+			model.setListAssegnamento(new ArrayList<Assegnamento>());
 			
 			model.setTabella(new Vector<Vector<String>>());
 
@@ -104,8 +103,28 @@ public class OpenViewGestisciOrario implements  ActionListener
 				generaPiani.generaPiani();
 				
 				
+				if(viewOrario.getTableRecords().getRowCount()!=0)
+					for (int i = 0; i<21; i++){
+						viewOrario.getTableRecords().removeRow(0);
+					}
 
+				for (int i=0; i<viewOrario.getTableRecords().getColumnCount(); i++)
+					viewOrario.getTableRecords().setColumnCount(0);
+				
+				viewOrario.getLabelNumIterazioni().setText("");
+				viewOrario.getLabelNumSovr().setText("");
+				viewOrario.getSalva().setEnabled(false);
+				
+				viewOrario.getVisualizzaTutto().removeAll();
+				viewOrario.getVisualizzaAttività().removeAll();
+				viewOrario.getVisualizzaDocente().removeAll();
+				viewOrario.getVisualizzaCorso().removeAll();
+				viewOrario.getPocheIterazioni().setSelected(true);
+
+
+				
 				viewOrario.getFrame().setVisible(true);
+				
 
 
 			} catch (IOException e) {

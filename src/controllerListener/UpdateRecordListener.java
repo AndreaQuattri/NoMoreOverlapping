@@ -3,16 +3,17 @@ package controllerListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import mvc.MainView;
 import mvc.ManagementTableView;
 
 public class UpdateRecordListener implements  ActionListener
 {
 	
-	private String selectedItem;
+	private MainView view;
 	
-	public UpdateRecordListener(String selectedItem) {
+	public UpdateRecordListener(MainView view) {
 		// TODO Auto-generated constructor stub
-		this.selectedItem = selectedItem;
+		this.view = view;
 	}
 	
 	
@@ -21,7 +22,7 @@ public class UpdateRecordListener implements  ActionListener
 	{
 
 
-		ManagementTableView managment = new ManagementTableView(selectedItem);
+		ManagementTableView managment = new ManagementTableView((String) view.getComboBoxTable().getSelectedItem());
 		managment.setVisible(true);
 
 

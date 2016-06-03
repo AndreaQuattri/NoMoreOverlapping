@@ -463,5 +463,41 @@ public class Model extends Observable{
 	}
 
 
+	public Attività findAttività(String id) {
+
+		int i;
+		Attività temp = new Attività();
+		temp.setId(id);
+		
+		// cerca in Convegni
+		i = listConvegno.lastIndexOf(temp);
+		if ( i != -1 )
+			return listConvegno.get(i);
+		
+		// cerca in Discipline
+		i = listDisciplina.lastIndexOf(temp);
+		if ( i != -1 )
+			return listDisciplina.get(i);
+		
+		// cerca in Esami
+		i = listEsame.lastIndexOf(temp);
+		if ( i != -1 )
+			return listEsame.get(i);
+		
+		// cerca in Gite
+		i = listGita.lastIndexOf(temp);
+		if ( i != -1 )
+			return listGita.get(i);
+		
+		// cerca in Tirocini
+		i = listTirocinio.lastIndexOf(temp);
+		if ( i != -1 )
+			return listTirocinio.get(i);
+		
+		// attività non trovata
+		return null;
+		
+	}
+
 
 }

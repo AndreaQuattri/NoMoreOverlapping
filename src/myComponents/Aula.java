@@ -7,17 +7,25 @@ public class Aula {
 	private int capienza;
 	private String descrizione;
 	
-	public Aula(String edificio, int numero, int capienza, String descrizione) {
-		this.edificio = edificio;
-		this.numero = numero;
-		this.capienza = capienza;
-		this.descrizione = descrizione;
+	public Aula( ) {
+		this.edificio 		= "";
+		this.numero 		= -1;
+		this.capienza 		= -1;
+		this.descrizione 	= "";
 	}
+	
+	public Aula(String edificio, int numero, int capienza, String descrizione) {
+		this.edificio 		= edificio;
+		this.numero 		= numero;
+		this.capienza 		= capienza;
+		this.descrizione 	= descrizione;
+	}
+	
 	public Aula(String edificio, int numero, int capienza) {
-		this.edificio = edificio;
-		this.numero = numero;
-		this.capienza = capienza;
-		this.descrizione = "";
+		this.edificio 		= edificio;
+		this.numero 		= numero;
+		this.capienza 		= capienza;
+		this.descrizione 	= "";
 	}
 	
 	@Override

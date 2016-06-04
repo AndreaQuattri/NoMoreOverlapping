@@ -19,19 +19,30 @@ public class CorsoDiStudi {
 	//da rivedere questo campo
 	//private ArrayList<PianoDiStudi> elencoPianiPossibili;
 	
-	
+	public CorsoDiStudi() {
+		this.anno 			= -1;
+		this.nomePrincipale = "";
+		this.indirizzo 		= "";
+		this.tipoLaurea 	= "";
+		this.facoltà 		= "";
+		this.codice 		= "";
+		this.descrizione 	= "";
+		this.totCrediti 	= -1;
+		//this.elencoPianiPossibili = elencoPianiPossibili;
+		this.elencoStudenti = new ArrayList<Studente>();
+	}
 
 	public CorsoDiStudi(short anno, String nomePrincipale, String indirizzo, String tipoLaurea, 
 			String facoltà, String codice, String descrizione, int totCrediti, 
 			ArrayList<PianoDiStudi> elencoPianiPossibili, ArrayList<Studente> elencoStudenti) {
-		this.anno = anno;
+		this.anno 			= anno;
 		this.nomePrincipale = nomePrincipale;
-		this.indirizzo = indirizzo;
-		this.tipoLaurea = tipoLaurea;
-		this.facoltà = facoltà;
-		this.codice = codice;
-		this.descrizione = descrizione;
-		this.totCrediti = totCrediti;
+		this.indirizzo 		= indirizzo;
+		this.tipoLaurea 	= tipoLaurea;
+		this.facoltà 		= facoltà;
+		this.codice 		= codice;
+		this.descrizione 	= descrizione;
+		this.totCrediti	 	= totCrediti;
 		//this.elencoPianiPossibili = elencoPianiPossibili;
 		this.elencoStudenti = elencoStudenti;
 	}
@@ -40,12 +51,12 @@ public class CorsoDiStudi {
 			String facoltà, String codice, String descrizione, int totCrediti) {
 		this.anno = anno;
 		this.nomePrincipale = nomePrincipale;
-		this.indirizzo = indirizzo;
-		this.tipoLaurea = tipoLaurea;
-		this.facoltà = facoltà;
-		this.codice = codice;
-		this.descrizione = descrizione;
-		this.totCrediti = totCrediti;
+		this.indirizzo 		= indirizzo;
+		this.tipoLaurea 	= tipoLaurea;
+		this.facoltà 		= facoltà;
+		this.codice 		= codice;
+		this.descrizione 	= descrizione;
+		this.totCrediti 	= totCrediti;
 		//this.elencoPianiPossibili = new ArrayList<PianoDiStudi>();
 		this.elencoStudenti = new ArrayList<Studente>();
 	}

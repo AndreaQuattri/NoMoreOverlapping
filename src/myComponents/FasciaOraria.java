@@ -11,12 +11,20 @@ public class FasciaOraria{
 	private String giorno;
 	private int idFascia;
 
-	public FasciaOraria(Date inizio, Date fine, String giorno, int idFascia) {
-		this.inizio = inizio;
-		this.fine = fine;
-		this.giorno = giorno;
-		this.idFascia = idFascia;
+	public FasciaOraria() {
+		this.inizio 	= new Date();
+		this.fine 		= new Date();
+		this.giorno 	= "";
+		this.idFascia 	= -1;
 	}
+	
+	public FasciaOraria(Date inizio, Date fine, String giorno, int idFascia) {
+		this.inizio 	= inizio;
+		this.fine 		= fine;
+		this.giorno 	= giorno;
+		this.idFascia 	= idFascia;
+	}
+	
 
 
 

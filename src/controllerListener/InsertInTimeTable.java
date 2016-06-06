@@ -40,16 +40,18 @@ public class InsertInTimeTable implements ActionListener{
 		Attività a;
 		a = model.getAttivitàFromId((id[0]).trim());
 		int i;
+		
+		for (i=0; i<model.getListFasciaOraria().size(); i++)
+			if (model.getListFasciaOraria().get(i).getGiorno().equals(d.getGiorno(updateTimeTable.getCol()-1)) &&
+					model.getListFasciaOraria().get(i).getInizio().toString().substring(11, 19).equals(d.getTime(updateTimeTable.getRow()))){
+				break;
+			}
 
-		if(d.èVuotaeCiSta(a.getOre()*2, updateTimeTable.getRow(),
+		if(i!=model.getListFasciaOraria().size() &&
+				model.getListFasciaOraria().get(i).getGiorno().equals(model.getListFasciaOraria().get((i+(a.getOre()*2)-1)%model.getListFasciaOraria().size()).getGiorno()) &&
+				d.èVuotaeCiSta(a.getOre()*2, updateTimeTable.getRow(),
 				updateTimeTable.getCol(), model.getMatrix(), 100, false) &&
 				!d.giàOccupataDaStessoProf(a, updateTimeTable.getRow(), updateTimeTable.getCol()-1)){
-
-			for (i=0; i<model.getListFasciaOraria().size(); i++)
-				if (model.getListFasciaOraria().get(i).getGiorno().equals(d.getGiorno(updateTimeTable.getCol()-1)) &&
-						model.getListFasciaOraria().get(i).getInizio().toString().substring(11, 19).equals(d.getTime(updateTimeTable.getRow()))){
-					break;
-				}
 
 
 			int hour=0;

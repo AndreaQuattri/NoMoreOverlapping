@@ -150,16 +150,12 @@ public class SelectedPianoListener implements  ActionListener
 							cell.setBackground(Color.BLUE);
 							cell.setForeground(Color.BLUE);
 						}
+
 						else{
-							if (value.equals("2")){
-								cell.setBackground( Color.PINK );
-								cell.setForeground(Color.PINK);
-							}
-							else{
-								cell.setBackground( Color.RED );
-								cell.setForeground(Color.RED);
-							}
+							cell.setBackground( Color.RED );
+							cell.setForeground(Color.RED);
 						}
+
 
 					}
 					return cell;

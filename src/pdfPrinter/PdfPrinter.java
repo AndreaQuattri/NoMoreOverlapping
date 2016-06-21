@@ -396,3 +396,5 @@ public class PdfPrinter {
 }
 
 
+//TODO fai il modo che riceva l'orario già filtrato quando viene chiamato
+

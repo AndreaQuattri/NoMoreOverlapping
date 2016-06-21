@@ -26,7 +26,7 @@ public class XMLOrarioParserDOM{
 
 	public static Orario getOrarioFromFileLight(Model model, String file) throws XMLStreamException, SAXException, IOException, ParserConfigurationException {
 		Orario ret = null;
-		Document doc = setUpXMLDocument(file);
+		Document doc = setUpXMLDocumentIn(file);
 		NodeList nList = null;
 		
 		// carico gli assegnamenti
@@ -40,7 +40,7 @@ public class XMLOrarioParserDOM{
 	public static void writeOrarioOnFileLight(String file, Orario o) throws SAXException, IOException, ParserConfigurationException, TransformerException {
 	
 		//setup document builder
-		Document doc = setUpXMLDocument(file);
+		Document doc = setUpXMLDocumentOut();
 		Element e;
 		
 		// root elements
@@ -48,7 +48,7 @@ public class XMLOrarioParserDOM{
 		doc.appendChild(rootElement);
 		
 		//initialize
-		ArrayList<Assegnamento> elencoAs = null;
+		ArrayList<Assegnamento> elencoAs = new ArrayList<Assegnamento>();
 		
 		// no object saving
 		if ( o != null ) {
@@ -78,7 +78,7 @@ public class XMLOrarioParserDOM{
 	public static Orario getOrarioFromFileFull(Model model , String file) throws XMLStreamException, SAXException, IOException, ParserConfigurationException, DOMException, ParseException {
 		Orario ret = null;
 	
-		Document doc = setUpXMLDocument(file);
+		Document doc = setUpXMLDocumentIn(file);
 		NodeList nList = null;
 		
 		// carico le attività
@@ -100,10 +100,9 @@ public class XMLOrarioParserDOM{
 	}
 
 	public static void writeOrarioOnFileFull(String file, Orario o) throws TransformerException, SAXException, IOException, ParserConfigurationException {
-		
-
+			
 		//setup document builder
-		Document doc = setUpXMLDocument(file);
+		Document doc = setUpXMLDocumentOut();
 		Element e;
 		
 		// root elements
@@ -127,6 +126,9 @@ public class XMLOrarioParserDOM{
 			elencoCorsi = new ArrayList<CorsoDiStudi>();
 		}
 		
+
+		System.out.println("test1.5");
+		
 		// Attività
 		e = saveAttività(doc,elencoAt);
 		rootElement.appendChild(e);
@@ -139,9 +141,14 @@ public class XMLOrarioParserDOM{
 		e = saveCorsi(doc,elencoCorsi);
 		rootElement.appendChild(e);
 				
+		
+
+		System.out.println("test2");
+		
 		// write the content into xml file
 		writeXMLFile(doc,file);
 
+		
 	}
 	
 	// save methods
@@ -452,20 +459,32 @@ public class XMLOrarioParserDOM{
 	
 	// support XML methods
 	
-	private static Document setUpXMLDocument(String file) throws SAXException, IOException, ParserConfigurationException {
-		
+	private static Document setUpXMLDocumentIn(String file) throws SAXException, IOException, ParserConfigurationException {
 		// error case
 		if ( file == null || file == "" ) {
 			file = "temp.xml";
 			System.out.println("ERROR: No XML file name");
 		}
 		else if ( !file.endsWith(".xml") )
-				file = file + ".xml";
+			file = file + ".xml";
+		
 		File fXmlFile = new File(file);
-		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+		fXmlFile.createNewFile();
+
+	    DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 		Document doc = dBuilder.parse(fXmlFile);
 		doc.getDocumentElement().normalize();
+		
+		return doc;
+	}
+	
+	private static Document setUpXMLDocumentOut() throws SAXException, IOException, ParserConfigurationException {
+		
+		DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+		DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
+		Document doc = docBuilder.newDocument();
+		
 		return doc;
 	}
 	

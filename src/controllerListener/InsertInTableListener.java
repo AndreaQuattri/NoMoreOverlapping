@@ -4,10 +4,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.net.URISyntaxException;
-
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
-
 import elaborazioneDati.InsertInTable;
 import mvc.MainView;
 

@@ -14,7 +14,6 @@ import java.io.IOException;
 import java.text.ParseException;
 
 import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.stream.XMLStreamException;
 
 import org.w3c.dom.DOMException;
 import org.xml.sax.SAXException;
@@ -25,6 +24,10 @@ import xmlParser.XMLOrarioParserDOM;
 public class CaricaOrarioDaFile extends JPanel implements ActionListener{
 
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	Model model;
 
 	public CaricaOrarioDaFile( Model model ) {

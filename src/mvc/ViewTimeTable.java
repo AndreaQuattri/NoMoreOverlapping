@@ -23,6 +23,9 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 import controllerListener.DoubleClickListener;
+import javax.swing.JButton;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import java.awt.event.ActionEvent;
 
 
 
@@ -188,6 +191,13 @@ public class ViewTimeTable extends JFrame implements Observer {
 		labelNumSovr = new JLabel("");
 		
 		labelNumIterazioni = new JLabel("");
+		
+		JButton btnSalvaPdf = new JButton("Salva PDF");
+		btnSalvaPdf.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				pdfPrinter.PdfPrinter.printReport("prova.pdf", "titolo prova", model.getOrarioUfficiale(), model.getListFasciaOraria());
+			}
+		});
 
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
 		groupLayout.setHorizontalGroup(
@@ -201,19 +211,24 @@ public class ViewTimeTable extends JFrame implements Observer {
 							.addGap(465)
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 								.addComponent(labelNumIterazioni)
-								.addComponent(labelNumSovr))))
+								.addComponent(labelNumSovr)))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(65)
+							.addComponent(btnSalvaPdf)))
 					.addContainerGap(57, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(79)
+					.addGap(44)
+					.addComponent(btnSalvaPdf)
+					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(labelNumSovr)
 					.addGap(28)
 					.addComponent(labelNumIterazioni)
 					.addGap(47)
 					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(82, Short.MAX_VALUE))
+					.addContainerGap(98, Short.MAX_VALUE))
 		);
 		frame.getContentPane().setLayout(groupLayout);
 		
@@ -494,6 +509,4 @@ public class ViewTimeTable extends JFrame implements Observer {
 	public void setTanteIterazioni(JRadioButtonMenuItem tanteIterazioni) {
 		this.tanteIterazioni = tanteIterazioni;
 	}
-
-
 }

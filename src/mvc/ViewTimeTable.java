@@ -23,6 +23,8 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 import controllerListener.DoubleClickListener;
+import pdfPrinter.PdfPrinter;
+
 import javax.swing.JButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.event.ActionEvent;
@@ -50,6 +52,7 @@ public class ViewTimeTable extends JFrame implements Observer {
 	private JMenu menuFile;
 	private JMenuItem salva;
 	private JMenuItem carica;
+	private JMenuItem esportaPdf;
 	private JMenuItem esci;
 
 
@@ -102,10 +105,12 @@ public class ViewTimeTable extends JFrame implements Observer {
 		menuFile = new JMenu("File");
 		salva = new JMenuItem("Salva");
 		carica = new JMenuItem("Carica");
+		esportaPdf = new JMenuItem("Esporta in pdf");
 		esci = new JMenuItem("Esci");
 
 		menuFile.add(salva);
 		menuFile.add(carica);
+		menuFile.add(esportaPdf);
 		menuFile.addSeparator();
 		menuFile.add(esci);
 
@@ -193,12 +198,13 @@ public class ViewTimeTable extends JFrame implements Observer {
 		labelNumIterazioni = new JLabel("");
 		
 		JButton btnSalvaPdf = new JButton("Salva PDF");
-		btnSalvaPdf.addActionListener(new ActionListener() {
+		/*
+			btnSalvaPdf.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				pdfPrinter.PdfPrinter.printReport("prova.pdf", "titolo prova", model.getOrarioUfficiale(), model.getListFasciaOraria());
 			}
 		});
-
+*/
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -324,6 +330,10 @@ public class ViewTimeTable extends JFrame implements Observer {
 
 	public void pressButtonSalva(ActionListener listener) {
 		salva.addActionListener(listener);
+	}
+	
+	public void pressEsportaPdf(ActionListener listener) {
+		esportaPdf.addActionListener(listener);
 	}
 
 	public void pressButtonEsci(ActionListener listener) {
@@ -509,4 +519,18 @@ public class ViewTimeTable extends JFrame implements Observer {
 	public void setTanteIterazioni(JRadioButtonMenuItem tanteIterazioni) {
 		this.tanteIterazioni = tanteIterazioni;
 	}
+
+
+	public JMenuItem getEsportaPdf() {
+		return esportaPdf;
+	}
+
+	public void setEsportaPdf(JMenuItem esportaPdf) {
+		this.esportaPdf = esportaPdf;
+	}
+
+
+
+
+
 }

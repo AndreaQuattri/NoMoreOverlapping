@@ -31,7 +31,7 @@ public class Aula {
 	@Override
 	public String toString() {
 
-		return this.edificio+", "+this.numero+", "+this.capienza+", "+this.descrizione;
+		return this.edificio+this.numero;
 		
 	}
 	

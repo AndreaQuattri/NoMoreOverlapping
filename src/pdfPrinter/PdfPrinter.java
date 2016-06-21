@@ -189,78 +189,150 @@ public class PdfPrinter {
 	}
 
 	private static void insertOrario(Orario o) throws Exception {
-	ArrayList<Assegnamento> listA = o.getElencoAssegnamenti();
-	
-	Iterator<Assegnamento> i = listA.iterator();
-	
-	while( i != null && i.hasNext() ) {
-		Assegnamento a = i.next();
-		FasciaOraria fo = a.getFasciaOraria();
-		int startRow = findRow( format.format(fo.getInizio()) );
-		System.out.println(format.format(fo.getInizio()) +" "+ startRow);
-		int endRow = findRow( format.format(fo.getFine()) ) - 1;		//TODO -1!?!?! giusto? o inizio
-		System.out.println(format.format(fo.getFine()) + " "+ endRow);
-		int dayCol = findCol( fo.getGiorno() );
-		System.out.println(fo.getGiorno() + " " + dayCol);
-		maybeAddRow( startRow , endRow , dayCol );
-		addAssegnamento( a , startRow , endRow , dayCol );
-	}
-}
-
-/**
- * aggiunge un assegnamento alla tabella nelle posizioni indicate
- * @param a
- * @param startRow
- * @param endRow
- * @param dayCol
- */
-private static void addAssegnamento(Assegnamento a , int startRow , int endRow , int dayCol ) {
-		// TODO Auto-generated method stub
+		ArrayList<Assegnamento> listA = o.getElencoAssegnamenti();
 		
-	}
-
-
-/**controlla tutte le righe in prossimità del giorno indicato,
- * se non c'è modo di inserire l'assegnamento allora aggiunge
- * una riga vuota
- * @param startRow riga di inizio
- * @param endRow riga di fine
- * @param dayCol colonna da controllare
- */
-private static void maybeAddRow(int startRow, int endRow, int dayCol) {
-		// TODO Auto-generated method stub
+		Iterator<Assegnamento> i = listA.iterator();
 		
+		while( i != null && i.hasNext() ) {
+			Assegnamento a = i.next();
+			FasciaOraria fo = a.getFasciaOraria();
+			int startRow = findRow( format.format(fo.getInizio()) );
+			int endRow = findRow( format.format(fo.getFine()) ) - 1;
+			int dayCol = findCol( fo.getGiorno() );
+			endRow = maybeAddRow( startRow , endRow , dayCol );
+			addAssegnamento( a , startRow , endRow , dayCol );
+		}
+	}
+	
+	/**
+	 * aggiunge un assegnamento alla tabella nelle posizioni indicate
+	 * @param a
+	 * @param startRow
+	 * @param endRow
+	 * @param dayCol
+	 */
+	private static void addAssegnamento(Assegnamento a , int startRow , int endRow , int dayCol ) {
+		
+		// indica che sei pronto ad inserire l'assegnamento nella prima casella disponibile
+		Boolean flagHour = false;
+		
+		
+		for( int i = startRow ; i <= endRow ; i++ ) {
+			
+			//prendi array da toPrint
+			String[] s = new String[NCOL];
+			for( int j = 0 ; j < NCOL ; j ++ )
+				s[j] = toPrint.get(i)[j];
+			
+			//sono alla riga corretta?
+			if( !flagHour && !s[0].isEmpty() )
+				flagHour = true;
+			
+			// sono pronto ad inserire?
+			if( flagHour ) {
+				if ( s[dayCol].isEmpty() ) {
+					s[ dayCol ] = a.getAttività().getNome() + "\n" + a.getAula();
+					flagHour = false;
+				}
+			}
+			
+			//reinserisci array modificato
+			toPrint.set(i, s);
+		}
+	}
+	
+	
+	/**controlla tutte le righe in prossimità del giorno indicato,
+	 * se non c'è modo di inserire l'assegnamento allora aggiunge
+	 * una riga vuota
+	 * @param startRow riga di inizio
+	 * @param endRow riga di fine
+	 * @param dayCol colonna da controllare
+	 */
+	private static int maybeAddRow(int startRow, int endRow, int dayCol) {
+		// indica che aspetto per inserire l'assegnamento nella prima casella disponibile
+		Boolean flagHour = false;
+		
+		
+		for( int i = startRow ; i <= endRow ; i++ ) {
+			
+			//prendi array da toPrint
+			String[] s = new String[NCOL];
+			for( int j = 0 ; j < NCOL ; j ++ )
+				s[j] = toPrint.get(i)[j];
+			
+			//inizia una nuova fascia oraria
+			if( !s[0].isEmpty() ) {
+				if( !flagHour )
+					// se non aspettando per inserire ora aspetto
+					flagHour = true;
+				else {
+					//se sto ancora aspettando di inserire la riga precedente aggiunga una riga per inserirla
+					addRow(i);
+					i++;
+					endRow++;
+					flagHour = false;
+				}
+			}
+			
+			// sto aspettando di inserire un assegnamento?
+			if( flagHour ) {
+				//se c'è posto non aspetto più
+				if ( s[dayCol].isEmpty() ) {
+					flagHour = false;
+				}
+			}
+			
+			//reinserisci array modificato
+			toPrint.set(i, s);
+		}
+		
+		if( flagHour ) {
+			//se sto ancora aspettando di inserire la riga precedente aggiunga una riga per inserirla
+			addRow(endRow);
+			endRow++;
+		}
+		
+		return endRow;
+	}
+	
+	
+	private static void addRow(int i) {
+		String[] add = new String[NCOL];
+		for(int j = 0 ; j < NCOL ; j ++ )
+			add[j] = new String();
+		toPrint.add(i, add);
 	}
 
 
-/**
- * restituisce l'indice della colonna che ha come primo elemento la stringa corrispondente al giorno dato
- * @param giorno
- * @return
- * @throws Exception 
- */
-private static int findCol(String giorno) throws Exception {
-
-	//inserisco le restanti fasce orarie
-	for	(int i = 0 ; i < NCOL ; i ++)
-		if( titoli[i].equals(giorno.toUpperCase()) )
-			return i;	
-	throw new Exception("col not found: " + giorno);
-}
-
-
-/**
- * restituisce l'indice della riga che ha come primo elemento la stringa ora
- * @param ora stringa da cercare
- * @return indice della riga corrispondente all'ora cercata
- * @throws Exception row not found
- */
+	/**
+	 * restituisce l'indice della colonna che ha come primo elemento la stringa corrispondente al giorno dato
+	 * @param giorno
+	 * @return
+	 * @throws Exception 
+	 */
+	private static int findCol(String giorno) throws Exception {
+	
+		for	(int i = 0 ; i < NCOL ; i ++)
+			if( titoli[i].equals(giorno.toUpperCase()) )
+				return i;	
+		throw new Exception("col not found: " + giorno);
+	}
+	
+	
+	/**
+	 * restituisce l'indice della riga che ha come primo elemento la stringa ora
+	 * @param ora stringa da cercare
+	 * @return indice della riga corrispondente all'ora cercata
+	 * @throws Exception row not found
+	 */
 	private static int findRow(String ora) throws Exception {
 		//inserisco le restanti fasce orarie
 		int len = toPrint.size();
-		for	(int i = 0 ; i < len ; i ++)
-			if( ora.compareTo(toPrint.get(i)[0])==0)
-				return i;	
+		for	(int i = 0 ; i < len ; i ++) {
+			if( ora.equals(toPrint.get(i)[0]) )
+				return i;
+		}
 		return len;
 	}
 
@@ -294,17 +366,20 @@ private static int findCol(String giorno) throws Exception {
 			
 		//la prima fascia oraria segnala la fine per evitare ripetizioni (suppone che la lisa sia ordinata e ricominci con il primo elemento)
 		String[] add = new String[NCOL];
-		add[0] = format.format(i.next().getInizio());
+		add[0] = new String( format.format(i.next().getInizio()) );
+		for(int j = 1 ; j < NCOL ; j ++ )
+			add[j] = new String();
 		String end = add[0];
 		toPrint.add(add);
 		
 		//inserisco le restanti fasce orarie
 		while( i != null && i.hasNext() ) {
-			FasciaOraria fo = i.next();
 			add = new String[NCOL];
-			add[0] = format.format(fo.getInizio());
-			if( end.compareTo(add[0])==0)
+			add[0] = new String( format.format(i.next().getInizio()) );
+			if( end.equals(add[0]) )
 				return;
+			for(int j = 1 ; j < NCOL ; j ++ )
+				add[j] = new String();
 			toPrint.add(add);		
 		}
 	}
@@ -320,4 +395,6 @@ private static int findCol(String giorno) throws Exception {
 	}
 }
 
+
+//TODO fai il modo che riceva l'orario già filtrato quando viene chiamato
 

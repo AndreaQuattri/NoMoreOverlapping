@@ -7,11 +7,13 @@ import java.io.FileNotFoundException;
 
 import javax.swing.JFileChooser;
 import javax.swing.JPanel;
+import javax.swing.text.View;
 import javax.xml.stream.XMLStreamException;
 
 import connectToDatabase.MyFileFilter;
 import java.io.IOException;
 import java.text.ParseException;
+import java.util.Vector;
 
 import javax.xml.parsers.ParserConfigurationException;
 
@@ -19,6 +21,7 @@ import org.w3c.dom.DOMException;
 import org.xml.sax.SAXException;
 
 import mvc.Model;
+import mvc.ViewTimeTable;
 import xmlParser.XMLOrarioParserDOM;
 
 public class CaricaOrarioDaFile extends JPanel implements ActionListener{
@@ -29,9 +32,11 @@ public class CaricaOrarioDaFile extends JPanel implements ActionListener{
 	 */
 	private static final long serialVersionUID = 1L;
 	Model model;
+	ViewTimeTable viewOrario;
 
-	public CaricaOrarioDaFile( Model model ) {
+	public CaricaOrarioDaFile( Model model, ViewTimeTable viewOrario ) {
 		this.model = model;
+		this.viewOrario = viewOrario;
 	}
 
 
@@ -90,7 +95,9 @@ public class CaricaOrarioDaFile extends JPanel implements ActionListener{
 				for (int i=0; i<model.getOrarioUfficiale().getElencoAssegnamenti().size(); i++)
 					System.out.println(model.getOrarioUfficiale().getElencoAssegnamenti().get(i).getAttività().toString());
 
+				model.setTabella(new Vector<Vector<String>>());
 				model.fromOrarioToTable();
+				viewOrario.visualizzaOrario();
 
 			} catch (FileNotFoundException e1) {
 				// TODO Auto-generated catch block

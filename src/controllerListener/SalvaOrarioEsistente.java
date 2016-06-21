@@ -27,45 +27,17 @@ public class SalvaOrarioEsistente implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
-		/*
 
 		// TODO Auto-generated method stub
 		String file = "provaorario.xml";
 
-		for (int i=0; i<model.getOrarioUfficiale().getElencoAssegnamenti().size(); i++)
-			System.out.println(model.getOrarioUfficiale().getElencoAssegnamenti().get(i).getFasciaOraria().toString() +"\n"+
-								model.getOrarioUfficiale().getElencoAssegnamenti().get(i).getAttività().toString());
+		
 
-<<<<<<< HEAD
-
-		XMLOrarioParserDOM.writeOrarioOnFileFull( file , this.model.getOrarioUfficiale() );
-
-		 */
-		//JFileChooser chooser = new JFileChooser();
-		//int s = chooser.showSaveDialog(new JFrame());
-
-
-		JFileChooser chooser = new JFileChooser();
-		FileNameExtensionFilter filter = new FileNameExtensionFilter(
-				".xml", "xml", "gif");
-		chooser.setFileFilter(filter);
-		chooser.setCurrentDirectory(new java.io.File("."));
-
-		int returnVal = chooser.showSaveDialog(new JFrame());
-		if(returnVal == JFileChooser.APPROVE_OPTION) {
-			System.out.println("You chose to open this file: " +
-					chooser.getSelectedFile().getName());
-			
-		}
-
-		//XMLOrarioParserDOM.writeOrarioOnFileFull( chooser.getSelectedFile().getName() , this.model.getOrarioUfficiale() );
-
-
+	
 
 		
 		try {
-			//XMLOrarioParserDOM.writeOrarioOnFileFull( file , this.model.getOrarioUfficiale() );
-			XMLOrarioParserDOM.writeOrarioOnFileFull( chooser.getSelectedFile().getName() , this.model.getOrarioUfficiale() );
+			XMLOrarioParserDOM.writeOrarioOnFileFull( file , this.model.getOrarioUfficiale() );
 
 		} catch (TransformerException e1) {
 			// TODO Auto-generated catch block

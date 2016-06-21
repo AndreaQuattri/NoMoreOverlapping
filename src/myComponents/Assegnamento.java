@@ -6,31 +6,30 @@ public class Assegnamento {
 	private FasciaOraria fasciaOraria;
 	private Aula aula;
 	//private String day;
-
+	
+	public Assegnamento( ) {
+		this.attività 		= new Attività();
+		this.fasciaOraria 	= new FasciaOraria();
+		this.aula 			= new Aula();
+	}
 
 	public Assegnamento(Attività attività, FasciaOraria fasciaOraria, Aula aula, String day) {
-		this.attività = attività;
-		this.fasciaOraria = fasciaOraria;
-		this.aula = aula;
-		//this.day = day;
+		this.attività 		= attività;
+		this.fasciaOraria 	= fasciaOraria;
+		this.aula 			= aula;
 	}
 
 	public Assegnamento(Attività attività, FasciaOraria fasciaOraria, Aula aula) {
-		this.attività = attività;
-		this.fasciaOraria = fasciaOraria;
-		this.aula = aula;
+		this.attività 		= attività;
+		this.fasciaOraria 	= fasciaOraria;
+		this.aula 			= aula;
 	}
 
 
 	@Override
 	public String toString() {
-
 		String toRet = attività.toString() + fasciaOraria.toString() + aula.toString();
-
-
 		return toRet;
-
-
 	}
 
 

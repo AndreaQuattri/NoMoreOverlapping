@@ -498,6 +498,21 @@ public class Model extends Observable{
 		return null;
 		
 	}
+	
+	public FasciaOraria findFasciaOraria(int id) {
 
+		int i;
+		FasciaOraria temp = new FasciaOraria();
+		temp.setIdFascia(id);
+		
+		// cerca
+		i = listFasciaOraria.lastIndexOf(temp);
+		if ( i != -1 )
+			return listFasciaOraria.get(i);
+		
+		// Fascia Oraria non trovata
+		return null;
+		
+	}
 
 }

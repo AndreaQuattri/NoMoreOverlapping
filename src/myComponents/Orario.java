@@ -13,34 +13,28 @@ public class Orario {
 	private ArrayList<CorsoDiStudi> elencoCorsi;
 
 	public Orario() {
-		// TODO Auto-generated constructor stub
-		elencoAssegnamenti = new ArrayList<Assegnamento>();
-		elencoAttività = new ArrayList<Attività>();
+		elencoAssegnamenti	= new ArrayList<Assegnamento>();
+		elencoAttività 		= new ArrayList<Attività>();
+		elencoCorsi 		= new ArrayList<CorsoDiStudi>();
+		sovrapposizioni 	= -1;
+		integrSovrap 		= false;
 	}
 	
 	
-	public Orario(int sovrapposizioni, boolean integrSovrap, ArrayList<Assegnamento> elencoAssegnamenti,
-			ArrayList<Attività> elencoAttività) {
-		this.sovrapposizioni = sovrapposizioni;
-		this.integrSovrap = integrSovrap;
-		this.elencoAssegnamenti = elencoAssegnamenti;
-		this.elencoAttività = elencoAttività;
+	public Orario(ArrayList<Assegnamento> elencoAssegnamenti, ArrayList<Attività> elencoAttività, ArrayList<CorsoDiStudi> elencoCorsi) {
+		this.elencoAssegnamenti	= elencoAssegnamenti;
+		this.elencoAttività 	= elencoAttività;
+		this.elencoCorsi 		= elencoCorsi;
+		sovrapposizioni 		= -1;
+		integrSovrap 			= false;
 	}
 
 	public Orario(ArrayList<Assegnamento> elencoAssegnamenti) {
 		this.elencoAssegnamenti = elencoAssegnamenti;
-		sovrapposizioni = -1;
-		integrSovrap = false;
-		elencoAttività = new ArrayList<Attività>();
-	}
-
-
-
-	public Orario(ArrayList<Assegnamento> elencoAssegnamenti, ArrayList<Attività> elencoAttività) {
-		this.elencoAssegnamenti = elencoAssegnamenti;
-		this.elencoAttività = elencoAttività;
-		sovrapposizioni = -1;
-		integrSovrap = false;
+		elencoAttività 			= new ArrayList<Attività>();
+		elencoCorsi 			= new ArrayList<CorsoDiStudi>();
+		sovrapposizioni 		= -1;
+		integrSovrap 			= false;
 	}
 
 	

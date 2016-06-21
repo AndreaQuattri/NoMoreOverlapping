@@ -6,6 +6,17 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
+
+/**
+ * 
+ * La classe Attivita' gestisce i dati di una generica attivita'.
+ * Contiene i metodi set e get e metodi costruttori
+ * 
+ * @author andreaquattri
+ * 
+ *
+ */
+
 public class Attività implements Comparable<Attività>{
 
 	private int ore;
@@ -64,42 +75,89 @@ public class Attività implements Comparable<Attività>{
 	}
 
 
+	/**
+	 * Questo metodo restituisce il numero di ore di questa Attivita'
+	 * @return Numero ore Attivita'
+	 * 
+	 */
 	public int getOre() {
 		return ore;
 	}
+	
+	/**
+	 * 
+	 * @param ore
+	 */
 	public void setOre(int ore) {
 		this.ore = ore;
 	}
+	
+	/**
+	 * Questo metodo restituisce l'id che identifica univocamente l'oggetto Attivita'
+	 * @return id di Attivita'
+	 * 
+	 */
 	public String getId() {
 		return id;
 	}
 	public void setId(String id) {
 		this.id = id;
 	}
+	
+	/**
+	 * Questo metodo restituisce la descrizione della Attivita'
+	 * @return La descrizione della Attivita'
+	 * 
+	 */
 	public String getDescrizione() {
 		return descrizione;
 	}
+	
 	public void setDescrizione(String descrizione) {
 		this.descrizione = descrizione;
 	}
+	
+	/**
+	 * Questo metodo restituisce il nome della Attivita'
+	 * @return Il nome della Attivita'
+	 * 
+	 */	
 	public String getNome() {
 		return nome;
 	}
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+	
+	/**
+	 * Questo metodo restituisce la data di inizio della Attivita'
+	 * @return La dataInizio della Attivita'
+	 * 
+	 */
 	public Date getInizio() {
 		return inizio;
 	}
 	public void setInizio(Date inizio) {
 		this.inizio = inizio;
 	}
+	
+	/**
+	 * Questo metodo restituisce la data di fine della Attivita'
+	 * @return La dataFine della Attivita'
+	 * 
+	 */
 	public Date getFine() {
 		return fine;
 	}
 	public void setFine(Date fine) {
 		this.fine = fine;
 	}
+	
+	/**
+	 * Questo metodo restituisce il semestre in cui è presente questa Attivita'
+	 * @return Il semestre della Attivita'
+	 * 
+	 */
 	public int getSemestre() {
 		return semestre;
 	}

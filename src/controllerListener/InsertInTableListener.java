@@ -25,7 +25,7 @@ public class InsertInTableListener implements  ActionListener
 	public void actionPerformed(ActionEvent action)
 	{
 
-		view.getLabelTableInTable().setText((String)view.getComboBoxTable().getSelectedItem());
+		view.getLabelTable().setText((String)view.getComboBoxTable().getSelectedItem());
 
 		InsertInTable insertInTable = new InsertInTable(view.getComboBoxTable().getSelectedItem());
 

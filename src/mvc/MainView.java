@@ -37,8 +37,10 @@ public class MainView extends JFrame implements Observer {
 	private JButton buttonUpdateTable;
 	private JComboBox comboBoxRecord;
 	private JButton buttonGestioneOrario;
-	private JLabel labelTableInTable;
-	
+	private JLabel labelTable;
+
+
+
 
 
 	private JLabel labelTableShown;
@@ -144,7 +146,6 @@ public class MainView extends JFrame implements Observer {
 		
 		buttonGestioneOrario = new JButton("Gestione orario");
 		
-		labelTableInTable = new JLabel("");
 		
 
 		tableRecords = new DefaultTableModel(0, 0);
@@ -154,45 +155,52 @@ public class MainView extends JFrame implements Observer {
 
 		
 		scrollPane.setViewportView(table);
+		
+		labelTable = new JLabel("");
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(6)
-					.addComponent(buttonInfo, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE))
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(66)
-					.addComponent(labelTableSelection)
-					.addGap(85)
-					.addComponent(comboBoxTable, GroupLayout.PREFERRED_SIZE, 189, GroupLayout.PREFERRED_SIZE)
-					.addGap(87)
-					.addComponent(buttonAcquisisci, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
-					.addGap(75)
-					.addComponent(buttonAggiorna, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE))
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(66)
-					.addComponent(buttonInsertNewTable, GroupLayout.PREFERRED_SIZE, 335, GroupLayout.PREFERRED_SIZE)
-					.addGap(131)
-					.addComponent(comboBoxRecord, GroupLayout.PREFERRED_SIZE, 309, GroupLayout.PREFERRED_SIZE))
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(66)
-					.addComponent(labelDeleteTable, GroupLayout.PREFERRED_SIZE, 107, GroupLayout.PREFERRED_SIZE)
-					.addGap(39)
-					.addComponent(buttonDeleteTable, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE))
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(66)
-					.addComponent(labelUpdateTable, GroupLayout.PREFERRED_SIZE, 107, GroupLayout.PREFERRED_SIZE)
-					.addGap(39)
-					.addComponent(buttonUpdateTable, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE))
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(294)
-					.addComponent(labelTableShown, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE))
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(66)
-					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 775, GroupLayout.PREFERRED_SIZE))
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(326)
-					.addComponent(buttonGestioneOrario, GroupLayout.PREFERRED_SIZE, 230, GroupLayout.PREFERRED_SIZE))
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(6)
+							.addComponent(buttonInfo, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(66)
+							.addComponent(labelTableSelection)
+							.addGap(85)
+							.addComponent(comboBoxTable, GroupLayout.PREFERRED_SIZE, 189, GroupLayout.PREFERRED_SIZE)
+							.addGap(87)
+							.addComponent(buttonAcquisisci, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
+							.addGap(75)
+							.addComponent(buttonAggiorna, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(66)
+							.addComponent(buttonInsertNewTable, GroupLayout.PREFERRED_SIZE, 335, GroupLayout.PREFERRED_SIZE)
+							.addGap(131)
+							.addComponent(comboBoxRecord, GroupLayout.PREFERRED_SIZE, 309, GroupLayout.PREFERRED_SIZE))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(66)
+							.addComponent(labelDeleteTable, GroupLayout.PREFERRED_SIZE, 107, GroupLayout.PREFERRED_SIZE)
+							.addGap(39)
+							.addComponent(buttonDeleteTable, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(66)
+							.addComponent(labelUpdateTable, GroupLayout.PREFERRED_SIZE, 107, GroupLayout.PREFERRED_SIZE)
+							.addGap(39)
+							.addComponent(buttonUpdateTable, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(294)
+							.addComponent(labelTableShown, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
+							.addGap(46)
+							.addComponent(labelTable))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(66)
+							.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 775, GroupLayout.PREFERRED_SIZE))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(326)
+							.addComponent(buttonGestioneOrario, GroupLayout.PREFERRED_SIZE, 230, GroupLayout.PREFERRED_SIZE)))
+					.addContainerGap(59, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -228,7 +236,9 @@ public class MainView extends JFrame implements Observer {
 							.addComponent(labelUpdateTable))
 						.addComponent(buttonUpdateTable))
 					.addGap(47)
-					.addComponent(labelTableShown)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(labelTableShown)
+						.addComponent(labelTable))
 					.addGap(31)
 					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 228, GroupLayout.PREFERRED_SIZE)
 					.addGap(18)
@@ -336,14 +346,13 @@ public class MainView extends JFrame implements Observer {
 		public void setComboBoxRecord(JComboBox comboBoxRecord) {
 			this.comboBoxRecord = comboBoxRecord;
 		}
+
+		public JLabel getLabelTable() {
+			return labelTable;
+		}
+
+		public void setLabelTable(JLabel labelTable) {
+			this.labelTable = labelTable;
+		}
 		
-		public JLabel getLabelTableInTable() {
-			return labelTableInTable;
-		}
-
-		public void setLabelTableInTable(JLabel labelTableInTable) {
-			this.labelTableInTable = labelTableInTable;
-		}
-
-
 }

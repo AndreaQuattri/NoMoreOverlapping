@@ -1,5 +1,7 @@
 package pdfPrinter;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.text.SimpleDateFormat;
@@ -17,11 +19,13 @@ import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 
+import mvc.Model;
 import myComponents.Assegnamento;
 import myComponents.FasciaOraria;
 import myComponents.Orario;
 
-public class PdfPrinter {
+public class PdfPrinter implements ActionListener{
+	
 	private static Font bigFont = new Font(Font.FontFamily.HELVETICA, 16, Font.BOLD);
 	private static Font mediumFont = new Font(Font.FontFamily.HELVETICA, 11 , Font.BOLD);
 	private static Font smallFont = new Font(Font.FontFamily.HELVETICA, 11 );
@@ -36,6 +40,13 @@ public class PdfPrinter {
 	private static PdfPCell cHead = new PdfPCell();
 	private static PdfPCell cBody = new PdfPCell();
 	
+	private Model model;
+	
+	public PdfPrinter(Model model) {
+		this.model = model;
+	}
+	
+	
 	private static void setupCell() {
 		if ( cellFlag )
 			return;
@@ -45,38 +56,6 @@ public class PdfPrinter {
 		cellFlag = true;
 	}
 	
-	
-	public static void printReport(String fileName, final String title , Orario o , ArrayList<FasciaOraria> listFO ) {
-		try {
-			// error case
-			if ( fileName == null || fileName == "" ) {
-				fileName = "temp.pdf";
-				System.out.println("ERROR: No PDF file name");
-			}
-			else if ( !fileName.endsWith(".pdf") )
-				fileName = fileName + ".pdf";
-			
-			
-			FileOutputStream file = new FileOutputStream(new File(fileName));
-
-			Document document = new Document();
-			PdfWriter.getInstance(document, file);
-			document.open();
-			aggiungiMetaDati(document,title);
-			document.add(aggiungiTitolo(title));
-			document.add(creaTabella(o, listFO));
-//			document.add(creaTabellaStandard());
-			
-			
-			document.close();
-			file.close();
-			System.out.println("pdf salvato col nome " + fileName);
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-	}
 
 	private static Element aggiungiTitolo(final String title) throws DocumentException {
 		Paragraph p = new Paragraph(title,bigFont);
@@ -392,6 +371,56 @@ public class PdfPrinter {
 			tabella.addCell(cHead);
 		}
 		
+	}
+
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		String fileName = "prova.pdf";
+		String title = "titolo prova";
+		
+		try {
+			// error case
+			if ( fileName == null || fileName == "" ) {
+				fileName = "temp.pdf";
+				System.out.println("ERROR: No PDF file name");
+			}
+			else if ( !fileName.endsWith(".pdf") )
+				fileName = fileName + ".pdf";
+			
+			
+			FileOutputStream file = new FileOutputStream(new File(fileName));
+
+			Document document = new Document();
+			PdfWriter.getInstance(document, file);
+			document.open();
+			aggiungiMetaDati(document,title);
+			document.add(aggiungiTitolo(title));
+			document.add(creaTabella(model.getOrarioUfficiale(), model.getListFasciaOraria()));
+//			document.add(creaTabellaStandard());
+			
+			
+			document.close();
+			file.close();
+			System.out.println("pdf salvato col nome " + fileName);
+
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+
+		
+		
+	}
+
+
+	public Model getModel() {
+		return model;
+	}
+
+
+	public void setModel(Model model) {
+		this.model = model;
 	}
 }
 

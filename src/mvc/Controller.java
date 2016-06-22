@@ -1,6 +1,7 @@
 package mvc;
 
-import controllerListener.*;;
+import controllerListener.*;
+import pdfPrinter.PdfPrinter;;
 
 
 
@@ -28,6 +29,7 @@ public class Controller
 		viewOrario.pressButtonCarica(new CaricaOrarioDaFile(model, viewOrario));
 		viewOrario.pressButtonSalva(new SalvaOrarioEsistente(model));
 		viewOrario.pressButtonEsci(new EsciViewTimeTable(viewOrario));
+		viewOrario.pressEsportaPdf(new PdfPrinter(model));
 		//viewOrario.selectedActivityToView(new SelectedActivityListener(model, viewOrario));
 		//viewOrario.selectedPianoToView(new SelectedPianoListener(model, viewOrario));
 		//viewOrario.selectedDocenteToView(new SelectedDocenteListener(model, viewOrario));

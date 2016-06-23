@@ -378,7 +378,7 @@ public class PdfPrinter implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		String fileName = "prova.pdf";
-		String title = "titolo prova";
+		String title = "Orario Ingegneria";
 		
 		try {
 			// error case

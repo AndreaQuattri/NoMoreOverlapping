@@ -196,8 +196,6 @@ public class ViewTimeTable extends JFrame implements Observer {
 		labelNumSovr = new JLabel("");
 		
 		labelNumIterazioni = new JLabel("");
-		
-		JButton btnSalvaPdf = new JButton("Salva PDF");
 		/*
 			btnSalvaPdf.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -217,18 +215,13 @@ public class ViewTimeTable extends JFrame implements Observer {
 							.addGap(465)
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 								.addComponent(labelNumIterazioni)
-								.addComponent(labelNumSovr)))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(65)
-							.addComponent(btnSalvaPdf)))
+								.addComponent(labelNumSovr))))
 					.addContainerGap(57, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(44)
-					.addComponent(btnSalvaPdf)
-					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGap(79)
 					.addComponent(labelNumSovr)
 					.addGap(28)
 					.addComponent(labelNumIterazioni)

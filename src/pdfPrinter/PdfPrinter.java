@@ -107,13 +107,11 @@ public class PdfPrinter implements ActionListener{
 			Assegnamento a = i.next();
 			FasciaOraria fo = a.getFasciaOraria();
 			
-			System.out.println(a.getAttività().getNome());
 			
 			int startRow = findRow( format.format(fo.getInizio()) );
 			int endRow = findRow( format.format(fo.getFine()) ) - 1;
 			
 			int dayCol = findCol( fo.getGiorno() );
-			System.out.println( "" + startRow  + " " + endRow + " " + dayCol );
 			endRow = addAssegnamento( a , startRow , endRow , dayCol );
 		}
 	}

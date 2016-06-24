@@ -29,7 +29,7 @@ public class PdfPrinter implements ActionListener{
 	private static Font bigFont = new Font(Font.FontFamily.HELVETICA, 16, Font.BOLD);
 	private static Font mediumFont = new Font(Font.FontFamily.HELVETICA, 11 , Font.BOLD);
 	private static Font smallFont = new Font(Font.FontFamily.HELVETICA, 11 );
-	private static SimpleDateFormat format = new SimpleDateFormat("hh:mm");
+	private static SimpleDateFormat format = new SimpleDateFormat("HH:mm");
 	
 	private static String[] titoli = { "ORA DI INIZIO" , "LUNEDI" , "MARTEDI" , "MERCOLEDI" , "GIOVEDI" , "VENERDI" , "SABATO" };
 	private static final int NCOL = titoli.length;
@@ -78,75 +78,6 @@ public class PdfPrinter implements ActionListener{
 		document.addCreator(System.getProperty("user.name"));
 	}
 
-//	private static PdfPTable creaTabellaStandard() {
-//		
-//		PdfPTable tabella = new PdfPTable(NCOL);
-//		//impostazioni tabella
-//		tabella.setHorizontalAlignment(Element.ALIGN_CENTER);
-//		tabella.setWidthPercentage(100);
-//
-//		setupCell();
-//		
-//		// INTESTAZIONE COLONNE
-//		
-//		// prima vuota
-//		cHead.setPhrase(new Phrase("",mediumFont));
-//		tabella.addCell(cHead);
-//		
-	// giorni della settimana
-//		cHead.setPhrase(new Phrase("LUNEDì",mediumFont));
-//		tabella.addCell(cHead);
-//		cHead.setPhrase(new Phrase("MARTEDì",mediumFont));
-//		tabella.addCell(cHead);
-//		cHead.setPhrase(new Phrase("MERCOLEDì",mediumFont));
-//		tabella.addCell(cHead);
-//		cHead.setPhrase(new Phrase("GIOVEDì",mediumFont));
-//		tabella.addCell(cHead);
-//		cHead.setPhrase(new Phrase("VENERDì",mediumFont));
-//		tabella.addCell(cHead);
-//		cHead.setPhrase(new Phrase("SABATO",mediumFont));
-//		tabella.addCell(cHead);
-//		
-//		//INTESTAZIONE RIGA
-//		cHead.setPhrase(new Phrase("RIGA "+1,mediumFont));
-//		tabella.addCell(cHead);
-//
-//		cBody.setPhrase(new Phrase("1",smallFont));
-//		tabella.addCell(cBody);
-//		cBody.setPhrase(new Phrase("2",smallFont));
-//		tabella.addCell(cBody);
-//		cBody.setPhrase(new Phrase("3",smallFont));
-//		tabella.addCell(cBody);
-//		cBody.setPhrase(new Phrase("4",smallFont));
-//		tabella.addCell(cBody);
-//		cBody.setPhrase(new Phrase("5",smallFont));
-//		tabella.addCell(cBody);
-//		cBody.setPhrase(new Phrase("6",smallFont));
-//		tabella.addCell(cBody);
-//		
-//		
-//
-//		//INTESTAZIONE RIGA
-//		cHead.setPhrase(new Phrase("RIGA "+2,mediumFont));
-//		tabella.addCell(cHead);
-//
-//		cBody.setPhrase(new Phrase("1",smallFont));
-//		tabella.addCell(cBody);
-//		cBody.setPhrase(new Phrase("2",smallFont));
-//		tabella.addCell(cBody);
-//		cBody.setPhrase(new Phrase("3",smallFont));
-//		tabella.addCell(cBody);
-//		cBody.setPhrase(new Phrase("4",smallFont));
-//		tabella.addCell(cBody);
-//		cBody.setPhrase(new Phrase("5",smallFont));
-//		tabella.addCell(cBody);
-//		cBody.setPhrase(new Phrase("6",smallFont));
-//		tabella.addCell(cBody);
-//
-//		return tabella;
-//
-//	}
-	
 	private static PdfPTable creaTabella(Orario o , ArrayList<FasciaOraria> listFO) throws Exception  {
 		PdfPTable tabella = new PdfPTable(NCOL);
 		
@@ -171,15 +102,19 @@ public class PdfPrinter implements ActionListener{
 		ArrayList<Assegnamento> listA = o.getElencoAssegnamenti();
 		
 		Iterator<Assegnamento> i = listA.iterator();
-		
+
 		while( i != null && i.hasNext() ) {
 			Assegnamento a = i.next();
 			FasciaOraria fo = a.getFasciaOraria();
+			
+			System.out.println(a.getAttività().getNome());
+			
 			int startRow = findRow( format.format(fo.getInizio()) );
 			int endRow = findRow( format.format(fo.getFine()) ) - 1;
+			
 			int dayCol = findCol( fo.getGiorno() );
-			endRow = maybeAddRow( startRow , endRow , dayCol );
-			addAssegnamento( a , startRow , endRow , dayCol );
+			System.out.println( "" + startRow  + " " + endRow + " " + dayCol );
+			endRow = addAssegnamento( a , startRow , endRow , dayCol );
 		}
 	}
 	
@@ -190,7 +125,7 @@ public class PdfPrinter implements ActionListener{
 	 * @param endRow
 	 * @param dayCol
 	 */
-	private static void addAssegnamento(Assegnamento a , int startRow , int endRow , int dayCol ) {
+	private static int addAssegnamento(Assegnamento a , int startRow , int endRow , int dayCol ) {
 		
 		// indica che sei pronto ad inserire l'assegnamento nella prima casella disponibile
 		Boolean flagHour = false;
@@ -202,12 +137,20 @@ public class PdfPrinter implements ActionListener{
 			String[] s = new String[NCOL];
 			for( int j = 0 ; j < NCOL ; j ++ )
 				s[j] = toPrint.get(i)[j];
+				
+			//inizia una nuova fascia oraria
+			if( !s[0].isEmpty() ) {
+				if( !flagHour )
+					// se non aspettando per inserire ora aspetto
+					flagHour = true;
+				else {
+					//se sto ancora aspettando di inserire la riga precedente aggiunga una riga per inserirla
+					addRow(i,dayCol,a.getAttività().getNome() + "\n" + a.getAula());
+					endRow++;
+					flagHour = false;
+				}
+			}
 			
-			//sono alla riga corretta?
-			if( !flagHour && !s[0].isEmpty() )
-				flagHour = true;
-			
-			// sono pronto ad inserire?
 			if( flagHour ) {
 				if ( s[dayCol].isEmpty() ) {
 					s[ dayCol ] = a.getAttività().getNome() + "\n" + a.getAula();
@@ -218,69 +161,25 @@ public class PdfPrinter implements ActionListener{
 			//reinserisci array modificato
 			toPrint.set(i, s);
 		}
-	}
-	
-	
-	/**controlla tutte le righe in prossimità del giorno indicato,
-	 * se non c'è modo di inserire l'assegnamento allora aggiunge
-	 * una riga vuota
-	 * @param startRow riga di inizio
-	 * @param endRow riga di fine
-	 * @param dayCol colonna da controllare
-	 */
-	private static int maybeAddRow(int startRow, int endRow, int dayCol) {
-		// indica che aspetto per inserire l'assegnamento nella prima casella disponibile
-		Boolean flagHour = false;
-		
-		
-		for( int i = startRow ; i <= endRow ; i++ ) {
-			
-			//prendi array da toPrint
-			String[] s = new String[NCOL];
-			for( int j = 0 ; j < NCOL ; j ++ )
-				s[j] = toPrint.get(i)[j];
-			
-			//inizia una nuova fascia oraria
-			if( !s[0].isEmpty() ) {
-				if( !flagHour )
-					// se non aspettando per inserire ora aspetto
-					flagHour = true;
-				else {
-					//se sto ancora aspettando di inserire la riga precedente aggiunga una riga per inserirla
-					addRow(i);
-					i++;
-					endRow++;
-					flagHour = false;
-				}
-			}
-			
-			// sto aspettando di inserire un assegnamento?
-			if( flagHour ) {
-				//se c'è posto non aspetto più
-				if ( s[dayCol].isEmpty() ) {
-					flagHour = false;
-				}
-			}
-			
-			//reinserisci array modificato
-			toPrint.set(i, s);
-		}
 		
 		if( flagHour ) {
-			//se sto ancora aspettando di inserire la riga precedente aggiunga una riga per inserirla
-			addRow(endRow);
+			//se sto ancora aspettando di inserire la riga precedente la inserisco
 			endRow++;
+			addRow(endRow,dayCol,a.getAttività().getNome() + "\n" + a.getAula());
 		}
-		
 		return endRow;
+		
 	}
 	
-	
-	private static void addRow(int i) {
+
+	private static void addRow(int i, int dayCol, String string) {
+
 		String[] add = new String[NCOL];
 		for(int j = 0 ; j < NCOL ; j ++ )
 			add[j] = new String();
+		add[dayCol] = string;
 		toPrint.add(i, add);
+		
 	}
 
 
@@ -292,7 +191,7 @@ public class PdfPrinter implements ActionListener{
 	 */
 	private static int findCol(String giorno) throws Exception {
 	
-		for	(int i = 0 ; i < NCOL ; i ++)
+		for	(int i = 1 ; i < NCOL ; i ++)
 			if( titoli[i].equals(giorno.toUpperCase()) )
 				return i;	
 		throw new Exception("col not found: " + giorno);
@@ -323,15 +222,20 @@ public class PdfPrinter implements ActionListener{
 			String[] row = i.next();
 			
 			// intestazione riga
-			cHead.setPhrase(new Phrase(row[0],mediumFont));
+			cHead.setPhrase(new Phrase((!row[0].isEmpty())?row[0]:" ",mediumFont));
 			tabella.addCell(cHead);
 
 			//colonne
 			for( int j = 1 ; j < NCOL ; j ++ ) {
-				cBody.setPhrase(new Phrase(row[j],smallFont));
+				cBody.setPhrase(new Phrase((!row[j].isEmpty())?row[j]:" ",smallFont));
 				tabella.addCell(cBody);
 			}
 		}	
+		
+		
+		
+		
+		
 	}
 
 	private static void setupTable( ArrayList<FasciaOraria> listFO) throws Exception {
@@ -376,7 +280,6 @@ public class PdfPrinter implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
 		String fileName = "prova.pdf";
 		String title = "titolo prova";
 		
@@ -398,8 +301,6 @@ public class PdfPrinter implements ActionListener{
 			aggiungiMetaDati(document,title);
 			document.add(aggiungiTitolo(title));
 			document.add(creaTabella(model.getOrarioUfficiale(), model.getListFasciaOraria()));
-//			document.add(creaTabellaStandard());
-			
 			
 			document.close();
 			file.close();
@@ -408,8 +309,6 @@ public class PdfPrinter implements ActionListener{
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
-
-		
 		
 	}
 

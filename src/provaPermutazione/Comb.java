@@ -1,4 +1,4 @@
-package connectToDatabase;
+package provaPermutazione;
 
 import java.util.ArrayList;
 

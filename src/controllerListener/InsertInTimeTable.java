@@ -6,8 +6,8 @@ import java.util.Vector;
 
 import javax.swing.JCheckBoxMenuItem;
 
-import connectToDatabase.CreateTimeTable;
-import connectToDatabase.DisciplinaInseritaPiano;
+import memorizzazioneDati.CreateTimeTable;
+import memorizzazioneDati.DisciplinaInseritaPiano;
 import mvc.Model;
 import mvc.UpdateTimeTable;
 import mvc.ViewTimeTable;

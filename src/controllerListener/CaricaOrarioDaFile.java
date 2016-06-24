@@ -10,7 +10,6 @@ import javax.swing.JPanel;
 import javax.swing.text.View;
 import javax.xml.stream.XMLStreamException;
 
-import connectToDatabase.MyFileFilter;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.Vector;

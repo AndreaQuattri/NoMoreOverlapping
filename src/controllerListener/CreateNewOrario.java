@@ -12,10 +12,10 @@ import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 
-import connectToDatabase.CreateTimeTable;
-import connectToDatabase.DisciplinaInseritaPiano;
 import elaborazioneDati.GeneraListaDiscipline;
 import elaborazioneDati.GeneraSequenzaCasuale;
+import memorizzazioneDati.CreateTimeTable;
+import memorizzazioneDati.DisciplinaInseritaPiano;
 import mvc.Model;
 import mvc.ViewTimeTable;
 import myComponents.Assegnamento;

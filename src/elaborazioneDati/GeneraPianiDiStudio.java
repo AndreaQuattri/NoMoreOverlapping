@@ -1,11 +1,10 @@
-package memorizzazioneDati;
+package elaborazioneDati;
 
 import java.util.ArrayList;
 
-import connectToDatabase.Comb;
-import connectToDatabase.GetDisciplina;
 import mvc.Model;
 import myComponents.*;
+import provaPermutazione.Comb;
 
 public class GeneraPianiDiStudio {
 
@@ -42,7 +41,7 @@ public class GeneraPianiDiStudio {
 
 			elencoAttività = Comb.getCombinazioni(elencoAttivitàString, piano.getElencoAttivitàOpzionali().size());
 
-			GetDisciplina getDisplina = new GetDisciplina(model);
+			//GetDisciplina getDisplina = new GetDisciplina(model);
 			int cred;
 			ArrayList<Disciplina> listSupport = new ArrayList<Disciplina>();
 
@@ -58,7 +57,7 @@ public class GeneraPianiDiStudio {
 				String riga[] = elencoAttività.get(i).split(" ");
 				cred = 0;
 				for (int j=0; j<riga.length; j++)
-					cred+=getDisplina.fromIdToDisciplina(riga[j]).getCrediti();
+					cred+=model.fromIdToDisciplina(riga[j]).getCrediti();
 				if (cred == creditiMancanti){
 					listSupport = new ArrayList<Disciplina>();
 					for (int j=0; j<piano.getElencoAttivitàObbligatorie().size(); j++){
@@ -66,7 +65,7 @@ public class GeneraPianiDiStudio {
 					}
 					piano.getElencoPianiPossibili().add(listSupport);
 					for (int j=0; j<riga.length; j++)
-						piano.getElencoPianiPossibili().get(indicePiani).add(getDisplina.fromIdToDisciplina(riga[j]));
+						piano.getElencoPianiPossibili().get(indicePiani).add(model.fromIdToDisciplina(riga[j]));
 					indicePiani++;
 				}
 

@@ -1,4 +1,4 @@
-package connectToDatabase;
+package memorizzazioneDati;
 
 import java.util.ArrayList;
 

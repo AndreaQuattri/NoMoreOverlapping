@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 
+import javax.swing.JFileChooser;
+
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
@@ -278,8 +280,20 @@ public class PdfPrinter implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		String fileName = "prova.pdf";
 		String title = "Orario Ingegneria";
+		
+		
+		JFileChooser fs = new JFileChooser(new File("c:\\"));
+		fs.setDialogTitle("Save a File");
+		fs.showSaveDialog(fs);
+		
+		
+		
+
+
+		// TODO Auto-generated method stub
+		String fileName = fs.getSelectedFile().getPath();
+		
 		
 		try {
 			// error case

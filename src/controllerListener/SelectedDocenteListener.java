@@ -35,24 +35,7 @@ public class SelectedDocenteListener implements  ActionListener
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
-
-
-		String[] appoggio;
-		for (int i=0; i<viewOrario.getVisualizzaDocente().getItemCount(); i++){
-			appoggio = viewOrario.getVisualizzaDocente().getItem(i).getText().split("-");
-			if (appoggio[0].trim().equals(matricola))
-				viewOrario.getVisualizzaDocente().getItem(i).setSelected(true);
-			else
-				viewOrario.getVisualizzaDocente().getItem(i).setSelected(false);
-		}
-		for (int i=0; i<viewOrario.getVisualizzaAttività().getItemCount(); i++)
-			viewOrario.getVisualizzaAttività().getItem(i).setSelected(false);
-		for (int i=0; i<viewOrario.getVisualizzaCorso().getItemCount(); i++)
-			viewOrario.getVisualizzaCorso().getItem(i).setSelected(false);
-		viewOrario.getVisualizzaTutto().getItem(0).setSelected(false);
-
-
-
+		setAttributeToView();
 		model.setTabella(new Vector<Vector<String>>());
 
 		if(viewOrario.getTableRecords().getRowCount()!=0)
@@ -89,8 +72,6 @@ public class SelectedDocenteListener implements  ActionListener
 		String oraFine = formatter.format(fine);
 
 
-
-
 		for (int i=0; i<model.getListFasciaOraria().size(); i++){
 
 			countDay = 0;
@@ -125,16 +106,10 @@ public class SelectedDocenteListener implements  ActionListener
 			viewOrario.getTableRecords().addRow(model.getTabella().get(i));
 		}
 
-
-
 		for (int i=1; i<7; i++){
 			viewOrario.getTable().getColumnModel().getColumn(i).setCellRenderer(new DefaultTableCellRenderer() {
-				/**
-				 * 
-				 */
+
 				private static final long serialVersionUID = 1L;
-
-
 
 				public Component getTableCellRendererComponent (JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) 
 				{
@@ -164,37 +139,24 @@ public class SelectedDocenteListener implements  ActionListener
 
 		}
 
+	}
+	
 
+	private void setAttributeToView(){
+		String[] appoggio;
+		for (int i=0; i<viewOrario.getVisualizzaDocente().getItemCount(); i++){
+			appoggio = viewOrario.getVisualizzaDocente().getItem(i).getText().split("-");
+			if (appoggio[0].trim().equals(matricola))
+				viewOrario.getVisualizzaDocente().getItem(i).setSelected(true);
+			else
+				viewOrario.getVisualizzaDocente().getItem(i).setSelected(false);
+		}
+		for (int i=0; i<viewOrario.getVisualizzaAttività().getItemCount(); i++)
+			viewOrario.getVisualizzaAttività().getItem(i).setSelected(false);
+		for (int i=0; i<viewOrario.getVisualizzaCorso().getItemCount(); i++)
+			viewOrario.getVisualizzaCorso().getItem(i).setSelected(false);
+		viewOrario.getVisualizzaTutto().getItem(0).setSelected(false);
 
 	}
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

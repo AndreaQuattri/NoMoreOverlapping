@@ -27,7 +27,6 @@ public class SalvaOrarioEsistente implements ActionListener{
 		
 		JFileChooser fs = new JFileChooser(new File("c:\\"));
 		fs.setDialogTitle("Save a File");
-		fs.setFileFilter(new MyFileFilter());
 		fs.showSaveDialog(fs);
 		
 		
@@ -35,8 +34,8 @@ public class SalvaOrarioEsistente implements ActionListener{
 
 
 		// TODO Auto-generated method stub
-		String file = "provaorario.xml";
-
+		String file = fs.getSelectedFile().getPath();
+		System.out.println(file);
 		
 
 	

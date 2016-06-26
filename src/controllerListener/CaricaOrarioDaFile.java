@@ -7,7 +7,6 @@ import java.io.FileNotFoundException;
 
 import javax.swing.JFileChooser;
 import javax.swing.JPanel;
-import javax.swing.text.View;
 import javax.xml.stream.XMLStreamException;
 
 import java.io.IOException;

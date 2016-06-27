@@ -363,7 +363,7 @@ public class CreateNewOrario implements  ActionListener
 		create.fromAssegnamentoToOrarioPerGiorno();
 
 		model.setTabella(new Vector<Vector<String>>());
-		model.fromOrarioToTable();
+		model.fromOrarioUfficialeToTable();
 
 		viewOrario.getVisualizzaTutto().getItem(0).setSelected(true);
 

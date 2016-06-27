@@ -7,10 +7,7 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.text.Format;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
+import java.util.Iterator;
 import java.util.Vector;
 
 import javax.swing.JTable;
@@ -18,6 +15,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 
 import mvc.Model;
 import mvc.ViewTimeTable;
+import myComponents.Attività;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -57,80 +55,37 @@ public class SelectedActivityListener implements  ActionListener
 		this.nomeAttività = nomeAttività;
 	}
 
-	/* (non-Javadoc)
-	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
-	 */
-	@SuppressWarnings("deprecation")
+
 	@Override
 	public void actionPerformed(ActionEvent action)
 	{
 
-
-
+		// gestione selezioni
 		setAttributeToView();
+		
+		// inizializzare la tabella nel model
 		model.setTabella(new Vector<Vector<String>>());
 
+		// inizializza la tabella mostrata
 		if(viewOrario.getTableRecords().getRowCount()!=0)
 			for (int i = 0; i<21; i++){
 				viewOrario.getTableRecords().removeRow(0);
 			}
-
-
-		ArrayList<String> listGiorni = new ArrayList<String>();
-		listGiorni.add("Lunedi");
-		listGiorni.add("Martedi");
-		listGiorni.add("Mercoledi");
-		listGiorni.add("Giovedi");
-		listGiorni.add("Venerdi");
-		listGiorni.add("Sabato");
-
-
-		int countDay=0;
-		int iRighe=0;
-		int iColonne=0;
-
-		int inizioOra = 8;
-		int inizioMinuto = 30;
-
-		int fineOra = 9;
-		int fineMinuto = 00;
-
-
-		Date inizio = new Date(1111, 1, 1, inizioOra, inizioMinuto);
-		Date fine = new Date(1111, 1, 1, fineOra, fineMinuto);
-
-		Format formatter = new SimpleDateFormat("HH:mm");
-		String oraInizio = formatter.format(inizio);
-		String oraFine = formatter.format(fine);
-
-
-		for (int i=0; i<model.getListFasciaOraria().size(); i++){
-			
-			countDay = 0;
-			model.getTabella().addElement(new Vector<String>());
-			for (int j=0; j<model.getOrarioUfficiale().getElencoAssegnamenti().size(); j++){
-				if (model.getOrarioUfficiale().getElencoAssegnamenti().get(j).getFasciaOraria().equals(model.getListFasciaOraria().get(i)) &&
-						model.getOrarioUfficiale().getElencoAssegnamenti().get(j).getAttività().getNome().equals(nomeAttività))
-					countDay++;
-			}
-			if (iColonne == 0){
-				model.getTabella().get(iRighe).add(String.valueOf(oraInizio + " - " + oraFine));
-				inizioMinuto+=30;
-				fineMinuto+=30;
-
-				inizio = new Date(1111, 1, 1, inizioOra, inizioMinuto);
-				fine = new Date(1111, 1, 1, fineOra, fineMinuto);
-				oraInizio = formatter.format(inizio);
-				oraFine = formatter.format(fine);
-			}
-
-			model.getTabella().get(iRighe).add(String.valueOf(countDay));
-
-			iColonne = iColonne + iRighe/20;
-			iRighe = (iRighe + 1)%21;
-
+		
+		
+		// trovo l'attività per il nome
+		Iterator<Attività> iAtt = model.getListAllAttivitàInserite().iterator();
+		Attività attivitàSelezionata = null;
+		while( iAtt != null && iAtt.hasNext() ) {
+			attivitàSelezionata = iAtt.next();
+			if(nomeAttività.equals(attivitàSelezionata.getNome()))
+				iAtt = null;
 		}
+		model.filtraOrario(attivitàSelezionata);
 
+		model.fromOrarioDaMostrareToTable();
+		
+		
 		for(int i=0; i<21; i++){
 			viewOrario.getTableRecords().addRow(model.getTabella().get(i));
 		}

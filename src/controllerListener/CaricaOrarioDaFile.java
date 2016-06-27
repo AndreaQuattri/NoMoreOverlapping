@@ -89,7 +89,7 @@ public class CaricaOrarioDaFile extends JPanel implements ActionListener{
 					System.out.println(model.getOrarioUfficiale().getElencoAssegnamenti().get(i).getAttività().toString());
 
 				model.setTabella(new Vector<Vector<String>>());
-				model.fromOrarioToTable();
+				model.fromOrarioUfficialeToTable();
 				viewOrario.visualizzaOrario();
 
 			} catch (FileNotFoundException e1) {

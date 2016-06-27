@@ -194,6 +194,7 @@ public class MainView extends JFrame implements Observer {
 		getComboBoxTable().addItem("Tirocinio");
 		
 		buttonInsertNewTable = new JButton("Inserisci Record");
+		buttonInsertNewTable.setEnabled(false);
 		
 		buttonDeleteTable = new JButton("Elimina Record");
 		buttonDeleteTable.addActionListener(new ActionListener() {

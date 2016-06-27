@@ -407,7 +407,7 @@ public class PdfPrinter implements ActionListener{
 			document.open();
 			aggiungiMetaDati(document,title);
 			document.add(aggiungiTitolo(title));
-			document.add(creaTabella(model.getOrarioUfficiale(), model.getListFasciaOraria()));
+			document.add(creaTabella(model.getOrarioDaMostrare(), model.getListFasciaOraria()));
 			
 			document.close();
 			file.close();

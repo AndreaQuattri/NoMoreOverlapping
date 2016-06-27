@@ -347,5 +347,9 @@ public class Attività implements Comparable<Attività>{
 		return a.id.equals(this.id);
 	}
 
+	public boolean equalsAtt(Attività a) {
+		
+		return a.id.equals(this.id);
+	}
 
 }

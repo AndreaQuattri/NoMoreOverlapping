@@ -110,7 +110,7 @@ public class InsertInTimeTable implements ActionListener{
 			c.fromAssegnamentoToOrarioPerGiorno();
 
 			model.setTabella(new Vector<Vector<String>>());
-			model.fromOrarioToTable();
+			model.fromOrarioUfficialeToTable();
 			viewOrario.visualizzaOrario();
 
 

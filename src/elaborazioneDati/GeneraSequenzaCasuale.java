@@ -1,16 +1,34 @@
+/*
+ * 
+ */
 package elaborazioneDati;
 
 
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class GeneraSequenzaCasuale.
+ */
 public class GeneraSequenzaCasuale {
 
+	/** The dimensione. */
 	int dimensione;
 
+	/**
+	 * Instantiates a new genera sequenza casuale.
+	 *
+	 * @param dimensione the dimensione
+	 */
 	public GeneraSequenzaCasuale(int dimensione) {
 		this.dimensione = dimensione;
 	}
 
 
+	/**
+	 * Genera sequenza.
+	 *
+	 * @return the int[]
+	 */
 	public int[] generaSequenza (){
 
 

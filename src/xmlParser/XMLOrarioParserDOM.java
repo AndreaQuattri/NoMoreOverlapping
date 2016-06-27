@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package xmlParser;
 
 import java.io.File;
@@ -22,8 +25,23 @@ import myComponents.Docente;
 import myComponents.FasciaOraria;
 import myComponents.Orario;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class XMLOrarioParserDOM.
+ */
 public class XMLOrarioParserDOM{
 
+	/**
+	 * Gets the orario from file light.
+	 *
+	 * @param model the model
+	 * @param file the file
+	 * @return the orario from file light
+	 * @throws XMLStreamException the XML stream exception
+	 * @throws SAXException the SAX exception
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws ParserConfigurationException the parser configuration exception
+	 */
 	public static Orario getOrarioFromFileLight(Model model, String file) throws XMLStreamException, SAXException, IOException, ParserConfigurationException {
 		Orario ret = null;
 		Document doc = setUpXMLDocumentIn(file);
@@ -37,6 +55,16 @@ public class XMLOrarioParserDOM{
 	    return ret;
 	}
 
+	/**
+	 * Write orario on file light.
+	 *
+	 * @param file the file
+	 * @param o the o
+	 * @throws SAXException the SAX exception
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws ParserConfigurationException the parser configuration exception
+	 * @throws TransformerException the transformer exception
+	 */
 	public static void writeOrarioOnFileLight(String file, Orario o) throws SAXException, IOException, ParserConfigurationException, TransformerException {
 	
 		//setup document builder
@@ -75,6 +103,19 @@ public class XMLOrarioParserDOM{
 
 	}
 
+	/**
+	 * Gets the orario from file full.
+	 *
+	 * @param model the model
+	 * @param file the file
+	 * @return the orario from file full
+	 * @throws XMLStreamException the XML stream exception
+	 * @throws SAXException the SAX exception
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws ParserConfigurationException the parser configuration exception
+	 * @throws DOMException the DOM exception
+	 * @throws ParseException the parse exception
+	 */
 	public static Orario getOrarioFromFileFull(Model model , String file) throws XMLStreamException, SAXException, IOException, ParserConfigurationException, DOMException, ParseException {
 		Orario ret = null;
 	
@@ -99,6 +140,16 @@ public class XMLOrarioParserDOM{
 		return ret;
 	}
 
+	/**
+	 * Write orario on file full.
+	 *
+	 * @param file the file
+	 * @param o the o
+	 * @throws TransformerException the transformer exception
+	 * @throws SAXException the SAX exception
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws ParserConfigurationException the parser configuration exception
+	 */
 	public static void writeOrarioOnFileFull(String file, Orario o) throws TransformerException, SAXException, IOException, ParserConfigurationException {
 			
 		//setup document builder
@@ -153,6 +204,13 @@ public class XMLOrarioParserDOM{
 	
 	// save methods
 	
+	/**
+	 * Save attività.
+	 *
+	 * @param doc the doc
+	 * @param elencoAt the elenco at
+	 * @return the element
+	 */
 	private static Element saveAttività(Document doc, ArrayList<Attività> elencoAt) {
 
 		Element e = doc.createElement("ElencoAttività");
@@ -218,6 +276,13 @@ public class XMLOrarioParserDOM{
 		return e;
 	}
 
+	/**
+	 * Save assegnamenti.
+	 *
+	 * @param doc the doc
+	 * @param elencoAs the elenco as
+	 * @return the element
+	 */
 	private static Element saveAssegnamenti(Document doc , ArrayList<Assegnamento> elencoAs) {
 		
 		Element e = doc.createElement("ElencoAssegnamento");
@@ -247,6 +312,13 @@ public class XMLOrarioParserDOM{
 		return e;
 	}
 
+	/**
+	 * Save corsi.
+	 *
+	 * @param doc the doc
+	 * @param elencoCorsi the elenco corsi
+	 * @return the element
+	 */
 	private static Element saveCorsi(Document doc, ArrayList<CorsoDiStudi> elencoCorsi) {
 		Element e = doc.createElement("ElencoCorsi");
 		Iterator<CorsoDiStudi> i = elencoCorsi.iterator();
@@ -290,6 +362,15 @@ public class XMLOrarioParserDOM{
 	
 	// load methods
 
+	/**
+	 * Load attività.
+	 *
+	 * @param model the model
+	 * @param nList the n list
+	 * @return the array list
+	 * @throws DOMException the DOM exception
+	 * @throws ParseException the parse exception
+	 */
 	private static ArrayList<Attività> loadAttività(Model model, NodeList nList) throws DOMException, ParseException {
 
 		ArrayList<Attività> elencoAt = new ArrayList<Attività>();
@@ -362,10 +443,25 @@ public class XMLOrarioParserDOM{
 		return elencoAt;
 	}
 	
+	/**
+	 * Load assegnamenti.
+	 *
+	 * @param model the model
+	 * @param nList the n list
+	 * @return the array list
+	 */
 	private static ArrayList<Assegnamento> loadAssegnamenti(Model model , NodeList nList ) {
 		return loadAssegnamenti(model, nList, null);
 	}
 	
+	/**
+	 * Load assegnamenti.
+	 *
+	 * @param model the model
+	 * @param nList the n list
+	 * @param elencoAt the elenco at
+	 * @return the array list
+	 */
 	private static ArrayList<Assegnamento> loadAssegnamenti(Model model , NodeList nList , ArrayList<Attività> elencoAt ) {
 
 		ArrayList<Assegnamento> elencoAs = new ArrayList<Assegnamento>();
@@ -416,6 +512,13 @@ public class XMLOrarioParserDOM{
 		return elencoAs;
 	}
 
+	/**
+	 * Load corsi.
+	 *
+	 * @param model the model
+	 * @param nList the n list
+	 * @return the array list
+	 */
 	private static ArrayList<CorsoDiStudi> loadCorsi(Model model, NodeList nList) {
 		ArrayList<CorsoDiStudi> elencoCorsi = new ArrayList<CorsoDiStudi>();
 		for (int i = 0; i < nList.getLength(); i++) {
@@ -459,6 +562,15 @@ public class XMLOrarioParserDOM{
 	
 	// support XML methods
 	
+	/**
+	 * Sets the up xml document in.
+	 *
+	 * @param file the file
+	 * @return the document
+	 * @throws SAXException the SAX exception
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws ParserConfigurationException the parser configuration exception
+	 */
 	private static Document setUpXMLDocumentIn(String file) throws SAXException, IOException, ParserConfigurationException {
 		// error case
 		if ( file == null || file == "" ) {
@@ -479,6 +591,14 @@ public class XMLOrarioParserDOM{
 		return doc;
 	}
 	
+	/**
+	 * Sets the up xml document out.
+	 *
+	 * @return the document
+	 * @throws SAXException the SAX exception
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws ParserConfigurationException the parser configuration exception
+	 */
 	private static Document setUpXMLDocumentOut() throws SAXException, IOException, ParserConfigurationException {
 		
 		DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
@@ -488,12 +608,27 @@ public class XMLOrarioParserDOM{
 		return doc;
 	}
 	
+	/**
+	 * Creates the elem.
+	 *
+	 * @param doc the doc
+	 * @param nome the nome
+	 * @param value the value
+	 * @return the element
+	 */
 	private static Element createElem( Document doc , String nome , String value ) {
 		Element id = doc.createElement(nome);
 		id.appendChild(doc.createTextNode(value));
 		return id;
 	}
 
+	/**
+	 * Write xml file.
+	 *
+	 * @param doc the doc
+	 * @param file the file
+	 * @throws TransformerException the transformer exception
+	 */
 	private static void writeXMLFile(Document doc, String file) throws TransformerException {
 
 		TransformerFactory transformerFactory = TransformerFactory.newInstance();

@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package elaborazioneDati;
 
 import java.util.ArrayList;
@@ -6,16 +9,29 @@ import mvc.Model;
 import myComponents.*;
 import provaPermutazione.Comb;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class GeneraPianiDiStudio.
+ */
 public class GeneraPianiDiStudio {
 
 
+	/** The model. */
 	private Model model;
 
+	/**
+	 * Instantiates a new genera piani di studio.
+	 *
+	 * @param model the model
+	 */
 	public GeneraPianiDiStudio(Model model) {
 		this.model = model;
 	}
 
 
+	/**
+	 * Genera piani.
+	 */
 	public void generaPiani(){
 
 
@@ -78,10 +94,20 @@ public class GeneraPianiDiStudio {
 
 
 
+	/**
+	 * Gets the model.
+	 *
+	 * @return the model
+	 */
 	public Model getModel() {
 		return model;
 	}
 
+	/**
+	 * Sets the model.
+	 *
+	 * @param model the new model
+	 */
 	public void setModel(Model model) {
 		this.model = model;
 	}

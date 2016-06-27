@@ -1,10 +1,24 @@
+/*
+ * 
+ */
 package provaPermutazione;
 
 import java.util.ArrayList;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Comb.
+ */
 public class Comb {
 
 
+	/**
+	 * Gets the combinazioni.
+	 *
+	 * @param s the s
+	 * @param k the k
+	 * @return the combinazioni
+	 */
 	public static ArrayList<String> getCombinazioni (ArrayList<String> s , int k) { 
 		ArrayList<String> l = new ArrayList<String> ();
 		int n = s.size();

@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package controllerListener;
 
 import java.awt.event.ActionEvent;
@@ -13,14 +16,27 @@ import org.xml.sax.SAXException;
 import mvc.Model;
 import xmlParser.XMLOrarioParserDOM;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class SalvaOrarioEsistente.
+ */
 public class SalvaOrarioEsistente implements ActionListener{
 
+	/** The model. */
 	Model model;
 
+	/**
+	 * Instantiates a new salva orario esistente.
+	 *
+	 * @param model the model
+	 */
 	public SalvaOrarioEsistente( Model model ) {
 		this.model = model;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		

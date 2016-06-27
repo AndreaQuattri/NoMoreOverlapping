@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package controllerListener;
 
 import java.awt.event.ActionEvent;
@@ -7,16 +10,37 @@ import java.net.URISyntaxException;
 import elaborazioneDati.InsertInTable;
 import mvc.MainView;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The listener interface for receiving insertInTable events.
+ * The class that is interested in processing a insertInTable
+ * event implements this interface, and the object created
+ * with that class is registered with a component using the
+ * component's <code>addInsertInTableListener<code> method. When
+ * the insertInTable event occurs, that object's appropriate
+ * method is invoked.
+ *
+ * @see InsertInTableEvent
+ */
 public class InsertInTableListener implements  ActionListener
 {
 
+	/** The view. */
 	private MainView view;
 
+	/**
+	 * Instantiates a new insert in table listener.
+	 *
+	 * @param view the view
+	 */
 	public InsertInTableListener(MainView view) {
 		// TODO Auto-generated constructor stub
 		this.view = view;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 */
 	@Override
 	public void actionPerformed(ActionEvent action)
 	{

@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package memorizzazioneDati;
 
 import mvc.Model;
@@ -5,17 +8,34 @@ import myComponents.Assegnamento;
 import myComponents.Attività;
 import myComponents.Disciplina;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class DisciplinaInseritaPiano.
+ */
 public class DisciplinaInseritaPiano {
 
 
+	/** The model. */
 	private Model model;
 
 
+	/**
+	 * Instantiates a new disciplina inserita piano.
+	 *
+	 * @param model the model
+	 */
 	public DisciplinaInseritaPiano(Model model) {
 		this.model = model;
 	}
 
 
+	/**
+	 * Già insert.
+	 *
+	 * @param id the id
+	 * @param subId the sub id
+	 * @return true, if successful
+	 */
 	public boolean giàInsert(String id, int subId){
 			for (int i=0; i<model.getListAssegnamento().size(); i++){
 				if(model.getListAssegnamento().get(i).getAttività().getId().equals(id) &&
@@ -26,6 +46,12 @@ public class DisciplinaInseritaPiano {
 	}
 
 	
+	/**
+	 * Già insert.
+	 *
+	 * @param id the id
+	 * @return true, if successful
+	 */
 	public boolean giàInsert(String id){
 
 			for (int i=0; i<model.getListAssegnamento().size(); i++){
@@ -36,6 +62,14 @@ public class DisciplinaInseritaPiano {
 	}
 
 	
+	/**
+	 * Già insert docente.
+	 *
+	 * @param matricola the matricola
+	 * @param id the id
+	 * @param subId the sub id
+	 * @return true, if successful
+	 */
 	public boolean giàInsertDocente (String matricola, String id, int subId){
 
 			for (int i=0; i<model.getListAssegnamento().size(); i++){
@@ -50,6 +84,15 @@ public class DisciplinaInseritaPiano {
 	}
 
 
+	/**
+	 * Fascia oraria disponibile.
+	 *
+	 * @param hour the hour
+	 * @param matrix the matrix
+	 * @param matrixSupporto the matrix supporto
+	 * @param d the d
+	 * @param iInizio the i inizio
+	 */
 	public void fasciaOrariaDisponibile(int hour, int[][] matrix, int[][] matrixSupporto, Disciplina d, int iInizio) {
 
 		int iInizioRandom = iInizio;
@@ -111,6 +154,14 @@ public class DisciplinaInseritaPiano {
 	}
 
 
+	/**
+	 * Già occupata da stesso prof.
+	 *
+	 * @param d the d
+	 * @param riga the riga
+	 * @param colonna the colonna
+	 * @return true, if successful
+	 */
 	public boolean giàOccupataDaStessoProf(Attività d, int riga, int colonna) {
 
 		String day = getGiorno(colonna);
@@ -145,6 +196,17 @@ public class DisciplinaInseritaPiano {
 	}
 
 
+	/**
+	 * È vuotae ci sta.
+	 *
+	 * @param hour the hour
+	 * @param k the k
+	 * @param j the j
+	 * @param matrix the matrix
+	 * @param iMatrice the i matrice
+	 * @param pausaPranzo the pausa pranzo
+	 * @return true, if successful
+	 */
 	public boolean èVuotaeCiSta(int hour, int k, int j, int[][] matrix, int iMatrice, boolean pausaPranzo) {
 
 		while(hour>0){
@@ -159,6 +221,13 @@ public class DisciplinaInseritaPiano {
 	}
 
 
+	/**
+	 * From ass to matrix.
+	 *
+	 * @param id the id
+	 * @param subId the sub id
+	 * @param matrix the matrix
+	 */
 	public void FromAssToMatrix(String id, int subId, int[][] matrix) {
 
 		int riga, colonna;
@@ -177,6 +246,12 @@ public class DisciplinaInseritaPiano {
 	}
 
 	
+	/**
+	 * Gets the colonna.
+	 *
+	 * @param day the day
+	 * @return the colonna
+	 */
 	public int getColonna (String day){
 
 		if (day.equals("Lunedi"))
@@ -197,6 +272,12 @@ public class DisciplinaInseritaPiano {
 
 	}
 
+	/**
+	 * Gets the riga.
+	 *
+	 * @param d the d
+	 * @return the riga
+	 */
 	public int getRiga (String d){
 
 		if (d.equals("08:30:00"))
@@ -246,6 +327,15 @@ public class DisciplinaInseritaPiano {
 	}
 
 
+	/**
+	 * Già occupata da stessa att.
+	 *
+	 * @param d the d
+	 * @param hour the hour
+	 * @param riga the riga
+	 * @param colonna the colonna
+	 * @return true, if successful
+	 */
 	public boolean giàOccupataDaStessaAtt(Disciplina d, int hour, int riga, int colonna){
 
 		String day = getGiorno(colonna);
@@ -269,6 +359,12 @@ public class DisciplinaInseritaPiano {
 	}
 
 
+	/**
+	 * Gets the time.
+	 *
+	 * @param riga the riga
+	 * @return the time
+	 */
 	public String getTime(int riga) {
 
 		switch (riga){
@@ -321,6 +417,12 @@ public class DisciplinaInseritaPiano {
 	}
 
 
+	/**
+	 * Gets the giorno.
+	 *
+	 * @param colonna the colonna
+	 * @return the giorno
+	 */
 	public String getGiorno(int colonna) {
 
 		switch (colonna){

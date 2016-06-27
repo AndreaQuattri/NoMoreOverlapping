@@ -1,8 +1,21 @@
+/*
+ * 
+ */
 package connectToDatabase;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class NumberOfRows.
+ */
 public class NumberOfRows {
 	
 	
+	/**
+	 * Num of rows.
+	 *
+	 * @param input the input
+	 * @return the int
+	 */
 	public static int numOfRows (String input){
 		
 		int toReturn = 0;

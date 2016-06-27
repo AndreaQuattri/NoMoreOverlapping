@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package controllerListener;
 
 import java.awt.event.ActionEvent;
@@ -27,18 +30,34 @@ import myComponents.PianoDiStudi;
 import myComponents.Studente;
 import myComponents.Tirocinio;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class OpenViewGestisciOrario.
+ */
 public class OpenViewGestisciOrario implements  ActionListener 
 	{
 	
+	/** The model. */
 	private Model model;
+	
+	/** The view orario. */
 	private ViewTimeTable viewOrario;
 	
+	/**
+	 * Instantiates a new open view gestisci orario.
+	 *
+	 * @param model the model
+	 * @param viewOrario the view orario
+	 */
 	public OpenViewGestisciOrario(Model model, ViewTimeTable viewOrario) {
 		this.model = model;
 		this.viewOrario = viewOrario;
 	}
 	
 	
+		/* (non-Javadoc)
+		 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+		 */
 		@Override
 		public void actionPerformed(ActionEvent action)
 		{

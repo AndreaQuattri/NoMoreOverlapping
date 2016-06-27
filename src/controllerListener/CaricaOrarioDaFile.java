@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package controllerListener;
 
 import java.awt.event.ActionEvent;
@@ -22,22 +25,37 @@ import mvc.Model;
 import mvc.ViewTimeTable;
 import xmlParser.XMLOrarioParserDOM;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class CaricaOrarioDaFile.
+ */
 public class CaricaOrarioDaFile extends JPanel implements ActionListener{
 
 
-	/**
-	 * 
-	 */
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
+	
+	/** The model. */
 	Model model;
+	
+	/** The view orario. */
 	ViewTimeTable viewOrario;
 
+	/**
+	 * Instantiates a new carica orario da file.
+	 *
+	 * @param model the model
+	 * @param viewOrario the view orario
+	 */
 	public CaricaOrarioDaFile( Model model, ViewTimeTable viewOrario ) {
 		this.model = model;
 		this.viewOrario = viewOrario;
 	}
 
 
+	/* (non-Javadoc)
+	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub

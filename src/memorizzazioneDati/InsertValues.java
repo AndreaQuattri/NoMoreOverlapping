@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package memorizzazioneDati;
 
 import java.io.IOException;
@@ -25,16 +28,33 @@ import myComponents.Studente;
 import myComponents.Tirocinio;
 import urlPhp.GiveAll;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class InsertValues.
+ */
 public class InsertValues {
 
 
+	/** The model. */
 	private Model model;
 
+	/**
+	 * Instantiates a new insert values.
+	 *
+	 * @param model the model
+	 */
 	public InsertValues(Model model) {
 		this.model = model;
 	}
 
 
+	/**
+	 * Gets the value aula.
+	 *
+	 * @return the value aula
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws URISyntaxException the URI syntax exception
+	 */
 	public void getValueAula() throws IOException, URISyntaxException{
 
 		String input = Connect.connectDb(GiveAll.giveAllAula);
@@ -57,6 +77,13 @@ public class InsertValues {
 
 	}
 
+	/**
+	 * Gets the value docente.
+	 *
+	 * @return the value docente
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws URISyntaxException the URI syntax exception
+	 */
 	public void getValueDocente() throws IOException, URISyntaxException{
 
 		String inputDocenti = Connect.connectDb(GiveAll.giveAllDocente);
@@ -155,6 +182,13 @@ public class InsertValues {
 
 	}
 
+	/**
+	 * Gets the value corso di studi_1.
+	 *
+	 * @return the value corso di studi_1
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws URISyntaxException the URI syntax exception
+	 */
 	public void getValueCorsoDiStudi_1() throws IOException, URISyntaxException{
 
 		String input = Connect.connectDb(GiveAll.giveAllCorsoDiStudi);
@@ -173,6 +207,13 @@ public class InsertValues {
 
 	}
 
+	/**
+	 * Gets the value corso di studi_2.
+	 *
+	 * @return the value corso di studi_2
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws URISyntaxException the URI syntax exception
+	 */
 	public void getValueCorsoDiStudi_2() throws IOException, URISyntaxException{
 
 
@@ -190,6 +231,14 @@ public class InsertValues {
 
 	}
 
+	/**
+	 * Gets the value studente.
+	 *
+	 * @return the value studente
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws URISyntaxException the URI syntax exception
+	 * @throws ParseException the parse exception
+	 */
 	public void getValueStudente() throws IOException, URISyntaxException, ParseException{
 
 		String input = Connect.connectDb(GiveAll.giveAllStudente);
@@ -217,6 +266,14 @@ public class InsertValues {
 
 	}
 
+	/**
+	 * Gets the value fascia oraria.
+	 *
+	 * @return the value fascia oraria
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws URISyntaxException the URI syntax exception
+	 * @throws ParseException the parse exception
+	 */
 	public void getValueFasciaOraria() throws IOException, URISyntaxException, ParseException{
 
 		String input = Connect.connectDb(GiveAll.giveAllFasciaOraria);
@@ -239,6 +296,14 @@ public class InsertValues {
 
 	}
 
+	/**
+	 * Gets the value attività_1.
+	 *
+	 * @return the value attività_1
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws URISyntaxException the URI syntax exception
+	 * @throws ParseException the parse exception
+	 */
 	public void getValueAttività_1() throws IOException, URISyntaxException, ParseException{
 
 		String inputAttività = Connect.connectDb(GiveAll.giveAllAttività);
@@ -346,6 +411,14 @@ public class InsertValues {
 	}
 
 
+	/**
+	 * Gets the value piano di studi.
+	 *
+	 * @return the value piano di studi
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws URISyntaxException the URI syntax exception
+	 * @throws ParseException the parse exception
+	 */
 	public void getValuePianoDiStudi() throws IOException, URISyntaxException, ParseException{
 
 		String input = Connect.connectDb(GiveAll.giveAllPianoDiStudio);
@@ -392,6 +465,14 @@ public class InsertValues {
 
 	}
 	
+	/**
+	 * Gets the value attività_2.
+	 *
+	 * @return the value attività_2
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws URISyntaxException the URI syntax exception
+	 * @throws ParseException the parse exception
+	 */
 	public void getValueAttività_2() throws IOException, URISyntaxException, ParseException{
 		
 		

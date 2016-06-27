@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package mvc;
 
 import java.awt.event.ActionListener;
@@ -10,29 +13,54 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class UpdateTimeTable.
+ */
 public class UpdateTimeTable extends JFrame implements Observer{
 
 
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
+	
+	/** The button inserisci. */
 	private JButton buttonInserisci;
 
 
 
+	/** The model. */
 	private Model model;
+	
+	/** The combo gita convegno. */
 	private JComboBox comboGitaConvegno;
+	
+	/** The row. */
 	private int row;
+	
+	/** The col. */
 	private int col;
+	
+	/** The semestre. */
 	private int semestre;
 
 
 
 
+	/** The label disciplina. */
 	private JLabel labelDisciplina;
 
 
 
 
 
+	/**
+	 * Instantiates a new update time table.
+	 *
+	 * @param model the model
+	 * @param row the row
+	 * @param col the col
+	 * @param semestre the semestre
+	 */
 	public UpdateTimeTable(Model model, int row, int col, int semestre)
 	{
 
@@ -56,12 +84,21 @@ public class UpdateTimeTable extends JFrame implements Observer{
 
 	}
 
+	/**
+	 * Inits the view like model.
+	 */
 	private void initViewLikeModel() {
 		// TODO Auto-generated method stub
 		buttonInserisci.setEnabled(model.isEnabledInserisciGita());
 
 	}
 
+	/**
+	 * Inits the ui.
+	 *
+	 * @param row the row
+	 * @param col the col
+	 */
 	private void initUI (int row, int col){
 		int j=0;
 		String ora, giorno;
@@ -262,6 +299,9 @@ public class UpdateTimeTable extends JFrame implements Observer{
 		return ora;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.util.Observer#update(java.util.Observable, java.lang.Object)
+	 */
 	@Override
 	public void update(Observable o, Object arg)
 	{
@@ -278,59 +318,122 @@ public class UpdateTimeTable extends JFrame implements Observer{
 
 	}
 
+	/**
+	 * Enable button gita.
+	 */
 	private void enableButtonGita()
 	{
 		buttonInserisci.setEnabled(model.isEnabledInserisciGita());
 
 	}
 
+	/**
+	 * Selected gita.
+	 *
+	 * @param listener the listener
+	 */
 	public void selectedGita(ActionListener listener) {
 		comboGitaConvegno.addActionListener(listener);
 
 	}
 
+	/**
+	 * Insert gita convegno.
+	 *
+	 * @param listener the listener
+	 */
 	public void insertGitaConvegno(ActionListener listener) {
 		// TODO Auto-generated method stub
 		buttonInserisci.addActionListener(listener);
 
 	}
 
+	/**
+	 * Gets the row.
+	 *
+	 * @return the row
+	 */
 	public int getRow() {
 		return row;
 	}
 
+	/**
+	 * Sets the row.
+	 *
+	 * @param row the new row
+	 */
 	public void setRow(int row) {
 		this.row = row;
 	}
 
+	/**
+	 * Gets the col.
+	 *
+	 * @return the col
+	 */
 	public int getCol() {
 		return col;
 	}
 
+	/**
+	 * Sets the col.
+	 *
+	 * @param col the new col
+	 */
 	public void setCol(int col) {
 		this.col = col;
 	}
 
+	/**
+	 * Gets the button inserisci.
+	 *
+	 * @return the button inserisci
+	 */
 	public JButton getButtonInserisci() {
 		return buttonInserisci;
 	}
 
+	/**
+	 * Sets the button inserisci.
+	 *
+	 * @param buttonInserisci the new button inserisci
+	 */
 	public void setButtonInserisci(JButton buttonInserisci) {
 		this.buttonInserisci = buttonInserisci;
 	}
 
+	/**
+	 * Gets the combo gita.
+	 *
+	 * @return the combo gita
+	 */
 	public JComboBox getComboGita() {
 		return comboGitaConvegno;
 	}
 
+	/**
+	 * Sets the combo gita.
+	 *
+	 * @param comboGitaConvegno the new combo gita
+	 */
 	public void setComboGita(JComboBox comboGitaConvegno) {
 		this.comboGitaConvegno = comboGitaConvegno;
 	}
 
+	/**
+	 * Gets the label disciplina.
+	 *
+	 * @return the label disciplina
+	 */
 	public JLabel getLabelDisciplina() {
 		return labelDisciplina;
 	}
 
+	/**
+	 * Sets the label disciplina.
+	 *
+	 * @param labelDisciplina the new label disciplina
+	 */
 	public void setLabelDisciplina(JLabel labelDisciplina) {
 		this.labelDisciplina = labelDisciplina;
 	}

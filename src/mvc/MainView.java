@@ -14,6 +14,8 @@ import javax.swing.JTable;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.table.DefaultTableModel;
 
+import controllerListener.InsertRecordListener;
+
 public class MainView extends JFrame implements Observer {
 
 	
@@ -92,6 +94,12 @@ public class MainView extends JFrame implements Observer {
 		buttonUpdateTable.addActionListener(listener);
 		
 	}
+	
+	public void pressButtonInserisci(ActionListener listener) {
+		// TODO Auto-generated method stub
+		buttonInsertNewTable.addActionListener(listener);
+	}
+	
 	
 	
 	private void initUI(){
@@ -354,5 +362,6 @@ public class MainView extends JFrame implements Observer {
 		public void setLabelTable(JLabel labelTable) {
 			this.labelTable = labelTable;
 		}
+
 		
 }

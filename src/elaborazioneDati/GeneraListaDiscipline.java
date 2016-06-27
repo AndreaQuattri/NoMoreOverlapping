@@ -8,9 +8,25 @@ import myComponents.Disciplina;
 public class GeneraListaDiscipline {
 
 
+	public void aggiungiSubDisciplina(ArrayList<Disciplina> listDisciplina, ArrayList<Attività> listAttività, 
+			int posizione, int subOre, int subId){
+		
+		listDisciplina.add(new Disciplina(listAttività.get(posizione).getOre(),
+				listAttività.get(posizione).getId(), 
+				listAttività.get(posizione).getDescrizione(), 
+				listAttività.get(posizione).getNome(), 
+				listAttività.get(posizione).getInizio(), 
+				listAttività.get(posizione).getFine(), 
+				listAttività.get(posizione).getSemestre(), 
+				listAttività.get(posizione).getElencoResponsabili(), 
+				((Disciplina)listAttività.get(posizione)).getCodice(),
+				((Disciplina)listAttività.get(posizione)).getCrediti(),
+				subId, subOre));
+		
+	}
 
 
-	public static ArrayList<Disciplina> generaLista(ArrayList<Attività> listAttività){
+	public  ArrayList<Disciplina> generaLista(ArrayList<Attività> listAttività){
 
 		ArrayList<Disciplina> listDisciplina = new ArrayList<Disciplina>();
 		int j;
@@ -25,32 +41,36 @@ public class GeneraListaDiscipline {
 
 				case 60:
 
-					listDisciplina.add(new Disciplina(listAttività.get(i).getOre(),
-							listAttività.get(i).getId(),
-							listAttività.get(i).getDescrizione(),
-							listAttività.get(i).getNome(), 
-							listAttività.get(i).getInizio(),
-							listAttività.get(i).getFine(),
-							listAttività.get(i).getSemestre(),
-							listAttività.get(i).getElencoResponsabili(),
-							((Disciplina)listAttività.get(i)).getCodice(),
-							((Disciplina)listAttività.get(i)).getCrediti(),
-							j,6));
+					aggiungiSubDisciplina(listDisciplina, listAttività, i, 6, j);
+					
+//					listDisciplina.add(new Disciplina(listAttività.get(i).getOre(),
+//							listAttività.get(i).getId(),
+//							listAttività.get(i).getDescrizione(),
+//							listAttività.get(i).getNome(), 
+//							listAttività.get(i).getInizio(),
+//							listAttività.get(i).getFine(),
+//							listAttività.get(i).getSemestre(),
+//							listAttività.get(i).getElencoResponsabili(),
+//							((Disciplina)listAttività.get(i)).getCodice(),
+//							((Disciplina)listAttività.get(i)).getCrediti(),
+//							j,6));
 
 					j++;
 
+					aggiungiSubDisciplina(listDisciplina, listAttività, i, 4, j);
 
-					listDisciplina.add(new Disciplina(listAttività.get(i).getOre(),
-							listAttività.get(i).getId(),
-							listAttività.get(i).getDescrizione(),
-							listAttività.get(i).getNome(), 
-							listAttività.get(i).getInizio(),
-							listAttività.get(i).getFine(),
-							listAttività.get(i).getSemestre(),
-							listAttività.get(i).getElencoResponsabili(),
-							((Disciplina)listAttività.get(i)).getCodice(),
-							((Disciplina)listAttività.get(i)).getCrediti(),
-							j,4));
+
+//					listDisciplina.add(new Disciplina(listAttività.get(i).getOre(),
+//							listAttività.get(i).getId(),
+//							listAttività.get(i).getDescrizione(),
+//							listAttività.get(i).getNome(), 
+//							listAttività.get(i).getInizio(),
+//							listAttività.get(i).getFine(),
+//							listAttività.get(i).getSemestre(),
+//							listAttività.get(i).getElencoResponsabili(),
+//							((Disciplina)listAttività.get(i)).getCodice(),
+//							((Disciplina)listAttività.get(i)).getCrediti(),
+//							j,4));
 
 					j++;
 
@@ -58,32 +78,39 @@ public class GeneraListaDiscipline {
 
 				case 48:
 
-					listDisciplina.add(new Disciplina(listAttività.get(i).getOre(),
-							listAttività.get(i).getId(),
-							listAttività.get(i).getDescrizione(),
-							listAttività.get(i).getNome(), 
-							listAttività.get(i).getInizio(),
-							listAttività.get(i).getFine(),
-							listAttività.get(i).getSemestre(),
-							listAttività.get(i).getElencoResponsabili(),
-							((Disciplina)listAttività.get(i)).getCodice(),
-							((Disciplina)listAttività.get(i)).getCrediti(),
-							j,4));
 					
+					aggiungiSubDisciplina(listDisciplina, listAttività, i, 4, j);
+
+					
+//					listDisciplina.add(new Disciplina(listAttività.get(i).getOre(),
+//							listAttività.get(i).getId(),
+//							listAttività.get(i).getDescrizione(),
+//							listAttività.get(i).getNome(), 
+//							listAttività.get(i).getInizio(),
+//							listAttività.get(i).getFine(),
+//							listAttività.get(i).getSemestre(),
+//							listAttività.get(i).getElencoResponsabili(),
+//							((Disciplina)listAttività.get(i)).getCodice(),
+//							((Disciplina)listAttività.get(i)).getCrediti(),
+//							j,4));
+//					
 					j++;					
 					
 					
-					listDisciplina.add(new Disciplina(listAttività.get(i).getOre(),
-							listAttività.get(i).getId(),
-							listAttività.get(i).getDescrizione(),
-							listAttività.get(i).getNome(), 
-							listAttività.get(i).getInizio(),
-							listAttività.get(i).getFine(),
-							listAttività.get(i).getSemestre(),
-							listAttività.get(i).getElencoResponsabili(),
-							((Disciplina)listAttività.get(i)).getCodice(),
-							((Disciplina)listAttività.get(i)).getCrediti(),
-							j,4));
+					aggiungiSubDisciplina(listDisciplina, listAttività, i, 4, j);
+
+					
+//					listDisciplina.add(new Disciplina(listAttività.get(i).getOre(),
+//							listAttività.get(i).getId(),
+//							listAttività.get(i).getDescrizione(),
+//							listAttività.get(i).getNome(), 
+//							listAttività.get(i).getInizio(),
+//							listAttività.get(i).getFine(),
+//							listAttività.get(i).getSemestre(),
+//							listAttività.get(i).getElencoResponsabili(),
+//							((Disciplina)listAttività.get(i)).getCodice(),
+//							((Disciplina)listAttività.get(i)).getCrediti(),
+//							j,4));
 					
 					j++;
 
@@ -91,92 +118,112 @@ public class GeneraListaDiscipline {
 
 				case 96:
 
-					listDisciplina.add(new Disciplina(listAttività.get(i).getOre(),
-							listAttività.get(i).getId(),
-							listAttività.get(i).getDescrizione(),
-							listAttività.get(i).getNome(), 
-							listAttività.get(i).getInizio(),
-							listAttività.get(i).getFine(),
-							listAttività.get(i).getSemestre(),
-							listAttività.get(i).getElencoResponsabili(),
-							((Disciplina)listAttività.get(i)).getCodice(),
-							((Disciplina)listAttività.get(i)).getCrediti(),
-							j,6));
 					
+					aggiungiSubDisciplina(listDisciplina, listAttività, i, 6, j);
+
+//					listDisciplina.add(new Disciplina(listAttività.get(i).getOre(),
+//							listAttività.get(i).getId(),
+//							listAttività.get(i).getDescrizione(),
+//							listAttività.get(i).getNome(), 
+//							listAttività.get(i).getInizio(),
+//							listAttività.get(i).getFine(),
+//							listAttività.get(i).getSemestre(),
+//							listAttività.get(i).getElencoResponsabili(),
+//							((Disciplina)listAttività.get(i)).getCodice(),
+//							((Disciplina)listAttività.get(i)).getCrediti(),
+//							j,6));
+//					
+					j++;	
+					
+					aggiungiSubDisciplina(listDisciplina, listAttività, i, 6, j);
+
+					
+//					listDisciplina.add(new Disciplina(listAttività.get(i).getOre(),
+//							listAttività.get(i).getId(),
+//							listAttività.get(i).getDescrizione(),
+//							listAttività.get(i).getNome(), 
+//							listAttività.get(i).getInizio(),
+//							listAttività.get(i).getFine(),
+//							listAttività.get(i).getSemestre(),
+//							listAttività.get(i).getElencoResponsabili(),
+//							((Disciplina)listAttività.get(i)).getCodice(),
+//							((Disciplina)listAttività.get(i)).getCrediti(),
+//							j,6));
+//					
 					j++;					
 					
-					listDisciplina.add(new Disciplina(listAttività.get(i).getOre(),
-							listAttività.get(i).getId(),
-							listAttività.get(i).getDescrizione(),
-							listAttività.get(i).getNome(), 
-							listAttività.get(i).getInizio(),
-							listAttività.get(i).getFine(),
-							listAttività.get(i).getSemestre(),
-							listAttività.get(i).getElencoResponsabili(),
-							((Disciplina)listAttività.get(i)).getCodice(),
-							((Disciplina)listAttività.get(i)).getCrediti(),
-							j,6));
+					aggiungiSubDisciplina(listDisciplina, listAttività, i, 4, j);
+
 					
-					j++;					
-					
-					listDisciplina.add(new Disciplina(listAttività.get(i).getOre(),
-							listAttività.get(i).getId(),
-							listAttività.get(i).getDescrizione(),
-							listAttività.get(i).getNome(), 
-							listAttività.get(i).getInizio(),
-							listAttività.get(i).getFine(),
-							listAttività.get(i).getSemestre(),
-							listAttività.get(i).getElencoResponsabili(),
-							((Disciplina)listAttività.get(i)).getCodice(),
-							((Disciplina)listAttività.get(i)).getCrediti(),
-							j,4));
-					
+//					listDisciplina.add(new Disciplina(listAttività.get(i).getOre(),
+//							listAttività.get(i).getId(),
+//							listAttività.get(i).getDescrizione(),
+//							listAttività.get(i).getNome(), 
+//							listAttività.get(i).getInizio(),
+//							listAttività.get(i).getFine(),
+//							listAttività.get(i).getSemestre(),
+//							listAttività.get(i).getElencoResponsabili(),
+//							((Disciplina)listAttività.get(i)).getCodice(),
+//							((Disciplina)listAttività.get(i)).getCrediti(),
+//							j,4));
+//					
 					j++;
 
 					break;
 
 
 				case 120:
-					listDisciplina.add(new Disciplina(listAttività.get(i).getOre(),
-							listAttività.get(i).getId(),
-							listAttività.get(i).getDescrizione(),
-							listAttività.get(i).getNome(), 
-							listAttività.get(i).getInizio(),
-							listAttività.get(i).getFine(),
-							listAttività.get(i).getSemestre(),
-							listAttività.get(i).getElencoResponsabili(),
-							((Disciplina)listAttività.get(i)).getCodice(),
-							((Disciplina)listAttività.get(i)).getCrediti(),
-							j,8));
 					
+					aggiungiSubDisciplina(listDisciplina, listAttività, i, 8, j);
+
+					
+//					listDisciplina.add(new Disciplina(listAttività.get(i).getOre(),
+//							listAttività.get(i).getId(),
+//							listAttività.get(i).getDescrizione(),
+//							listAttività.get(i).getNome(), 
+//							listAttività.get(i).getInizio(),
+//							listAttività.get(i).getFine(),
+//							listAttività.get(i).getSemestre(),
+//							listAttività.get(i).getElencoResponsabili(),
+//							((Disciplina)listAttività.get(i)).getCodice(),
+//							((Disciplina)listAttività.get(i)).getCrediti(),
+//							j,8));
+//					
 					j++;
 					
-					listDisciplina.add(new Disciplina(listAttività.get(i).getOre(),
-							listAttività.get(i).getId(),
-							listAttività.get(i).getDescrizione(),
-							listAttività.get(i).getNome(), 
-							listAttività.get(i).getInizio(),
-							listAttività.get(i).getFine(),
-							listAttività.get(i).getSemestre(),
-							listAttività.get(i).getElencoResponsabili(),
-							((Disciplina)listAttività.get(i)).getCodice(),
-							((Disciplina)listAttività.get(i)).getCrediti(),
-							j,8));
 					
+					aggiungiSubDisciplina(listDisciplina, listAttività, i, 8, j);
+
+//					listDisciplina.add(new Disciplina(listAttività.get(i).getOre(),
+//							listAttività.get(i).getId(),
+//							listAttività.get(i).getDescrizione(),
+//							listAttività.get(i).getNome(), 
+//							listAttività.get(i).getInizio(),
+//							listAttività.get(i).getFine(),
+//							listAttività.get(i).getSemestre(),
+//							listAttività.get(i).getElencoResponsabili(),
+//							((Disciplina)listAttività.get(i)).getCodice(),
+//							((Disciplina)listAttività.get(i)).getCrediti(),
+//							j,8));
+//					
 					j++;
 					
-					listDisciplina.add(new Disciplina(listAttività.get(i).getOre(),
-							listAttività.get(i).getId(),
-							listAttività.get(i).getDescrizione(),
-							listAttività.get(i).getNome(), 
-							listAttività.get(i).getInizio(),
-							listAttività.get(i).getFine(),
-							listAttività.get(i).getSemestre(),
-							listAttività.get(i).getElencoResponsabili(),
-							((Disciplina)listAttività.get(i)).getCodice(),
-							((Disciplina)listAttività.get(i)).getCrediti(),
-							j,4));
 					
+					aggiungiSubDisciplina(listDisciplina, listAttività, i, 4, j);
+
+					
+//					listDisciplina.add(new Disciplina(listAttività.get(i).getOre(),
+//							listAttività.get(i).getId(),
+//							listAttività.get(i).getDescrizione(),
+//							listAttività.get(i).getNome(), 
+//							listAttività.get(i).getInizio(),
+//							listAttività.get(i).getFine(),
+//							listAttività.get(i).getSemestre(),
+//							listAttività.get(i).getElencoResponsabili(),
+//							((Disciplina)listAttività.get(i)).getCodice(),
+//							((Disciplina)listAttività.get(i)).getCrediti(),
+//							j,4));
+//					
 					j++;
 
 
@@ -184,32 +231,38 @@ public class GeneraListaDiscipline {
 
 				case 72:
 
-					listDisciplina.add(new Disciplina(listAttività.get(i).getOre(),
-							listAttività.get(i).getId(),
-							listAttività.get(i).getDescrizione(),
-							listAttività.get(i).getNome(), 
-							listAttività.get(i).getInizio(),
-							listAttività.get(i).getFine(),
-							listAttività.get(i).getSemestre(),
-							listAttività.get(i).getElencoResponsabili(),
-							((Disciplina)listAttività.get(i)).getCodice(),
-							((Disciplina)listAttività.get(i)).getCrediti(),
-							j,6));
+					aggiungiSubDisciplina(listDisciplina, listAttività, i, 6, j);
+
 					
+//					listDisciplina.add(new Disciplina(listAttività.get(i).getOre(),
+//							listAttività.get(i).getId(),
+//							listAttività.get(i).getDescrizione(),
+//							listAttività.get(i).getNome(), 
+//							listAttività.get(i).getInizio(),
+//							listAttività.get(i).getFine(),
+//							listAttività.get(i).getSemestre(),
+//							listAttività.get(i).getElencoResponsabili(),
+//							((Disciplina)listAttività.get(i)).getCodice(),
+//							((Disciplina)listAttività.get(i)).getCrediti(),
+//							j,6));
+//					
 					j++;					
 					
-					listDisciplina.add(new Disciplina(listAttività.get(i).getOre(),
-							listAttività.get(i).getId(),
-							listAttività.get(i).getDescrizione(),
-							listAttività.get(i).getNome(), 
-							listAttività.get(i).getInizio(),
-							listAttività.get(i).getFine(),
-							listAttività.get(i).getSemestre(),
-							listAttività.get(i).getElencoResponsabili(),
-							((Disciplina)listAttività.get(i)).getCodice(),
-							((Disciplina)listAttività.get(i)).getCrediti(),
-							j,6));
+					aggiungiSubDisciplina(listDisciplina, listAttività, i, 6, j);
+
 					
+//					listDisciplina.add(new Disciplina(listAttività.get(i).getOre(),
+//							listAttività.get(i).getId(),
+//							listAttività.get(i).getDescrizione(),
+//							listAttività.get(i).getNome(), 
+//							listAttività.get(i).getInizio(),
+//							listAttività.get(i).getFine(),
+//							listAttività.get(i).getSemestre(),
+//							listAttività.get(i).getElencoResponsabili(),
+//							((Disciplina)listAttività.get(i)).getCodice(),
+//							((Disciplina)listAttività.get(i)).getCrediti(),
+//							j,6));
+//					
 					j++;
 					
 					
@@ -218,46 +271,55 @@ public class GeneraListaDiscipline {
 
 				default: 
 
-					listDisciplina.add(new Disciplina(listAttività.get(i).getOre(),
-							listAttività.get(i).getId(),
-							listAttività.get(i).getDescrizione(),
-							listAttività.get(i).getNome(), 
-							listAttività.get(i).getInizio(),
-							listAttività.get(i).getFine(),
-							listAttività.get(i).getSemestre(),
-							listAttività.get(i).getElencoResponsabili(),
-							((Disciplina)listAttività.get(i)).getCodice(),
-							((Disciplina)listAttività.get(i)).getCrediti(),
-							j,6));
+					aggiungiSubDisciplina(listDisciplina, listAttività, i, 6, j);
+
+					
+//					listDisciplina.add(new Disciplina(listAttività.get(i).getOre(),
+//							listAttività.get(i).getId(),
+//							listAttività.get(i).getDescrizione(),
+//							listAttività.get(i).getNome(), 
+//							listAttività.get(i).getInizio(),
+//							listAttività.get(i).getFine(),
+//							listAttività.get(i).getSemestre(),
+//							listAttività.get(i).getElencoResponsabili(),
+//							((Disciplina)listAttività.get(i)).getCodice(),
+//							((Disciplina)listAttività.get(i)).getCrediti(),
+//							j,6));
+//					
+					j++;					
+					
+					aggiungiSubDisciplina(listDisciplina, listAttività, i, 6, j);
+
+//					listDisciplina.add(new Disciplina(listAttività.get(i).getOre(),
+//							listAttività.get(i).getId(),
+//							listAttività.get(i).getDescrizione(),
+//							listAttività.get(i).getNome(), 
+//							listAttività.get(i).getInizio(),
+//							listAttività.get(i).getFine(),
+//							listAttività.get(i).getSemestre(),
+//							listAttività.get(i).getElencoResponsabili(),
+//							((Disciplina)listAttività.get(i)).getCodice(),
+//							((Disciplina)listAttività.get(i)).getCrediti(),
+//							j,6));
 					
 					j++;					
 					
-					listDisciplina.add(new Disciplina(listAttività.get(i).getOre(),
-							listAttività.get(i).getId(),
-							listAttività.get(i).getDescrizione(),
-							listAttività.get(i).getNome(), 
-							listAttività.get(i).getInizio(),
-							listAttività.get(i).getFine(),
-							listAttività.get(i).getSemestre(),
-							listAttività.get(i).getElencoResponsabili(),
-							((Disciplina)listAttività.get(i)).getCodice(),
-							((Disciplina)listAttività.get(i)).getCrediti(),
-							j,6));
 					
-					j++;					
+					aggiungiSubDisciplina(listDisciplina, listAttività, i, 4, j);
+
 					
-					listDisciplina.add(new Disciplina(listAttività.get(i).getOre(),
-							listAttività.get(i).getId(),
-							listAttività.get(i).getDescrizione(),
-							listAttività.get(i).getNome(), 
-							listAttività.get(i).getInizio(),
-							listAttività.get(i).getFine(),
-							listAttività.get(i).getSemestre(),
-							listAttività.get(i).getElencoResponsabili(),
-							((Disciplina)listAttività.get(i)).getCodice(),
-							((Disciplina)listAttività.get(i)).getCrediti(),
-							j,4));
-					
+//					listDisciplina.add(new Disciplina(listAttività.get(i).getOre(),
+//							listAttività.get(i).getId(),
+//							listAttività.get(i).getDescrizione(),
+//							listAttività.get(i).getNome(), 
+//							listAttività.get(i).getInizio(),
+//							listAttività.get(i).getFine(),
+//							listAttività.get(i).getSemestre(),
+//							listAttività.get(i).getElencoResponsabili(),
+//							((Disciplina)listAttività.get(i)).getCodice(),
+//							((Disciplina)listAttività.get(i)).getCrediti(),
+//							j,4));
+//					
 					j++;
 					
 					break;

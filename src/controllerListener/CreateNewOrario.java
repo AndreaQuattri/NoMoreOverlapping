@@ -103,11 +103,11 @@ public class CreateNewOrario implements  ActionListener
 					model.getListCorsoDiStudioInseriti().get(i).getCodice()));
 		}
 	}
-	
+
 	private int numeroSovrapposizioni(int[][] matrixSupporto, int sovrapposizioniAttuali){
-		
+
 		int numSov = sovrapposizioniAttuali;
-		
+
 		for(int j=0; j<6; j++)
 			for (int k=0; k<21; k++)
 				model.getMatrix()[k][j] = 0;
@@ -118,7 +118,7 @@ public class CreateNewOrario implements  ActionListener
 				if (matrixSupporto[k][j]>1)
 					numSov++;
 			}
-		
+
 		return numSov;
 	}
 
@@ -156,17 +156,8 @@ public class CreateNewOrario implements  ActionListener
 
 
 
-		if (viewOrario.getButtonSem1().isSelected())
-			semestre = 1;
-		else
-			semestre = 2;
-
-		if (viewOrario.getPocheIterazioni().isSelected())
-			numIt = 1;
-		else if (viewOrario.getMedieIterazioni().isSelected())
-			numIt = 100;
-		else
-			numIt = 10000;
+		semestre = semestreSelezionato();
+		numIt = numeroIterazioni();
 		numMaxIt = numIt;
 
 
@@ -179,11 +170,7 @@ public class CreateNewOrario implements  ActionListener
 			listDisciplinaInseritaPerOra = new ArrayList<Disciplina>();
 			listDisciplinaSupporto = new ArrayList<Disciplina>();
 			listDocenteSupport = new ArrayList<Docente>();
-			model.setListDocentiInseriti(new ArrayList<Docente>());
-			model.setListAttivitàDeiDocenti(new ArrayList<Attività>());
-			model.setListAttivitàInserite(new ArrayList<Attività>());
-			model.setListAssegnamento(new ArrayList<Assegnamento>());
-			model.setListCorsoDiStudioInseriti(new ArrayList<CorsoDiStudi>());
+			inizializzaModel();
 
 
 
@@ -298,12 +285,7 @@ public class CreateNewOrario implements  ActionListener
 				}
 
 
-				for (int i=0; i<listAttività.size(); i++){
-					if (listAttività.get(i).getSemestre()==semestre &&
-							!model.getListAllAttivitàInserite().contains(listAttività.get(i))){
-						model.getListAllAttivitàInserite().add((Disciplina)listAttività.get(i));
-					}
-				}
+				listAttivitàInserite(listAttività, semestre);
 
 				for (int i=0; i<listDisciplina.size(); i++){
 					listDisciplinaInseritaPerOra.add(listDisciplina.get(i));
@@ -322,8 +304,12 @@ public class CreateNewOrario implements  ActionListener
 		viewOrario.getLabelNumSovr().setText("L'orario contiene "+numSov/2+ " ore di sovrapposizione");
 
 		cancellaTabella();
+		visualizzaTabella();
 
+	}
 
+	private void visualizzaTabella() {
+		// TODO Auto-generated method stub
 		CreateTimeTable create = new CreateTimeTable(model);
 		create.fromAssegnamentoToOrarioPerGiorno();
 
@@ -334,5 +320,55 @@ public class CreateNewOrario implements  ActionListener
 
 		viewOrario.visualizzaOrario();
 
+
+
+	}
+
+	private void listAttivitàInserite(ArrayList<Attività> listAttività, int semestre) {
+		// TODO Auto-generated method stub
+		for (int i=0; i<listAttività.size(); i++){
+			if (listAttività.get(i).getSemestre()==semestre &&
+					!model.getListAllAttivitàInserite().contains(listAttività.get(i))){
+				model.getListAllAttivitàInserite().add((Disciplina)listAttività.get(i));
+			}
+		}
+
+	}
+
+	private void inizializzaModel() {
+		// TODO Auto-generated method stub
+		model.setListDocentiInseriti(new ArrayList<Docente>());
+		model.setListAttivitàDeiDocenti(new ArrayList<Attività>());
+		model.setListAttivitàInserite(new ArrayList<Attività>());
+		model.setListAssegnamento(new ArrayList<Assegnamento>());
+		model.setListCorsoDiStudioInseriti(new ArrayList<CorsoDiStudi>());
+
+
+	}
+
+	private int numeroIterazioni() {
+
+		int numIt;
+
+		if (viewOrario.getPocheIterazioni().isSelected())
+			numIt = 1;
+		else if (viewOrario.getMedieIterazioni().isSelected())
+			numIt = 100;
+		else
+			numIt = 10000;
+
+		return numIt;
+
+	}
+
+	private int semestreSelezionato() {
+		int semestre;
+
+		if (viewOrario.getButtonSem1().isSelected())
+			semestre = 1;
+		else
+			semestre = 2;
+
+		return semestre;
 	}
 }

@@ -189,13 +189,7 @@ public class ViewTimeTable extends JFrame implements Observer {
 		labelNumSovr = new JLabel("");
 		
 		labelNumIterazioni = new JLabel("");
-		/*
-			btnSalvaPdf.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				pdfPrinter.PdfPrinter.printReport("prova.pdf", "titolo prova", model.getOrarioUfficiale(), model.getListFasciaOraria());
-			}
-		});
-*/
+
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -302,8 +296,26 @@ public class ViewTimeTable extends JFrame implements Observer {
 	@Override
 	public void update(Observable o, Object arg)
 	{
+		MyNotify notify = (MyNotify) arg;
 
+		
+		switch (notify.getNotifyID())
+		{
+		case MyNotify.ENABLE_BUTTON_MODIFICA:
+			enableSalvaButton();
+		
+
+			
+			
+		}
 	}
+	
+	
+	private void enableSalvaButton()
+	{
+		salva.setEnabled(true);
+	}
+
 
 	public void pressButtonNewOrario2(ActionListener listener) {
 		nuovoOrario.addActionListener(listener);

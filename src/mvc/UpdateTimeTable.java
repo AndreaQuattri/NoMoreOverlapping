@@ -103,95 +103,9 @@ public class UpdateTimeTable extends JFrame implements Observer{
 		int j=0;
 		String ora, giorno;
 
+		ora = switchRiga(row);
 
-		switch (row){
-		case 0:
-			ora = "08:30:00";
-			break;
-		case 1:
-			ora = "09:00:00";
-			break;
-
-		case 2:
-			ora = "09:30:00";
-			break;
-
-		case 3:
-			ora = "10:00:00";
-			break;
-
-		case 4:
-			ora = "10:30:00";
-			break;
-
-		case 5:
-			ora = "11:00:00";
-			break;
-
-		case 6:
-			ora = "11:30:00";
-			break;
-
-		case 7:
-			ora = "00:00:00";
-			break;
-
-		case 8:
-			ora = "00:30:00";
-			break;
-
-		case 9:
-			ora = "13:00:00";
-			break;
-
-		case 10:
-			ora = "13:30:00";
-			break;
-
-		case 11:
-			ora = "14:00:00";
-			break;
-
-		case 12:
-			ora = "14:30:00";
-			break;
-
-		case 13:
-			ora = "15:00:00";
-			break;
-
-		case 14:
-			ora = "15:30:00";
-			break;
-
-		case 15:
-			ora = "16:00:00";
-			break;
-
-		case 16:
-			ora = "16:30:00";
-			break;
-
-		case 17:
-			ora = "17:00:00";
-			break;
-
-		case 18:
-			ora = "17:30:00";
-			break;
-
-		case 19:
-			ora = "18:00:00";
-			break;
-
-		case 20:
-			ora = "18:30:00";
-			break;
-
-		default:
-			ora = "20:00:00";
-		}
-
+		
 
 		switch (col){
 		case 1:
@@ -288,6 +202,102 @@ public class UpdateTimeTable extends JFrame implements Observer{
 	}
 
 
+
+	private String switchRiga(int row2) {
+		// TODO Auto-generated method stub
+		
+		String ora;
+		
+		switch (row){
+		case 0:
+			ora = "08:30:00";
+			break;
+		case 1:
+			ora = "09:00:00";
+			break;
+
+		case 2:
+			ora = "09:30:00";
+			break;
+
+		case 3:
+			ora = "10:00:00";
+			break;
+
+		case 4:
+			ora = "10:30:00";
+			break;
+
+		case 5:
+			ora = "11:00:00";
+			break;
+
+		case 6:
+			ora = "11:30:00";
+			break;
+
+		case 7:
+			ora = "00:00:00";
+			break;
+
+		case 8:
+			ora = "00:30:00";
+			break;
+
+		case 9:
+			ora = "13:00:00";
+			break;
+
+		case 10:
+			ora = "13:30:00";
+			break;
+
+		case 11:
+			ora = "14:00:00";
+			break;
+
+		case 12:
+			ora = "14:30:00";
+			break;
+
+		case 13:
+			ora = "15:00:00";
+			break;
+
+		case 14:
+			ora = "15:30:00";
+			break;
+
+		case 15:
+			ora = "16:00:00";
+			break;
+
+		case 16:
+			ora = "16:30:00";
+			break;
+
+		case 17:
+			ora = "17:00:00";
+			break;
+
+		case 18:
+			ora = "17:30:00";
+			break;
+
+		case 19:
+			ora = "18:00:00";
+			break;
+
+		case 20:
+			ora = "18:30:00";
+			break;
+
+		default:
+			ora = "20:00:00";
+		}
+
+		return ora;
+	}
 
 	/* (non-Javadoc)
 	 * @see java.util.Observer#update(java.util.Observable, java.lang.Object)

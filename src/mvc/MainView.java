@@ -175,23 +175,7 @@ public class MainView extends JFrame implements Observer {
 		
 		buttonAcquisisci = new JButton("Acquisisci");
 		
-		setComboBoxTable(new JComboBox());
-		getComboBoxTable().addItem("");
-		getComboBoxTable().addItem("Attività");
-		getComboBoxTable().addItem("Aula");
-		getComboBoxTable().addItem("Convegno");
-		getComboBoxTable().addItem("Corso di studi");
-		getComboBoxTable().addItem("Disciplina");
-		getComboBoxTable().addItem("Docente");
-		getComboBoxTable().addItem("Esame");
-		getComboBoxTable().addItem("Fascia oraria");
-		getComboBoxTable().addItem("Gita");
-		getComboBoxTable().addItem("Insegna");
-		getComboBoxTable().addItem("Piano di studio");
-		getComboBoxTable().addItem("Preferenza aula");
-		getComboBoxTable().addItem("Preferenza fascia oraria");
-		getComboBoxTable().addItem("Studente");
-		getComboBoxTable().addItem("Tirocinio");
+		initComboTable();
 		
 		buttonInsertNewTable = new JButton("Inserisci Record");
 		buttonInsertNewTable.setEnabled(false);
@@ -302,6 +286,29 @@ public class MainView extends JFrame implements Observer {
 
 	}
 	
+	private void initComboTable() {
+		// TODO Auto-generated method stub
+		setComboBoxTable(new JComboBox());
+		getComboBoxTable().addItem("");
+		getComboBoxTable().addItem("Attività");
+		getComboBoxTable().addItem("Aula");
+		getComboBoxTable().addItem("Convegno");
+		getComboBoxTable().addItem("Corso di studi");
+		getComboBoxTable().addItem("Disciplina");
+		getComboBoxTable().addItem("Docente");
+		getComboBoxTable().addItem("Esame");
+		getComboBoxTable().addItem("Fascia oraria");
+		getComboBoxTable().addItem("Gita");
+		getComboBoxTable().addItem("Insegna");
+		getComboBoxTable().addItem("Piano di studio");
+		getComboBoxTable().addItem("Preferenza aula");
+		getComboBoxTable().addItem("Preferenza fascia oraria");
+		getComboBoxTable().addItem("Studente");
+		getComboBoxTable().addItem("Tirocinio");
+		
+		
+	}
+
 	/**
 	 * Gets the frame.
 	 *

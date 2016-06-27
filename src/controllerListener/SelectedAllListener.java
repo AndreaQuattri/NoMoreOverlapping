@@ -57,53 +57,56 @@ public class SelectedAllListener implements ActionListener{
 		
 		setAttributeToView();
 		model.setTabella(new Vector<Vector<String>>());
-		model.fromOrarioUfficialeToTable();
 		
 		if(viewOrario.getTableRecords().getRowCount()!=0)
-		for (int i = 0; i<21; i++){
-			viewOrario.getTableRecords().removeRow(0);
+			for (int i = 0; i<21; i++){
+				viewOrario.getTableRecords().removeRow(0);
+			}
+
+		model.fromOrarioUfficialeToTable();
+		
+		
+		for(int i=0; i<21; i++){
+			viewOrario.getTableRecords().addRow(model.getTabella().get(i));
 		}
 
+		for (int i=1; i<7; i++){
+			viewOrario.getTable().getColumnModel().getColumn(i).setCellRenderer(new DefaultTableCellRenderer() {
+				/**
+				 * 
+				 */
+				private static final long serialVersionUID = 1L;
 
-				for(int i=0; i<21; i++){
-					viewOrario.getTableRecords().addRow(model.getTabella().get(i));
-				}
+				public Component getTableCellRendererComponent (JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) 
+				{
+					Component cell = super.getTableCellRendererComponent (table, value, isSelected, hasFocus, row, column);
 
-				for (int i=1; i<7; i++){
-					viewOrario.getTable().getColumnModel().getColumn(i).setCellRenderer(new DefaultTableCellRenderer() {
-						/**
-						 * 
-						 */
-						private static final long serialVersionUID = 1L;
+					if (value == null)
+						return null;
 
-						public Component getTableCellRendererComponent (JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) 
-						{
-							Component cell = super.getTableCellRendererComponent (table, value, isSelected, hasFocus, row, column);
+					if (value.equals("0")){
+						cell.setBackground( Color.gray );
+						cell.setForeground(Color.gray);
+					}
+					else{
+						if (value.equals("1")){
+							cell.setBackground( Color.green );
+							cell.setForeground(Color.green);
+						}
+						else{
+							cell.setBackground( Color.red );
+							cell.setForeground(Color.red);
+						}
 
-							if (value == null)
-								return null;
+					}
 
-							if (value.equals("0")){
-								cell.setBackground( Color.gray );
-								cell.setForeground(Color.gray);
-							}
-							else{
-								if (value.equals("1")){
-									cell.setBackground( Color.green );
-									cell.setForeground(Color.green);
-								}
-								else{
-									cell.setBackground( Color.red );
-									cell.setForeground(Color.red);
-								}
-
-							}
-
-							return cell;
-
-						}});
+					return cell;
 
 				}
+				}
+			);
+
+		}
 		
 	}
 	

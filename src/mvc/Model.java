@@ -600,56 +600,9 @@ public class Model extends Observable{
 	/**
 	 * From orario to table.
 	 */
-	@SuppressWarnings("deprecation")
 	public void fromOrarioUfficialeToTable(){
-		int countDay=0;
-		int iRighe=0;
-		int iColonne=0;
-
-		int inizioOra = 8;
-		int inizioMinuto = 30;
-
-		int fineOra = 9;
-		int fineMinuto = 00;
-
-
-		Date inizio = new Date(1111, 1, 1, inizioOra, inizioMinuto);
-		Date fine = new Date(1111, 1, 1, fineOra, fineMinuto);
-
-		Format formatter = new SimpleDateFormat("HH:mm");
-		String oraInizio = formatter.format(inizio);
-		String oraFine = formatter.format(fine);
-
-		
-		for (int i=0; i<getListFasciaOraria().size(); i++){
-						
-			countDay = 0;
-			tabella.addElement(new Vector<String>());
-			for (int j=0; j<getOrarioUfficiale().getElencoAssegnamenti().size(); j++){
-				if (getOrarioUfficiale().getElencoAssegnamenti().get(j).getFasciaOraria().equals(getListFasciaOraria().get(i)))
-					countDay++;
-			}
-			
-			
-			
-			if (iColonne == 0){
-				tabella.get(iRighe).add(String.valueOf(oraInizio + " - " + oraFine));
-				inizioMinuto+=30;
-				fineMinuto+=30;
-
-				inizio = new Date(1111, 1, 1, inizioOra, inizioMinuto);
-				fine = new Date(1111, 1, 1, fineOra, fineMinuto);
-				oraInizio = formatter.format(inizio);
-				oraFine = formatter.format(fine);
-			}
-
-			tabella.get(iRighe).add(String.valueOf(countDay));
-
-			iColonne = iColonne + iRighe/20;
-			iRighe = (iRighe + 1)%21;
-
-		}
-
+		this.orarioDaMostrare = this.orarioUfficiale;
+		fromOrarioDaMostrareToTable();
 	}
 	
 	/**

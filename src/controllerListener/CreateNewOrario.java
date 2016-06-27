@@ -256,7 +256,8 @@ public class CreateNewOrario implements  ActionListener
 					listAttività.addAll(piano1.getElencoAttivitàOpzionali());
 
 
-					listDisciplina = GeneraListaDiscipline.generaLista(listAttività);
+					GeneraListaDiscipline genera = new GeneraListaDiscipline();
+					listDisciplina = genera.generaLista(listAttività);
 
 					matrix = new int[21][6];
 					matrixSupporto = new int[21][6];

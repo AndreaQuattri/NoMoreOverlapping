@@ -42,6 +42,7 @@ public class Controller
 		view.selectedTableToView(new SelectedTableListener(model));
 		view.pressButtonAcquisisci(new InsertInTableListener(view));
 		view.pressButtonModifica(new UpdateRecordListener(view));
+		view.pressButtonInserisci(new InsertRecordListener(view));
 		view.pressButtonGestisciOrario(new OpenViewGestisciOrario(model,viewOrario));
 		
 		viewOrario.pressButtonNewOrario2(new CreateNewOrario(model,viewOrario));

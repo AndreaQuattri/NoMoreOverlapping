@@ -19,10 +19,6 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.event.ActionEvent;
 
-// TODO: Auto-generated Javadoc
-/**
- * The Class MainView.
- */
 public class MainView extends JFrame implements Observer {
 
 	
@@ -149,6 +145,12 @@ public class MainView extends JFrame implements Observer {
 		buttonUpdateTable.addActionListener(listener);
 		
 	}
+	
+	public void pressButtonInserisci(ActionListener listener) {
+		// TODO Auto-generated method stub
+		buttonInsertNewTable.addActionListener(listener);
+	}
+	
 	
 	
 	/**
@@ -463,5 +465,6 @@ public class MainView extends JFrame implements Observer {
 		public void setLabelTable(JLabel labelTable) {
 			this.labelTable = labelTable;
 		}
+
 		
 }

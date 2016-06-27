@@ -37,21 +37,7 @@ public class SelectedActivityListener implements  ActionListener
 
 
 
-		String appoggio;
-		for (int i=0; i<viewOrario.getVisualizzaAttività().getItemCount(); i++){
-			appoggio = viewOrario.getVisualizzaAttività().getItem(i).getText();
-			if (appoggio.equals(nomeAttività))
-				viewOrario.getVisualizzaAttività().getItem(i).setSelected(true);
-			else
-				viewOrario.getVisualizzaAttività().getItem(i).setSelected(false);
-		}
-		for (int i=0; i<viewOrario.getVisualizzaCorso().getItemCount(); i++)
-			viewOrario.getVisualizzaCorso().getItem(i).setSelected(false);
-		for (int i=0; i<viewOrario.getVisualizzaDocente().getItemCount(); i++)
-			viewOrario.getVisualizzaDocente().getItem(i).setSelected(false);
-		viewOrario.getVisualizzaTutto().getItem(0).setSelected(false);
-
-
+		setAttributeToView();
 		model.setTabella(new Vector<Vector<String>>());
 
 		if(viewOrario.getTableRecords().getRowCount()!=0)
@@ -161,4 +147,23 @@ public class SelectedActivityListener implements  ActionListener
 
 
 	}
+	
+	private void setAttributeToView(){
+		String appoggio;
+		for (int i=0; i<viewOrario.getVisualizzaAttività().getItemCount(); i++){
+			appoggio = viewOrario.getVisualizzaAttività().getItem(i).getText();
+			if (appoggio.equals(nomeAttività))
+				viewOrario.getVisualizzaAttività().getItem(i).setSelected(true);
+			else
+				viewOrario.getVisualizzaAttività().getItem(i).setSelected(false);
+		}
+		for (int i=0; i<viewOrario.getVisualizzaCorso().getItemCount(); i++)
+			viewOrario.getVisualizzaCorso().getItem(i).setSelected(false);
+		for (int i=0; i<viewOrario.getVisualizzaDocente().getItemCount(); i++)
+			viewOrario.getVisualizzaDocente().getItem(i).setSelected(false);
+		viewOrario.getVisualizzaTutto().getItem(0).setSelected(false);
+
+
+	}
+	
 }

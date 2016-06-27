@@ -7,10 +7,8 @@ import java.io.FileNotFoundException;
 
 import javax.swing.JFileChooser;
 import javax.swing.JPanel;
-import javax.swing.text.View;
 import javax.xml.stream.XMLStreamException;
 
-import connectToDatabase.MyFileFilter;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.Vector;
@@ -59,35 +57,12 @@ public class CaricaOrarioDaFile extends JPanel implements ActionListener{
 
 			File inputFile = fileChooser.getSelectedFile();
 
-			String file = inputFile.getName();
+			String file = inputFile.getPath();
 			System.out.println(file);
 
 
 
 
-			/*
-			try {
-				model.setOrarioUfficiale( XMLOrarioParserDOM.getOrarioFromFileFull(file) );
-
-
-				for (int i=0; i<model.getOrarioUfficiale().getElencoAssegnamenti().size(); i++)
-					System.out.println(model.getOrarioUfficiale().getElencoAssegnamenti().get(i).getAttività().toString());
-
-				model.fromOrarioToTable();
-
-			} catch (FileNotFoundException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			} catch (XMLStreamException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-
-
-		String file = "provaorario.xml";
-		System.out.println("Pressed button carica");
-
-			 */
 			try {
 				model.setOrarioUfficiale( XMLOrarioParserDOM.getOrarioFromFileFull(model,file) );
 

@@ -1,4 +1,4 @@
-package connectToDatabase;
+package provaPermutazione;
 
 public class Fattoriale {
 	

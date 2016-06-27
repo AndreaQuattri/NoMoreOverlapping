@@ -1,21 +1,17 @@
 package controllerListener;
 
 
-import java.awt.Color;
-import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Vector;
 
 import javax.swing.JCheckBoxMenuItem;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableCellRenderer;
 
-import connectToDatabase.CreateTimeTable;
-import connectToDatabase.DisciplinaInseritaPiano;
 import elaborazioneDati.GeneraListaDiscipline;
 import elaborazioneDati.GeneraSequenzaCasuale;
+import memorizzazioneDati.CreateTimeTable;
+import memorizzazioneDati.DisciplinaInseritaPiano;
 import mvc.Model;
 import mvc.ViewTimeTable;
 import myComponents.Assegnamento;
@@ -37,13 +33,7 @@ public class CreateNewOrario implements  ActionListener
 		this.viewOrario = viewOrario;
 	}
 
-	@Override
-	public void actionPerformed(ActionEvent action)
-	{
-
-
-		viewOrario.getSalva().setEnabled(true);
-
+	private void cancellaTabella(){
 
 		if (viewOrario.getTableRecords().getRowCount()!=0){
 			for (int i = 0; i<21; i++){
@@ -52,23 +42,94 @@ public class CreateNewOrario implements  ActionListener
 
 		}
 		else{
-
-			viewOrario.getTableRecords().addColumn("Orario");
-			viewOrario.getTableRecords().addColumn("Lunedì");
-			viewOrario.getTableRecords().addColumn("Martedì");
-			viewOrario.getTableRecords().addColumn("Mercoledì");
-			viewOrario.getTableRecords().addColumn("Giovedì");
-			viewOrario.getTableRecords().addColumn("Venerdì");
-			viewOrario.getTableRecords().addColumn("Sabato");
-
+			if(viewOrario.getTableRecords().getColumnCount()==0){
+				viewOrario.getTableRecords().addColumn("Orario");
+				viewOrario.getTableRecords().addColumn("Lunedì");
+				viewOrario.getTableRecords().addColumn("Martedì");
+				viewOrario.getTableRecords().addColumn("Mercoledì");
+				viewOrario.getTableRecords().addColumn("Giovedì");
+				viewOrario.getTableRecords().addColumn("Venerdì");
+				viewOrario.getTableRecords().addColumn("Sabato");
+			}
 		}
+
+	}
+
+
+	private void inizializzaComponent(){
+
+		viewOrario.getSalva().setEnabled(true);
+
+		cancellaTabella();
+
+		viewOrario.getVisualizzaTutto().removeAll();
+		viewOrario.setButtonCheckBox(new JCheckBoxMenuItem("Tutto"));
+		viewOrario.getVisualizzaTutto().add(viewOrario.getButtonCheckBox());
+		viewOrario.getButtonCheckBox().addActionListener(new SelectedAllListener(model, viewOrario));
+
+		viewOrario.getVisualizzaAttività().removeAll();
+		viewOrario.getVisualizzaDocente().removeAll();
 
 
 		model.setTabella(new Vector<Vector<String>>());
 		model.setOrarioUfficiale(new Orario());
+	}
 
+	private void organizzaListe(){
+		for (int i=0; i<model.getListAttivitàInserite().size(); i++){
+			viewOrario.setButtonCheckBox(new JCheckBoxMenuItem(model.getListAttivitàInserite().get(i).getNome()));
+			viewOrario.getVisualizzaAttività().add(viewOrario.getButtonCheckBox());
+			viewOrario.getButtonCheckBox().addActionListener(new SelectedActivityListener(model, viewOrario,
+					model.getListAttivitàInserite().get(i).getNome()));
 
+		}
+
+		for (int i=0; i<model.getListDocentiInseriti().size(); i++){
+
+			viewOrario.setButtonCheckBox(new JCheckBoxMenuItem(model.getListDocentiInseriti().get(i).getMatricola() + " - " +
+					model.getListDocentiInseriti().get(i).getCognome()));
+			viewOrario.getVisualizzaDocente().add(viewOrario.getButtonCheckBox());
+			viewOrario.getButtonCheckBox().addActionListener(new SelectedDocenteListener(model, viewOrario,
+					model.getListDocentiInseriti().get(i).getMatricola()));
+
+		}
+
+		for (int i=0; i<model.getListCorsoDiStudioInseriti().size(); i++){
+			viewOrario.setButtonCheckBox(new JCheckBoxMenuItem(model.getListCorsoDiStudioInseriti().get(i).getCodice() + " - " +
+					model.getListCorsoDiStudioInseriti().get(i).getNomePrincipale() + " - " +
+					model.getListCorsoDiStudioInseriti().get(i).getAnno()));
+			viewOrario.getVisualizzaCorso().add(viewOrario.getButtonCheckBox());
+			viewOrario.getButtonCheckBox().addActionListener(new SelectedPianoListener(model, viewOrario,
+					model.getListCorsoDiStudioInseriti().get(i).getCodice()));
+		}
+	}
+	
+	private int numeroSovrapposizioni(int[][] matrixSupporto, int sovrapposizioniAttuali){
 		
+		int numSov = sovrapposizioniAttuali;
+		
+		for(int j=0; j<6; j++)
+			for (int k=0; k<21; k++)
+				model.getMatrix()[k][j] = 0;
+
+		for (int j=0; j<6; j++)
+			for (int k=0; k<21; k++){
+				model.getMatrix()[k][j] += matrixSupporto[k][j];
+				if (matrixSupporto[k][j]>1)
+					numSov++;
+			}
+		
+		return numSov;
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent action)
+	{
+
+
+		inizializzaComponent();
+
+
 
 		CorsoDiStudi corso1;
 		PianoDiStudi piano1;
@@ -77,10 +138,7 @@ public class CreateNewOrario implements  ActionListener
 		int indiceVettore = 0;
 		int numSov = 100;
 		int semestre;
-		if (viewOrario.getButtonSem1().isSelected())
-			semestre = 1;
-		else
-			semestre = 2;
+		int numIt=0, numMaxIt;
 
 
 		int[][] matrix = new int[21][6];
@@ -93,18 +151,16 @@ public class CreateNewOrario implements  ActionListener
 		ArrayList<Disciplina> listDisciplinaInseritaPerOra;
 		ArrayList<Disciplina> listDisciplinaSupporto;
 		ArrayList<Docente> listDocenteSupport;
-		
-		viewOrario.getVisualizzaTutto().removeAll();
-		viewOrario.setButtonCheckBox(new JCheckBoxMenuItem("Tutto"));
-		viewOrario.getVisualizzaTutto().add(viewOrario.getButtonCheckBox());
-		viewOrario.getButtonCheckBox().addActionListener(new SelectedAllListener(model, viewOrario));
-
-		viewOrario.getVisualizzaAttività().removeAll();
-		viewOrario.getVisualizzaDocente().removeAll();
 
 		GeneraSequenzaCasuale g = new GeneraSequenzaCasuale(model.getListCorsoDiStudi().size());
 
-		int numIt=0, numMaxIt;
+
+
+		if (viewOrario.getButtonSem1().isSelected())
+			semestre = 1;
+		else
+			semestre = 2;
+
 		if (viewOrario.getPocheIterazioni().isSelected())
 			numIt = 1;
 		else if (viewOrario.getMedieIterazioni().isSelected())
@@ -112,11 +168,12 @@ public class CreateNewOrario implements  ActionListener
 		else
 			numIt = 10000;
 		numMaxIt = numIt;
-		
+
+
 		while(numIt>0 && numSov!=0){		
 
 			numSov = 0;
-			
+
 			listAttività = new ArrayList<Attività>();
 			listDisciplina = new ArrayList<Disciplina>();
 			listDisciplinaInseritaPerOra = new ArrayList<Disciplina>();
@@ -127,18 +184,11 @@ public class CreateNewOrario implements  ActionListener
 			model.setListAttivitàInserite(new ArrayList<Attività>());
 			model.setListAssegnamento(new ArrayList<Assegnamento>());
 			model.setListCorsoDiStudioInseriti(new ArrayList<CorsoDiStudi>());
-			
-			
-					
+
+
+
 			viewOrario.getVisualizzaCorso().removeAll();
 			int[] v = g.generaSequenza();
-	
-
-//			for (int i=0; i<v.length; i++)
-//				System.out.print(v[i]+", ");
-//			
-//			System.out.println();
-
 
 
 			//corsi di studio da valutare
@@ -151,7 +201,6 @@ public class CreateNewOrario implements  ActionListener
 				piano1 = null;
 
 
-
 				//individuo l'indice del corso di studio
 				piano1 = model.cercaPianoDatoCorso(corso1.getCodice());
 
@@ -161,11 +210,9 @@ public class CreateNewOrario implements  ActionListener
 					hour = 0;
 
 					int iInizio = (int)(Math.random()*6);
-	
-					
-					model.getListCorsoDiStudioInseriti().add(corso1);
-					
 
+
+					model.getListCorsoDiStudioInseriti().add(corso1);
 
 
 					listAttività = new ArrayList<Attività>();
@@ -180,7 +227,6 @@ public class CreateNewOrario implements  ActionListener
 					matrixSupporto = new int[21][6];
 
 					listDocenteSupport = new ArrayList<Docente>();
-
 
 					for (int iDisciplina = 0; iDisciplina < listDisciplina.size(); iDisciplina++){
 
@@ -234,7 +280,6 @@ public class CreateNewOrario implements  ActionListener
 
 								hour = listDisciplina.get(iDisciplina).getSubOre();
 
-
 								if (!disciplinaInserita.giàInsert(listDisciplina.get(iDisciplina).getId()))
 									model.getListAttivitàInserite().add(listDisciplina.get(iDisciplina));
 
@@ -242,21 +287,11 @@ public class CreateNewOrario implements  ActionListener
 
 							}
 
-
 						}
 
 					}
 
-					for(int j=0; j<6; j++)
-						for (int k=0; k<21; k++)
-							model.getMatrix()[k][j] = 0;
-
-					for (int j=0; j<6; j++)
-						for (int k=0; k<21; k++){
-							model.getMatrix()[k][j] += matrixSupporto[k][j];
-							if (matrixSupporto[k][j]>1)
-								numSov++;
-						}
+					numSov = numeroSovrapposizioni(matrixSupporto, numSov);
 
 
 				}
@@ -269,153 +304,34 @@ public class CreateNewOrario implements  ActionListener
 					}
 				}
 
-
-
-
 				for (int i=0; i<listDisciplina.size(); i++){
 					listDisciplinaInseritaPerOra.add(listDisciplina.get(i));
 				}
 			}
-			
 
-			//System.out.println(numIt + " - " + numSov);
 			numIt--;
 
-			
-		}
-
-
-
-
-
-		for (int i=0; i<model.getListAttivitàInserite().size(); i++){
-			viewOrario.setButtonCheckBox(new JCheckBoxMenuItem(model.getListAttivitàInserite().get(i).getNome()));
-			viewOrario.getVisualizzaAttività().add(viewOrario.getButtonCheckBox());
-			viewOrario.getButtonCheckBox().addActionListener(new SelectedActivityListener(model, viewOrario,
-					model.getListAttivitàInserite().get(i).getNome()));
 
 		}
 
-		for (int i=0; i<model.getListDocentiInseriti().size(); i++){
-	
-			viewOrario.setButtonCheckBox(new JCheckBoxMenuItem(model.getListDocentiInseriti().get(i).getMatricola() + " - " +
-					model.getListDocentiInseriti().get(i).getCognome()));
-			viewOrario.getVisualizzaDocente().add(viewOrario.getButtonCheckBox());
-			viewOrario.getButtonCheckBox().addActionListener(new SelectedDocenteListener(model, viewOrario,
-					model.getListDocentiInseriti().get(i).getMatricola()));
 
-		}
-		
-		for (int i=0; i<model.getListCorsoDiStudioInseriti().size(); i++){
-			viewOrario.setButtonCheckBox(new JCheckBoxMenuItem(model.getListCorsoDiStudioInseriti().get(i).getCodice() + " - " +
-					model.getListCorsoDiStudioInseriti().get(i).getNomePrincipale() + " - " +
-					model.getListCorsoDiStudioInseriti().get(i).getAnno()));
-			viewOrario.getVisualizzaCorso().add(viewOrario.getButtonCheckBox());
-			viewOrario.getButtonCheckBox().addActionListener(new SelectedPianoListener(model, viewOrario,
-					model.getListCorsoDiStudioInseriti().get(i).getCodice()));
-		}
+		organizzaListe();
 
 		viewOrario.getLabelNumIterazioni().setText("Iterazioni effettuate: "+(numMaxIt-numIt));
 		viewOrario.getLabelNumSovr().setText("L'orario contiene "+numSov/2+ " ore di sovrapposizione");
 
-		ArrayList<String> listGiorni = new ArrayList<String>();
-		listGiorni.add("Lunedi");
-		listGiorni.add("Martedi");
-		listGiorni.add("Mercoledi");
-		listGiorni.add("Giovedi");
-		listGiorni.add("Venerdi");
-		listGiorni.add("Sabato");
-
-
-		if (viewOrario.getTableRecords().getRowCount()!=0){
-			for (int i = 0; i<21; i++){
-				viewOrario.getTableRecords().removeRow(0);
-			}
-
-		}
-		else{
-			if(viewOrario.getTableRecords().getColumnCount()==0){
-				viewOrario.getTableRecords().addColumn("Orario");
-				viewOrario.getTableRecords().addColumn("Lunedì");
-				viewOrario.getTableRecords().addColumn("Martedì");
-				viewOrario.getTableRecords().addColumn("Mercoledì");
-				viewOrario.getTableRecords().addColumn("Giovedì");
-				viewOrario.getTableRecords().addColumn("Venerdì");
-				viewOrario.getTableRecords().addColumn("Sabato");
-			}
-
-		}
+		cancellaTabella();
 
 
 		CreateTimeTable create = new CreateTimeTable(model);
-		
 		create.fromAssegnamentoToOrarioPerGiorno();
-		
 
-
-		
 		model.setTabella(new Vector<Vector<String>>());
 		model.fromOrarioToTable();
-		
+
 		viewOrario.getVisualizzaTutto().getItem(0).setSelected(true);
-		
-		if(viewOrario.getTableRecords().getRowCount()!=0)
-		for (int i = 0; i<21; i++){
-			viewOrario.getTableRecords().removeRow(0);
-		}
 
-
-				for(int i=0; i<21; i++){
-					viewOrario.getTableRecords().addRow(model.getTabella().get(i));
-				}
-
-				for (int i=1; i<7; i++){
-					viewOrario.getTable().getColumnModel().getColumn(i).setCellRenderer(new DefaultTableCellRenderer() {
-						/**
-						 * 
-						 */
-						private static final long serialVersionUID = 1L;
-
-						public Component getTableCellRendererComponent (JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) 
-						{
-							Component cell = super.getTableCellRendererComponent (table, value, isSelected, hasFocus, row, column);
-
-							if (value == null)
-								return null;
-
-							if (value.equals("0")){
-								cell.setBackground( Color.gray );
-								cell.setForeground(Color.gray);
-							}
-							else{
-								if (value.equals("1")){
-									cell.setBackground( Color.green );
-									cell.setForeground(Color.green);
-								}
-								else{
-									cell.setBackground( Color.red );
-									cell.setForeground(Color.red);
-								}
-
-							}
-
-							return cell;
-
-						}});
-
-				}
-		
-
-
-
-
-
-		
-
-		
-
-
-
+		viewOrario.visualizzaOrario();
 
 	}
 }

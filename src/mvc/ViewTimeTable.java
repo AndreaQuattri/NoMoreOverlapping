@@ -23,13 +23,6 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 import controllerListener.DoubleClickListener;
-import pdfPrinter.PdfPrinter;
-
-import javax.swing.JButton;
-import javax.swing.LayoutStyle.ComponentPlacement;
-import java.awt.event.ActionEvent;
-
-
 
 
 public class ViewTimeTable extends JFrame implements Observer {

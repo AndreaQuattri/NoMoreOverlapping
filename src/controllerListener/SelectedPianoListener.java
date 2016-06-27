@@ -34,24 +34,8 @@ public class SelectedPianoListener implements  ActionListener
 	public void actionPerformed(ActionEvent action)
 	{
 
-
-
-
-		String[] appoggio;
-		for (int i=0; i<viewOrario.getVisualizzaCorso().getItemCount(); i++){
-			appoggio = viewOrario.getVisualizzaCorso().getItem(i).getText().split("-");
-			if (appoggio[0].trim().equals(codice))
-				viewOrario.getVisualizzaCorso().getItem(i).setSelected(true);
-			else
-				viewOrario.getVisualizzaCorso().getItem(i).setSelected(false);
-
-		}
-		for (int i=0; i<viewOrario.getVisualizzaAttività().getItemCount(); i++)
-			viewOrario.getVisualizzaAttività().getItem(i).setSelected(false);
-		for (int i=0; i<viewOrario.getVisualizzaDocente().getItemCount(); i++)
-			viewOrario.getVisualizzaDocente().getItem(i).setSelected(false);
-		viewOrario.getVisualizzaTutto().getItem(0).setSelected(false);
-
+		
+		setAttributeToView();
 
 		model.setTabella(new Vector<Vector<String>>());
 
@@ -165,6 +149,25 @@ public class SelectedPianoListener implements  ActionListener
 		}
 
 
+
+	}
+	
+	
+	private void setAttributeToView(){
+		String[] appoggio;
+		for (int i=0; i<viewOrario.getVisualizzaCorso().getItemCount(); i++){
+			appoggio = viewOrario.getVisualizzaCorso().getItem(i).getText().split("-");
+			if (appoggio[0].trim().equals(codice))
+				viewOrario.getVisualizzaCorso().getItem(i).setSelected(true);
+			else
+				viewOrario.getVisualizzaCorso().getItem(i).setSelected(false);
+
+		}
+		for (int i=0; i<viewOrario.getVisualizzaAttività().getItemCount(); i++)
+			viewOrario.getVisualizzaAttività().getItem(i).setSelected(false);
+		for (int i=0; i<viewOrario.getVisualizzaDocente().getItemCount(); i++)
+			viewOrario.getVisualizzaDocente().getItem(i).setSelected(false);
+		viewOrario.getVisualizzaTutto().getItem(0).setSelected(false);
 
 	}
 }

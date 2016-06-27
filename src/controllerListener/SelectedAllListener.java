@@ -28,14 +28,7 @@ public class SelectedAllListener implements ActionListener{
 		
 		
 		
-		for (int i=0; i<viewOrario.getVisualizzaCorso().getItemCount(); i++)
-			viewOrario.getVisualizzaCorso().getItem(i).setSelected(false);
-		for (int i=0; i<viewOrario.getVisualizzaDocente().getItemCount(); i++)
-			viewOrario.getVisualizzaDocente().getItem(i).setSelected(false);
-		for (int i=0; i<viewOrario.getVisualizzaAttività().getItemCount(); i++)
-			viewOrario.getVisualizzaAttività().getItem(i).setSelected(false);
-		
-
+		setAttributeToView();
 		model.setTabella(new Vector<Vector<String>>());
 		model.fromOrarioToTable();
 		
@@ -85,6 +78,15 @@ public class SelectedAllListener implements ActionListener{
 
 				}
 		
+	}
+	
+	private void setAttributeToView(){
+		for (int i=0; i<viewOrario.getVisualizzaCorso().getItemCount(); i++)
+			viewOrario.getVisualizzaCorso().getItem(i).setSelected(false);
+		for (int i=0; i<viewOrario.getVisualizzaDocente().getItemCount(); i++)
+			viewOrario.getVisualizzaDocente().getItem(i).setSelected(false);
+		for (int i=0; i<viewOrario.getVisualizzaAttività().getItemCount(); i++)
+			viewOrario.getVisualizzaAttività().getItem(i).setSelected(false);
 	}
 
 }

@@ -514,5 +514,19 @@ public class Model extends Observable{
 		return null;
 		
 	}
+	
+	public Disciplina fromIdToDisciplina(String id){
+
+		for (int i=0;i<getListDisciplina().size() ;i++){
+			if(id.equals(getListDisciplina().get(i).getId())){
+				return getListDisciplina().get(i);
+			}
+		}
+
+
+		return null;
+
+	}
+
 
 }

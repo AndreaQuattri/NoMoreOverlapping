@@ -1,4 +1,4 @@
-package connectToDatabase;
+package controllerListener;
 
 import java.io.File;
 
@@ -18,7 +18,7 @@ public class MyFileFilter extends FileFilter{
 
 	@Override
 	public String getDescription() {
-		return "*.txt";
+		return "*.xml";
 	}
 
 }

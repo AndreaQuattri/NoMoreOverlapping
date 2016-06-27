@@ -8,8 +8,7 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Vector;
 
-
-import memorizzazioneDati.GeneraPianiDiStudio;
+import elaborazioneDati.GeneraPianiDiStudio;
 import memorizzazioneDati.InsertValues;
 import mvc.Model;
 import mvc.ViewTimeTable;

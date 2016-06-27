@@ -1,4 +1,4 @@
-package connectToDatabase;
+package memorizzazioneDati;
 
 import mvc.Model;
 import myComponents.Assegnamento;

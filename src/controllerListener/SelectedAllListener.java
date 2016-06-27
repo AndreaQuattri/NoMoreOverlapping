@@ -57,7 +57,7 @@ public class SelectedAllListener implements ActionListener{
 		
 		setAttributeToView();
 		model.setTabella(new Vector<Vector<String>>());
-		model.fromOrarioToTable();
+		model.fromOrarioUfficialeToTable();
 		
 		if(viewOrario.getTableRecords().getRowCount()!=0)
 		for (int i = 0; i<21; i++){

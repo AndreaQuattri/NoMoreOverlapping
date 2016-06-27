@@ -7,6 +7,7 @@ import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.Observable;
 import java.util.Vector;
 
@@ -60,6 +61,9 @@ public class Model extends Observable{
 	/** The orario ufficiale. */
 	private Orario orarioUfficiale;
 	
+	/** The orario ufficiale. */
+	private Orario orarioDaMostrare;
+	
 	/** The matrix. */
 	private int[][] matrix;
 
@@ -96,7 +100,7 @@ public class Model extends Observable{
 	private ArrayList<Attività> listAttivitàDeiDocenti;
 	
 	/** The list all attività inserite. */
-	private ArrayList<Disciplina> listAllAttivitàInserite;
+	private ArrayList<Attività> listAllAttivitàInserite;
 	
 	/** The list corso di studio inseriti. */
 	private ArrayList<CorsoDiStudi> listCorsoDiStudioInseriti;
@@ -143,8 +147,9 @@ public class Model extends Observable{
 		setListAttivitàInserite(new ArrayList<Attività>());
 		listDocentiInseriti = new ArrayList<Docente>();
 		setListAttivitàDeiDocenti(new ArrayList<Attività>());
-		setListAllAttivitàInserite(new ArrayList<Disciplina>());
+		setListAllAttivitàInserite(new ArrayList<Attività>());
 		setOrarioUfficiale(new Orario());
+		setOrarioDaMostrare(new Orario());
 		matrix = new int[21][6];
 
 		enableModificaTable = false;
@@ -154,7 +159,6 @@ public class Model extends Observable{
 		enableButtonInserisciGita = false;
 
 	}
-
 
 
 
@@ -597,7 +601,7 @@ public class Model extends Observable{
 	 * From orario to table.
 	 */
 	@SuppressWarnings("deprecation")
-	public void fromOrarioToTable(){
+	public void fromOrarioUfficialeToTable(){
 		int countDay=0;
 		int iRighe=0;
 		int iColonne=0;
@@ -623,6 +627,61 @@ public class Model extends Observable{
 			tabella.addElement(new Vector<String>());
 			for (int j=0; j<getOrarioUfficiale().getElencoAssegnamenti().size(); j++){
 				if (getOrarioUfficiale().getElencoAssegnamenti().get(j).getFasciaOraria().equals(getListFasciaOraria().get(i)))
+					countDay++;
+			}
+			
+			
+			
+			if (iColonne == 0){
+				tabella.get(iRighe).add(String.valueOf(oraInizio + " - " + oraFine));
+				inizioMinuto+=30;
+				fineMinuto+=30;
+
+				inizio = new Date(1111, 1, 1, inizioOra, inizioMinuto);
+				fine = new Date(1111, 1, 1, fineOra, fineMinuto);
+				oraInizio = formatter.format(inizio);
+				oraFine = formatter.format(fine);
+			}
+
+			tabella.get(iRighe).add(String.valueOf(countDay));
+
+			iColonne = iColonne + iRighe/20;
+			iRighe = (iRighe + 1)%21;
+
+		}
+
+	}
+	
+	/**
+	 * From orario to table.
+	 */
+	@SuppressWarnings("deprecation")
+	public void fromOrarioDaMostrareToTable(){
+		int countDay=0;
+		int iRighe=0;
+		int iColonne=0;
+
+		int inizioOra = 8;
+		int inizioMinuto = 30;
+
+		int fineOra = 9;
+		int fineMinuto = 00;
+
+
+		Date inizio = new Date(1111, 1, 1, inizioOra, inizioMinuto);
+		Date fine = new Date(1111, 1, 1, fineOra, fineMinuto);
+
+		Format formatter = new SimpleDateFormat("HH:mm");
+		String oraInizio = formatter.format(inizio);
+		String oraFine = formatter.format(fine);
+
+		
+		for (int i=0; i<getListFasciaOraria().size(); i++){
+						
+			countDay = 0;
+			tabella.addElement(new Vector<String>());
+			for (int j=0; j<getOrarioDaMostrare().getElencoAssegnamenti().size(); j++){
+				if (getOrarioDaMostrare().getElencoAssegnamenti().get(j).getFasciaOraria().equals(getListFasciaOraria().get(i)))
 					countDay++;
 			}
 			
@@ -739,7 +798,7 @@ public class Model extends Observable{
 	 *
 	 * @return the list all attività inserite
 	 */
-	public ArrayList<Disciplina> getListAllAttivitàInserite() {
+	public ArrayList<Attività> getListAllAttivitàInserite() {
 		return listAllAttivitàInserite;
 	}
 
@@ -751,7 +810,7 @@ public class Model extends Observable{
 	 *
 	 * @param listAllAttivitàInserite the new list all attività inserite
 	 */
-	public void setListAllAttivitàInserite(ArrayList<Disciplina> listAllAttivitàInserite) {
+	public void setListAllAttivitàInserite(ArrayList<Attività> listAllAttivitàInserite) {
 		this.listAllAttivitàInserite = listAllAttivitàInserite;
 	}
 
@@ -767,7 +826,14 @@ public class Model extends Observable{
 		return orarioUfficiale;
 	}
 
-
+	/**
+	 * Gets the orario da Mostrare.
+	 *
+	 * @return the orario da mostrare
+	 */
+	public Orario getOrarioDaMostrare() {
+		return orarioDaMostrare;
+	}
 
 
 	/**
@@ -777,10 +843,18 @@ public class Model extends Observable{
 	 */
 	public void setOrarioUfficiale(Orario orarioUfficiale) {
 		this.orarioUfficiale = orarioUfficiale;
+		this.orarioDaMostrare = orarioUfficiale;
 	}
 
 
-
+	/**
+	 * Sets the orario da mostrare.
+	 *
+	 * @param orarioUfficiale the new orario da mostrare
+	 */
+	public void setOrarioDaMostrare(Orario orario) {
+		this.orarioDaMostrare = orario;
+	}
 
 	/**
 	 * Gets the matrix.
@@ -906,10 +980,49 @@ public class Model extends Observable{
 			}
 		}
 
-
 		return null;
 
 	}
 
-
+	public void filtraOrario( Attività a ) {
+		Iterator<Assegnamento> i = orarioUfficiale.getElencoAssegnamenti().iterator();
+		orarioDaMostrare = new Orario();
+		while( i != null && i.hasNext() ) {
+			Assegnamento ax = i.next();
+			if( a.equalsAtt(ax.getAttività()) ) {
+				// aggiungere attività?
+				orarioDaMostrare.aggiungiAssegnamento(ax);
+			}
+		}
+	}
+	
+	public void filtraOrario( Docente d ) {
+		Iterator<Assegnamento> i = orarioUfficiale.getElencoAssegnamenti().iterator();
+		orarioDaMostrare = new Orario();
+		while( i != null && i.hasNext() ) {
+			Assegnamento ax = i.next();
+			if( ax.getAttività().getElencoResponsabili().contains(d) ) {
+				// aggiungere attività?
+				orarioDaMostrare.aggiungiAssegnamento(ax);
+			}
+		}
+	}	
+	
+	public void filtraOrario( CorsoDiStudi cds ) {
+		filtraOrarioPerCorso(cds.getCodice());
+	}
+	
+	public void filtraOrarioPerCorso( String codice ) {		
+		Iterator<Assegnamento> i = orarioUfficiale.getElencoAssegnamenti().iterator();
+		orarioDaMostrare = new Orario();
+		while( i != null && i.hasNext() ) {
+			Assegnamento ax = i.next();
+			if( AttivitàInCorso(ax.getAttività().getId(), codice ) ) {
+				// aggiungere attività?
+				orarioDaMostrare.aggiungiAssegnamento(ax);
+			}
+		}
+	}
+	
+	
 }

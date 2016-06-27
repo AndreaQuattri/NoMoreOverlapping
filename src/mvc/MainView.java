@@ -16,6 +16,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import java.awt.event.ActionEvent;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -30,13 +32,10 @@ public class MainView extends JFrame implements Observer {
 	
 	
 	/** The frame. */
-	private JFrame frame;
+	private JFrame frmNoMoreOverlapping;
 	
 	/** The button aggiorna. */
 	private JButton buttonAggiorna;
-	
-	/** The button info. */
-	private JButton buttonInfo;
 	
 	/** The label table selection. */
 	private JLabel labelTableSelection;
@@ -49,12 +48,6 @@ public class MainView extends JFrame implements Observer {
 	
 	/** The button insert new table. */
 	private JButton buttonInsertNewTable;
-	
-	/** The label delete table. */
-	private JLabel labelDeleteTable;
-	
-	/** The label update table. */
-	private JLabel labelUpdateTable;
 	
 	/** The button delete table. */
 	private JButton buttonDeleteTable;
@@ -164,9 +157,10 @@ public class MainView extends JFrame implements Observer {
 	private void initUI(){
 		
 
-		frame = new JFrame();
-		frame.setBounds(100, 100, 900, 700);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmNoMoreOverlapping = new JFrame();
+		frmNoMoreOverlapping.setTitle("No More Overlapping");
+		frmNoMoreOverlapping.setBounds(100, 100, 900, 700);
+		frmNoMoreOverlapping.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		
 		buttonAggiorna = new JButton("Aggiorna");
@@ -193,23 +187,21 @@ public class MainView extends JFrame implements Observer {
 		getComboBoxTable().addItem("Studente");
 		getComboBoxTable().addItem("Tirocinio");
 		
-		buttonInsertNewTable = new JButton("Inserisci nuova tabella");
+		buttonInsertNewTable = new JButton("Inserisci Record");
 		
-		labelDeleteTable = new JLabel("Elimina tabella");
+		buttonDeleteTable = new JButton("Elimina Record");
+		buttonDeleteTable.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
 		
-		labelUpdateTable = new JLabel("Modifica tabella");
-		
-		buttonDeleteTable = new JButton("Elimina");
-		
-		buttonUpdateTable = new JButton("Modifica");
+		buttonUpdateTable = new JButton("Modifica Record");
 		
 		comboBoxRecord = new JComboBox();
 		
 		labelTableShown = new JLabel("Tabella mostrata:");
 		
 		scrollPane = new JScrollPane();
-		
-		buttonInfo = new JButton("I");
 		
 		buttonGestioneOrario = new JButton("Gestione orario");
 		
@@ -224,94 +216,71 @@ public class MainView extends JFrame implements Observer {
 		scrollPane.setViewportView(table);
 		
 		labelTable = new JLabel("");
-		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
+		GroupLayout groupLayout = new GroupLayout(frmNoMoreOverlapping.getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(6)
-							.addComponent(buttonInfo, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(66)
-							.addComponent(labelTableSelection)
-							.addGap(85)
-							.addComponent(comboBoxTable, GroupLayout.PREFERRED_SIZE, 189, GroupLayout.PREFERRED_SIZE)
-							.addGap(87)
-							.addComponent(buttonAcquisisci, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
-							.addGap(75)
-							.addComponent(buttonAggiorna, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(66)
-							.addComponent(buttonInsertNewTable, GroupLayout.PREFERRED_SIZE, 335, GroupLayout.PREFERRED_SIZE)
-							.addGap(131)
-							.addComponent(comboBoxRecord, GroupLayout.PREFERRED_SIZE, 309, GroupLayout.PREFERRED_SIZE))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(66)
-							.addComponent(labelDeleteTable, GroupLayout.PREFERRED_SIZE, 107, GroupLayout.PREFERRED_SIZE)
-							.addGap(39)
-							.addComponent(buttonDeleteTable, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(66)
-							.addComponent(labelUpdateTable, GroupLayout.PREFERRED_SIZE, 107, GroupLayout.PREFERRED_SIZE)
-							.addGap(39)
-							.addComponent(buttonUpdateTable, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(294)
-							.addComponent(labelTableShown, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
-							.addGap(46)
+							.addGap(457)
 							.addComponent(labelTable))
 						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(66)
-							.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 775, GroupLayout.PREFERRED_SIZE))
-						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(326)
-							.addComponent(buttonGestioneOrario, GroupLayout.PREFERRED_SIZE, 230, GroupLayout.PREFERRED_SIZE)))
-					.addContainerGap(59, Short.MAX_VALUE))
+							.addComponent(buttonGestioneOrario, GroupLayout.PREFERRED_SIZE, 230, GroupLayout.PREFERRED_SIZE))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(66)
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addComponent(labelTableShown, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
+								.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 775, GroupLayout.PREFERRED_SIZE)))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(212)
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addGroup(groupLayout.createSequentialGroup()
+									.addGap(66)
+									.addComponent(labelTableSelection)
+									.addGap(84)
+									.addComponent(comboBoxTable, GroupLayout.PREFERRED_SIZE, 189, GroupLayout.PREFERRED_SIZE))
+								.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING, false)
+									.addComponent(buttonInsertNewTable, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)
+									.addComponent(buttonUpdateTable, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+									.addComponent(buttonDeleteTable, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+							.addGap(88)
+							.addComponent(buttonAcquisisci, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+							.addComponent(buttonAggiorna, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)))
+					.addGap(59))
+				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+					.addContainerGap(489, Short.MAX_VALUE)
+					.addComponent(comboBoxRecord, GroupLayout.PREFERRED_SIZE, 309, GroupLayout.PREFERRED_SIZE)
+					.addGap(314))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(6)
-					.addComponent(buttonInfo)
-					.addGap(37)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(5)
-							.addComponent(labelTableSelection))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(2)
-							.addComponent(comboBoxTable, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE))
+					.addGap(17)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(labelTableSelection)
+						.addComponent(comboBoxTable, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
 						.addComponent(buttonAcquisisci)
 						.addComponent(buttonAggiorna))
-					.addGap(44)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(buttonInsertNewTable)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(1)
-							.addComponent(comboBoxRecord, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)))
-					.addGap(42)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(5)
-							.addComponent(labelDeleteTable))
-						.addComponent(buttonDeleteTable))
-					.addGap(13)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(5)
-							.addComponent(labelUpdateTable))
-						.addComponent(buttonUpdateTable))
-					.addGap(47)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(labelTableShown)
-						.addComponent(labelTable))
-					.addGap(31)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(comboBoxRecord, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
+					.addGap(81)
+					.addComponent(buttonInsertNewTable)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(buttonDeleteTable)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(buttonUpdateTable)
+					.addGap(90)
+					.addComponent(labelTable)
+					.addGap(25)
+					.addComponent(labelTableShown)
+					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 228, GroupLayout.PREFERRED_SIZE)
 					.addGap(18)
 					.addComponent(buttonGestioneOrario))
 		);
-		frame.getContentPane().setLayout(groupLayout);
+		frmNoMoreOverlapping.getContentPane().setLayout(groupLayout);
 		
 
 	}
@@ -322,7 +291,7 @@ public class MainView extends JFrame implements Observer {
 	 * @return the frame
 	 */
 	public JFrame getFrame(){
-		return frame;
+		return frmNoMoreOverlapping;
 	}
 	
 	/**

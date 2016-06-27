@@ -26,6 +26,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 import controllerListener.DoubleClickListener;
+import javax.swing.LayoutStyle.ComponentPlacement;
 
 
 // TODO: Auto-generated Javadoc
@@ -41,7 +42,7 @@ public class ViewTimeTable extends JFrame implements Observer {
 
 
 	/** The frame. */
-	private JFrame frame;
+	private JFrame frmGestioneOrario;
 	
 	/** The label table in table. */
 	private JLabel labelTableInTable;
@@ -224,7 +225,7 @@ public class ViewTimeTable extends JFrame implements Observer {
 		menuBar.add(parametri);
 
 
-		frame.setJMenuBar(menuBar);
+		frmGestioneOrario.setJMenuBar(menuBar);
 
 	}
 
@@ -237,8 +238,9 @@ public class ViewTimeTable extends JFrame implements Observer {
 	private void initUI(){
 
 
-		frame = new JFrame();
-		frame.setBounds(100, 100, 1100, 700);
+		frmGestioneOrario = new JFrame();
+		frmGestioneOrario.setTitle("Gestione orario");
+		frmGestioneOrario.setBounds(100, 100, 1075, 475);
 
 		scrollPane = new JScrollPane();
 
@@ -253,9 +255,9 @@ public class ViewTimeTable extends JFrame implements Observer {
 
 		scrollPane.setViewportView(table);
 		
-		labelNumSovr = new JLabel("");
+		labelNumSovr = new JLabel("sovr");
 		
-		labelNumIterazioni = new JLabel("");
+		labelNumIterazioni = new JLabel("iter");
 		/*
 			btnSalvaPdf.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -263,33 +265,33 @@ public class ViewTimeTable extends JFrame implements Observer {
 			}
 		});
 */
-		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
+		GroupLayout groupLayout = new GroupLayout(frmGestioneOrario.getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(46)
-							.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 997, GroupLayout.PREFERRED_SIZE))
+							.addGap(204)
+							.addComponent(labelNumIterazioni)
+							.addGap(294)
+							.addComponent(labelNumSovr))
 						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(465)
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(labelNumIterazioni)
-								.addComponent(labelNumSovr))))
-					.addContainerGap(57, Short.MAX_VALUE))
+							.addGap(38)
+							.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 997, GroupLayout.PREFERRED_SIZE)))
+					.addContainerGap(40, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(79)
-					.addComponent(labelNumSovr)
-					.addGap(28)
-					.addComponent(labelNumIterazioni)
-					.addGap(47)
-					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(98, Short.MAX_VALUE))
+					.addContainerGap()
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(labelNumIterazioni)
+						.addComponent(labelNumSovr))
+					.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 380, GroupLayout.PREFERRED_SIZE)
+					.addGap(48))
 		);
-		frame.getContentPane().setLayout(groupLayout);
+		frmGestioneOrario.getContentPane().setLayout(groupLayout);
 		
 
 
@@ -539,7 +541,7 @@ public class ViewTimeTable extends JFrame implements Observer {
 	 * @return the frame
 	 */
 	public JFrame getFrame(){
-		return frame;
+		return frmGestioneOrario;
 	}
 
 

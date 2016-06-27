@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package controllerListener;
 
 
@@ -22,17 +25,33 @@ import myComponents.Docente;
 import myComponents.Orario;
 import myComponents.PianoDiStudi;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class CreateNewOrario.
+ */
 public class CreateNewOrario implements  ActionListener
 {
 
+	/** The view orario. */
 	private ViewTimeTable viewOrario;
+	
+	/** The model. */
 	private Model model;
 
+	/**
+	 * Instantiates a new creates the new orario.
+	 *
+	 * @param model the model
+	 * @param viewOrario the view orario
+	 */
 	public CreateNewOrario(Model model, ViewTimeTable viewOrario) {
 		this.model = model;
 		this.viewOrario = viewOrario;
 	}
 
+	/**
+	 * Cancella tabella.
+	 */
 	private void cancellaTabella(){
 
 		if (viewOrario.getTableRecords().getRowCount()!=0){
@@ -56,6 +75,9 @@ public class CreateNewOrario implements  ActionListener
 	}
 
 
+	/**
+	 * Inizializza component.
+	 */
 	private void inizializzaComponent(){
 
 		viewOrario.getSalva().setEnabled(true);
@@ -75,6 +97,9 @@ public class CreateNewOrario implements  ActionListener
 		model.setOrarioUfficiale(new Orario());
 	}
 
+	/**
+	 * Organizza liste.
+	 */
 	private void organizzaListe(){
 		for (int i=0; i<model.getListAttivitàInserite().size(); i++){
 			viewOrario.setButtonCheckBox(new JCheckBoxMenuItem(model.getListAttivitàInserite().get(i).getNome()));
@@ -104,6 +129,13 @@ public class CreateNewOrario implements  ActionListener
 		}
 	}
 	
+	/**
+	 * Numero sovrapposizioni.
+	 *
+	 * @param matrixSupporto the matrix supporto
+	 * @param sovrapposizioniAttuali the sovrapposizioni attuali
+	 * @return the int
+	 */
 	private int numeroSovrapposizioni(int[][] matrixSupporto, int sovrapposizioniAttuali){
 		
 		int numSov = sovrapposizioniAttuali;
@@ -122,6 +154,9 @@ public class CreateNewOrario implements  ActionListener
 		return numSov;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 */
 	@Override
 	public void actionPerformed(ActionEvent action)
 	{

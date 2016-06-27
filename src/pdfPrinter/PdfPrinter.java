@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package pdfPrinter;
 
 import java.awt.event.ActionEvent;
@@ -26,29 +29,58 @@ import myComponents.Assegnamento;
 import myComponents.FasciaOraria;
 import myComponents.Orario;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class PdfPrinter.
+ */
 public class PdfPrinter implements ActionListener{
 	
+	/** The big font. */
 	private static Font bigFont = new Font(Font.FontFamily.HELVETICA, 16, Font.BOLD);
+	
+	/** The medium font. */
 	private static Font mediumFont = new Font(Font.FontFamily.HELVETICA, 11 , Font.BOLD);
+	
+	/** The small font. */
 	private static Font smallFont = new Font(Font.FontFamily.HELVETICA, 11 );
+	
+	/** The format. */
 	private static SimpleDateFormat format = new SimpleDateFormat("HH:mm");
 	
+	/** The titoli. */
 	private static String[] titoli = { "ORA DI INIZIO" , "LUNEDI" , "MARTEDI" , "MERCOLEDI" , "GIOVEDI" , "VENERDI" , "SABATO" };
+	
+	/** The Constant NCOL. */
 	private static final int NCOL = titoli.length;
 	
+	/** The to print. */
 	private static ArrayList<String[]> toPrint;
 	
+	/** The cell flag. */
 	private static Boolean cellFlag = false;
+	
+	/** The c head. */
 	private static PdfPCell cHead = new PdfPCell();
+	
+	/** The c body. */
 	private static PdfPCell cBody = new PdfPCell();
 	
+	/** The model. */
 	private Model model;
 	
+	/**
+	 * Instantiates a new pdf printer.
+	 *
+	 * @param model the model
+	 */
 	public PdfPrinter(Model model) {
 		this.model = model;
 	}
 	
 	
+	/**
+	 * Setup cell.
+	 */
 	private static void setupCell() {
 		if ( cellFlag )
 			return;
@@ -59,6 +91,13 @@ public class PdfPrinter implements ActionListener{
 	}
 	
 
+	/**
+	 * Aggiungi titolo.
+	 *
+	 * @param title the title
+	 * @return the element
+	 * @throws DocumentException the document exception
+	 */
 	private static Element aggiungiTitolo(final String title) throws DocumentException {
 		Paragraph p = new Paragraph(title,bigFont);
 		p.setAlignment(Element.ALIGN_CENTER);
@@ -67,11 +106,23 @@ public class PdfPrinter implements ActionListener{
 		
 	}
 
+	/**
+	 * Aggiungi linea vuota.
+	 *
+	 * @param paragraph the paragraph
+	 * @param number the number
+	 */
 	private static void aggiungiLineaVuota(Paragraph paragraph, int number) {
 		for (int i = 0; i < number; i++)
 			paragraph.add(new Paragraph(" "));
 	}
 
+	/**
+	 * Aggiungi meta dati.
+	 *
+	 * @param document the document
+	 * @param title the title
+	 */
 	private static void aggiungiMetaDati(final Document document, final String title) {
 		document.addTitle(title);
 		document.addSubject("Orario ottimizzato " + new SimpleDateFormat("dd/MM/yyyy").format( new Date() ));
@@ -80,6 +131,14 @@ public class PdfPrinter implements ActionListener{
 		document.addCreator(System.getProperty("user.name"));
 	}
 
+	/**
+	 * Crea tabella.
+	 *
+	 * @param o the o
+	 * @param listFO the list fo
+	 * @return the pdf p table
+	 * @throws Exception the exception
+	 */
 	private static PdfPTable creaTabella(Orario o , ArrayList<FasciaOraria> listFO) throws Exception  {
 		PdfPTable tabella = new PdfPTable(NCOL);
 		
@@ -100,6 +159,12 @@ public class PdfPrinter implements ActionListener{
 		return tabella;
 	}
 
+	/**
+	 * Insert orario.
+	 *
+	 * @param o the o
+	 * @throws Exception the exception
+	 */
 	private static void insertOrario(Orario o) throws Exception {
 		ArrayList<Assegnamento> listA = o.getElencoAssegnamenti();
 		
@@ -119,11 +184,13 @@ public class PdfPrinter implements ActionListener{
 	}
 	
 	/**
-	 * aggiunge un assegnamento alla tabella nelle posizioni indicate
-	 * @param a
-	 * @param startRow
-	 * @param endRow
-	 * @param dayCol
+	 * aggiunge un assegnamento alla tabella nelle posizioni indicate.
+	 *
+	 * @param a the a
+	 * @param startRow the start row
+	 * @param endRow the end row
+	 * @param dayCol the day col
+	 * @return the int
 	 */
 	private static int addAssegnamento(Assegnamento a , int startRow , int endRow , int dayCol ) {
 		
@@ -172,6 +239,13 @@ public class PdfPrinter implements ActionListener{
 	}
 	
 
+	/**
+	 * Adds the row.
+	 *
+	 * @param i the i
+	 * @param dayCol the day col
+	 * @param string the string
+	 */
 	private static void addRow(int i, int dayCol, String string) {
 
 		String[] add = new String[NCOL];
@@ -184,10 +258,11 @@ public class PdfPrinter implements ActionListener{
 
 
 	/**
-	 * restituisce l'indice della colonna che ha come primo elemento la stringa corrispondente al giorno dato
-	 * @param giorno
-	 * @return
-	 * @throws Exception 
+	 * restituisce l'indice della colonna che ha come primo elemento la stringa corrispondente al giorno dato.
+	 *
+	 * @param giorno the giorno
+	 * @return the int
+	 * @throws Exception the exception
 	 */
 	private static int findCol(String giorno) throws Exception {
 	
@@ -199,7 +274,8 @@ public class PdfPrinter implements ActionListener{
 	
 	
 	/**
-	 * restituisce l'indice della riga che ha come primo elemento la stringa ora
+	 * restituisce l'indice della riga che ha come primo elemento la stringa ora.
+	 *
 	 * @param ora stringa da cercare
 	 * @return indice della riga corrispondente all'ora cercata
 	 * @throws Exception row not found
@@ -215,6 +291,11 @@ public class PdfPrinter implements ActionListener{
 	}
 
 
+	/**
+	 * Prints the on table.
+	 *
+	 * @param tabella the tabella
+	 */
 	private static void printOnTable(PdfPTable tabella) {
 		
 		Iterator<String[]> i = toPrint.iterator();
@@ -238,6 +319,12 @@ public class PdfPrinter implements ActionListener{
 		
 	}
 
+	/**
+	 * Sets the up table.
+	 *
+	 * @param listFO the new up table
+	 * @throws Exception the exception
+	 */
 	private static void setupTable( ArrayList<FasciaOraria> listFO) throws Exception {
 
 		toPrint = new ArrayList<String[]>();
@@ -267,6 +354,11 @@ public class PdfPrinter implements ActionListener{
 		}
 	}
 
+	/**
+	 * Adds the first row.
+	 *
+	 * @param tabella the tabella
+	 */
 	private static void addFirstRow(PdfPTable tabella) {
 		
 		// inserimento celle
@@ -278,6 +370,9 @@ public class PdfPrinter implements ActionListener{
 	}
 
 
+	/* (non-Javadoc)
+	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String title = "Orario Ingegneria";
@@ -325,11 +420,21 @@ public class PdfPrinter implements ActionListener{
 	}
 
 
+	/**
+	 * Gets the model.
+	 *
+	 * @return the model
+	 */
 	public Model getModel() {
 		return model;
 	}
 
 
+	/**
+	 * Sets the model.
+	 *
+	 * @param model the new model
+	 */
 	public void setModel(Model model) {
 		this.model = model;
 	}

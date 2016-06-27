@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package mvc;
 
 import java.text.Format;
@@ -9,25 +12,63 @@ import java.util.Vector;
 
 import myComponents.*;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Model.
+ */
 public class Model extends Observable{
 
+	/** The list assegnamento. */
 	private ArrayList<Assegnamento> listAssegnamento;
+	
+	/** The list aula. */
 	private ArrayList<Aula> listAula;					//Fatto
+	
+	/** The list convegno. */
 	private ArrayList<Convegno> listConvegno;			//Fatto
+	
+	/** The list corso di studi. */
 	private ArrayList<CorsoDiStudi> listCorsoDiStudi;	//Fatto
+	
+	/** The list disciplina. */
 	private ArrayList<Disciplina> listDisciplina;		//Fatto
+	
+	/** The list docente. */
 	private ArrayList<Docente> listDocente;				//Fatto
+	
+	/** The list esame. */
 	private ArrayList<Esame> listEsame;					//Da controllare un campo che ho tolto
+	
+	/** The list fascia oraria. */
 	private ArrayList<FasciaOraria> listFasciaOraria;	//Fatto
+	
+	/** The list gita. */
 	private ArrayList<Gita> listGita;					//Fatto
+	
+	/** The list piano di studi. */
 	private ArrayList<PianoDiStudi> listPianoDiStudi;	//Fatto
+	
+	/** The list studente. */
 	private ArrayList<Studente> listStudente;			//Fatto
+	
+	/** The list tirocinio. */
 	private ArrayList<Tirocinio> listTirocinio;			//Fatto
+	
+	/** The tabella. */
 	private Vector<Vector<String>> tabella;
+	
+	/** The orario ufficiale. */
 	private Orario orarioUfficiale;
+	
+	/** The matrix. */
 	private int[][] matrix;
 
 
+	/**
+	 * Gets the tabella.
+	 *
+	 * @return the tabella
+	 */
 	public Vector<Vector<String>> getTabella() {
 		return tabella;
 	}
@@ -35,28 +76,55 @@ public class Model extends Observable{
 
 
 
+	/**
+	 * Sets the tabella.
+	 *
+	 * @param tabella the new tabella
+	 */
 	public void setTabella(Vector<Vector<String>> tabella) {
 		this.tabella = tabella;
 	}
 
 
+	/** The list attività inserite. */
 	private ArrayList<Attività> listAttivitàInserite;
+	
+	/** The list docenti inseriti. */
 	private ArrayList<Docente> listDocentiInseriti;
+	
+	/** The list attività dei docenti. */
 	private ArrayList<Attività> listAttivitàDeiDocenti;
+	
+	/** The list all attività inserite. */
 	private ArrayList<Disciplina> listAllAttivitàInserite;
+	
+	/** The list corso di studio inseriti. */
 	private ArrayList<CorsoDiStudi> listCorsoDiStudioInseriti;
 
 
+	/** The enable modifica table. */
 	private boolean enableModificaTable;
+	
+	/** The enable elimina table. */
 	private boolean enableEliminaTable;
+	
+	/** The enable button acquisisci. */
 	private boolean enableButtonAcquisisci;
+	
+	/** The enable button aggiorna. */
 	private boolean enableButtonAggiorna;
+	
+	/** The enable button inserisci gita. */
 	private boolean enableButtonInserisciGita;
 
+	/** The num sovrapposizioni. */
 	private int numSovrapposizioni;
 
 
 
+	/**
+	 * Instantiates a new model.
+	 */
 	public Model() {
 
 		listAssegnamento = new ArrayList<Assegnamento>();
@@ -90,74 +158,209 @@ public class Model extends Observable{
 
 
 
+	/**
+	 * Gets the list aula.
+	 *
+	 * @return the list aula
+	 */
 	public ArrayList<Aula> getListAula() {
 		return listAula;
 	}
+	
+	/**
+	 * Sets the list aula.
+	 *
+	 * @param listAula the new list aula
+	 */
 	public void setListAula(ArrayList<Aula> listAula) {
 		this.listAula = listAula;
 	}
+	
+	/**
+	 * Gets the list convegno.
+	 *
+	 * @return the list convegno
+	 */
 	public ArrayList<Convegno> getListConvegno() {
 		return listConvegno;
 	}
+	
+	/**
+	 * Sets the list convegno.
+	 *
+	 * @param listConvegno the new list convegno
+	 */
 	public void setListConvegno(ArrayList<Convegno> listConvegno) {
 		this.listConvegno = listConvegno;
 	}
+	
+	/**
+	 * Gets the list corso di studi.
+	 *
+	 * @return the list corso di studi
+	 */
 	public ArrayList<CorsoDiStudi> getListCorsoDiStudi() {
 		return listCorsoDiStudi;
 	}
+	
+	/**
+	 * Sets the list corso di studi.
+	 *
+	 * @param listCorsoDiStudi the new list corso di studi
+	 */
 	public void setListCorsoDiStudi(ArrayList<CorsoDiStudi> listCorsoDiStudi) {
 		this.listCorsoDiStudi = listCorsoDiStudi;
 	}
+	
+	/**
+	 * Gets the list disciplina.
+	 *
+	 * @return the list disciplina
+	 */
 	public ArrayList<Disciplina> getListDisciplina() {
 		return listDisciplina;
 	}
+	
+	/**
+	 * Sets the list disciplina.
+	 *
+	 * @param listDisciplina the new list disciplina
+	 */
 	public void setListDisciplina(ArrayList<Disciplina> listDisciplina) {
 		this.listDisciplina = listDisciplina;
 	}
+	
+	/**
+	 * Gets the list docente.
+	 *
+	 * @return the list docente
+	 */
 	public ArrayList<Docente> getListDocente() {
 		return listDocente;
 	}
+	
+	/**
+	 * Sets the list docente.
+	 *
+	 * @param listDocente the new list docente
+	 */
 	public void setListDocente(ArrayList<Docente> listDocente) {
 		this.listDocente = listDocente;
 	}
+	
+	/**
+	 * Gets the list esame.
+	 *
+	 * @return the list esame
+	 */
 	public ArrayList<Esame> getListEsame() {
 		return listEsame;
 	}
+	
+	/**
+	 * Sets the list esame.
+	 *
+	 * @param listEsame the new list esame
+	 */
 	public void setListEsame(ArrayList<Esame> listEsame) {
 		this.listEsame = listEsame;
 	}
+	
+	/**
+	 * Gets the list fascia oraria.
+	 *
+	 * @return the list fascia oraria
+	 */
 	public ArrayList<FasciaOraria> getListFasciaOraria() {
 		return listFasciaOraria;
 	}
+	
+	/**
+	 * Sets the list fascia oraria.
+	 *
+	 * @param listFasciaOraria the new list fascia oraria
+	 */
 	public void setListFasciaOraria(ArrayList<FasciaOraria> listFasciaOraria) {
 		this.listFasciaOraria = listFasciaOraria;
 	}
+	
+	/**
+	 * Gets the list gita.
+	 *
+	 * @return the list gita
+	 */
 	public ArrayList<Gita> getListGita() {
 		return listGita;
 	}
+	
+	/**
+	 * Sets the list gita.
+	 *
+	 * @param listGita the new list gita
+	 */
 	public void setListGita(ArrayList<Gita> listGita) {
 		this.listGita = listGita;
 	}
 
+	/**
+	 * Gets the list piano di studi.
+	 *
+	 * @return the list piano di studi
+	 */
 	public ArrayList<PianoDiStudi> getListPianoDiStudi() {
 		return listPianoDiStudi;
 	}
+	
+	/**
+	 * Sets the list piano di studi.
+	 *
+	 * @param listPianoDiStudi the new list piano di studi
+	 */
 	public void setListPianoDiStudi(ArrayList<PianoDiStudi> listPianoDiStudi) {
 		this.listPianoDiStudi = listPianoDiStudi;
 	}
+	
+	/**
+	 * Gets the list studente.
+	 *
+	 * @return the list studente
+	 */
 	public ArrayList<Studente> getListStudente() {
 		return listStudente;
 	}
+	
+	/**
+	 * Sets the list studente.
+	 *
+	 * @param listStudente the new list studente
+	 */
 	public void setListStudente(ArrayList<Studente> listStudente) {
 		this.listStudente = listStudente;
 	}
+	
+	/**
+	 * Gets the list tirocinio.
+	 *
+	 * @return the list tirocinio
+	 */
 	public ArrayList<Tirocinio> getListTirocinio() {
 		return listTirocinio;
 	}
+	
+	/**
+	 * Sets the list tirocinio.
+	 *
+	 * @param listTirocinio the new list tirocinio
+	 */
 	public void setListTirocinio(ArrayList<Tirocinio> listTirocinio) {
 		this.listTirocinio = listTirocinio;
 	}
 
+	/**
+	 * Send notify.
+	 *
+	 * @param notifyID the notify id
+	 */
 	private void sendNotify(int notifyID)
 	{
 		MyNotify notify = new MyNotify(notifyID); 
@@ -170,50 +373,100 @@ public class Model extends Observable{
 
 
 
+	/**
+	 * Checks if is enable modifica table.
+	 *
+	 * @return true, if is enable modifica table
+	 */
 	public boolean isEnableModificaTable() {
 		return enableModificaTable;
 	}
 
+	/**
+	 * Checks if is enable elimina table.
+	 *
+	 * @return true, if is enable elimina table
+	 */
 	public boolean isEnableEliminaTable() {
 		return enableEliminaTable;
 	}
 
+	/**
+	 * Checks if is enable button acquisisci.
+	 *
+	 * @return true, if is enable button acquisisci
+	 */
 	public boolean isEnableButtonAcquisisci() {
 		return enableButtonAcquisisci;
 	}
 
+	/**
+	 * Checks if is enable button aggiorna.
+	 *
+	 * @return true, if is enable button aggiorna
+	 */
 	public boolean isEnableButtonAggiorna() {
 		return enableButtonAggiorna;
 	}
 
+	/**
+	 * Checks if is enabled inserisci gita.
+	 *
+	 * @return true, if is enabled inserisci gita
+	 */
 	public boolean isEnabledInserisciGita() {
 		return enableButtonInserisciGita;
 	}
 
+	/**
+	 * Enable modifica table.
+	 *
+	 * @param enableModificaTable the enable modifica table
+	 */
 	public void enableModificaTable(boolean enableModificaTable) {
 		this.enableModificaTable = enableModificaTable;
 		sendNotify(MyNotify.ENABLE_BUTTON_MODIFICA);
 
 	}
 
+	/**
+	 * Enable elimina table.
+	 *
+	 * @param enableEliminaTable the enable elimina table
+	 */
 	public void enableEliminaTable(boolean enableEliminaTable) {
 		this.enableEliminaTable = enableEliminaTable;
 		sendNotify(MyNotify.ENABLE_BUTTON_ELIMINA);
 
 	}
 
+	/**
+	 * Enable button acquisisci.
+	 *
+	 * @param enableButtonAcquisisci the enable button acquisisci
+	 */
 	public void enableButtonAcquisisci(boolean enableButtonAcquisisci) {
 		this.enableButtonAcquisisci = enableButtonAcquisisci;
 		sendNotify(MyNotify.ENABLE_BUTTON_ACQUISISCI);
 
 	}
 
+	/**
+	 * Enable button aggiorna.
+	 *
+	 * @param enableButtonAggiorna the enable button aggiorna
+	 */
 	public void enableButtonAggiorna(boolean enableButtonAggiorna) {
 		this.enableButtonAggiorna = enableButtonAggiorna;
 		sendNotify(MyNotify.ENABLE_BUTTON_AGGIORNA);
 
 	}
 
+	/**
+	 * Enable button inserisci gita.
+	 *
+	 * @param enableButtonInserisciGita the enable button inserisci gita
+	 */
 	public void enableButtonInserisciGita(boolean enableButtonInserisciGita) {
 		this.enableButtonInserisciGita = enableButtonInserisciGita;
 		sendNotify(MyNotify.ENABLE_BUTTON_GITA);
@@ -223,6 +476,11 @@ public class Model extends Observable{
 
 
 
+	/**
+	 * Gets the list assegnamento.
+	 *
+	 * @return the list assegnamento
+	 */
 	public ArrayList<Assegnamento> getListAssegnamento() {
 		return listAssegnamento;
 	}
@@ -230,6 +488,11 @@ public class Model extends Observable{
 
 
 
+	/**
+	 * Sets the list assegnamento.
+	 *
+	 * @param listAssegnamento the new list assegnamento
+	 */
 	public void setListAssegnamento(ArrayList<Assegnamento> listAssegnamento) {
 		this.listAssegnamento = listAssegnamento;
 	}
@@ -237,6 +500,11 @@ public class Model extends Observable{
 
 
 
+	/**
+	 * Gets the num sovrapposizioni.
+	 *
+	 * @return the num sovrapposizioni
+	 */
 	public int getNumSovrapposizioni() {
 		return numSovrapposizioni;
 	}
@@ -244,6 +512,11 @@ public class Model extends Observable{
 
 
 
+	/**
+	 * Sets the num sovrapposizioni.
+	 *
+	 * @param numSovrapposizioni the new num sovrapposizioni
+	 */
 	public void setNumSovrapposizioni(int numSovrapposizioni) {
 		this.numSovrapposizioni = numSovrapposizioni;
 	}
@@ -251,6 +524,11 @@ public class Model extends Observable{
 
 
 
+	/**
+	 * Gets the list attività inserite.
+	 *
+	 * @return the list attività inserite
+	 */
 	public ArrayList<Attività> getListAttivitàInserite() {
 		return listAttivitàInserite;
 	}
@@ -258,11 +536,23 @@ public class Model extends Observable{
 
 
 
+	/**
+	 * Sets the list attività inserite.
+	 *
+	 * @param listAttivitàInserite the new list attività inserite
+	 */
 	public void setListAttivitàInserite(ArrayList<Attività> listAttivitàInserite) {
 		this.listAttivitàInserite = listAttivitàInserite;
 	}
 
 
+	/**
+	 * Attività in corso.
+	 *
+	 * @param idAtt the id att
+	 * @param codice the codice
+	 * @return true, if successful
+	 */
 	public boolean AttivitàInCorso(String idAtt, String codice){
 
 		for (int i=0; i<this.getListPianoDiStudi().size(); i++){
@@ -283,6 +573,12 @@ public class Model extends Observable{
 	}
 
 
+	/**
+	 * Cerca piano dato corso.
+	 *
+	 * @param id the id
+	 * @return the piano di studi
+	 */
 	public PianoDiStudi cercaPianoDatoCorso (String id){
 
 		for (int i=0; i<getListPianoDiStudi().size(); i++){
@@ -297,6 +593,9 @@ public class Model extends Observable{
 
 	
 
+	/**
+	 * From orario to table.
+	 */
 	@SuppressWarnings("deprecation")
 	public void fromOrarioToTable(){
 		int countDay=0;
@@ -351,6 +650,12 @@ public class Model extends Observable{
 
 	
 	
+	/**
+	 * Gets the attività from id.
+	 *
+	 * @param id the id
+	 * @return the attività from id
+	 */
 	public Attività getAttivitàFromId (String id){
 
 		int i;
@@ -381,6 +686,11 @@ public class Model extends Observable{
 	}
 
 
+	/**
+	 * Gets the list docenti inseriti.
+	 *
+	 * @return the list docenti inseriti
+	 */
 	public ArrayList<Docente> getListDocentiInseriti() {
 		return listDocentiInseriti;
 	}
@@ -388,6 +698,11 @@ public class Model extends Observable{
 
 
 
+	/**
+	 * Sets the list docenti inseriti.
+	 *
+	 * @param listDocentiInseriti the new list docenti inseriti
+	 */
 	public void setListDocentiInseriti(ArrayList<Docente> listDocentiInseriti) {
 		this.listDocentiInseriti = listDocentiInseriti;
 	}
@@ -395,6 +710,11 @@ public class Model extends Observable{
 
 
 
+	/**
+	 * Gets the list attività dei docenti.
+	 *
+	 * @return the list attività dei docenti
+	 */
 	public ArrayList<Attività> getListAttivitàDeiDocenti() {
 		return listAttivitàDeiDocenti;
 	}
@@ -402,6 +722,11 @@ public class Model extends Observable{
 
 
 
+	/**
+	 * Sets the list attività dei docenti.
+	 *
+	 * @param listAttivitàDeiDocenti the new list attività dei docenti
+	 */
 	public void setListAttivitàDeiDocenti(ArrayList<Attività> listAttivitàDeiDocenti) {
 		this.listAttivitàDeiDocenti = listAttivitàDeiDocenti;
 	}
@@ -409,6 +734,11 @@ public class Model extends Observable{
 
 
 
+	/**
+	 * Gets the list all attività inserite.
+	 *
+	 * @return the list all attività inserite
+	 */
 	public ArrayList<Disciplina> getListAllAttivitàInserite() {
 		return listAllAttivitàInserite;
 	}
@@ -416,6 +746,11 @@ public class Model extends Observable{
 
 
 
+	/**
+	 * Sets the list all attività inserite.
+	 *
+	 * @param listAllAttivitàInserite the new list all attività inserite
+	 */
 	public void setListAllAttivitàInserite(ArrayList<Disciplina> listAllAttivitàInserite) {
 		this.listAllAttivitàInserite = listAllAttivitàInserite;
 	}
@@ -423,6 +758,11 @@ public class Model extends Observable{
 
 
 
+	/**
+	 * Gets the orario ufficiale.
+	 *
+	 * @return the orario ufficiale
+	 */
 	public Orario getOrarioUfficiale() {
 		return orarioUfficiale;
 	}
@@ -430,6 +770,11 @@ public class Model extends Observable{
 
 
 
+	/**
+	 * Sets the orario ufficiale.
+	 *
+	 * @param orarioUfficiale the new orario ufficiale
+	 */
 	public void setOrarioUfficiale(Orario orarioUfficiale) {
 		this.orarioUfficiale = orarioUfficiale;
 	}
@@ -437,6 +782,11 @@ public class Model extends Observable{
 
 
 
+	/**
+	 * Gets the matrix.
+	 *
+	 * @return the matrix
+	 */
 	public int[][] getMatrix() {
 		return matrix;
 	}
@@ -444,6 +794,11 @@ public class Model extends Observable{
 
 
 
+	/**
+	 * Sets the matrix.
+	 *
+	 * @param matrix the new matrix
+	 */
 	public void setMatrix(int[][] matrix) {
 		this.matrix = matrix;
 	}
@@ -451,6 +806,11 @@ public class Model extends Observable{
 
 
 
+	/**
+	 * Gets the list corso di studio inseriti.
+	 *
+	 * @return the list corso di studio inseriti
+	 */
 	public ArrayList<CorsoDiStudi> getListCorsoDiStudioInseriti() {
 		return listCorsoDiStudioInseriti;
 	}
@@ -458,11 +818,22 @@ public class Model extends Observable{
 
 
 
+	/**
+	 * Sets the list corso di studio inseriti.
+	 *
+	 * @param listCorsoDiStudioInseriti the new list corso di studio inseriti
+	 */
 	public void setListCorsoDiStudioInseriti(ArrayList<CorsoDiStudi> listCorsoDiStudioInseriti) {
 		this.listCorsoDiStudioInseriti = listCorsoDiStudioInseriti;
 	}
 
 
+	/**
+	 * Find attività.
+	 *
+	 * @param id the id
+	 * @return the attività
+	 */
 	public Attività findAttività(String id) {
 
 		int i;
@@ -499,6 +870,12 @@ public class Model extends Observable{
 		
 	}
 	
+	/**
+	 * Find fascia oraria.
+	 *
+	 * @param id the id
+	 * @return the fascia oraria
+	 */
 	public FasciaOraria findFasciaOraria(int id) {
 
 		int i;
@@ -515,6 +892,12 @@ public class Model extends Observable{
 		
 	}
 	
+	/**
+	 * From id to disciplina.
+	 *
+	 * @param id the id
+	 * @return the disciplina
+	 */
 	public Disciplina fromIdToDisciplina(String id){
 
 		for (int i=0;i<getListDisciplina().size() ;i++){

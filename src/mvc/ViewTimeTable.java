@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package mvc;
 
 import java.awt.Color;
@@ -25,64 +28,125 @@ import javax.swing.table.DefaultTableModel;
 import controllerListener.DoubleClickListener;
 
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ViewTimeTable.
+ */
 public class ViewTimeTable extends JFrame implements Observer {
 
 
-	/**
-	 * 
-	 */
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
 
 
+	/** The frame. */
 	private JFrame frame;
+	
+	/** The label table in table. */
 	private JLabel labelTableInTable;
+	
+	/** The label num sovr. */
 	private JLabel labelNumSovr;
 
 
+	/** The menu bar. */
 	private JMenuBar menuBar;
 
+	/** The menu file. */
 	private JMenu menuFile;
+	
+	/** The salva. */
 	private JMenuItem salva;
+	
+	/** The carica. */
 	private JMenuItem carica;
+	
+	/** The esporta pdf. */
 	private JMenuItem esportaPdf;
+	
+	/** The esci. */
 	private JMenuItem esci;
 
 
+	/** The menu nuovo orario. */
 	private JMenu menuNuovoOrario;
+	
+	/** The nuovo orario. */
 	private JMenuItem nuovoOrario;
+	
+	/** The radio button menu. */
 	private JMenu radioButtonMenu;
+	
+	/** The button sem1. */
 	private JRadioButtonMenuItem buttonSem1;
+	
+	/** The button sem2. */
 	private JRadioButtonMenuItem buttonSem2;
+	
+	/** The group. */
 	private ButtonGroup group;
 
 	
+	/** The menu visualizza per. */
 	private JMenu menuVisualizzaPer;
+	
+	/** The visualizza attività. */
 	private JMenu visualizzaAttività;
+	
+	/** The visualizza docente. */
 	private JMenu visualizzaDocente;
+	
+	/** The visualizza corso. */
 	private JMenu visualizzaCorso;
+	
+	/** The visualizza tutto. */
 	private JMenu visualizzaTutto;
+	
+	/** The button check box. */
 	private JCheckBoxMenuItem buttonCheckBox;
 	
+	/** The parametri. */
 	private JMenu parametri;
+	
+	/** The numero iterazioni. */
 	private JMenu numeroIterazioni;
+	
+	/** The poche iterazioni. */
 	private JRadioButtonMenuItem pocheIterazioni;
+	
+	/** The medie iterazioni. */
 	private JRadioButtonMenuItem medieIterazioni;
+	
+	/** The tante iterazioni. */
 	private JRadioButtonMenuItem tanteIterazioni;
 
 
 
 
+	/** The scroll pane. */
 	private JScrollPane scrollPane;
+	
+	/** The table records. */
 	private DefaultTableModel tableRecords;
+	
+	/** The table. */
 	private JTable table;
 
 
+	/** The model. */
 	private Model model;
+	
+	/** The label num iterazioni. */
 	private JLabel labelNumIterazioni;
 
 
 
+	/**
+	 * Instantiates a new view time table.
+	 *
+	 * @param model the model
+	 */
 	public ViewTimeTable(Model model) {
 
 		this.model = model;
@@ -167,6 +231,9 @@ public class ViewTimeTable extends JFrame implements Observer {
 
 
 
+	/**
+	 * Inits the ui.
+	 */
 	private void initUI(){
 
 
@@ -230,6 +297,9 @@ public class ViewTimeTable extends JFrame implements Observer {
 
 
 
+	/**
+	 * Visualizza orario.
+	 */
 	public void visualizzaOrario(){
 		if (this.getTableRecords().getRowCount()!=0){
 			for (int i = 0; i<21; i++){
@@ -298,6 +368,9 @@ public class ViewTimeTable extends JFrame implements Observer {
 	//listener methods
 
 
+	/* (non-Javadoc)
+	 * @see java.util.Observer#update(java.util.Observable, java.lang.Object)
+	 */
 	// Update the view with the notify send by model
 	@Override
 	public void update(Observable o, Object arg)
@@ -305,23 +378,48 @@ public class ViewTimeTable extends JFrame implements Observer {
 
 	}
 
+	/**
+	 * Press button new orario2.
+	 *
+	 * @param listener the listener
+	 */
 	public void pressButtonNewOrario2(ActionListener listener) {
 		nuovoOrario.addActionListener(listener);
 	}
 
 
+	/**
+	 * Press button carica.
+	 *
+	 * @param listener the listener
+	 */
 	public void pressButtonCarica(ActionListener listener) {
 		carica.addActionListener(listener);
 	}
 
+	/**
+	 * Press button salva.
+	 *
+	 * @param listener the listener
+	 */
 	public void pressButtonSalva(ActionListener listener) {
 		salva.addActionListener(listener);
 	}
 	
+	/**
+	 * Press esporta pdf.
+	 *
+	 * @param listener the listener
+	 */
 	public void pressEsportaPdf(ActionListener listener) {
 		esportaPdf.addActionListener(listener);
 	}
 
+	/**
+	 * Press button esci.
+	 *
+	 * @param listener the listener
+	 */
 	public void pressButtonEsci(ActionListener listener) {
 		esci.addActionListener(listener);
 	}
@@ -340,177 +438,372 @@ public class ViewTimeTable extends JFrame implements Observer {
 
 
 
+	/**
+	 * Gets the label table in table.
+	 *
+	 * @return the label table in table
+	 */
 	public JLabel getLabelTableInTable() {
 		return labelTableInTable;
 	}
 
+	/**
+	 * Sets the label table in table.
+	 *
+	 * @param labelTableInTable the new label table in table
+	 */
 	public void setLabelTableInTable(JLabel labelTableInTable) {
 		this.labelTableInTable = labelTableInTable;
 	}
 
 
+	/**
+	 * Gets the table records.
+	 *
+	 * @return the table records
+	 */
 	public DefaultTableModel getTableRecords() {
 		return tableRecords;
 	}
 
+	/**
+	 * Sets the table records.
+	 *
+	 * @param tableRecords the new table records
+	 */
 	public void setTableRecords(DefaultTableModel tableRecords) {
 		this.tableRecords = tableRecords;
 	}
 
 
+	/**
+	 * Gets the table.
+	 *
+	 * @return the table
+	 */
 	public JTable getTable() {
 		return table;
 	}
 
+	/**
+	 * Sets the table.
+	 *
+	 * @param table the new table
+	 */
 	public void setTable(JTable table) {
 		this.table = table;
 	}
 
 
+	/**
+	 * Gets the button sem1.
+	 *
+	 * @return the button sem1
+	 */
 	public JRadioButtonMenuItem getButtonSem1() {
 		return buttonSem1;
 	}
 
+	/**
+	 * Sets the button sem1.
+	 *
+	 * @param buttonSem1 the new button sem1
+	 */
 	public void setButtonSem1(JRadioButtonMenuItem buttonSem1) {
 		this.buttonSem1 = buttonSem1;
 	}
 
 
+	/**
+	 * Gets the radio button menu.
+	 *
+	 * @return the radio button menu
+	 */
 	public JMenu getRadioButtonMenu() {
 		return radioButtonMenu;
 	}
 
+	/**
+	 * Sets the radio button menu.
+	 *
+	 * @param radioButtonMenu the new radio button menu
+	 */
 	public void setRadioButtonMenu(JMenu radioButtonMenu) {
 		this.radioButtonMenu = radioButtonMenu;
 	}
 
 	
+	/**
+	 * Gets the frame.
+	 *
+	 * @return the frame
+	 */
 	public JFrame getFrame(){
 		return frame;
 	}
 
 
+	/**
+	 * Gets the visualizza attività.
+	 *
+	 * @return the visualizza attività
+	 */
 	public JMenu getVisualizzaAttività() {
 		return visualizzaAttività;
 	}
 
+	/**
+	 * Sets the visualizza attività.
+	 *
+	 * @param visualizzaAttività the new visualizza attività
+	 */
 	public void setVisualizzaAttività(JMenu visualizzaAttività) {
 		this.visualizzaAttività = visualizzaAttività;
 	}
 
 
+	/**
+	 * Gets the visualizza docente.
+	 *
+	 * @return the visualizza docente
+	 */
 	public JMenu getVisualizzaDocente() {
 		return visualizzaDocente;
 	}
 
+	/**
+	 * Sets the visualizza docente.
+	 *
+	 * @param visualizzaDocente the new visualizza docente
+	 */
 	public void setVisualizzaDocente(JMenu visualizzaDocente) {
 		this.visualizzaDocente = visualizzaDocente;
 	}
 
 
+	/**
+	 * Gets the visualizza corso.
+	 *
+	 * @return the visualizza corso
+	 */
 	public JMenu getVisualizzaCorso() {
 		return visualizzaCorso;
 	}
 
+	/**
+	 * Sets the visualizza corso.
+	 *
+	 * @param visualizzaCorso the new visualizza corso
+	 */
 	public void setVisualizzaCorso(JMenu visualizzaCorso) {
 		this.visualizzaCorso = visualizzaCorso;
 	}
 
 
+	/**
+	 * Gets the visualizza tutto.
+	 *
+	 * @return the visualizza tutto
+	 */
 	public JMenu getVisualizzaTutto() {
 		return visualizzaTutto;
 	}
 	
+	/**
+	 * Sets the visualizza tutto.
+	 *
+	 * @param visualizzaTutto the new visualizza tutto
+	 */
 	public void setVisualizzaTutto(JMenu visualizzaTutto) {
 		this.visualizzaTutto = visualizzaTutto;
 	}
 	
 
+	/**
+	 * Gets the button check box.
+	 *
+	 * @return the button check box
+	 */
 	public JCheckBoxMenuItem getButtonCheckBox() {
 		return buttonCheckBox;
 	}
 
+	/**
+	 * Sets the button check box.
+	 *
+	 * @param buttonCheckBox the new button check box
+	 */
 	public void setButtonCheckBox(JCheckBoxMenuItem buttonCheckBox) {
 		this.buttonCheckBox = buttonCheckBox;
 	}
 
 
+	/**
+	 * Gets the parametri.
+	 *
+	 * @return the parametri
+	 */
 	public JMenu getParametri() {
 		return parametri;
 	}
 
+	/**
+	 * Sets the parametri.
+	 *
+	 * @param parametri the new parametri
+	 */
 	public void setParametri(JMenu parametri) {
 		this.parametri = parametri;
 	}
 
 	
+	/**
+	 * Gets the numero iterazioni.
+	 *
+	 * @return the numero iterazioni
+	 */
 	public JMenu getNumeroIterazioni() {
 		return numeroIterazioni;
 	}
 
+	/**
+	 * Sets the numero iterazioni.
+	 *
+	 * @param numeroIterazioni the new numero iterazioni
+	 */
 	public void setNumeroIterazioni(JMenu numeroIterazioni) {
 		this.numeroIterazioni = numeroIterazioni;
 	}
 	
 	
+	/**
+	 * Gets the poche iterazioni.
+	 *
+	 * @return the poche iterazioni
+	 */
 	public JRadioButtonMenuItem getPocheIterazioni() {
 		return pocheIterazioni;
 	}
 
+	/**
+	 * Sets the poche iterazioni.
+	 *
+	 * @param pocheIterazioni the new poche iterazioni
+	 */
 	public void setPocheIterazioni(JRadioButtonMenuItem pocheIterazioni) {
 		this.pocheIterazioni = pocheIterazioni;
 	}
 	
 
+	/**
+	 * Gets the label num iterazioni.
+	 *
+	 * @return the label num iterazioni
+	 */
 	public JLabel getLabelNumIterazioni() {
 		return labelNumIterazioni;
 	}
 
+	/**
+	 * Sets the label num iterazioni.
+	 *
+	 * @param labelNumIterazioni the new label num iterazioni
+	 */
 	public void setLabelNumIterazioni(JLabel labelNumIterazioni) {
 		this.labelNumIterazioni = labelNumIterazioni;
 	}
 	
 	
+	/**
+	 * Gets the label num sovr.
+	 *
+	 * @return the label num sovr
+	 */
 	public JLabel getLabelNumSovr() {
 		return labelNumSovr;
 	}
 
+	/**
+	 * Sets the label num sovr.
+	 *
+	 * @param labelNumSovr the new label num sovr
+	 */
 	public void setLabelNumSovr(JLabel labelNumSovr) {
 		this.labelNumSovr = labelNumSovr;
 	}
 	
 	
+	/**
+	 * Gets the salva.
+	 *
+	 * @return the salva
+	 */
 	public JMenuItem getSalva() {
 		return salva;
 	}
 
+	/**
+	 * Sets the salva.
+	 *
+	 * @param salva the new salva
+	 */
 	public void setSalva(JMenuItem salva) {
 		this.salva = salva;
 	}
 	
 	
+	/**
+	 * Gets the medie iterazioni.
+	 *
+	 * @return the medie iterazioni
+	 */
 	public JRadioButtonMenuItem getMedieIterazioni() {
 		return medieIterazioni;
 	}
 
+	/**
+	 * Sets the medie iterazioni.
+	 *
+	 * @param medieIterazioni the new medie iterazioni
+	 */
 	public void setMedieIterazioni(JRadioButtonMenuItem medieIterazioni) {
 		this.medieIterazioni = medieIterazioni;
 	}
 	
 	
+	/**
+	 * Gets the tante iterazioni.
+	 *
+	 * @return the tante iterazioni
+	 */
 	public JRadioButtonMenuItem getTanteIterazioni() {
 		return tanteIterazioni;
 	}
 
+	/**
+	 * Sets the tante iterazioni.
+	 *
+	 * @param tanteIterazioni the new tante iterazioni
+	 */
 	public void setTanteIterazioni(JRadioButtonMenuItem tanteIterazioni) {
 		this.tanteIterazioni = tanteIterazioni;
 	}
 
 
+	/**
+	 * Gets the esporta pdf.
+	 *
+	 * @return the esporta pdf
+	 */
 	public JMenuItem getEsportaPdf() {
 		return esportaPdf;
 	}
 
+	/**
+	 * Sets the esporta pdf.
+	 *
+	 * @param esportaPdf the new esporta pdf
+	 */
 	public void setEsportaPdf(JMenuItem esportaPdf) {
 		this.esportaPdf = esportaPdf;
 	}

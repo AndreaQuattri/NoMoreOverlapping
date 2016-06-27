@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package controllerListener;
 
 import java.awt.event.ActionEvent;
@@ -15,19 +18,38 @@ import myComponents.Assegnamento;
 import myComponents.Attività;
 import myComponents.Orario;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class InsertInTimeTable.
+ */
 public class InsertInTimeTable implements ActionListener{
 
+	/** The model. */
 	private Model model;
+	
+	/** The update time table. */
 	private UpdateTimeTable updateTimeTable;
+	
+	/** The view orario. */
 	private ViewTimeTable viewOrario;
 
 
+	/**
+	 * Instantiates a new insert in time table.
+	 *
+	 * @param model the model
+	 * @param viewOrario the view orario
+	 * @param updateTimeTable the update time table
+	 */
 	public InsertInTimeTable(Model model, ViewTimeTable viewOrario, UpdateTimeTable updateTimeTable) {
 		this.setModel(model);
 		this.setUpdateTimeTable(updateTimeTable);
 		this.viewOrario = viewOrario;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
@@ -98,18 +120,38 @@ public class InsertInTimeTable implements ActionListener{
 
 	}
 
+	/**
+	 * Gets the model.
+	 *
+	 * @return the model
+	 */
 	public Model getModel() {
 		return model;
 	}
 
+	/**
+	 * Sets the model.
+	 *
+	 * @param model the new model
+	 */
 	public void setModel(Model model) {
 		this.model = model;
 	}
 
+	/**
+	 * Gets the update time table.
+	 *
+	 * @return the update time table
+	 */
 	public UpdateTimeTable getUpdateTimeTable() {
 		return updateTimeTable;
 	}
 
+	/**
+	 * Sets the update time table.
+	 *
+	 * @param updateTimeTable the new update time table
+	 */
 	public void setUpdateTimeTable(UpdateTimeTable updateTimeTable) {
 		this.updateTimeTable = updateTimeTable;
 	}

@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package mvc;
 
 import java.awt.event.ActionListener;
@@ -14,46 +17,87 @@ import javax.swing.JTable;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.table.DefaultTableModel;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class MainView.
+ */
 public class MainView extends JFrame implements Observer {
 
 	
-	/**
-	 * 
-	 */
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 	
 	
 	
+	/** The frame. */
 	private JFrame frame;
+	
+	/** The button aggiorna. */
 	private JButton buttonAggiorna;
+	
+	/** The button info. */
 	private JButton buttonInfo;
+	
+	/** The label table selection. */
 	private JLabel labelTableSelection;
+	
+	/** The button acquisisci. */
 	private JButton buttonAcquisisci;
+	
+	/** The combo box table. */
 	private JComboBox comboBoxTable;
+	
+	/** The button insert new table. */
 	private JButton buttonInsertNewTable;
+	
+	/** The label delete table. */
 	private JLabel labelDeleteTable;
+	
+	/** The label update table. */
 	private JLabel labelUpdateTable;
+	
+	/** The button delete table. */
 	private JButton buttonDeleteTable;
+	
+	/** The button update table. */
 	private JButton buttonUpdateTable;
+	
+	/** The combo box record. */
 	private JComboBox comboBoxRecord;
+	
+	/** The button gestione orario. */
 	private JButton buttonGestioneOrario;
+	
+	/** The label table. */
 	private JLabel labelTable;
 
 
 
 
 
+	/** The label table shown. */
 	private JLabel labelTableShown;
 
 
+	/** The scroll pane. */
 	private JScrollPane scrollPane;
+	
+	/** The table records. */
 	private DefaultTableModel tableRecords;
+	
+	/** The table. */
 	private JTable table;
 	
 	
+	/** The model. */
 	private Model model;
 	
 	
+	/**
+	 * Instantiates a new main view.
+	 *
+	 * @param model the model
+	 */
 	public MainView(Model model) {
 
 		this.model = model;
@@ -70,23 +114,43 @@ public class MainView extends JFrame implements Observer {
 	
 	}
 
+	/**
+	 * Selected table to view.
+	 *
+	 * @param listener the listener
+	 */
 	public void selectedTableToView(ActionListener listener)
 	{
 		getComboBoxTable().addActionListener(listener);
 	}
 	
+	/**
+	 * Press button acquisisci.
+	 *
+	 * @param listener the listener
+	 */
 	public void pressButtonAcquisisci(ActionListener listener) {
 		// TODO Auto-generated method stub
 		buttonAcquisisci.addActionListener(listener);
 		
 	}
 	
+	/**
+	 * Press button gestisci orario.
+	 *
+	 * @param listener the listener
+	 */
 	public void pressButtonGestisciOrario(ActionListener listener) {
 		// TODO Auto-generated method stub
 		buttonGestioneOrario.addActionListener(listener);
 		
 	}
 
+	/**
+	 * Press button modifica.
+	 *
+	 * @param listener the listener
+	 */
 	public void pressButtonModifica(ActionListener listener) {
 		// TODO Auto-generated method stub
 		buttonUpdateTable.addActionListener(listener);
@@ -94,6 +158,9 @@ public class MainView extends JFrame implements Observer {
 	}
 	
 	
+	/**
+	 * Inits the ui.
+	 */
 	private void initUI(){
 		
 
@@ -249,10 +316,18 @@ public class MainView extends JFrame implements Observer {
 
 	}
 	
+	/**
+	 * Gets the frame.
+	 *
+	 * @return the frame
+	 */
 	public JFrame getFrame(){
 		return frame;
 	}
 	
+	/**
+	 * Inits the view like model.
+	 */
 	private void initViewLikeModel()
 	{
 		
@@ -263,23 +338,35 @@ public class MainView extends JFrame implements Observer {
 
 	}
 	
+	/**
+	 * Enable update table.
+	 */
 	private void enableUpdateTable()
 	{
 		buttonUpdateTable.setEnabled(model.isEnableModificaTable());
 	}
 
+	/**
+	 * Enable delete table.
+	 */
 	private void enableDeleteTable()
 	{
 		buttonDeleteTable.setEnabled(model.isEnableEliminaTable());
 
 	}
 	
+	/**
+	 * Enable button acquisisci.
+	 */
 	private void enableButtonAcquisisci()
 	{
 		buttonAcquisisci.setEnabled(model.isEnableButtonAcquisisci());
 
 	}
 	
+	/**
+	 * Enable button aggiorna.
+	 */
 	private void enableButtonAggiorna()
 	{
 		buttonAggiorna.setEnabled(model.isEnableButtonAggiorna());
@@ -288,6 +375,9 @@ public class MainView extends JFrame implements Observer {
 	
 	
 	
+	/* (non-Javadoc)
+	 * @see java.util.Observer#update(java.util.Observable, java.lang.Object)
+	 */
 	// Update the view with the notify send by model
 		@Override
 		public void update(Observable o, Object arg)
@@ -315,42 +405,92 @@ public class MainView extends JFrame implements Observer {
 
 		}
 
+		/**
+		 * Gets the combo box table.
+		 *
+		 * @return the combo box table
+		 */
 		public JComboBox getComboBoxTable() {
 			return comboBoxTable;
 		}
 
+		/**
+		 * Sets the combo box table.
+		 *
+		 * @param comboBoxTable the new combo box table
+		 */
 		public void setComboBoxTable(JComboBox comboBoxTable) {
 			this.comboBoxTable = comboBoxTable;
 		}
 
+		/**
+		 * Gets the table.
+		 *
+		 * @return the table
+		 */
 		public JTable getTable() {
 			return table;
 		}
 
+		/**
+		 * Sets the table.
+		 *
+		 * @param table the new table
+		 */
 		public void setTable(JTable table) {
 			this.table = table;
 		}
 
+		/**
+		 * Gets the table records.
+		 *
+		 * @return the table records
+		 */
 		public DefaultTableModel getTableRecords() {
 			return tableRecords;
 		}
 
+		/**
+		 * Sets the table records.
+		 *
+		 * @param tableRecords the new table records
+		 */
 		public void setTableRecords(DefaultTableModel tableRecords) {
 			this.tableRecords = tableRecords;
 		}
 		
+		/**
+		 * Gets the combo box record.
+		 *
+		 * @return the combo box record
+		 */
 		public JComboBox getComboBoxRecord() {
 			return comboBoxRecord;
 		}
 
+		/**
+		 * Sets the combo box record.
+		 *
+		 * @param comboBoxRecord the new combo box record
+		 */
 		public void setComboBoxRecord(JComboBox comboBoxRecord) {
 			this.comboBoxRecord = comboBoxRecord;
 		}
 
+		/**
+		 * Gets the label table.
+		 *
+		 * @return the label table
+		 */
 		public JLabel getLabelTable() {
 			return labelTable;
 		}
 
+		/**
+		 * Sets the label table.
+		 *
+		 * @param labelTable the new label table
+		 */
 		public void setLabelTable(JLabel labelTable) {
 			this.labelTable = labelTable;
 		}

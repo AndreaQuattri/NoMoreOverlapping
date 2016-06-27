@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package controllerListener;
 
 import java.awt.Color;
@@ -16,13 +19,37 @@ import javax.swing.table.DefaultTableCellRenderer;
 import mvc.Model;
 import mvc.ViewTimeTable;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The listener interface for receiving selectedActivity events.
+ * The class that is interested in processing a selectedActivity
+ * event implements this interface, and the object created
+ * with that class is registered with a component using the
+ * component's <code>addSelectedActivityListener<code> method. When
+ * the selectedActivity event occurs, that object's appropriate
+ * method is invoked.
+ *
+ * @see SelectedActivityEvent
+ */
 public class SelectedActivityListener implements  ActionListener
 {
 
+	/** The model. */
 	private Model model;
+	
+	/** The view orario. */
 	private ViewTimeTable viewOrario;
+	
+	/** The nome attività. */
 	private String nomeAttività;
 
+	/**
+	 * Instantiates a new selected activity listener.
+	 *
+	 * @param model the model
+	 * @param viewOrario the view orario
+	 * @param nomeAttività the nome attività
+	 */
 	public SelectedActivityListener(Model model, ViewTimeTable viewOrario, String nomeAttività) {
 		// TODO Auto-generated constructor stub
 		this.model = model;
@@ -30,6 +57,9 @@ public class SelectedActivityListener implements  ActionListener
 		this.nomeAttività = nomeAttività;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 */
 	@SuppressWarnings("deprecation")
 	@Override
 	public void actionPerformed(ActionEvent action)
@@ -148,6 +178,9 @@ public class SelectedActivityListener implements  ActionListener
 
 	}
 	
+	/**
+	 * Sets the attribute to view.
+	 */
 	private void setAttributeToView(){
 		String appoggio;
 		for (int i=0; i<viewOrario.getVisualizzaAttività().getItemCount(); i++){

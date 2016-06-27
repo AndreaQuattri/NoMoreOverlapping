@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package mvc;
 
 import controllerListener.*;
@@ -5,14 +8,30 @@ import pdfPrinter.PdfPrinter;;
 
 
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Controller.
+ */
 public class Controller
 {
 
+	/** The model. */
 	private Model model;
+	
+	/** The view. */
 	private MainView view;
+	
+	/** The view orario. */
 	private ViewTimeTable viewOrario;
 	
 
+	/**
+	 * Instantiates a new controller.
+	 *
+	 * @param model the model
+	 * @param view the view
+	 * @param viewOrario the view orario
+	 */
 	public Controller(Model model, MainView view, ViewTimeTable viewOrario)
 	{
 		this.setModel(model);
@@ -40,31 +59,61 @@ public class Controller
 	}
 
 
+	/**
+	 * Gets the model.
+	 *
+	 * @return the model
+	 */
 	public Model getModel() {
 		return model;
 	}
 
 
+	/**
+	 * Sets the model.
+	 *
+	 * @param model the new model
+	 */
 	public void setModel(Model model) {
 		this.model = model;
 	}
 
 
+	/**
+	 * Gets the view.
+	 *
+	 * @return the view
+	 */
 	public MainView getView() {
 		return view;
 	}
 
 
+	/**
+	 * Sets the view.
+	 *
+	 * @param view the new view
+	 */
 	public void setView(MainView view) {
 		this.view = view;
 	}
 
 
+	/**
+	 * Gets the view orario.
+	 *
+	 * @return the view orario
+	 */
 	public ViewTimeTable getViewOrario() {
 		return viewOrario;
 	}
 
 
+	/**
+	 * Sets the view orario.
+	 *
+	 * @param viewOrario the new view orario
+	 */
 	public void setViewOrario(ViewTimeTable viewOrario) {
 		this.viewOrario = viewOrario;
 	}

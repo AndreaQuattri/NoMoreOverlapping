@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package memorizzazioneDati;
 
 import java.util.ArrayList;
@@ -6,15 +9,28 @@ import mvc.Model;
 import myComponents.Assegnamento;
 import myComponents.Attività;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class CreateTimeTable.
+ */
 public class CreateTimeTable {
 
+	/** The model. */
 	private Model model;
 
+	/**
+	 * Instantiates a new creates the time table.
+	 *
+	 * @param model the model
+	 */
 	public CreateTimeTable(Model model) {
 		this.setModel(model);
 	}
 
 
+	/**
+	 * From assegnamento to orario per giorno.
+	 */
 	public void fromAssegnamentoToOrarioPerGiorno (){
 
 
@@ -65,6 +81,11 @@ public class CreateTimeTable {
 
 
 
+	/**
+	 * Gets the model.
+	 *
+	 * @return the model
+	 */
 	public Model getModel() {
 		return model;
 	}
@@ -72,6 +93,11 @@ public class CreateTimeTable {
 
 
 
+	/**
+	 * Sets the model.
+	 *
+	 * @param model the new model
+	 */
 	public void setModel(Model model) {
 		this.model = model;
 	}

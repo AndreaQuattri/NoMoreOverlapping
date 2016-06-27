@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package elaborazioneDati;
 
 import java.util.ArrayList;
@@ -5,11 +8,21 @@ import java.util.ArrayList;
 import myComponents.Attività;
 import myComponents.Disciplina;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class GeneraListaDiscipline.
+ */
 public class GeneraListaDiscipline {
 
 
 
 
+	/**
+	 * Genera lista.
+	 *
+	 * @param listAttività the list attività
+	 * @return the array list
+	 */
 	public static ArrayList<Disciplina> generaLista(ArrayList<Attività> listAttività){
 
 		ArrayList<Disciplina> listDisciplina = new ArrayList<Disciplina>();

@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package mvc;
 
 import javax.swing.JComboBox;
@@ -6,12 +9,22 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ManagementTableView.
+ */
 public class ManagementTableView extends JFrame {
 	
 	
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
 
+	/**
+	 * Instantiates a new management table view.
+	 *
+	 * @param tabella the tabella
+	 */
 	public ManagementTableView(String tabella)
 	{
 
@@ -73,6 +86,9 @@ public class ManagementTableView extends JFrame {
 		
 	}
 	
+	/**
+	 * Inits the attività.
+	 */
 	private void initAttività(){
 		JLabel labelID = new JLabel("ID Attività");
 		labelID.setBounds(69, 81, 117, 29);
@@ -118,6 +134,9 @@ public class ManagementTableView extends JFrame {
 		
 	}
 	
+	/**
+	 * Inits the aula.
+	 */
 	private void initAula(){
 		JLabel labelEdificio = new JLabel("Edificio");
 		labelEdificio.setBounds(69, 71, 117, 29);
@@ -147,6 +166,9 @@ public class ManagementTableView extends JFrame {
 
 	}
 	
+	/**
+	 * Inits the convegno.
+	 */
 	private void initConvegno(){
 		JLabel labelIDConvegno = new JLabel("ID Convegno");
 		labelIDConvegno.setBounds(69, 71, 117, 29);
@@ -170,6 +192,9 @@ public class ManagementTableView extends JFrame {
 
 	}
 	
+	/**
+	 * Inits the corso di studi.
+	 */
 	private void initCorsoDiStudi(){
 		JLabel labelID = new JLabel("ID Corso Di Studi");
 		labelID.setBounds(69, 71, 117, 29);
@@ -198,6 +223,9 @@ public class ManagementTableView extends JFrame {
 		getContentPane().add(labelTipoLaurea);
 	}
 	
+	/**
+	 * Inits the disciplina.
+	 */
 	private void initDisciplina(){
 		JLabel labelIDDisciplina = new JLabel("ID Disciplina");
 		labelIDDisciplina.setBounds(69, 71, 117, 29);
@@ -212,6 +240,9 @@ public class ManagementTableView extends JFrame {
 		getContentPane().add(labelCrediti);
 	}
 	
+	/**
+	 * Inits the docente.
+	 */
 	private void initDocente(){
 		JLabel labelMatricola = new JLabel("Matricola");
 		labelMatricola.setBounds(69, 71, 117, 29);
@@ -234,6 +265,9 @@ public class ManagementTableView extends JFrame {
 		getContentPane().add(labelAssociato);
 	}
 	
+	/**
+	 * Inits the esame.
+	 */
 	private void initEsame(){
 		JLabel labelIDEsame = new JLabel("ID Esame");
 		labelIDEsame.setBounds(69, 71, 117, 29);
@@ -248,6 +282,9 @@ public class ManagementTableView extends JFrame {
 		getContentPane().add(labelTipologia);
 	}
 	
+	/**
+	 * Inits the fascia oraria.
+	 */
 	private void initFasciaOraria(){
 		JLabel labelID = new JLabel("ID Fascia Oraria");
 		labelID.setBounds(69, 71, 117, 29);
@@ -265,6 +302,9 @@ public class ManagementTableView extends JFrame {
 		getContentPane().add(labelOraFine);
 	}
 	
+	/**
+	 * Inits the gita.
+	 */
 	private void initGita(){
 		JLabel labelIDGita = new JLabel("ID Gita");
 		labelIDGita.setBounds(69, 71, 117, 29);
@@ -278,6 +318,9 @@ public class ManagementTableView extends JFrame {
 		getContentPane().add(labelLuogo);
 	}
 	
+	/**
+	 * Inits the insegna.
+	 */
 	private void initInsegna(){
 		JLabel labelMatricola = new JLabel("Matricola");
 		labelMatricola.setBounds(69, 71, 117, 29);
@@ -289,6 +332,9 @@ public class ManagementTableView extends JFrame {
 		getContentPane().add(labelID);
 	}
 	
+	/**
+	 * Inits the piano di studio.
+	 */
 	private void initPianoDiStudio(){
 		JLabel labelIDCorso = new JLabel("ID Corso Di Studi");
 		labelIDCorso.setBounds(69, 71, 117, 29);
@@ -302,6 +348,9 @@ public class ManagementTableView extends JFrame {
 		getContentPane().add(labelOpzionale);
 	}
 	
+	/**
+	 * Inits the preferenza aula.
+	 */
 	private void initPreferenzaAula(){
 		JLabel labelMatricola = new JLabel("Matricola");
 		labelMatricola.setBounds(69, 71, 117, 29);
@@ -315,6 +364,9 @@ public class ManagementTableView extends JFrame {
 		getContentPane().add(labelNumero);
 	}
 	
+	/**
+	 * Inits the preferenza fascia oraria.
+	 */
 	private void initPreferenzaFasciaOraria(){
 		JLabel labelMatricola = new JLabel("Matricola");
 		labelMatricola.setBounds(69, 71, 117, 29);
@@ -328,6 +380,9 @@ public class ManagementTableView extends JFrame {
 		getContentPane().add(labelPriorità);
 	}
 	
+	/**
+	 * Inits the studente.
+	 */
 	private void initStudente(){
 		JLabel labelMatricola = new JLabel("Matricola");
 		labelMatricola.setBounds(69, 71, 117, 29);
@@ -353,6 +408,9 @@ public class ManagementTableView extends JFrame {
 		getContentPane().add(labelID);
 	}
 	
+	/**
+	 * Inits the tirocinio.
+	 */
 	private void initTirocinio(){
 		JLabel labelIDTirocinio = new JLabel("ID Tirocinio");
 		labelIDTirocinio.setBounds(69, 71, 117, 29);

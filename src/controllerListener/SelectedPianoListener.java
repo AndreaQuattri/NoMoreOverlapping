@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package controllerListener;
 
 import java.awt.Color;
@@ -16,19 +19,46 @@ import javax.swing.table.DefaultTableCellRenderer;
 import mvc.Model;
 import mvc.ViewTimeTable;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The listener interface for receiving selectedPiano events.
+ * The class that is interested in processing a selectedPiano
+ * event implements this interface, and the object created
+ * with that class is registered with a component using the
+ * component's <code>addSelectedPianoListener<code> method. When
+ * the selectedPiano event occurs, that object's appropriate
+ * method is invoked.
+ *
+ * @see SelectedPianoEvent
+ */
 public class SelectedPianoListener implements  ActionListener
 {
 
+	/** The model. */
 	private Model model;
+	
+	/** The view orario. */
 	private ViewTimeTable viewOrario;
+	
+	/** The codice. */
 	private String codice;
 
+	/**
+	 * Instantiates a new selected piano listener.
+	 *
+	 * @param model the model
+	 * @param viewOrario the view orario
+	 * @param codice the codice
+	 */
 	public SelectedPianoListener(Model model, ViewTimeTable viewOrario, String codice) {
 		this.model = model;
 		this.viewOrario = viewOrario;
 		this.codice = codice;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 */
 	@SuppressWarnings("deprecation")
 	@Override
 	public void actionPerformed(ActionEvent action)
@@ -153,6 +183,9 @@ public class SelectedPianoListener implements  ActionListener
 	}
 	
 	
+	/**
+	 * Sets the attribute to view.
+	 */
 	private void setAttributeToView(){
 		String[] appoggio;
 		for (int i=0; i<viewOrario.getVisualizzaCorso().getItemCount(); i++){

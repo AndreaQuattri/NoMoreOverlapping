@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package controllerListener;
 
 import java.awt.event.MouseEvent;
@@ -10,17 +13,41 @@ import mvc.UpdateTimeTable;
 import mvc.ViewTimeTable;
 
 
+// TODO: Auto-generated Javadoc
+/**
+ * The listener interface for receiving doubleClick events.
+ * The class that is interested in processing a doubleClick
+ * event implements this interface, and the object created
+ * with that class is registered with a component using the
+ * component's <code>addDoubleClickListener<code> method. When
+ * the doubleClick event occurs, that object's appropriate
+ * method is invoked.
+ *
+ * @see DoubleClickEvent
+ */
 public class DoubleClickListener implements MouseListener {
 
+	/** The model. */
 	private Model model;
+	
+	/** The view orario. */
 	private ViewTimeTable viewOrario;
 
+	/**
+	 * Instantiates a new double click listener.
+	 *
+	 * @param model the model
+	 * @param viewOrario the view orario
+	 */
 	public DoubleClickListener(Model model, ViewTimeTable viewOrario) {
 		this.setModel(model);
 		this.viewOrario = viewOrario;
 	}
 
 
+	/* (non-Javadoc)
+	 * @see java.awt.event.MouseListener#mouseClicked(java.awt.event.MouseEvent)
+	 */
 	@Override
 	public void mouseClicked(MouseEvent e) {
 
@@ -42,24 +69,36 @@ public class DoubleClickListener implements MouseListener {
 
 	
 
+	/* (non-Javadoc)
+	 * @see java.awt.event.MouseListener#mouseEntered(java.awt.event.MouseEvent)
+	 */
 	@Override
 	public void mouseEntered(MouseEvent arg0) {
 		// TODO Auto-generated method stub
 
 	}
 
+	/* (non-Javadoc)
+	 * @see java.awt.event.MouseListener#mouseExited(java.awt.event.MouseEvent)
+	 */
 	@Override
 	public void mouseExited(MouseEvent arg0) {
 		// TODO Auto-generated method stub
 
 	}
 
+	/* (non-Javadoc)
+	 * @see java.awt.event.MouseListener#mousePressed(java.awt.event.MouseEvent)
+	 */
 	@Override
 	public void mousePressed(MouseEvent arg0) {
 		// TODO Auto-generated method stub
 
 	}
 
+	/* (non-Javadoc)
+	 * @see java.awt.event.MouseListener#mouseReleased(java.awt.event.MouseEvent)
+	 */
 	@Override
 	public void mouseReleased(MouseEvent arg0) {
 		// TODO Auto-generated method stub
@@ -67,21 +106,41 @@ public class DoubleClickListener implements MouseListener {
 	}
 
 
+	/**
+	 * Gets the model.
+	 *
+	 * @return the model
+	 */
 	public Model getModel() {
 		return model;
 	}
 
 
+	/**
+	 * Sets the model.
+	 *
+	 * @param model the new model
+	 */
 	public void setModel(Model model) {
 		this.model = model;
 	}
 
 
+	/**
+	 * Gets the view orario.
+	 *
+	 * @return the view orario
+	 */
 	public ViewTimeTable getViewOrario() {
 		return viewOrario;
 	}
 
 
+	/**
+	 * Sets the view orario.
+	 *
+	 * @param viewOrario the new view orario
+	 */
 	public void setViewOrario(ViewTimeTable viewOrario) {
 		this.viewOrario = viewOrario;
 	}

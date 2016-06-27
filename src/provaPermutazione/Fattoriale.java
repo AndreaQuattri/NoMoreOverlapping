@@ -1,9 +1,22 @@
+/*
+ * 
+ */
 package provaPermutazione;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Fattoriale.
+ */
 public class Fattoriale {
 	
 	
 	
+	/**
+	 * Fattoriale.
+	 *
+	 * @param x the x
+	 * @return the int
+	 */
 	public static int fattoriale(int x){
 		int i;
 	    int f=1;

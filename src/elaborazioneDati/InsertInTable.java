@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package elaborazioneDati;
 
 import java.io.IOException;
@@ -6,10 +9,20 @@ import connectToDatabase.Connect;
 import connectToDatabase.NumberOfRows;
 import urlPhp.GiveAll;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class InsertInTable.
+ */
 public class InsertInTable {
 	
+	/** The selected item. */
 	private String selectedItem;
 	
+	/**
+	 * Instantiates a new insert in table.
+	 *
+	 * @param selectedItem the selected item
+	 */
 	public InsertInTable(Object selectedItem) {
 
 		this.selectedItem = (String)selectedItem;
@@ -17,6 +30,13 @@ public class InsertInTable {
 	}
 	
 	
+	/**
+	 * Gets the values.
+	 *
+	 * @return the values
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws URISyntaxException the URI syntax exception
+	 */
 	public String[][] getValues() throws IOException, URISyntaxException{
 		
 		if (selectedItem==null)
@@ -92,6 +112,13 @@ public class InsertInTable {
 	
 
 	
+	/**
+	 * Gets the attività.
+	 *
+	 * @return the attività
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws URISyntaxException the URI syntax exception
+	 */
 	private String[][] getAttività() throws IOException, URISyntaxException {
 		
 		int numAttività = 0;
@@ -127,6 +154,13 @@ public class InsertInTable {
 		return values;
 	}
 	
+	/**
+	 * Gets the aula.
+	 *
+	 * @return the aula
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws URISyntaxException the URI syntax exception
+	 */
 	private String[][] getAula() throws IOException, URISyntaxException {
 	
 		
@@ -163,6 +197,13 @@ public class InsertInTable {
 	}
 		
 		
+		/**
+		 * Gets the convegno.
+		 *
+		 * @return the convegno
+		 * @throws IOException Signals that an I/O exception has occurred.
+		 * @throws URISyntaxException the URI syntax exception
+		 */
 		private String[][] getConvegno() throws IOException, URISyntaxException {
 		
 		int numConvegni = 0;
@@ -221,6 +262,13 @@ public class InsertInTable {
 		return values;
 	}	
 	
+		/**
+		 * Gets the corso di studi.
+		 *
+		 * @return the corso di studi
+		 * @throws IOException Signals that an I/O exception has occurred.
+		 * @throws URISyntaxException the URI syntax exception
+		 */
 		private String[][] getCorsoDiStudi() throws IOException, URISyntaxException {
 			
 			int numCorsoDiStudi = 0;
@@ -257,6 +305,13 @@ public class InsertInTable {
 			return values;
 		}
 		
+		/**
+		 * Gets the disciplina.
+		 *
+		 * @return the disciplina
+		 * @throws IOException Signals that an I/O exception has occurred.
+		 * @throws URISyntaxException the URI syntax exception
+		 */
 		private String[][] getDisciplina() throws IOException, URISyntaxException {
 			
 			int numDiscipline = 0;
@@ -306,6 +361,13 @@ public class InsertInTable {
 			return values;
 		}
 		
+		/**
+		 * Gets the docente.
+		 *
+		 * @return the docente
+		 * @throws IOException Signals that an I/O exception has occurred.
+		 * @throws URISyntaxException the URI syntax exception
+		 */
 		private String[][] getDocente() throws IOException, URISyntaxException {
 			
 			int numDocenti = 0;
@@ -339,6 +401,13 @@ public class InsertInTable {
 			return values;
 		}
 		
+		/**
+		 * Gets the esame.
+		 *
+		 * @return the esame
+		 * @throws IOException Signals that an I/O exception has occurred.
+		 * @throws URISyntaxException the URI syntax exception
+		 */
 		private String[][] getEsame() throws IOException, URISyntaxException {
 			
 			int numEsami = 0;
@@ -387,6 +456,13 @@ public class InsertInTable {
 			return values;
 		}
 		
+		/**
+		 * Gets the fascia oraria.
+		 *
+		 * @return the fascia oraria
+		 * @throws IOException Signals that an I/O exception has occurred.
+		 * @throws URISyntaxException the URI syntax exception
+		 */
 		private String[][] getFasciaOraria() throws IOException, URISyntaxException {
 			
 			int numFasce = 0;
@@ -416,6 +492,13 @@ public class InsertInTable {
 			return values;
 		}
 		
+		/**
+		 * Gets the gita.
+		 *
+		 * @return the gita
+		 * @throws IOException Signals that an I/O exception has occurred.
+		 * @throws URISyntaxException the URI syntax exception
+		 */
 		private String[][] getGita() throws IOException, URISyntaxException {
 			
 			int numGite = 0;
@@ -462,6 +545,13 @@ public class InsertInTable {
 			return values;
 		}
 		
+		/**
+		 * Gets the insegna.
+		 *
+		 * @return the insegna
+		 * @throws IOException Signals that an I/O exception has occurred.
+		 * @throws URISyntaxException the URI syntax exception
+		 */
 		private String[][] getInsegna() throws IOException, URISyntaxException {
 			
 			int numInsegna = 0;
@@ -507,6 +597,13 @@ public class InsertInTable {
 			return values;
 		}
 		
+		/**
+		 * Gets the piano di studio.
+		 *
+		 * @return the piano di studio
+		 * @throws IOException Signals that an I/O exception has occurred.
+		 * @throws URISyntaxException the URI syntax exception
+		 */
 		private String[][] getPianoDiStudio() throws IOException, URISyntaxException {
 			
 			int numPiani = 0;
@@ -577,6 +674,13 @@ public class InsertInTable {
 			return values;
 		}
 		
+		/**
+		 * Gets the preferenza aula.
+		 *
+		 * @return the preferenza aula
+		 * @throws IOException Signals that an I/O exception has occurred.
+		 * @throws URISyntaxException the URI syntax exception
+		 */
 		private String[][] getPreferenzaAula() throws IOException, URISyntaxException {
 			
 			int numPreferenze = 0;
@@ -619,6 +723,13 @@ public class InsertInTable {
 			return values;
 		}
 		
+		/**
+		 * Gets the preferenza fascia oraria.
+		 *
+		 * @return the preferenza fascia oraria
+		 * @throws IOException Signals that an I/O exception has occurred.
+		 * @throws URISyntaxException the URI syntax exception
+		 */
 		private String[][] getPreferenzaFasciaOraria() throws IOException, URISyntaxException {
 			
 			int numPreFas = 0;
@@ -674,6 +785,13 @@ public class InsertInTable {
 			return values;
 		}
 		
+		/**
+		 * Gets the studente.
+		 *
+		 * @return the studente
+		 * @throws IOException Signals that an I/O exception has occurred.
+		 * @throws URISyntaxException the URI syntax exception
+		 */
 		private String[][] getStudente() throws IOException, URISyntaxException {
 			
 			int numStudenti = 0;
@@ -731,6 +849,13 @@ public class InsertInTable {
 			return values;
 	}
 	
+		/**
+		 * Gets the tirocinio.
+		 *
+		 * @return the tirocinio
+		 * @throws IOException Signals that an I/O exception has occurred.
+		 * @throws URISyntaxException the URI syntax exception
+		 */
 		private String[][] getTirocinio() throws IOException, URISyntaxException {
 			
 			int numTirocini = 0;
@@ -784,10 +909,20 @@ public class InsertInTable {
 		}
 		
 
+	/**
+	 * Gets the selected item.
+	 *
+	 * @return the selected item
+	 */
 	public String getSelectedItem() {
 		return selectedItem;
 	}
 
+	/**
+	 * Sets the selected item.
+	 *
+	 * @param selectedItem the new selected item
+	 */
 	public void setSelectedItem(String selectedItem) {
 		this.selectedItem = selectedItem;
 	}

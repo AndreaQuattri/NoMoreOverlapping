@@ -6,6 +6,6 @@
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/Users/andreaquattri/Desktop/itextpdf-5.5.9.jar"/>
+	<classpathentry kind="lib" path="/Users/michelmarziali/Documents/EclipseMarsWorkspace/NoMoreOverlapping/itextpdf-5.5.9.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

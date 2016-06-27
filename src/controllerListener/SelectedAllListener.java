@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package controllerListener;
 
 import java.awt.Color;
@@ -12,16 +15,40 @@ import javax.swing.table.DefaultTableCellRenderer;
 import mvc.Model;
 import mvc.ViewTimeTable;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The listener interface for receiving selectedAll events.
+ * The class that is interested in processing a selectedAll
+ * event implements this interface, and the object created
+ * with that class is registered with a component using the
+ * component's <code>addSelectedAllListener<code> method. When
+ * the selectedAll event occurs, that object's appropriate
+ * method is invoked.
+ *
+ * @see SelectedAllEvent
+ */
 public class SelectedAllListener implements ActionListener{
 	
+	/** The model. */
 	private Model model;
+	
+	/** The view orario. */
 	private ViewTimeTable viewOrario;
 	
+	/**
+	 * Instantiates a new selected all listener.
+	 *
+	 * @param model the model
+	 * @param viewOrario the view orario
+	 */
 	public SelectedAllListener(Model model, ViewTimeTable viewOrario) {
 		this.model = model;
 		this.viewOrario = viewOrario;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
@@ -80,6 +107,9 @@ public class SelectedAllListener implements ActionListener{
 		
 	}
 	
+	/**
+	 * Sets the attribute to view.
+	 */
 	private void setAttributeToView(){
 		for (int i=0; i<viewOrario.getVisualizzaCorso().getItemCount(); i++)
 			viewOrario.getVisualizzaCorso().getItem(i).setSelected(false);

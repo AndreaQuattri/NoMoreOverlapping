@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package controllerListener;
 
 import java.awt.Color;
@@ -17,13 +20,37 @@ import javax.swing.table.DefaultTableCellRenderer;
 import mvc.Model;
 import mvc.ViewTimeTable;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The listener interface for receiving selectedDocente events.
+ * The class that is interested in processing a selectedDocente
+ * event implements this interface, and the object created
+ * with that class is registered with a component using the
+ * component's <code>addSelectedDocenteListener<code> method. When
+ * the selectedDocente event occurs, that object's appropriate
+ * method is invoked.
+ *
+ * @see SelectedDocenteEvent
+ */
 public class SelectedDocenteListener implements  ActionListener
 {
 
+	/** The model. */
 	private Model model;
+	
+	/** The view orario. */
 	private ViewTimeTable viewOrario;
+	
+	/** The matricola. */
 	private String matricola;
 
+	/**
+	 * Instantiates a new selected docente listener.
+	 *
+	 * @param model the model
+	 * @param viewOrario the view orario
+	 * @param matricola the matricola
+	 */
 	public SelectedDocenteListener(Model model, ViewTimeTable viewOrario, String matricola) {
 		// TODO Auto-generated constructor stub
 		this.model = model;
@@ -31,6 +58,9 @@ public class SelectedDocenteListener implements  ActionListener
 		this.matricola = matricola;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 */
 	@SuppressWarnings("deprecation")
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -142,6 +172,9 @@ public class SelectedDocenteListener implements  ActionListener
 	}
 	
 
+	/**
+	 * Sets the attribute to view.
+	 */
 	private void setAttributeToView(){
 		String[] appoggio;
 		for (int i=0; i<viewOrario.getVisualizzaDocente().getItemCount(); i++){

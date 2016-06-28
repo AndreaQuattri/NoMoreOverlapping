@@ -219,7 +219,7 @@ public class LarghezzaColonne {
 		int[] vettLarghezze = new int[8];
 
 		vettLarghezze[0] = 30;
-		vettLarghezze[1] = 330;
+		vettLarghezze[1] = 350;
 		vettLarghezze[2] = 400;
 		vettLarghezze[3] = 30;
 		vettLarghezze[4] = 60;

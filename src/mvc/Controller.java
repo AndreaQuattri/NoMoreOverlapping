@@ -40,7 +40,7 @@ public class Controller
 
 		// Set all the listener of the view
 		view.selectedTableToView(new SelectedTableListener(model));
-		view.pressButtonAcquisisci(new InsertInTableListener(view));
+		view.pressButtonAcquisisci(new InsertInTableListener(view, model));
 		view.pressButtonModifica(new UpdateRecordListener(view));
 		view.pressButtonInserisci(new InsertRecordListener(view));
 		view.pressButtonGestisciOrario(new OpenViewGestisciOrario(model,viewOrario));
@@ -50,13 +50,7 @@ public class Controller
 		viewOrario.pressButtonSalva(new SalvaOrarioEsistente(model));
 		viewOrario.pressButtonEsci(new EsciViewTimeTable(viewOrario));
 		viewOrario.pressEsportaPdf(new PdfPrinter(model));
-		//viewOrario.selectedActivityToView(new SelectedActivityListener(model, viewOrario));
-		//viewOrario.selectedPianoToView(new SelectedPianoListener(model, viewOrario));
-		//viewOrario.selectedDocenteToView(new SelectedDocenteListener(model, viewOrario));
-		
 
-		//view.addCompileListener(new MyCompileListener());
-		//view.addMakeLaTeXlistener(new MyMakeLaTeXlistener());
 	}
 
 

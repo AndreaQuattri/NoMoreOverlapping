@@ -13,29 +13,25 @@ public class MyNotify {
 	public final static int ENABLE_BUTTON_MODIFICA = 0;
 	
 	/** The Constant ENABLE_BUTTON_ELIMINA. */
-	public final static int ENABLE_BUTTON_ELIMINA    = 1;
+	public final static int ENABLE_BUTTON_ELIMINA = 1;
 	
 	/** The Constant ENABLE_BUTTON_ACQUISISCI. */
 	public final static int ENABLE_BUTTON_ACQUISISCI = 2;
 	
 	/** The Constant ENABLE_BUTTON_AGGIORNA. */
-	public final static int ENABLE_BUTTON_AGGIORNA   = 3;
+	public final static int ENABLE_BUTTON_AGGIORNA = 3;
 	
 	/** The Constant ENABLE_INSERT_VALUES. */
-	public final static int ENABLE_INSERT_VALUES 	   = 4;
+	public final static int ENABLE_INSERT_VALUES = 4;
 	
 	/** The Constant ENABLE_BUTTON_GITA. */
 	public final static int ENABLE_BUTTON_GITA = 5;
-
-	
-	/** The Constant SEMANTIC_ERRORS. */
-	public final static int SEMANTIC_ERRORS    = 8;
 	
 	/** The Constant GENERIC_ERROR. */
-	public final static int GENERIC_ERROR 	   = 6;
+	public final static int ENABLE_BUTTON_CARICA = 6;
 	
 	/** The Constant FILE_ERROR. */
-	public final static int FILE_ERROR 	   	   = 7;
+	public final static int ENABLE_BUTTON_INSERISCI = 7;
 
 	/** The notify id. */
 	private int notifyID;

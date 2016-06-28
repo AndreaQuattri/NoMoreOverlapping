@@ -249,7 +249,8 @@ public class CreateNewOrario implements  ActionListener
 
 					matrix = new int[21][6];
 					matrixSupporto = new int[21][6];
-
+					
+					listDisciplinaSupporto = new ArrayList<Disciplina>();
 					listDocenteSupport = new ArrayList<Docente>();
 
 					for (int iDisciplina = 0; iDisciplina < listDisciplina.size(); iDisciplina++){
@@ -269,7 +270,6 @@ public class CreateNewOrario implements  ActionListener
 					}
 
 
-					listDisciplinaSupporto = new ArrayList<Disciplina>();
 
 					for (int iDocente = 0; iDocente<listDocenteSupport.size(); iDocente++){
 						for (int iDisciplina = 0; iDisciplina<listDisciplinaInseritaPerOra.size(); iDisciplina++){

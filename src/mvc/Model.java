@@ -120,9 +120,15 @@ public class Model extends Observable{
 	
 	/** The enable button inserisci gita. */
 	private boolean enableButtonInserisciGita;
+	
+	private boolean enableCaricaButton;
+	
+	private boolean enableInserisciButton;
+
 
 	/** The num sovrapposizioni. */
 	private int numSovrapposizioni;
+
 
 
 
@@ -157,6 +163,8 @@ public class Model extends Observable{
 		enableButtonAcquisisci = false;
 		enableButtonAggiorna = false;
 		enableButtonInserisciGita = false;
+		enableCaricaButton = false;
+		enableInserisciButton = false;
 
 	}
 
@@ -375,7 +383,20 @@ public class Model extends Observable{
 	}
 
 
+	public boolean isEnableCaricaButton(){
+		return enableCaricaButton;
+	}
+	
 
+	public boolean isEnableInserisciButton() {
+		return enableInserisciButton;
+	}
+
+
+
+
+	
+	
 
 	/**
 	 * Checks if is enable modifica table.
@@ -421,6 +442,19 @@ public class Model extends Observable{
 	public boolean isEnabledInserisciGita() {
 		return enableButtonInserisciGita;
 	}
+	
+	
+	public void enableCaricaButton(boolean enableCaricaButton) {
+		this.enableCaricaButton = enableCaricaButton;
+		sendNotify(MyNotify.ENABLE_BUTTON_CARICA);
+
+	}
+
+	public void enableInserisciButton(boolean enableInserisciButton) {
+		this.enableInserisciButton = enableInserisciButton;
+		sendNotify(MyNotify.ENABLE_BUTTON_INSERISCI);
+	}
+	
 
 	/**
 	 * Enable modifica table.
@@ -976,6 +1010,10 @@ public class Model extends Observable{
 			}
 		}
 	}
+
+
+
+
 	
 	
 }

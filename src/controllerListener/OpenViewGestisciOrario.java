@@ -142,7 +142,6 @@ public class OpenViewGestisciOrario implements  ActionListener
 
 				
 				viewOrario.getFrame().setVisible(true);
-				
 
 
 			} catch (IOException e) {

@@ -7,8 +7,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.net.URISyntaxException;
+
+import javax.swing.JTable;
+
 import elaborazioneDati.InsertInTable;
+import elaborazioneDati.LarghezzaColonne;
 import mvc.MainView;
+import mvc.Model;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -28,14 +33,17 @@ public class InsertInTableListener implements  ActionListener
 	/** The view. */
 	private MainView view;
 
+	private Model model;
+
 	/**
 	 * Instantiates a new insert in table listener.
 	 *
 	 * @param view the view
 	 */
-	public InsertInTableListener(MainView view) {
+	public InsertInTableListener(MainView view, Model model) {
 		// TODO Auto-generated constructor stub
 		this.view = view;
+		this.model = model;
 	}
 
 	/* (non-Javadoc)
@@ -45,7 +53,15 @@ public class InsertInTableListener implements  ActionListener
 	public void actionPerformed(ActionEvent action)
 	{
 
+		model.enableInserisciButton(true);
+		model.enableEliminaTable(true);
+		model.enableModificaTable(true);
+
+
+
 		view.getLabelTable().setText((String)view.getComboBoxTable().getSelectedItem());
+
+		view.getComboBoxRecord().removeAllItems();
 
 		InsertInTable insertInTable = new InsertInTable(view.getComboBoxTable().getSelectedItem());
 
@@ -56,7 +72,7 @@ public class InsertInTableListener implements  ActionListener
 
 		view.getTableRecords().setColumnCount(0);
 
-		
+
 		try {
 			String toView[][] = insertInTable.getValues();
 
@@ -75,11 +91,18 @@ public class InsertInTableListener implements  ActionListener
 				toInsertComboBox = "";
 			}
 
-			view.getTable().getColumnModel().getColumn(0).setMinWidth(5);
-			view.getTable().getColumnModel().getColumn(0).setPreferredWidth(10);
-			view.getTable().getColumnModel().getColumn(1).setPreferredWidth(10);
-			view.getTable().getColumnModel().getColumn(2).setPreferredWidth(20);
-			view.getTable().getColumnModel().getColumn(3).setPreferredWidth(360);
+			LarghezzaColonne larghezzaColonne = new LarghezzaColonne(view.getComboBoxTable().getSelectedItem());
+
+			int[] vettLarg = larghezzaColonne.getLarghezza();
+
+
+			view.getTable().setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+
+			view.getTable().getColumnModel().getColumn(0).setMinWidth(0);
+
+			for(int i=0; i<vettLarg.length; i++){
+				view.getTable().getColumnModel().getColumn(i).setPreferredWidth(vettLarg[i]);
+			}
 
 
 		} catch (IOException e) {

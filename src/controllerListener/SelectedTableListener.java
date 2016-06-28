@@ -31,6 +31,7 @@ public class SelectedTableListener implements  ActionListener
 	 *
 	 * @param model the model
 	 */
+	
 	public SelectedTableListener(Model model) {
 		// TODO Auto-generated constructor stub
 		this.model = model;
@@ -43,10 +44,13 @@ public class SelectedTableListener implements  ActionListener
 	public void actionPerformed(ActionEvent action)
 	{
 
-		model.enableModificaTable(true);
-		model.enableEliminaTable(true);
 		model.enableButtonAcquisisci(true);
 		model.enableButtonAggiorna(true);
+		
+		model.enableInserisciButton(false);
+		model.enableEliminaTable(false);
+		model.enableModificaTable(false);
+
 
 		//TODO
 		/*

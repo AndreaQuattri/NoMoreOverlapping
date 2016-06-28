@@ -5,6 +5,8 @@ package controllerListener;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.net.URISyntaxException;
 
 import mvc.MainView;
 import mvc.ManagementTableView;
@@ -46,8 +48,20 @@ public class UpdateRecordListener implements  ActionListener
 	{
 
 
-		ManagementTableView managment = new ManagementTableView((String) view.getComboBoxTable().getSelectedItem());
-		managment.setVisible(true);
+		ManagementTableView managment;
+		try {
+			managment = new ManagementTableView((String) view.getComboBoxTable().getSelectedItem(),
+																	(String) view.getComboBoxRecord().getSelectedItem());
+			managment.setVisible(true);
+			managment.pressButtonModificaCampi(new ModificaCampiListener());
+
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (URISyntaxException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 
 	}

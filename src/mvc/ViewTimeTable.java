@@ -379,7 +379,7 @@ public class ViewTimeTable extends JFrame implements Observer {
 		
 		switch (notify.getNotifyID())
 		{
-		case MyNotify.ENABLE_BUTTON_MODIFICA:
+		case MyNotify.ENABLE_BUTTON_CARICA:
 			enableSalvaButton();
 		
 
@@ -391,7 +391,8 @@ public class ViewTimeTable extends JFrame implements Observer {
 	
 	private void enableSalvaButton()
 	{
-		salva.setEnabled(true);
+		salva.setEnabled(model.isEnableCaricaButton());
+		System.out.println("sssssss");
 	}
 
 

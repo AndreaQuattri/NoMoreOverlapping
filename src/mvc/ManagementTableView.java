@@ -1,123 +1,197 @@
-/*
- * 
- */
 package mvc;
 
+import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.net.URISyntaxException;
+
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 
-// TODO: Auto-generated Javadoc
-/**
- * The Class ManagementTableView.
- */
+import connectToDatabase.Connect;
+import urlPhp.GiveAll;
+
+
 public class ManagementTableView extends JFrame {
 	
 	
-	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
+	private JButton modificaButton;
 
+	public JButton getModificaButton() {
+		return modificaButton;
+	}
 
-	/**
-	 * Instantiates a new management table view.
-	 *
-	 * @param tabella the tabella
-	 */
-	public ManagementTableView(String tabella)
+	public void setModificaButton(JButton modificaButton) {
+		this.modificaButton = modificaButton;
+	}
+
+	public ManagementTableView(String tabella, String record) throws IOException, URISyntaxException
 	{
 
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(400, 80, 500, 500);
+		setBounds(400, 80, 700, 500);
+		
+		modificaButton = new JButton ("Modifica");
+		modificaButton.setBounds(280, 380, 200, 29);
 		
 		
 		
 		if (tabella.equals("Attività"))
-			initAttività();
+			initAttività(record);
+		
 		
 		if (tabella.equals("Aula"))
-			initAula();
+			initAula(record);
 	
 		if (tabella.equals("Convegno"))
-			initConvegno();
+			initConvegno(record);
 		
-		if (tabella.equals("Corso Di Studi"))
-			initCorsoDiStudi();
+		if (tabella.equals("Corso di studi"))
+			initCorsoDiStudi(record);
 		
 		if (tabella.equals("Disciplina"))
-			initDisciplina();
+			initDisciplina(record);
 		
 		if (tabella.equals("Docente"))
-			initDocente();
+			initDocente(record);
 		
 		if (tabella.equals("Esame"))
-			initEsame();
+			initEsame(record);
 		
-		if (tabella.equals("Fascia Oraria"))
-			initFasciaOraria();
+		if (tabella.equals("Fascia oraria"))
+			initFasciaOraria(record);
 		
 		if (tabella.equals("Gita"))
-			initGita();
+			initGita(record);
 		
 		if (tabella.equals("Insegna"))
-			initInsegna();
+			initInsegna(record);
 		
-		if (tabella.equals("Piano Di Studio"))
-			initPianoDiStudio();
+		if (tabella.equals("Piano di studio"))
+			initPianoDiStudio(record);
 		
-		if (tabella.equals("Preferenza Aula"))
-			initPreferenzaAula();
+		if (tabella.equals("Preferenza aula"))
+			initPreferenzaAula(record);
 		
-		if (tabella.equals("Preferenza Fascia Oraria"))
-			initPreferenzaFasciaOraria();
+		if (tabella.equals("Preferenza fascia oraria"))
+			initPreferenzaFasciaOraria(record);
 		
 		if (tabella.equals("Studente"))
-			initStudente();
+			initStudente(record);
 		
 		if (tabella.equals("Tirocinio"))
-			initTirocinio();
+			initTirocinio(record);
 
 		
 		getContentPane().setLayout(null);
+		getContentPane().add(modificaButton);
 
 		
 		
 	}
 	
-	/**
-	 * Inits the attività.
-	 */
-	private void initAttività(){
+	private void initAttività(String record) throws IOException, URISyntaxException{
 		JLabel labelID = new JLabel("ID Attività");
 		labelID.setBounds(69, 81, 117, 29);
 		JTextField id = new JTextField();
-		id.setBounds(250, 81, 200, 29);
+		id.setBounds(250, 81, 400, 29);
+		id.enable(false);
 		JLabel labelNome = new JLabel("Nome");
 		labelNome.setBounds(69, 121, 117, 29);
 		JTextField nome = new JTextField();
-		nome.setBounds(250, 121, 200, 29);
+		nome.setBounds(250, 121, 400, 29);
 		JLabel labelDescrizione = new JLabel ("Descrizione");
 		labelDescrizione.setBounds(69, 161, 117, 29);
 		JTextField descrizione = new JTextField();
-		descrizione.setBounds(250, 161, 200, 29);
+		descrizione.setBounds(250, 161, 400, 29);
 		JLabel labelOre = new JLabel("Ore");
 		labelOre.setBounds(69, 201, 117, 29);
 		JTextField ore = new JTextField();
-		ore.setBounds(250, 201, 200, 29);
+		ore.setBounds(250, 201, 400, 29);
 		JLabel labelSemestre = new JLabel("Semestre");
 		labelSemestre.setBounds(69, 241, 117, 29);
 		JComboBox semestre = new JComboBox();
-		semestre.setBounds(250, 241, 200, 29);
+		semestre.setBounds(250, 241, 400, 29);
+		semestre.addItem("1");
+		semestre.addItem("2");
 		JLabel labelDataInizio = new JLabel("Data Inizio");
 		labelDataInizio.setBounds(69, 281, 117, 29);
-		//JDatePicker dataInizio = new JDatePicker();
-		//dataInizio.setBounds(250, 281, 200, 29);
+		JComboBox giornoInizio = new JComboBox();
+		giornoInizio.setBounds(250, 281, 100, 29);
+		JComboBox meseInizio = new JComboBox();
+		meseInizio.setBounds(400, 281, 100, 29);
+		JComboBox annoInizio = new JComboBox();
+		annoInizio.setBounds(550, 281, 100, 29);
 		JLabel labelDataFine = new JLabel("Data Fine");
 		labelDataFine.setBounds(69, 321, 117, 29);
-		//JDatePicker dataFine = new JDatePicker();
-		//dataFine.setBounds(250, 321, 200, 29);
+		JComboBox giornoFine = new JComboBox();
+		giornoFine.setBounds(250, 321, 100, 29);
+		JComboBox meseFine = new JComboBox();
+		meseFine.setBounds(400, 321, 100, 29);
+		JComboBox annoFine = new JComboBox();
+		annoFine.setBounds(550, 321, 100, 29);
+		
+
+		String spRecord[] = record.split(",");
+		semestre.setEditable(true);
+		giornoInizio.setEditable(true);
+		meseInizio.setEditable(true);
+		annoInizio.setEditable(true);
+		giornoFine.setEditable(true);
+		meseFine.setEditable(true);
+		annoFine.setEditable(true);
+		
+		for (int i=1; i<=31;i++){
+			giornoInizio.addItem(i);
+			giornoFine.addItem(i);
+		}
+		
+			meseInizio.addItem("Gennaio");
+			meseInizio.addItem("Febbraio");
+			meseInizio.addItem("Marzo");
+			meseInizio.addItem("Aprile");
+			meseInizio.addItem("Maggio");
+			meseInizio.addItem("Giugno");
+			meseInizio.addItem("Luglio");
+			meseInizio.addItem("Agosto");
+			meseInizio.addItem("Settembre");
+			meseInizio.addItem("Ottobre");
+			meseInizio.addItem("Novembre");
+			meseInizio.addItem("Dicembre");
+			meseFine.addItem("Gennaio");
+			meseFine.addItem("Febbraio");
+			meseFine.addItem("Marzo");
+			meseFine.addItem("Aprile");
+			meseFine.addItem("Maggio");
+			meseFine.addItem("Giugno");
+			meseFine.addItem("Luglio");
+			meseFine.addItem("Agosto");
+			meseFine.addItem("Settembre");
+			meseFine.addItem("Ottobre");
+			meseFine.addItem("Novembre");
+			meseFine.addItem("Dicembre");
+		
+		
+		for (int j=2016; j<=2100; j++){
+			annoInizio.addItem(j);
+			annoFine.addItem(j);
+		}
+		
+			id.setText(spRecord[0]);
+			nome.setText(spRecord[1]);
+			descrizione.setText(spRecord[2]);
+			ore.setText(spRecord[3]);
+			semestre.setSelectedItem(spRecord[4]);
+			//dataInizio.setShowYearButtons(true);
+			//datafine
+		
+		
+		
 		
 		getContentPane().add(labelID);
 		getContentPane().add(labelNome);
@@ -131,21 +205,26 @@ public class ManagementTableView extends JFrame {
 		getContentPane().add(descrizione);
 		getContentPane().add(ore);
 		getContentPane().add(semestre);
+		getContentPane().add(giornoInizio);
+		getContentPane().add(meseInizio);
+		getContentPane().add(annoInizio);
+		getContentPane().add(giornoFine);
+		getContentPane().add(meseFine);
+		getContentPane().add(annoFine);
 		
 	}
 	
-	/**
-	 * Inits the aula.
-	 */
-	private void initAula(){
+	private void initAula(String record){
 		JLabel labelEdificio = new JLabel("Edificio");
 		labelEdificio.setBounds(69, 71, 117, 29);
 		JTextField edificio = new JTextField();
 		edificio.setBounds(250, 71, 200, 29);
+		edificio.enable(false);
 		JLabel labelNumero = new JLabel("Numero");
 		labelNumero.setBounds(69, 111, 117, 29);
 		JTextField numero = new JTextField();
 		numero.setBounds(250, 111, 200, 29);
+		numero.enable(false);
 		JLabel labelCapienza = new JLabel ("Capienza");
 		labelCapienza.setBounds(69, 151, 117, 29);
 		JTextField capienza = new JTextField();
@@ -154,6 +233,13 @@ public class ManagementTableView extends JFrame {
 		labelDescrizione.setBounds(69, 191, 117, 29);
 		JTextField descrizione = new JTextField();
 		descrizione.setBounds(250, 191, 200, 29);
+		
+		String spRecord[] = record.split(",");
+		edificio.setText(spRecord[0]);
+		numero.setText(spRecord[1]);
+		capienza.setText(spRecord[2]);
+		descrizione.setText(spRecord[3]);
+		
 		
 		getContentPane().add(labelEdificio);
 		getContentPane().add(labelNumero);
@@ -166,22 +252,62 @@ public class ManagementTableView extends JFrame {
 
 	}
 	
-	/**
-	 * Inits the convegno.
-	 */
-	private void initConvegno(){
+	private void initConvegno(String record) throws IOException, URISyntaxException{
 		JLabel labelIDConvegno = new JLabel("ID Convegno");
 		labelIDConvegno.setBounds(69, 71, 117, 29);
+		JTextField idConvegno = new JTextField();
+		idConvegno.setBounds(250, 71, 200, 29);
+		idConvegno.enable(false);
 		JLabel labelIDAttività = new JLabel("ID Attività");
-		labelIDAttività.setBounds(69, 101, 117, 29);
+		labelIDAttività.setBounds(69, 111, 117, 29);
+		JComboBox idAttività = new JComboBox();
+		idAttività.setBounds(250, 111, 200, 29);
 		JLabel labelNomeRelatore = new JLabel ("Nome Relatore");
-		labelNomeRelatore.setBounds(69, 131, 117, 29);
+		labelNomeRelatore.setBounds(69, 151, 117, 29);
+		JTextField nomeRelatore = new JTextField();
+		nomeRelatore.setBounds(250, 151, 200, 29);
 		JLabel labelCognomeRelatore = new JLabel("Cognome Relatore");
-		labelCognomeRelatore.setBounds(69, 161, 117, 29);
+		labelCognomeRelatore.setBounds(69, 191, 117, 29);
+		JTextField cognomeRelatore = new JTextField();
+		cognomeRelatore.setBounds(250, 191, 200, 29);
 		JLabel labelEmailRelatore = new JLabel("Email Relatore");
-		labelEmailRelatore.setBounds(69, 191, 117, 29);
+		labelEmailRelatore.setBounds(69, 231, 117, 29);
+		JTextField emailRelatore = new JTextField();
+		emailRelatore.setBounds(250, 231, 200, 29);
 		JLabel labelQualificaRelatore = new JLabel("Qualifica Relatore");
-		labelQualificaRelatore.setBounds(69, 221, 117, 29);
+		labelQualificaRelatore.setBounds(69, 271, 117, 29);
+		JTextField qualificaRelatore = new JTextField();
+		qualificaRelatore.setBounds(250, 271, 200, 29);
+		
+		String spRecord[] = record.split(",");
+		String Attività = Connect.connectDb(GiveAll.giveAllAttività);
+		String Convegno = Connect.connectDb(GiveAll.giveAllConvegno);
+		String spConvegno[] = Convegno.split("_");
+		String spAttività[] = Attività.split("_");
+		
+		int j=0;
+		
+		for (int i=0; i<spAttività.length; i++){
+			String y = spAttività[i];
+			String spAttivitàColonne[] = y.split(",");
+			idAttività.addItem(spAttivitàColonne[0]+","+spAttivitàColonne[1]);
+		} 
+		
+		idAttività.setEditable(true);
+		idConvegno.setText(spRecord[0]);
+		
+		 while (j != spConvegno.length) {
+			String x = spConvegno[j];
+			String spConvegnoColonne[] = x.split(",");
+			if (spConvegnoColonne[0].equals(spRecord[0])){
+			idAttività.setSelectedItem(spConvegnoColonne[1]);
+			}
+			j++;
+		}
+		nomeRelatore.setText(spRecord[7]);
+		cognomeRelatore.setText(spRecord[8]);
+		emailRelatore.setText(spRecord[9]);
+		qualificaRelatore.setText(spRecord[10]);
 		
 		getContentPane().add(labelIDConvegno);
 		getContentPane().add(labelIDAttività);
@@ -189,29 +315,80 @@ public class ManagementTableView extends JFrame {
 		getContentPane().add(labelCognomeRelatore);
 		getContentPane().add(labelEmailRelatore);
 		getContentPane().add(labelQualificaRelatore);
+		getContentPane().add(idConvegno);
+		getContentPane().add(idAttività);
+		getContentPane().add(nomeRelatore);
+		getContentPane().add(cognomeRelatore);
+		getContentPane().add(emailRelatore);
+		getContentPane().add(qualificaRelatore);
 
 	}
 	
-	/**
-	 * Inits the corso di studi.
-	 */
-	private void initCorsoDiStudi(){
+	private void initCorsoDiStudi(String record){
 		JLabel labelID = new JLabel("ID Corso Di Studi");
 		labelID.setBounds(69, 71, 117, 29);
+		JTextField id = new JTextField();
+		id.setBounds(250, 71, 200, 29);
+		id.enable(false);
 		JLabel labelNome = new JLabel("Nome");
-		labelNome.setBounds(69, 101, 117, 29);
+		labelNome.setBounds(69, 111, 117, 29);
+		JTextField nome = new JTextField();
+		nome.setBounds(250, 111, 200, 29);
 		JLabel labelDescrizione = new JLabel ("Descrizione");
-		labelDescrizione.setBounds(69, 131, 117, 29);
+		labelDescrizione.setBounds(69, 151, 117, 29);
+		JTextField descrizione = new JTextField();
+		descrizione.setBounds(250, 151, 200, 29);
 		JLabel labelTotaleCrediti = new JLabel("Totale Crediti");
-		labelTotaleCrediti.setBounds(69, 161, 117, 29);
+		labelTotaleCrediti.setBounds(69, 191, 117, 29);
+		JTextField crediti = new JTextField();
+		crediti.setBounds(250, 191, 200, 29);
 		JLabel labelAnno = new JLabel("Anno");
-		labelAnno.setBounds(69, 191, 117, 29);
+		labelAnno.setBounds(69, 231, 117, 29);
+		JComboBox anno = new JComboBox();
+		anno.setBounds(250, 231, 200, 29);
 		JLabel labelIndirizzo = new JLabel("Indirizzo");
-		labelIndirizzo.setBounds(69, 221, 117, 29);
-		JLabel labelFacoltà = new JLabel("Facoltà");
-		labelFacoltà.setBounds(69, 251, 117, 29);
+		labelIndirizzo.setBounds(69, 271, 117, 29);
+		JComboBox indirizzo = new JComboBox();
+		indirizzo.setBounds(250, 271, 200, 29);
+		JLabel labelfacoltà = new JLabel("Facolt�");
+		labelfacoltà.setBounds(69, 311, 117, 29);
+		JTextField facoltà = new JTextField();
+		facoltà.setBounds(250, 311, 200, 29);
 		JLabel labelTipoLaurea = new JLabel ("Tipo Laurea");
-		labelTipoLaurea.setBounds(69, 281, 117, 29);
+		labelTipoLaurea.setBounds(69, 351, 117, 29);
+		JComboBox laurea = new JComboBox();
+		laurea.setBounds(250, 351, 200, 29);
+		
+		String spRecord[] = record.split(",");
+		anno.setEditable(true);
+		indirizzo.setEditable(true);
+		laurea.setEditable(true);
+		id.setText(spRecord[0]);
+		nome.setText(spRecord[1]);
+		descrizione.setText(spRecord[2]);
+		crediti.setText(spRecord[3]);
+		anno.setSelectedItem(spRecord[4]);
+		indirizzo.setSelectedItem(spRecord[5]);
+		facoltà.setText(spRecord[6]);
+		laurea.setSelectedItem(spRecord[7]);
+		
+		anno.addItem("1");
+		anno.addItem("2");
+		anno.addItem("3");
+
+		
+		indirizzo.addItem("Informatica Industriale");
+		indirizzo.addItem("Informatica Meccatronica");
+		indirizzo.addItem("Informatica Sistemi In Rete");
+		indirizzo.addItem("Informatica");
+		indirizzo.addItem("Gestionale");
+		indirizzo.addItem("Tessile");
+		indirizzo.addItem("Edile");
+		indirizzo.addItem("Meccanica");
+		indirizzo.addItem("Tecnologie Per La Salute");
+		
+		laurea.addItem("Triennale");
+		laurea.addItem("Magistrale");
 		
 		getContentPane().add(labelID);
 		getContentPane().add(labelNome);
@@ -219,43 +396,103 @@ public class ManagementTableView extends JFrame {
 		getContentPane().add(labelTotaleCrediti);
 		getContentPane().add(labelAnno);
 		getContentPane().add(labelIndirizzo);
-		getContentPane().add(labelFacoltà);
+		getContentPane().add(labelfacoltà);
 		getContentPane().add(labelTipoLaurea);
+		getContentPane().add(id);
+		getContentPane().add(nome);
+		getContentPane().add(descrizione);
+		getContentPane().add(crediti);
+		getContentPane().add(anno);
+		getContentPane().add(indirizzo);
+		getContentPane().add(facoltà);
+		getContentPane().add(laurea);
 	}
 	
-	/**
-	 * Inits the disciplina.
-	 */
-	private void initDisciplina(){
+	private void initDisciplina(String record) throws IOException, URISyntaxException{
 		JLabel labelIDDisciplina = new JLabel("ID Disciplina");
 		labelIDDisciplina.setBounds(69, 71, 117, 29);
+		JTextField idDisciplina = new JTextField();
+		idDisciplina.setBounds(250, 71, 200, 29);
+		idDisciplina.enable(false);
 		JLabel labelIDAttività = new JLabel("ID Attività");
-		labelIDAttività.setBounds(69, 101, 117, 29);
+		labelIDAttività.setBounds(69, 111, 117, 29);
+		JComboBox idAttività = new JComboBox();
+		idAttività.setBounds(250, 111, 200, 29);
 		JLabel labelCrediti = new JLabel ("Crediti");
-		labelCrediti.setBounds(69, 131, 117, 29);
+		labelCrediti.setBounds(69, 151, 117, 29);
+		JTextField crediti = new JTextField();
+		crediti.setBounds(250, 151, 200, 29);
 		
+		String Attività = Connect.connectDb(GiveAll.giveAllAttività);
+		String Disciplina = Connect.connectDb(GiveAll.giveAllDisciplina);
+		String spAttività[] = Attività.split("_");
+		String spDisciplina[] = Disciplina.split("_");
+		int j=0;
+		for (int i=0; i<spAttività.length; i++){
+			String y = spAttività[i];
+			String spAttivitàColonne[] = y.split(",");
+			idAttività.addItem(spAttivitàColonne[0]+","+spAttivitàColonne[1]);
+		}
+		
+		String spRecord[] = record.split(",");
+		idAttività.setEditable(true);
+		idDisciplina.setText(spRecord[0]);
+		while (j != spDisciplina.length) {
+			String x = spDisciplina[j];
+			String spDisciplinaColonne[] = x.split(",");
+			if (spDisciplinaColonne[0].equals(spRecord[0])){
+			idAttività.setSelectedItem(spDisciplinaColonne[1]);
+			}
+			j++;
+		}
+		crediti.setText(spRecord[7]);
 		
 		getContentPane().add(labelIDDisciplina);
 		getContentPane().add(labelIDAttività);
 		getContentPane().add(labelCrediti);
+		getContentPane().add(idDisciplina);
+		getContentPane().add(idAttività);
+		getContentPane().add(crediti);
 	}
 	
-	/**
-	 * Inits the docente.
-	 */
-	private void initDocente(){
+	private void initDocente(String record){
 		JLabel labelMatricola = new JLabel("Matricola");
 		labelMatricola.setBounds(69, 71, 117, 29);
+		JTextField matricola = new JTextField();
+		matricola.setBounds(250, 71, 200, 29);
+		matricola.enable(false);
 		JLabel labelNome = new JLabel("Nome");
-		labelNome.setBounds(69, 101, 117, 29);
+		labelNome.setBounds(69, 111, 117, 29);
+		JTextField nome = new JTextField();
+		nome.setBounds(250, 111, 200, 29);
 		JLabel labelCognome = new JLabel ("Cognome");
-		labelCognome.setBounds(69, 131, 117, 29);
+		labelCognome.setBounds(69, 151, 117, 29);
+		JTextField cognome = new JTextField();
+		cognome.setBounds(250, 151, 200, 29);
 		JLabel labelEmail = new JLabel("Email");
-		labelEmail.setBounds(69, 161, 117, 29);
+		labelEmail.setBounds(69, 191, 117, 29);
+		JTextField email = new JTextField();
+		email.setBounds(250, 191, 200, 29);
 		JLabel labelQualifica = new JLabel("Qualifica");
-		labelQualifica.setBounds(69, 191, 117, 29);
+		labelQualifica.setBounds(69, 231, 117, 29);
+		JTextField qualifica = new JTextField();
+		qualifica.setBounds(250, 231, 200, 29);
 		JLabel labelAssociato = new JLabel("Associato");
-		labelAssociato.setBounds(69, 221, 117, 29);
+		labelAssociato.setBounds(69, 271, 117, 29);
+		JComboBox associato = new JComboBox();
+		associato.setBounds(250, 271, 200, 29);
+		
+		String spRecord[] = record.split(",");
+		associato.setEditable(true);
+		matricola.setText(spRecord[0]);
+		nome.setText(spRecord[1]);
+		cognome.setText(spRecord[2]);
+		email.setText(spRecord[3]);
+		qualifica.setText(spRecord[4]);
+		associato.setSelectedItem(spRecord[5]);
+		
+		associato.addItem("0");
+		associato.addItem("1");
 		
 		getContentPane().add(labelMatricola);
 		getContentPane().add(labelNome);
@@ -263,142 +500,413 @@ public class ManagementTableView extends JFrame {
 		getContentPane().add(labelEmail);
 		getContentPane().add(labelQualifica);
 		getContentPane().add(labelAssociato);
+		getContentPane().add(matricola);
+		getContentPane().add(nome);
+		getContentPane().add(cognome);
+		getContentPane().add(email);
+		getContentPane().add(qualifica);
+		getContentPane().add(associato);
 	}
 	
-	/**
-	 * Inits the esame.
-	 */
-	private void initEsame(){
+	private void initEsame(String record) throws IOException, URISyntaxException{
 		JLabel labelIDEsame = new JLabel("ID Esame");
 		labelIDEsame.setBounds(69, 71, 117, 29);
+		JTextField idEsame = new JTextField();
+		idEsame.setBounds(250, 71, 200, 29);
+		idEsame.enable(false);
 		JLabel labelIDAttività = new JLabel("IDAttività");
-		labelIDAttività.setBounds(69, 101, 117, 29);
+		labelIDAttività.setBounds(69, 111, 117, 29);
+		JComboBox idAttività = new JComboBox();
+		idAttività.setBounds(250, 111, 200, 29);
 		JLabel labelTipologia = new JLabel ("Tipologia");
-		labelTipologia.setBounds(69, 131, 117, 29);
+		labelTipologia.setBounds(69, 151, 117, 29);
+		JComboBox tipologia = new JComboBox();
+		tipologia.setBounds(250, 151, 200, 29);
 		
+		String spRecord[] = record.split(",");
+		String Attività = Connect.connectDb(GiveAll.giveAllAttività);
+		String Esame = Connect.connectDb(GiveAll.giveAllEsame);
+		String spAttività[] = Attività.split("_");
+		String spEsame[] = Esame.split("_");
+		int j=0;
+		for (int i=0; i<spAttività.length; i++){
+			String y = spAttività[i];
+			String spAttivitàColonne[] = y.split(",");
+			idAttività.addItem(spAttivitàColonne[0]+","+spAttivitàColonne[1]);
+		}
+		
+		idAttività.setEditable(true);
+		while (j != spEsame.length) {
+			String x = spEsame[j];
+			String spEsameColonne[] = x.split(",");
+			if (spEsameColonne[0].equals(spRecord[0])){
+			idAttività.setSelectedItem(spEsameColonne[1]);
+			}
+			j++;
+		}
+		
+
+		tipologia.setEditable(true);
+		idEsame.setText(spRecord[0]);
+		tipologia.setSelectedItem(spRecord[7]);
+		
+		tipologia.addItem("Scritto");
+		tipologia.addItem("Orale");
+		tipologia.addItem("ScrittoOrale");
 		
 		getContentPane().add(labelIDEsame);
 		getContentPane().add(labelIDAttività);
 		getContentPane().add(labelTipologia);
+		getContentPane().add(idEsame);
+		getContentPane().add(idAttività);
+		getContentPane().add(tipologia);
 	}
 	
-	/**
-	 * Inits the fascia oraria.
-	 */
-	private void initFasciaOraria(){
+	private void initFasciaOraria(String record){
 		JLabel labelID = new JLabel("ID Fascia Oraria");
 		labelID.setBounds(69, 71, 117, 29);
+		JTextField id = new JTextField();
+		id.setBounds(250, 71, 200, 29);
+		id.enable(false);
 		JLabel labelGiorno = new JLabel("Giorno");
-		labelGiorno.setBounds(69, 101, 117, 29);
+		labelGiorno.setBounds(69, 111, 117, 29);
+		JComboBox giorno = new JComboBox();
+		giorno.setBounds(250, 111, 200, 29);
 		JLabel labelOraInizio = new JLabel ("Ora Inizio");
-		labelOraInizio.setBounds(69, 131, 117, 29);
+		labelOraInizio.setBounds(69, 151, 117, 29);
+		JTextField OInizio = new JTextField();
+		OInizio.setBounds(250, 151, 200, 29);
 		JLabel labelOraFine = new JLabel("Ora Fine");
-		labelOraFine.setBounds(69, 161, 117, 29);
+		labelOraFine.setBounds(69, 191, 117, 29);
+		JTextField OFine = new JTextField();
+		OFine.setBounds(250, 191, 200, 29);
 		
+		String spRecord[] = record.split(",");
+		giorno.setEditable(true);
+		id.setText(spRecord[0]);
+		giorno.setSelectedItem(spRecord[1]);
+		OInizio.setText(spRecord[2]);
+		OFine.setText(spRecord[3]);
+		
+		giorno.addItem("Luned�");
+		giorno.addItem("Marted�");
+		giorno.addItem("Mercoled�");
+		giorno.addItem("Gioved�");
+		giorno.addItem("Venerd�");
+		giorno.addItem("Sabato");
 		
 		getContentPane().add(labelID);
 		getContentPane().add(labelGiorno);
 		getContentPane().add(labelOraInizio);
 		getContentPane().add(labelOraFine);
+		getContentPane().add(id);
+		getContentPane().add(giorno);
+		getContentPane().add(OInizio);
+		getContentPane().add(OFine);
 	}
 	
-	/**
-	 * Inits the gita.
-	 */
-	private void initGita(){
+	private void initGita(String record) throws IOException, URISyntaxException{
 		JLabel labelIDGita = new JLabel("ID Gita");
 		labelIDGita.setBounds(69, 71, 117, 29);
+		JTextField gita = new JTextField();
+		gita.setBounds(250, 71, 200, 29);
+		gita.enable(false);
 		JLabel labelIDAttività = new JLabel("IDAttività");
-		labelIDAttività.setBounds(69, 101, 117, 29);
+		labelIDAttività.setBounds(69, 111, 117, 29);
+		JComboBox attività = new JComboBox();
+		attività.setBounds(250, 111, 200, 29);
 		JLabel labelLuogo = new JLabel ("Luogo");
-		labelLuogo.setBounds(69, 131, 117, 29);
+		labelLuogo.setBounds(69, 151, 117, 29);
+		JTextField luogo = new JTextField();
+		luogo.setBounds(250, 151, 200, 29);
+		
+		String spRecord[] = record.split(",");
+		String Attività = Connect.connectDb(GiveAll.giveAllAttività);
+		String Gita = Connect.connectDb(GiveAll.giveAllGita);
+		String spAttività[] = Attività.split("_");
+		String spGita[] = Gita.split("_");
+		int j=0;
+		for (int i=0; i<spAttività.length; i++){
+			String y = spAttività[i];
+			String spAttivitàColonne[] = y.split(",");
+			attività.addItem(spAttivitàColonne[0]+","+spAttivitàColonne[1]);
+		}
+		
+		attività.setEditable(true);
+		while (j != spGita.length) {
+			String x = spGita[j];
+			String spGitaColonne[] = x.split(",");
+			if (spGitaColonne[0].equals(spRecord[0])){
+			attività.setSelectedItem(spGitaColonne[1]);
+			}
+			j++;
+		}
+		gita.setText(spRecord[0]);
+		luogo.setText(spRecord[7]);
 		
 		getContentPane().add(labelIDGita);
 		getContentPane().add(labelIDAttività);
 		getContentPane().add(labelLuogo);
+		getContentPane().add(gita);
+		getContentPane().add(attività);
+		getContentPane().add(luogo);
 	}
 	
-	/**
-	 * Inits the insegna.
-	 */
-	private void initInsegna(){
+	private void initInsegna(String record) throws IOException, URISyntaxException{
 		JLabel labelMatricola = new JLabel("Matricola");
 		labelMatricola.setBounds(69, 71, 117, 29);
+		JTextField matricola = new JTextField();
+		matricola.setBounds(250, 71, 200, 29);
 		JLabel labelID = new JLabel("ID Attività");
-		labelID.setBounds(69, 101, 117, 29);
+		labelID.setBounds(69, 111, 117, 29);
+		JComboBox attività = new JComboBox();
+		attività.setBounds(250, 111, 200, 29);
+		
+		String spRecord[] = record.split(",");
+		String Attività = Connect.connectDb(GiveAll.giveAllAttività);
+		String Insegna = Connect.connectDb(GiveAll.giveAllInsegna);
+		String spAttività[] = Attività.split("_");
+		String spInsegna[] = Insegna.split("_");
+		int j=0;
+		for (int i=0; i<spAttività.length; i++){
+			String y = spAttività[i];
+			String spAttivitàColonne[] = y.split(",");
+			attività.addItem(spAttivitàColonne[0]+","+spAttivitàColonne[1]);
+		}
+		attività.setEditable(true);
+		while (j != spInsegna.length) {
+			String x = spInsegna[j];
+			String spInsegnaColonne[] = x.split(",");
+			if (spInsegnaColonne[0].equals(spRecord[0])){
+			attività.setSelectedItem(spInsegnaColonne[1]);
+			}
+			j++;
+		}
+		matricola.setText(spRecord[0]);
 		
 		
 		getContentPane().add(labelMatricola);
 		getContentPane().add(labelID);
+		getContentPane().add(matricola);
+		getContentPane().add(attività);
 	}
 	
-	/**
-	 * Inits the piano di studio.
-	 */
-	private void initPianoDiStudio(){
+	private void initPianoDiStudio(String record) throws IOException, URISyntaxException{
 		JLabel labelIDCorso = new JLabel("ID Corso Di Studi");
 		labelIDCorso.setBounds(69, 71, 117, 29);
+		JTextField idCorso = new JTextField();
+		idCorso.setBounds(250, 71, 200, 29);
+		idCorso.enable(false);
 		JLabel labelIDAttività = new JLabel("ID Attività");
-		labelIDAttività.setBounds(69, 101, 117, 29);
+		labelIDAttività.setBounds(69, 111, 117, 29);
+		JTextField idAttività = new JTextField();
+		idAttività.setBounds(250, 111, 200, 29);
+		idAttività.enable(false);
 		JLabel labelOpzionale = new JLabel ("Opzionale");
-		labelOpzionale.setBounds(69, 131, 117, 29);
+		labelOpzionale.setBounds(69, 151, 117, 29);
+		JComboBox opzionale = new JComboBox();
+		opzionale.setBounds(250, 151, 200, 29);
+		
+		String spRecord[] = record.split(",");
+		String Attività = Connect.connectDb(GiveAll.giveAllAttività);
+		String Piano = Connect.connectDb(GiveAll.giveAllPianoDiStudio);
+		String spAttività[] = Attività.split("_");
+		String spPiano[] = Piano.split("_");
+		int j=0;
+		while (j != spPiano.length) {
+			String x = spPiano[j];
+			String spPianoColonne[] = x.split(",");
+			if (spPianoColonne[0].equals(spRecord[0])){
+			idAttività.setText(spPianoColonne[1]);
+			}
+			j++;
+		}
+		opzionale.setEditable(true);
+		idCorso.setText(spRecord[0]);
+		opzionale.setSelectedItem(spRecord[14]);
+		
+		opzionale.addItem("0");
+		opzionale.addItem("1");
 		
 		getContentPane().add(labelIDCorso);
 		getContentPane().add(labelIDAttività);
 		getContentPane().add(labelOpzionale);
+		getContentPane().add(idCorso);
+		getContentPane().add(idAttività);
+		getContentPane().add(opzionale);
 	}
 	
-	/**
-	 * Inits the preferenza aula.
-	 */
-	private void initPreferenzaAula(){
+	private void initPreferenzaAula(String record){
 		JLabel labelMatricola = new JLabel("Matricola");
 		labelMatricola.setBounds(69, 71, 117, 29);
+		JTextField matricola = new JTextField();
+		matricola.setBounds(250, 71, 200, 29);
+		matricola.enable(false);
 		JLabel labelEdificio = new JLabel("Edificio");
-		labelEdificio.setBounds(69, 101, 117, 29);
+		labelEdificio.setBounds(69, 111, 117, 29);
+		JTextField edificio = new JTextField();
+		edificio.setBounds(250, 111, 200, 29);
+		edificio.enable(false);
 		JLabel labelNumero = new JLabel ("Numero");
-		labelNumero.setBounds(69, 131, 117, 29);
+		labelNumero.setBounds(69, 151, 117, 29);
+		JTextField numero = new JTextField();
+		numero.setBounds(250, 151, 200, 29);
+		numero.enable(false);
+		
+		String spRecord[] = record.split(",");
+		
+		matricola.setText(spRecord[0]);
+		edificio.setText(spRecord[3]);
+		numero.setText(spRecord[4]);
 		
 		getContentPane().add(labelMatricola);
 		getContentPane().add(labelEdificio);
 		getContentPane().add(labelNumero);
+		getContentPane().add(matricola);
+		getContentPane().add(edificio);
+		getContentPane().add(numero);
 	}
 	
-	/**
-	 * Inits the preferenza fascia oraria.
-	 */
-	private void initPreferenzaFasciaOraria(){
+	private void initPreferenzaFasciaOraria(String record) throws IOException, URISyntaxException{
 		JLabel labelMatricola = new JLabel("Matricola");
 		labelMatricola.setBounds(69, 71, 117, 29);
+		JTextField matricola = new JTextField();
+		matricola.setBounds(250, 71, 200, 29);
+		matricola.enable(false);
 		JLabel labelID = new JLabel("ID Fascia Oraria");
-		labelID.setBounds(69, 101, 117, 29);
+		labelID.setBounds(69, 111, 117, 29);
+		JTextField id = new JTextField();
+		id.setBounds(250, 111, 200, 29);
+		id.enable(false);
 		JLabel labelPriorità = new JLabel ("Priorità");
-		labelPriorità.setBounds(69, 131, 117, 29);
+		labelPriorità.setBounds(69, 151, 117, 29);
+		JComboBox priorità = new JComboBox();
+		priorità.setBounds(250, 151, 200, 29);
+		
+		String spRecord[] = record.split(",");
+		String Fascia = Connect.connectDb(GiveAll.giveAllPreferenzaFasciaOraria);
+		String spFascia[] = Fascia.split("_");
+		String Oraria = Connect.connectDb(GiveAll.giveAllFasciaOraria);
+		String spOraria[] = Oraria.split("_");
+		String spFasciaColonne[] = null;
+		String spOrariaColonne[] = null;
+		int j = 0;
+		int k = 0;
+		
+		while (true) {
+			
+		while (j < spFascia.length) {
+			String x = spFascia[j];
+			spFasciaColonne = x.split(",");
+			if (spRecord[0].equals(spFasciaColonne[0]))
+				break;
+			j++;
+		}
+		if (j == spFascia.length)
+			return;
+		j++;
+		
+		
+		
+			
+		String idFasciaOrariaDocente = spFasciaColonne[1];
+		while (k < spOraria.length){
+			String y = spOraria[k];
+			spOrariaColonne = y.split(",");
+			System.out.println(idFasciaOrariaDocente + " " + spOrariaColonne[0]);
+			if (idFasciaOrariaDocente.trim().equals(spOrariaColonne[0].trim()))
+				break;
+			k++;
+		}
+		
+		if (k == spOraria.length)
+			return;
+		
+		if (spRecord[3].trim().equals(spOrariaColonne[1].trim()) && spRecord[4].trim().equals(spOrariaColonne[2].trim())){
+			id.setText(spOrariaColonne[0]);
+			break;
+		}
+		}
+		priorità.setEditable(true);
+		matricola.setText(spRecord[0]);
+		priorità.setSelectedItem(spRecord[6]);
+		
+		
+		priorità.addItem("1");
+		priorità.addItem("2");
+		priorità.addItem("3");
 		
 		getContentPane().add(labelMatricola);
 		getContentPane().add(labelID);
 		getContentPane().add(labelPriorità);
+		getContentPane().add(matricola);
+		getContentPane().add(id);
+		getContentPane().add(priorità);
 	}
 	
-	/**
-	 * Inits the studente.
-	 */
-	private void initStudente(){
+	private void initStudente(String record) throws IOException, URISyntaxException{
 		JLabel labelMatricola = new JLabel("Matricola");
 		labelMatricola.setBounds(69, 71, 117, 29);
+		JTextField matricola = new JTextField();
+		matricola.setBounds(250, 71, 200, 29);
+		matricola.enable(false);
 		JLabel labelNome = new JLabel("Nome");
-		labelNome.setBounds(69, 101, 117, 29);
+		labelNome.setBounds(69, 111, 117, 29);
+		JTextField nome = new JTextField();
+		nome.setBounds(250, 111, 200, 29);
 		JLabel labelCognome = new JLabel ("Cognome");
-		labelCognome.setBounds(69, 131, 117, 29);
+		labelCognome.setBounds(69, 151, 117, 29);
+		JTextField cognome = new JTextField();
+		cognome.setBounds(250, 151, 200, 29);
 		JLabel labelEmail = new JLabel("Email");
-		labelEmail.setBounds(69, 161, 117, 29);
+		labelEmail.setBounds(69, 191, 117, 29);
+		JTextField email = new JTextField();
+		email.setBounds(250, 191, 200, 29);
 		JLabel labelDataNascita = new JLabel("Data Nascita");
-		labelDataNascita.setBounds(69, 191, 117, 29);
+		labelDataNascita.setBounds(69, 231, 117, 29);
+		//JDatePicker data = new JDatePicker();
 		JLabel labelAnnoIscrizione = new JLabel("Anno Iscrizione");
-		labelAnnoIscrizione.setBounds(69, 221, 117, 29);
+		labelAnnoIscrizione.setBounds(69, 271, 117, 29);
+		JComboBox anno = new JComboBox();
+		anno.setBounds(250, 271, 200, 29);
 		JLabel labelID = new JLabel("ID Corso Di Studi");
-		labelID.setBounds(69, 251, 117, 29);
+		labelID.setBounds(69, 311, 117, 29);
+		JComboBox id = new JComboBox();
+		id.setBounds(250, 311, 200, 29);
 		
+		String Corso = Connect.connectDb(GiveAll.giveAllCorsoDiStudi);
+		String Studente = Connect.connectDb(GiveAll.giveAllStudente);
+		String spCorso[] = Corso.split("_");
+		String spStudente[] = Studente.split("_");
+		int j=0;
+		for (int i=0; i<spCorso.length; i++){
+			String y = spCorso[i];
+			String spCorsoColonne[] = y.split(",");
+			id.addItem(spCorsoColonne[0]+","+spCorsoColonne[1]);
+		}
+		
+		for (int i = 2011; i <= 2100; i++){
+			anno.addItem(i);
+		}
+		
+		String spRecord[] = record.split(",");
+		anno.setEditable(true);
+		id.setEditable(true);
+		 while (j != spStudente.length) {
+				String x = spStudente[j];
+				String spStudenteColonne[] = x.split(",");
+				if (spStudenteColonne[0].equals(spRecord[0])){
+				id.setSelectedItem(spStudenteColonne[6]);
+				}
+				j++;
+			}
+		matricola.setText(spRecord[0]);
+		nome.setText(spRecord[1]);
+		cognome.setText(spRecord[2]);
+		email.setText(spRecord[3]);
+		//data
+		anno.setSelectedItem(spRecord[5]);
+
 		getContentPane().add(labelMatricola);
 		getContentPane().add(labelNome);
 		getContentPane().add(labelCognome);
@@ -406,27 +914,80 @@ public class ManagementTableView extends JFrame {
 		getContentPane().add(labelDataNascita);
 		getContentPane().add(labelAnnoIscrizione);
 		getContentPane().add(labelID);
+		getContentPane().add(matricola);
+		getContentPane().add(nome);
+		getContentPane().add(cognome);
+		getContentPane().add(email);
+		//getContentPane().add(data);
+		getContentPane().add(anno);
+		getContentPane().add(id);
 	}
 	
-	/**
-	 * Inits the tirocinio.
-	 */
-	private void initTirocinio(){
+	private void initTirocinio(String record) throws IOException, URISyntaxException{
 		JLabel labelIDTirocinio = new JLabel("ID Tirocinio");
 		labelIDTirocinio.setBounds(69, 71, 117, 29);
+		JTextField id = new JTextField();
+		id.setBounds(250, 71, 200, 29);
+		id.enable(false);
 		JLabel labelIDAttività = new JLabel("ID Attività");
-		labelIDAttività.setBounds(69, 101, 117, 29);
+		labelIDAttività.setBounds(69, 111, 117, 29);
+		JComboBox attività = new JComboBox();
+		attività.setBounds(250, 111, 200, 29);
 		JLabel labelNomeAzienda = new JLabel ("Nome Azienda");
-		labelNomeAzienda.setBounds(69, 131, 117, 29);
+		labelNomeAzienda.setBounds(69, 151, 117, 29);
+		JTextField nome = new JTextField();
+		nome.setBounds(250, 151, 200, 29);
 		JLabel labelDescrizioneAzienda = new JLabel("Descrizione Azienda");
-		labelDescrizioneAzienda.setBounds(69, 161, 117, 29);
+		labelDescrizioneAzienda.setBounds(69, 191, 117, 29);
+		JTextField descrizione = new JTextField();
+		descrizione.setBounds(250, 191, 200, 29);
 		JLabel labelEmailAzienda = new JLabel("Email Azienda");
-		labelEmailAzienda.setBounds(69, 191, 117, 29);
+		labelEmailAzienda.setBounds(69, 231, 117, 29);
+		JTextField email = new JTextField();
+		email.setBounds(250, 231, 200, 29);
+		
+		String spRecord[] = record.split(",");
+		attività.setEditable(true);
+		String Attività = Connect.connectDb(GiveAll.giveAllAttività);
+		String Tirocinio = Connect.connectDb(GiveAll.giveAllTirocinio);
+		String spAttività[] = Attività.split("_");
+		String spTirocinio[] = Tirocinio.split("_");
+		int j=0;
+		for (int i=0; i<spAttività.length; i++){
+			String y = spAttività[i];
+			String spAttivitàColonne[] = y.split(",");
+			attività.addItem(spAttivitàColonne[0]+","+spAttivitàColonne[1]);
+		}
+		
+		 while (j != spTirocinio.length) {
+				String x = spTirocinio[j];
+				String spTirocinioColonne[] = x.split(",");
+				if (spTirocinioColonne[0].equals(spRecord[0])){
+				attività.setSelectedItem(spTirocinioColonne[1]);
+				}
+				j++;
+			}
+		id.setText(spRecord[0]);
+
+		nome.setText(spRecord[7]);
+		descrizione.setText(spRecord[8]);
+		email.setText(spRecord[9]);
 		
 		getContentPane().add(labelIDTirocinio);
 		getContentPane().add(labelIDAttività);
 		getContentPane().add(labelNomeAzienda);
 		getContentPane().add(labelDescrizioneAzienda);
 		getContentPane().add(labelEmailAzienda);
+		getContentPane().add(id);
+		getContentPane().add(attività);
+		getContentPane().add(nome);
+		getContentPane().add(descrizione);
+		getContentPane().add(email);
+	}
+
+	public void pressButtonModificaCampi(ActionListener listener) {
+		// TODO Auto-generated method stub
+		modificaButton.addActionListener(listener);
+		
 	}
 }

@@ -99,7 +99,6 @@ public class LarghezzaColonne {
 			return getTirocinio();
 		}
 
-		//System.out.println(selectedItem);
 
 		return null;
 
@@ -122,12 +121,12 @@ public class LarghezzaColonne {
 		int[] vettLarghezze = new int[7];
 
 		vettLarghezze[0] = 40;
-		vettLarghezze[1] = 200;
-		vettLarghezze[2] = 300;
-		vettLarghezze[3] = 40;
-		vettLarghezze[4] = 30;
-		vettLarghezze[5] = 90;
-		vettLarghezze[6] = 90;
+		vettLarghezze[1] = 400;
+		vettLarghezze[2] = 550;
+		vettLarghezze[3] = 50;
+		vettLarghezze[4] = 70;
+		vettLarghezze[5] = 100;
+		vettLarghezze[6] = 100;
 
 
 		return vettLarghezze;
@@ -249,7 +248,7 @@ public class LarghezzaColonne {
 		vettLarghezze[3] = 200;
 		vettLarghezze[4] = 100;
 		vettLarghezze[5] = 100;
-		
+
 
 		return vettLarghezze;	
 	}
@@ -293,7 +292,7 @@ public class LarghezzaColonne {
 		vettLarghezze[1] = 230;
 		vettLarghezze[2] = 230;
 		vettLarghezze[3] = 230;
-	
+
 
 
 		return vettLarghezze;
@@ -333,7 +332,20 @@ public class LarghezzaColonne {
 	private int[] getInsegna() throws IOException, URISyntaxException {
 
 
-		return null;
+		int[] vettLarghezze = new int[9];
+
+		vettLarghezze[0] = 80;
+		vettLarghezze[1] = 150;
+		vettLarghezze[2] = 150;
+		vettLarghezze[3] = 300;
+		vettLarghezze[4] = 600;
+		vettLarghezze[5] = 50;
+		vettLarghezze[6] = 50;
+		vettLarghezze[7] = 150;
+		vettLarghezze[8] = 150;
+
+
+		return vettLarghezze;	
 	}
 
 	/**
@@ -346,7 +358,26 @@ public class LarghezzaColonne {
 	private int[] getPianoDiStudio() throws IOException, URISyntaxException {
 
 
-		return null;
+		int[] vettLarghezze = new int[15];
+
+		vettLarghezze[0] = 70;
+		vettLarghezze[1] = 200;
+		vettLarghezze[2] = 450;
+		vettLarghezze[3] = 100;
+		vettLarghezze[4] = 70;
+		vettLarghezze[5] = 150;
+		vettLarghezze[6] = 100;
+		vettLarghezze[7] = 100;
+		vettLarghezze[8] = 400;
+		vettLarghezze[9] = 400;
+		vettLarghezze[10] = 50;
+		vettLarghezze[11] = 70;
+		vettLarghezze[12] = 100;
+		vettLarghezze[13] = 100;
+		vettLarghezze[14] = 80;
+
+
+		return vettLarghezze;
 	}
 
 	/**
@@ -358,8 +389,16 @@ public class LarghezzaColonne {
 	 */
 	private int[] getPreferenzaAula() throws IOException, URISyntaxException {
 
+		int[] vettLarghezze = new int[5];
 
-		return null;
+		vettLarghezze[0] = 130;
+		vettLarghezze[1] = 250;
+		vettLarghezze[2] = 250;
+		vettLarghezze[3] = 100;
+		vettLarghezze[4] = 70;
+		
+
+		return vettLarghezze;
 	}
 
 	/**
@@ -371,9 +410,17 @@ public class LarghezzaColonne {
 	 */
 	private int[] getPreferenzaFasciaOraria() throws IOException, URISyntaxException {
 
+		int[] vettLarghezze = new int[7];
 
+		vettLarghezze[0] = 100;
+		vettLarghezze[1] = 150;
+		vettLarghezze[2] = 150;
+		vettLarghezze[3] = 130;
+		vettLarghezze[4] = 100;
+		vettLarghezze[5] = 100;
+		vettLarghezze[6] = 70;
 
-		return null;
+		return vettLarghezze;
 	}
 
 	/**
@@ -385,7 +432,26 @@ public class LarghezzaColonne {
 	 */
 	private int[] getStudente() throws IOException, URISyntaxException {
 
-		return null;
+
+		int[] vettLarghezze = new int[13];
+
+		vettLarghezze[0] = 100;
+		vettLarghezze[1] = 100;
+		vettLarghezze[2] = 100;
+		vettLarghezze[3] = 200;
+		vettLarghezze[4] = 100;
+		vettLarghezze[5] = 100;
+		vettLarghezze[6] = 250;
+		vettLarghezze[7] = 500;
+		vettLarghezze[8] = 100;
+		vettLarghezze[9] = 50;
+		vettLarghezze[10] = 200;
+		vettLarghezze[11] = 130;
+		vettLarghezze[12] = 100;
+
+		return vettLarghezze;
+		
+		
 	}
 
 	/**
@@ -411,7 +477,7 @@ public class LarghezzaColonne {
 		vettLarghezze[9] = 200;
 
 		return vettLarghezze;
-		
+
 
 	}
 

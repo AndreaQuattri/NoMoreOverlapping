@@ -235,7 +235,7 @@ public class InsertInTable {
 			values[0][3] = "Totale Crediti";
 			values[0][4] = "Anno";
 			values[0][5] = "Indirizzo";
-			values[0][6] = "Facolt�";
+			values[0][6] = "Facoltà";
 			values[0][7] = "Tipo Laurea";
 			
 			String splitRighe[] = input.split("_");
@@ -543,7 +543,7 @@ public class InsertInTable {
 			values[0][3] = "Totale Crediti";
 			values[0][4] = "Anno";
 			values[0][5] = "Indirizzo";
-			values[0][6] = "Facolt�";
+			values[0][6] = "Facoltà";
 			values[0][7] = "Tipo Laurea";
 			values[0][8] = "Nome Attività";
 			values[0][9] = "Descrizione";
@@ -655,7 +655,7 @@ public class InsertInTable {
 			values[0][3] = "Giorno";
 			values[0][4] = "Ora Inizio";
 			values[0][5] = "Ora Fine";
-			values[0][6] = "Priorit�";
+			values[0][6] = "Priorità";
 
 			
 			String splitRighePrefFascia[] = inputPrefFascia.split("_");
@@ -714,7 +714,7 @@ public class InsertInTable {
 			values[0][8] = "Totale Crediti";
 			values[0][9] = "Anno";
 			values[0][10] = "Indirizzo";
-			values[0][11] = "Facolt�";
+			values[0][11] = "Facoltà";
 			values[0][12] = "Tipo Laurea";
 			
 			

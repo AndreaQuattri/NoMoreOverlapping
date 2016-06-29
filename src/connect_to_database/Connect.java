@@ -29,10 +29,11 @@ public class Connect {
 		
 		final URL yahoo = new URL(tabella);
         final URLConnection yconn = yahoo.openConnection();
-        BufferedReader inRead = new BufferedReader(
+        final BufferedReader inRead = new BufferedReader(
                                 new InputStreamReader(
                                 yconn.getInputStream()));
-        String inputLine, toReturn = "";
+        String inputLine;
+        String toReturn = "";
 
 
         while ((inputLine = inRead.readLine()) != null) 

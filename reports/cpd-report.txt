@@ -1,0 +1,3393 @@
+Found a 63 line (230 tokens) duplication in the following files: 
+Starting at line 24 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/elaborazione_dati/InsertInTable.java
+Starting at line 40 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/elaborazione_dati/LarghezzaColonne.java
+
+			return new String[1][1];
+		
+		if (selectedItem.equals("Attività")){
+			return getAttività();
+		}
+		
+		if (selectedItem.equals("Aula")){
+			return getAula();
+		}
+		
+		if (selectedItem.equals("Convegno")){
+			return getConvegno();
+		}
+		
+		if (selectedItem.equals("Corso di studi")){
+			return getCorsoDiStudi();
+		}
+		
+		if (selectedItem.equals("Disciplina")){
+			return getDisciplina();
+		}
+		
+		if (selectedItem.equals("Docente")){
+			return getDocente();
+		}
+		
+		if (selectedItem.equals("Esame")){
+			return getEsame();
+		}
+		
+		if (selectedItem.equals("Fascia oraria")){
+			return getFasciaOraria();
+		}
+		
+		if (selectedItem.equals("Gita")){
+			return getGita();
+		}
+		
+		if (selectedItem.equals("Insegna")){
+			return getInsegna();
+		}
+		
+		if (selectedItem.equals("Piano di studio")){
+			return getPianoDiStudio();
+		}
+		
+		if (selectedItem.equals("Preferenza aula")){
+			return getPreferenzaAula();
+		}
+		
+		if (selectedItem.equals("Preferenza fascia oraria")){
+			return getPreferenzaFasciaOraria();
+		}
+		
+		if (selectedItem.equals("Studente")){
+			return getStudente();
+		}
+		
+		if (selectedItem.equals("Tirocinio")){
+			return getTirocinio();
+		}
+		
+		return new String[1][1]; //coonsigliato da pmd
+=====================================================================
+Found a 57 line (221 tokens) duplication in the following files: 
+Starting at line 84 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/SelectedActivityListener.java
+Starting at line 82 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/SelectedDocenteListener.java
+
+		model.filtraOrario(attivitàSelezionata);
+
+		model.fromOrarioDaMostrareToTable();
+		
+		
+		for(int i=0; i<21; i++){
+			viewOrario.getTableRecords().addRow(model.getTabella().get(i));
+		}
+
+
+
+		for (int i=1; i<7; i++){
+			viewOrario.getTable().getColumnModel().getColumn(i).setCellRenderer(new DefaultTableCellRenderer() {
+				/**
+				 * 
+				 */
+				private static final long serialVersionUID = 1L;
+
+
+
+				public Component getTableCellRendererComponent (JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) 
+				{
+					Component cell = super.getTableCellRendererComponent (table, value, isSelected, hasFocus, row, column);
+
+					if (value == null)
+						return null;
+
+					if (value.equals("0")){
+						cell.setBackground( Color.gray );
+						cell.setForeground(Color.gray);
+					}
+					else{
+						if (value.equals("1")){
+							cell.setBackground( Color.BLUE );
+							cell.setForeground(Color.BLUE);
+						}
+						else{
+							cell.setBackground( Color.red );
+							cell.setForeground(Color.red);
+						}
+
+					}
+					return cell;
+
+				}});
+
+		}
+
+
+
+	}
+	
+	/**
+	 * Sets the attribute to view.
+	 */
+	private void setAttributeToView(){
+		String appoggio;
+=====================================================================
+Found a 38 line (195 tokens) duplication in the following files: 
+Starting at line 84 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/SelectedActivityListener.java
+Starting at line 82 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/SelectedDocenteListener.java
+Starting at line 73 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/SelectedPianoListener.java
+
+		model.filtraOrario(attivitàSelezionata);
+
+		model.fromOrarioDaMostrareToTable();
+		
+		
+		for(int i=0; i<21; i++){
+			viewOrario.getTableRecords().addRow(model.getTabella().get(i));
+		}
+
+
+
+		for (int i=1; i<7; i++){
+			viewOrario.getTable().getColumnModel().getColumn(i).setCellRenderer(new DefaultTableCellRenderer() {
+				/**
+				 * 
+				 */
+				private static final long serialVersionUID = 1L;
+
+
+
+				public Component getTableCellRendererComponent (JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) 
+				{
+					Component cell = super.getTableCellRendererComponent (table, value, isSelected, hasFocus, row, column);
+
+					if (value == null)
+						return null;
+
+					if (value.equals("0")){
+						cell.setBackground( Color.gray );
+						cell.setForeground(Color.gray);
+					}
+					else{
+						if (value.equals("1")){
+							cell.setBackground( Color.BLUE );
+							cell.setForeground(Color.BLUE);
+						}
+						else{
+							cell.setBackground( Color.red );
+=====================================================================
+Found a 32 line (172 tokens) duplication in the following files: 
+Starting at line 86 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/SelectedActivityListener.java
+Starting at line 66 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/SelectedAllListener.java
+Starting at line 84 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/SelectedDocenteListener.java
+Starting at line 75 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/SelectedPianoListener.java
+
+		model.fromOrarioDaMostrareToTable();
+		
+		
+		for(int i=0; i<21; i++){
+			viewOrario.getTableRecords().addRow(model.getTabella().get(i));
+		}
+
+
+
+		for (int i=1; i<7; i++){
+			viewOrario.getTable().getColumnModel().getColumn(i).setCellRenderer(new DefaultTableCellRenderer() {
+				/**
+				 * 
+				 */
+				private static final long serialVersionUID = 1L;
+
+
+
+				public Component getTableCellRendererComponent (JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) 
+				{
+					Component cell = super.getTableCellRendererComponent (table, value, isSelected, hasFocus, row, column);
+
+					if (value == null)
+						return null;
+
+					if (value.equals("0")){
+						cell.setBackground( Color.gray );
+						cell.setForeground(Color.gray);
+					}
+					else{
+						if (value.equals("1")){
+							cell.setBackground( Color.BLUE );
+=====================================================================
+Found a 19 line (164 tokens) duplication in the following files: 
+Starting at line 496 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/ManagementTableView.java
+Starting at line 946 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/ManagementTableView.java
+
+	private void initDocente(String record){
+		JLabel labelMatricola = new JLabel("Matricola");
+		labelMatricola.setBounds(69, 71, 117, 29);
+		JTextField matricola = new JTextField();
+		matricola.setBounds(250, 71, 400, 29);
+		matricola.enable(false);
+		JLabel labelNome = new JLabel("Nome");
+		labelNome.setBounds(69, 111, 117, 29);
+		JTextField nome = new JTextField();
+		nome.setBounds(250, 111, 400, 29);
+		JLabel labelCognome = new JLabel ("Cognome");
+		labelCognome.setBounds(69, 151, 117, 29);
+		JTextField cognome = new JTextField();
+		cognome.setBounds(250, 151, 400, 29);
+		JLabel labelEmail = new JLabel("Email");
+		labelEmail.setBounds(69, 191, 117, 29);
+		JTextField email = new JTextField();
+		email.setBounds(250, 191, 400, 29);
+		JLabel labelQualifica = new JLabel("Qualifica");
+=====================================================================
+Found a 38 line (161 tokens) duplication in the following files: 
+Starting at line 74 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/SelectedAllListener.java
+Starting at line 329 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/ViewTimeTable.java
+
+			viewOrario.getTable().getColumnModel().getColumn(i).setCellRenderer(new DefaultTableCellRenderer() {
+				/**
+				 * 
+				 */
+				private static final long serialVersionUID = 1L;
+
+				public Component getTableCellRendererComponent (JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) 
+				{
+					Component cell = super.getTableCellRendererComponent (table, value, isSelected, hasFocus, row, column);
+
+					if (value == null)
+						return null;
+
+					if (value.equals("0")){
+						cell.setBackground( Color.gray );
+						cell.setForeground(Color.gray);
+					}
+					else{
+						if (value.equals("1")){
+							cell.setBackground( Color.green );
+							cell.setForeground(Color.green);
+						}
+						else{
+							cell.setBackground( Color.red );
+							cell.setForeground(Color.red);
+						}
+
+					}
+
+					return cell;
+
+				}
+				}
+			);
+
+		}
+		
+	}
+=====================================================================
+Found a 22 line (123 tokens) duplication in the following files: 
+Starting at line 96 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/SelectedActivityListener.java
+Starting at line 92 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/SelectedDocenteListener.java
+Starting at line 84 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/SelectedPianoListener.java
+Starting at line 329 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/ViewTimeTable.java
+
+			viewOrario.getTable().getColumnModel().getColumn(i).setCellRenderer(new DefaultTableCellRenderer() {
+				/**
+				 * 
+				 */
+				private static final long serialVersionUID = 1L;
+
+
+
+				public Component getTableCellRendererComponent (JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) 
+				{
+					Component cell = super.getTableCellRendererComponent (table, value, isSelected, hasFocus, row, column);
+
+					if (value == null)
+						return null;
+
+					if (value.equals("0")){
+						cell.setBackground( Color.gray );
+						cell.setForeground(Color.gray);
+					}
+					else{
+						if (value.equals("1")){
+							cell.setBackground( Color.BLUE );
+=====================================================================
+Found a 10 line (106 tokens) duplication in the following files: 
+Starting at line 113 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/elaborazione_dati/InsertInTable.java
+Starting at line 242 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/elaborazione_dati/InsertInTable.java
+
+		for (int i=1; i<numAttività+1; i++){
+			
+			String splitColonne[] = splitRighe[i-1].split(",");
+			values[i][0] = splitColonne[0];
+			values[i][1] = splitColonne[1];
+			values[i][2] = splitColonne[2];
+			values[i][3] = splitColonne[3];
+			values[i][4] = splitColonne[4];
+			values[i][5] = splitColonne[5];
+			values[i][6] = splitColonne[6];
+=====================================================================
+Found a 25 line (102 tokens) duplication in the following files: 
+Starting at line 34 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/DefaultTableCellRenderer.java
+Starting at line 82 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/SelectedAllListener.java
+Starting at line 337 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/ViewTimeTable.java
+
+			Component cell = getTableCellRendererComponent (table, value, isSelected, hasFocus, row, column);
+
+			if (value == null)
+				return null;
+
+			if (value.equals("0")){
+				cell.setBackground( Color.gray );
+				cell.setForeground(Color.gray);
+			}
+			else{
+				if (value.equals("1")){
+					cell.setBackground( Color.green );
+					cell.setForeground(Color.green);
+				}
+				else{
+					cell.setBackground( Color.red );
+					cell.setForeground(Color.red);
+				}
+
+			}
+
+			return cell;
+
+	}
+}
+=====================================================================
+Found a 6 line (97 tokens) duplication in the following files: 
+Starting at line 175 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/memorizzazione_dati/DisciplinaInseritaPiano.java
+Starting at line 363 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/memorizzazione_dati/DisciplinaInseritaPiano.java
+
+		for (int iHour=0; iHour < oreDaValutare; iHour++, riga++){
+			String time = getTime(riga);
+
+			for (int i=0; i<model.getListAssegnamento().size(); i++){
+				if (model.getListAssegnamento().get(i).getFasciaOraria().getGiorno().equals(day) &&
+						model.getListAssegnamento().get(i).getFasciaOraria().getInizio().toString().substring(11, 19).equals(time)){
+=====================================================================
+Found a 16 line (97 tokens) duplication in the following files: 
+Starting at line 58 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/InsertTableView.java
+Starting at line 203 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/ManagementTableView.java
+
+		labelDataFine.setBounds(69, 321, 117, 29);
+		//JDatePicker dataFine = new JDatePicker();
+		//dataFine.setBounds(250, 321, 200, 29);
+		
+		getContentPane().add(labelID);
+		getContentPane().add(labelNome);
+		getContentPane().add(labelDescrizione);
+		getContentPane().add(labelOre);
+		getContentPane().add(labelSemestre);
+		getContentPane().add(labelDataInizio);
+		getContentPane().add(labelDataFine);
+		getContentPane().add(id);
+		getContentPane().add(nome);
+		getContentPane().add(descrizione);
+		getContentPane().add(ore);
+		getContentPane().add(semestre);
+=====================================================================
+Found a 9 line (94 tokens) duplication in the following files: 
+Starting at line 113 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/elaborazione_dati/InsertInTable.java
+Starting at line 242 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/elaborazione_dati/InsertInTable.java
+Starting at line 326 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/elaborazione_dati/InsertInTable.java
+
+		for (int i=1; i<numAttività+1; i++){
+			
+			String splitColonne[] = splitRighe[i-1].split(",");
+			values[i][0] = splitColonne[0];
+			values[i][1] = splitColonne[1];
+			values[i][2] = splitColonne[2];
+			values[i][3] = splitColonne[3];
+			values[i][4] = splitColonne[4];
+			values[i][5] = splitColonne[5];
+=====================================================================
+Found a 10 line (84 tokens) duplication in the following files: 
+Starting at line 171 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/InsertTableView.java
+Starting at line 287 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/InsertTableView.java
+
+	private void initDocente(){
+		JLabel labelMatricola = new JLabel("Matricola");
+		labelMatricola.setBounds(69, 71, 117, 29);
+		JLabel labelNome = new JLabel("Nome");
+		labelNome.setBounds(69, 101, 117, 29);
+		JLabel labelCognome = new JLabel ("Cognome");
+		labelCognome.setBounds(69, 131, 117, 29);
+		JLabel labelEmail = new JLabel("Email");
+		labelEmail.setBounds(69, 161, 117, 29);
+		JLabel labelQualifica = new JLabel("Qualifica");
+=====================================================================
+Found a 8 line (83 tokens) duplication in the following files: 
+Starting at line 206 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/elaborazione_dati/InsertInTable.java
+Starting at line 294 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/elaborazione_dati/InsertInTable.java
+Starting at line 375 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/elaborazione_dati/InsertInTable.java
+Starting at line 451 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/elaborazione_dati/InsertInTable.java
+Starting at line 789 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/elaborazione_dati/InsertInTable.java
+
+			values[i][0] = splitColonneConvegno[0];
+			values[i][1] = splitColonneAttività[1];
+			values[i][2] = splitColonneAttività[2];
+			values[i][3] = splitColonneAttività[3];
+			values[i][4] = splitColonneAttività[4];
+			values[i][5] = splitColonneAttività[5];
+			values[i][6] = splitColonneAttività[6];
+			values[i][7] = splitColonneConvegno[2];
+=====================================================================
+Found a 9 line (77 tokens) duplication in the following files: 
+Starting at line 267 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/elaborazione_dati/InsertInTable.java
+Starting at line 349 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/elaborazione_dati/InsertInTable.java
+Starting at line 426 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/elaborazione_dati/InsertInTable.java
+
+			String[][] values = new String[numDiscipline+1][8];
+			values[0][0] = "ID";
+			values[0][1] = "Nome Attività";
+			values[0][2] = "Descrizione";
+			values[0][3] = "Ore";
+			values[0][4] = "Semestre";
+			values[0][5] = "Data Inizio";
+			values[0][6] = "Data Fine";
+			values[0][7] = "Crediti";
+=====================================================================
+Found a 3 line (73 tokens) duplication in the following files: 
+Starting at line 40 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/memorizzazione_dati/DisciplinaInseritaPiano.java
+Starting at line 235 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/memorizzazione_dati/DisciplinaInseritaPiano.java
+
+		for (int i=0; i<model.getListAssegnamento().size(); i++){
+			if(model.getListAssegnamento().get(i).getAttività().getId().equals(id) &&
+					((Disciplina)model.getListAssegnamento().get(i).getAttività()).getSubId() == subId )
+=====================================================================
+Found a 4 line (70 tokens) duplication in the following files: 
+Starting at line 148 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/SelectedActivityListener.java
+Starting at line 117 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/SelectedAllListener.java
+
+		for (int i=0; i<viewOrario.getVisualizzaCorso().getItemCount(); i++)
+			viewOrario.getVisualizzaCorso().getItem(i).setSelected(false);
+		for (int i=0; i<viewOrario.getVisualizzaDocente().getItemCount(); i++)
+			viewOrario.getVisualizzaDocente().getItem(i).setSelected(false);
+=====================================================================
+Found a 7 line (70 tokens) duplication in the following files: 
+Starting at line 113 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/elaborazione_dati/InsertInTable.java
+Starting at line 242 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/elaborazione_dati/InsertInTable.java
+Starting at line 326 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/elaborazione_dati/InsertInTable.java
+Starting at line 405 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/elaborazione_dati/InsertInTable.java
+
+		for (int i=1; i<numAttività+1; i++){
+			
+			String splitColonne[] = splitRighe[i-1].split(",");
+			values[i][0] = splitColonne[0];
+			values[i][1] = splitColonne[1];
+			values[i][2] = splitColonne[2];
+			values[i][3] = splitColonne[3];
+=====================================================================
+Found a 14 line (70 tokens) duplication in the following files: 
+Starting at line 93 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/InsertTableView.java
+Starting at line 279 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/ManagementTableView.java
+
+		descrizione.setBounds(250, 191, 200, 29);
+		
+		getContentPane().add(labelEdificio);
+		getContentPane().add(labelNumero);
+		getContentPane().add(labelCapienza);
+		getContentPane().add(labelDescrizione);
+		getContentPane().add(edificio);
+		getContentPane().add(numero);
+		getContentPane().add(capienza);
+		getContentPane().add(descrizione);
+
+	}
+	
+	private void initConvegno(){
+=====================================================================
+Found a 12 line (67 tokens) duplication in the following files: 
+Starting at line 34 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/DefaultTableCellRenderer.java
+Starting at line 106 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/SelectedActivityListener.java
+Starting at line 98 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/SelectedDocenteListener.java
+Starting at line 94 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/SelectedPianoListener.java
+
+			Component cell = getTableCellRendererComponent (table, value, isSelected, hasFocus, row, column);
+
+			if (value == null)
+				return null;
+
+			if (value.equals("0")){
+				cell.setBackground( Color.gray );
+				cell.setForeground(Color.gray);
+			}
+			else{
+				if (value.equals("1")){
+					cell.setBackground( Color.green );
+=====================================================================
+Found a 18 line (67 tokens) duplication in the following files: 
+Starting at line 56 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/SelectedActivityListener.java
+Starting at line 53 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/SelectedPianoListener.java
+
+	}
+
+
+	@Override
+	public void actionPerformed(ActionEvent action)
+	{
+
+		// gestione selezioni
+		setAttributeToView();
+		
+		// inizializzare la tabella nel model
+		model.setTabella(new Vector<Vector<String>>());
+
+		// inizializza la tabella mostrata
+		if(viewOrario.getTableRecords().getRowCount()!=0)
+			for (int i = 0; i<21; i++){
+				viewOrario.getTableRecords().removeRow(0);
+			}
+=====================================================================
+Found a 18 line (67 tokens) duplication in the following files: 
+Starting at line 47 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/SelectedAllListener.java
+Starting at line 57 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/SelectedDocenteListener.java
+
+	}
+
+	/* (non-Javadoc)
+	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 */
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
+		
+		
+		setAttributeToView();
+		model.setTabella(new Vector<Vector<String>>());
+		
+		if(viewOrario.getTableRecords().getRowCount()!=0)
+			for (int i = 0; i<21; i++){
+				viewOrario.getTableRecords().removeRow(0);
+			}
+=====================================================================
+Found a 7 line (65 tokens) duplication in the following files: 
+Starting at line 479 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/memorizzazione_dati/InsertValues.java
+Starting at line 496 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/memorizzazione_dati/InsertValues.java
+Starting at line 507 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/memorizzazione_dati/InsertValues.java
+
+		for (int i=0; i<model.getListDisciplina().size(); i++){
+			
+			for (int j=0; j<model.getListDocente().size(); j++){
+				
+				for (int k=0; k<model.getListDocente().get(j).getElencoAttività().size();k++){
+					
+					if (model.getListDisciplina().get(i).getId().equals(
+=====================================================================
+Found a 11 line (65 tokens) duplication in the following files: 
+Starting at line 324 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/ManagementTableView.java
+Starting at line 568 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/ManagementTableView.java
+
+		String spAttività[] = attivitàConnect.split("_");
+		
+		int j=0;
+		
+		for (int i=0; i<spAttività.length; i++){
+			String y = spAttività[i];
+			String spAttivitàColonne[] = y.split(",");
+			idAttività.addItem(spAttivitàColonne[0]+","+spAttivitàColonne[1]);
+		} 
+		
+		idAttività.setEditable(true);
+=====================================================================
+Found a 9 line (64 tokens) duplication in the following files: 
+Starting at line 149 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/SelectedActivityListener.java
+Starting at line 141 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/SelectedPianoListener.java
+
+			viewOrario.getVisualizzaCorso().getItem(i).setSelected(false);
+		for (int i=0; i<viewOrario.getVisualizzaDocente().getItemCount(); i++)
+			viewOrario.getVisualizzaDocente().getItem(i).setSelected(false);
+		viewOrario.getVisualizzaTutto().getItem(0).setSelected(false);
+
+
+	}
+	
+}
+=====================================================================
+Found a 7 line (63 tokens) duplication in the following files: 
+Starting at line 232 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/elaborazione_dati/InsertInTable.java
+Starting at line 540 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/elaborazione_dati/InsertInTable.java
+
+			values[0][1] = "Nome";
+			values[0][2] = "Descrizione";
+			values[0][3] = "Totale Crediti";
+			values[0][4] = "Anno";
+			values[0][5] = "Indirizzo";
+			values[0][6] = "Facoltà";
+			values[0][7] = "Tipo Laurea";
+=====================================================================
+Found a 14 line (60 tokens) duplication in the following files: 
+Starting at line 53 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/SelectedAllListener.java
+Starting at line 59 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/SelectedPianoListener.java
+
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
+		
+		
+		setAttributeToView();
+		model.setTabella(new Vector<Vector<String>>());
+		
+		if(viewOrario.getTableRecords().getRowCount()!=0)
+			for (int i = 0; i<21; i++){
+				viewOrario.getTableRecords().removeRow(0);
+			}
+
+		model.fromOrarioUfficialeToTable();
+=====================================================================
+Found a 9 line (59 tokens) duplication in the following files: 
+Starting at line 324 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/ManagementTableView.java
+Starting at line 467 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/ManagementTableView.java
+Starting at line 568 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/ManagementTableView.java
+
+		String spAttività[] = attivitàConnect.split("_");
+		
+		int j=0;
+		
+		for (int i=0; i<spAttività.length; i++){
+			String y = spAttività[i];
+			String spAttivitàColonne[] = y.split(",");
+			idAttività.addItem(spAttivitàColonne[0]+","+spAttivitàColonne[1]);
+		} 
+=====================================================================
+Found a 7 line (59 tokens) duplication in the following files: 
+Starting at line 665 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/ManagementTableView.java
+Starting at line 1067 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/ManagementTableView.java
+
+		String spGita[] = gitaConnect.split("_");
+		int j=0;
+		for (int i=0; i<spAttività.length; i++){
+			String y = spAttività[i];
+			String spAttivitàColonne[] = y.split(",");
+			attività.addItem(spAttivitàColonne[0]+","+spAttivitàColonne[1]);
+		}
+=====================================================================
+Found a 14 line (58 tokens) duplication in the following files: 
+Starting at line 60 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/SelectedActivityListener.java
+Starting at line 53 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/SelectedAllListener.java
+Starting at line 63 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/SelectedDocenteListener.java
+Starting at line 59 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/SelectedPianoListener.java
+
+	public void actionPerformed(ActionEvent action)
+	{
+
+		// gestione selezioni
+		setAttributeToView();
+		
+		// inizializzare la tabella nel model
+		model.setTabella(new Vector<Vector<String>>());
+
+		// inizializza la tabella mostrata
+		if(viewOrario.getTableRecords().getRowCount()!=0)
+			for (int i = 0; i<21; i++){
+				viewOrario.getTableRecords().removeRow(0);
+			}
+=====================================================================
+Found a 5 line (58 tokens) duplication in the following files: 
+Starting at line 137 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/SelectedDocenteListener.java
+Starting at line 137 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/SelectedPianoListener.java
+
+				viewOrario.getVisualizzaDocente().getItem(i).setSelected(false);
+		}
+		for (int i=0; i<viewOrario.getVisualizzaAttività().getItemCount(); i++)
+			viewOrario.getVisualizzaAttività().getItem(i).setSelected(false);
+		for (int i=0; i<viewOrario.getVisualizzaCorso().getItemCount(); i++)
+=====================================================================
+Found a 6 line (58 tokens) duplication in the following files: 
+Starting at line 113 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/elaborazione_dati/InsertInTable.java
+Starting at line 146 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/elaborazione_dati/InsertInTable.java
+Starting at line 242 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/elaborazione_dati/InsertInTable.java
+Starting at line 326 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/elaborazione_dati/InsertInTable.java
+Starting at line 405 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/elaborazione_dati/InsertInTable.java
+
+		for (int i=1; i<numAttività+1; i++){
+			
+			String splitColonne[] = splitRighe[i-1].split(",");
+			values[i][0] = splitColonne[0];
+			values[i][1] = splitColonne[1];
+			values[i][2] = splitColonne[2];
+=====================================================================
+Found a 9 line (57 tokens) duplication in the following files: 
+Starting at line 301 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/InsertTableView.java
+Starting at line 1019 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/ManagementTableView.java
+
+		labelID.setBounds(69, 251, 117, 29);
+		
+		getContentPane().add(labelMatricola);
+		getContentPane().add(labelNome);
+		getContentPane().add(labelCognome);
+		getContentPane().add(labelEmail);
+		getContentPane().add(labelDataNascita);
+		getContentPane().add(labelAnnoIscrizione);
+		getContentPane().add(labelID);
+=====================================================================
+Found a 9 line (55 tokens) duplication in the following files: 
+Starting at line 145 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/InsertTableView.java
+Starting at line 429 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/ManagementTableView.java
+
+		labelTipoLaurea.setBounds(69, 281, 117, 29);
+		
+		getContentPane().add(labelID);
+		getContentPane().add(labelNome);
+		getContentPane().add(labelDescrizione);
+		getContentPane().add(labelTotaleCrediti);
+		getContentPane().add(labelAnno);
+		getContentPane().add(labelIndirizzo);
+		getContentPane().add(labelFacoltà);
+=====================================================================
+Found a 7 line (55 tokens) duplication in the following files: 
+Starting at line 870 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/ManagementTableView.java
+Starting at line 946 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/ManagementTableView.java
+
+	private void initPreferenzaFasciaOraria(String record) throws IOException, URISyntaxException{
+		JLabel labelMatricola = new JLabel("Matricola");
+		labelMatricola.setBounds(69, 71, 117, 29);
+		JTextField matricola = new JTextField();
+		matricola.setBounds(250, 71, 400, 29);
+		matricola.enable(false);
+		JLabel labelID = new JLabel("ID Fascia Oraria");
+=====================================================================
+Found a 7 line (54 tokens) duplication in the following files: 
+Starting at line 175 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/elaborazione_dati/InsertInTable.java
+Starting at line 267 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/elaborazione_dati/InsertInTable.java
+Starting at line 349 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/elaborazione_dati/InsertInTable.java
+Starting at line 426 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/elaborazione_dati/InsertInTable.java
+
+		String[][] values = new String[numConvegni+1][11];
+		values[0][0] = "ID";
+		values[0][1] = "Nome Attività";
+		values[0][2] = "Descrizione";
+		values[0][3] = "Ore";
+		values[0][4] = "Semestre";
+		values[0][5] = "Inizio";
+=====================================================================
+Found a 4 line (53 tokens) duplication in the following files: 
+Starting at line 41 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/memorizzazione_dati/DisciplinaInseritaPiano.java
+Starting at line 78 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/memorizzazione_dati/DisciplinaInseritaPiano.java
+
+			if(model.getListAssegnamento().get(i).getAttività().getId().equals(id) &&
+					((Disciplina)model.getListAssegnamento().get(i).getAttività()).getSubId() == subId )
+				return true;
+		}
+=====================================================================
+Found a 7 line (51 tokens) duplication in the following files: 
+Starting at line 496 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/ManagementTableView.java
+Starting at line 839 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/ManagementTableView.java
+
+	private void initDocente(String record){
+		JLabel labelMatricola = new JLabel("Matricola");
+		labelMatricola.setBounds(69, 71, 117, 29);
+		JTextField matricola = new JTextField();
+		matricola.setBounds(250, 71, 400, 29);
+		matricola.enable(false);
+		JLabel labelNome = new JLabel("Nome");
+=====================================================================
+Found a 4 line (50 tokens) duplication in the following files: 
+Starting at line 64 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/elaborazione_dati/GeneraPianiDiStudio.java
+Starting at line 80 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/elaborazione_dati/GeneraPianiDiStudio.java
+
+				for (int j=0; j<piano.getElencoAttivitàObbligatorie().size(); j++){
+					listSupport.add((Disciplina)piano.getElencoAttivitàObbligatorie().get(j));
+				}
+				piano.getElencoPianiPossibili().add(listSupport);
+=====================================================================
+Found a 2 line (50 tokens) duplication in the following files: 
+Starting at line 78 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/memorizzazione_dati/DisciplinaInseritaPiano.java
+Starting at line 237 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/memorizzazione_dati/DisciplinaInseritaPiano.java
+
+						model.getListAssegnamento().get(i).getAttività().getId().equals(id) &&
+						((Disciplina)model.getListAssegnamento().get(i).getAttività()).getSubId()==subId)
+=====================================================================
+Found a 8 line (49 tokens) duplication in the following files: 
+Starting at line 118 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/InsertTableView.java
+Starting at line 348 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/ManagementTableView.java
+
+		labelQualificaRelatore.setBounds(69, 221, 117, 29);
+		
+		getContentPane().add(labelIDConvegno);
+		getContentPane().add(labelIDAttività);
+		getContentPane().add(labelNomeRelatore);
+		getContentPane().add(labelCognomeRelatore);
+		getContentPane().add(labelEmailRelatore);
+		getContentPane().add(labelQualificaRelatore);
+=====================================================================
+Found a 8 line (49 tokens) duplication in the following files: 
+Starting at line 183 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/InsertTableView.java
+Starting at line 533 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/ManagementTableView.java
+
+		labelAssociato.setBounds(69, 221, 117, 29);
+		
+		getContentPane().add(labelMatricola);
+		getContentPane().add(labelNome);
+		getContentPane().add(labelCognome);
+		getContentPane().add(labelEmail);
+		getContentPane().add(labelQualifica);
+		getContentPane().add(labelAssociato);
+=====================================================================
+Found a 7 line (49 tokens) duplication in the following files: 
+Starting at line 373 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/xml_parser/XMLOrarioParserDOM.java
+Starting at line 520 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/xml_parser/XMLOrarioParserDOM.java
+
+		ArrayList<Attività> elencoAt = new ArrayList<Attività>();
+		for (int i = 0; i < nList.getLength(); i++) {
+
+			Node nNode = nList.item(i);
+			if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+
+				Element eElement = (Element) nNode;
+=====================================================================
+Found a 3 line (48 tokens) duplication in the following files: 
+Starting at line 39 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/memorizzazione_dati/DisciplinaInseritaPiano.java
+Starting at line 55 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/memorizzazione_dati/DisciplinaInseritaPiano.java
+
+	public boolean giàInsert(String id, int subId){
+		for (int i=0; i<model.getListAssegnamento().size(); i++){
+			if(model.getListAssegnamento().get(i).getAttività().getId().equals(id) &&
+=====================================================================
+Found a 5 line (48 tokens) duplication in the following files: 
+Starting at line 693 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/ManagementTableView.java
+Starting at line 870 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/ManagementTableView.java
+Starting at line 946 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/ManagementTableView.java
+
+	private void initInsegna(String record) throws IOException, URISyntaxException{
+		JLabel labelMatricola = new JLabel("Matricola");
+		labelMatricola.setBounds(69, 71, 117, 29);
+		JTextField matricola = new JTextField();
+		matricola.setBounds(250, 71, 400, 29);
+=====================================================================
+Found a 44 line (48 tokens) duplication in the following files: 
+Starting at line 213 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/my_components/Attività.java
+Starting at line 67 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/my_components/FasciaOraria.java
+
+	}
+	
+	/**
+	 * Questo metodo restituisce la data di inizio della Attivita'.
+	 *
+	 * @return La dataInizio della Attivita'
+	 */
+	public Date getInizio() {
+		return inizio;
+	}
+	
+	/**
+	 * Sets the inizio.
+	 *
+	 * @param inizio the new inizio
+	 */
+	public void setInizio(Date inizio) {
+		this.inizio = inizio;
+	}
+	
+	/**
+	 * Questo metodo restituisce la data di fine della Attivita'.
+	 *
+	 * @return La dataFine della Attivita'
+	 */
+	public Date getFine() {
+		return fine;
+	}
+	
+	/**
+	 * Sets the fine.
+	 *
+	 * @param fine the new fine
+	 */
+	public void setFine(Date fine) {
+		this.fine = fine;
+	}
+	
+	/**
+	 * Questo metodo restituisce il semestre in cui è presente questa Attivita'.
+	 *
+	 * @return Il semestre della Attivita'
+	 */
+	public int getSemestre() {
+=====================================================================
+Found a 47 line (48 tokens) duplication in the following files: 
+Starting at line 219 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/my_components/Docente.java
+Starting at line 65 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/my_components/Studente.java
+
+	}
+
+
+
+
+	/**
+	 * Gets the nome.
+	 *
+	 * @return the nome
+	 */
+	public String getNome() {
+		return nome;
+	}
+
+	/**
+	 * Sets the nome.
+	 *
+	 * @param nome the new nome
+	 */
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	/**
+	 * Gets the cognome.
+	 *
+	 * @return the cognome
+	 */
+	public String getCognome() {
+		return cognome;
+	}
+
+	/**
+	 * Sets the cognome.
+	 *
+	 * @param cognome the new cognome
+	 */
+	public void setCognome(String cognome) {
+		this.cognome = cognome;
+	}
+
+	/**
+	 * Checks if is associato.
+	 *
+	 * @return true, if is associato
+	 */
+	public boolean isAssociato() {
+=====================================================================
+Found a 44 line (48 tokens) duplication in the following files: 
+Starting at line 276 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/my_components/Docente.java
+Starting at line 103 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/my_components/Studente.java
+
+	}
+
+	/**
+	 * Gets the matricola.
+	 *
+	 * @return the matricola
+	 */
+	public String getMatricola() {
+		return matricola;
+	}
+
+	/**
+	 * Sets the matricola.
+	 *
+	 * @param matricola the new matricola
+	 */
+	public void setMatricola(String matricola) {
+		this.matricola = matricola;
+	}
+
+	/**
+	 * Gets the email.
+	 *
+	 * @return the email
+	 */
+	public String getEmail() {
+		return email;
+	}
+
+	/**
+	 * Sets the email.
+	 *
+	 * @param email the new email
+	 */
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	/**
+	 * Gets the qualifica.
+	 *
+	 * @return the qualifica
+	 */
+	public String getQualifica() {
+=====================================================================
+Found a 3 line (47 tokens) duplication in the following files: 
+Starting at line 118 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/SelectedAllListener.java
+Starting at line 141 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/SelectedPianoListener.java
+
+			viewOrario.getVisualizzaCorso().getItem(i).setSelected(false);
+		for (int i=0; i<viewOrario.getVisualizzaDocente().getItemCount(); i++)
+			viewOrario.getVisualizzaDocente().getItem(i).setSelected(false);
+=====================================================================
+Found a 7 line (47 tokens) duplication in the following files: 
+Starting at line 496 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/ManagementTableView.java
+Starting at line 839 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/ManagementTableView.java
+Starting at line 870 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/ManagementTableView.java
+Starting at line 946 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/ManagementTableView.java
+
+	private void initDocente(String record){
+		JLabel labelMatricola = new JLabel("Matricola");
+		labelMatricola.setBounds(69, 71, 117, 29);
+		JTextField matricola = new JTextField();
+		matricola.setBounds(250, 71, 400, 29);
+		matricola.enable(false);
+		JLabel labelNome = new JLabel("Nome");
+=====================================================================
+Found a 2 line (46 tokens) duplication in the following files: 
+Starting at line 57 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/memorizzazione_dati/DisciplinaInseritaPiano.java
+Starting at line 235 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/memorizzazione_dati/DisciplinaInseritaPiano.java
+
+		for (int i=0; i<model.getListAssegnamento().size(); i++){
+			if(model.getListAssegnamento().get(i).getAttività().getId().equals(id))
+=====================================================================
+Found a 6 line (46 tokens) duplication in the following files: 
+Starting at line 974 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/Model.java
+Starting at line 986 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/Model.java
+Starting at line 1002 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/Model.java
+
+	public void filtraOrario( Attività a ) {
+		Iterator<Assegnamento> i = orarioUfficiale.getElencoAssegnamenti().iterator();
+		orarioDaMostrare = new Orario();
+		while( i != null && i.hasNext() ) {
+			Assegnamento ax = i.next();
+			if( a.equalsAtt(ax.getAttività()) ) {
+=====================================================================
+Found a 11 line (46 tokens) duplication in the following files: 
+Starting at line 77 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/my_components/CorsoDiStudi.java
+Starting at line 103 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/my_components/CorsoDiStudi.java
+
+			ArrayList<PianoDiStudi> elencoPianiPossibili, ArrayList<Studente> elencoStudenti) {
+		this.anno 			= anno;
+		this.nomePrincipale = nomePrincipale;
+		this.indirizzo 		= indirizzo;
+		this.tipoLaurea 	= tipoLaurea;
+		this.facoltà 		= facoltà;
+		this.codice 		= codice;
+		this.descrizione 	= descrizione;
+		this.totCrediti	 	= totCrediti;
+		//this.elencoPianiPossibili = elencoPianiPossibili;
+		this.elencoStudenti = elencoStudenti;
+=====================================================================
+Found a 13 line (45 tokens) duplication in the following files: 
+Starting at line 97 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/CaricaOrarioDaFile.java
+Starting at line 62 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/SalvaOrarioEsistente.java
+
+			} catch (DOMException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (SAXException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (ParserConfigurationException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (ParseException e1) {
+=====================================================================
+Found a 5 line (45 tokens) duplication in the following files: 
+Starting at line 104 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/elaborazione_dati/InsertInTable.java
+Starting at line 178 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/elaborazione_dati/InsertInTable.java
+
+		values[0][2] = "Descrizione";
+		values[0][3] = "Ore";
+		values[0][4] = "Semestre";
+		values[0][5] = "Inizio";
+		values[0][6] = "Fine";
+=====================================================================
+Found a 6 line (45 tokens) duplication in the following files: 
+Starting at line 315 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/elaborazione_dati/InsertInTable.java
+Starting at line 704 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/elaborazione_dati/InsertInTable.java
+
+			String[][] values = new String[numDocenti+1][6];
+			values[0][0] = "Matricola";
+			values[0][1] = "Nome";
+			values[0][2] = "Cognome";
+			values[0][3] = "Email";
+			values[0][4] = "Qualifica";
+=====================================================================
+Found a 6 line (45 tokens) duplication in the following files: 
+Starting at line 298 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/ManagementTableView.java
+Starting at line 454 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/ManagementTableView.java
+
+		idConvegno.enable(false);
+		JLabel labelIDAttività = new JLabel("ID Attività");
+		labelIDAttività.setBounds(69, 111, 117, 29);
+		JComboBox idAttività = new JComboBox();
+		idAttività.setBounds(250, 111, 400, 29);
+		JLabel labelNomeRelatore = new JLabel ("Nome Relatore");
+=====================================================================
+Found a 6 line (45 tokens) duplication in the following files: 
+Starting at line 370 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/ManagementTableView.java
+Starting at line 501 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/ManagementTableView.java
+Starting at line 951 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/ManagementTableView.java
+
+		id.enable(false);
+		JLabel labelNome = new JLabel("Nome");
+		labelNome.setBounds(69, 111, 117, 29);
+		JTextField nome = new JTextField();
+		nome.setBounds(250, 111, 400, 29);
+		JLabel labelDescrizione = new JLabel ("Descrizione");
+=====================================================================
+Found a 54 line (44 tokens) duplication in the following files: 
+Starting at line 119 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/elaborazione_dati/GeneraListaDiscipline.java
+Starting at line 272 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/elaborazione_dati/GeneraListaDiscipline.java
+
+				case 96:
+
+					
+					aggiungiSubDisciplina(listDisciplina, listAttività, i, 6, jSubId);
+
+//					listDisciplina.add(new Disciplina(listAttività.get(i).getOre(),
+//							listAttività.get(i).getId(),
+//							listAttività.get(i).getDescrizione(),
+//							listAttività.get(i).getNome(), 
+//							listAttività.get(i).getInizio(),
+//							listAttività.get(i).getFine(),
+//							listAttività.get(i).getSemestre(),
+//							listAttività.get(i).getElencoResponsabili(),
+//							((Disciplina)listAttività.get(i)).getCodice(),
+//							((Disciplina)listAttività.get(i)).getCrediti(),
+//							j,6));
+//					
+					jSubId++;	
+					
+					aggiungiSubDisciplina(listDisciplina, listAttività, i, 6, jSubId);
+
+					
+//					listDisciplina.add(new Disciplina(listAttività.get(i).getOre(),
+//							listAttività.get(i).getId(),
+//							listAttività.get(i).getDescrizione(),
+//							listAttività.get(i).getNome(), 
+//							listAttività.get(i).getInizio(),
+//							listAttività.get(i).getFine(),
+//							listAttività.get(i).getSemestre(),
+//							listAttività.get(i).getElencoResponsabili(),
+//							((Disciplina)listAttività.get(i)).getCodice(),
+//							((Disciplina)listAttività.get(i)).getCrediti(),
+//							j,6));
+//					
+					jSubId++;					
+					
+					aggiungiSubDisciplina(listDisciplina, listAttività, i, 4, jSubId);
+
+					
+//					listDisciplina.add(new Disciplina(listAttività.get(i).getOre(),
+//							listAttività.get(i).getId(),
+//							listAttività.get(i).getDescrizione(),
+//							listAttività.get(i).getNome(), 
+//							listAttività.get(i).getInizio(),
+//							listAttività.get(i).getFine(),
+//							listAttività.get(i).getSemestre(),
+//							listAttività.get(i).getElencoResponsabili(),
+//							((Disciplina)listAttività.get(i)).getCodice(),
+//							((Disciplina)listAttività.get(i)).getCrediti(),
+//							j,4));
+//					
+					jSubId++;
+
+					break;
+=====================================================================
+Found a 5 line (44 tokens) duplication in the following files: 
+Starting at line 271 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/elaborazione_dati/InsertInTable.java
+Starting at line 353 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/elaborazione_dati/InsertInTable.java
+Starting at line 430 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/elaborazione_dati/InsertInTable.java
+Starting at line 765 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/elaborazione_dati/InsertInTable.java
+
+			values[0][3] = "Ore";
+			values[0][4] = "Semestre";
+			values[0][5] = "Data Inizio";
+			values[0][6] = "Data Fine";
+			values[0][7] = "Crediti";
+=====================================================================
+Found a 7 line (43 tokens) duplication in the following files: 
+Starting at line 183 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/InsertTableView.java
+Starting at line 301 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/InsertTableView.java
+
+		labelAssociato.setBounds(69, 221, 117, 29);
+		
+		getContentPane().add(labelMatricola);
+		getContentPane().add(labelNome);
+		getContentPane().add(labelCognome);
+		getContentPane().add(labelEmail);
+		getContentPane().add(labelQualifica);
+=====================================================================
+Found a 3 line (42 tokens) duplication in the following files: 
+Starting at line 115 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/CreateNewOrario.java
+Starting at line 100 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/InsertInTimeTable.java
+
+					model.getListDocentiInseriti().get(i).getCognome()));
+			viewOrario.getVisualizzaDocente().add(viewOrario.getButtonCheckBox());
+			viewOrario.getButtonCheckBox().addActionListener(new SelectedDocenteListener(model, viewOrario,
+=====================================================================
+Found a 3 line (42 tokens) duplication in the following files: 
+Starting at line 485 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/memorizzazione_dati/InsertValues.java
+Starting at line 499 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/memorizzazione_dati/InsertValues.java
+Starting at line 510 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/memorizzazione_dati/InsertValues.java
+
+					if (model.getListDisciplina().get(i).getId().equals(
+							model.getListDocente().get(j).getElencoAttività().get(k).getId())){
+						model.getListDisciplina().get(i).aggiungiResponsabile(model.getListDocente().get(j));
+=====================================================================
+Found a 7 line (42 tokens) duplication in the following files: 
+Starting at line 324 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/ManagementTableView.java
+Starting at line 467 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/ManagementTableView.java
+Starting at line 568 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/ManagementTableView.java
+Starting at line 665 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/ManagementTableView.java
+Starting at line 1067 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/ManagementTableView.java
+
+		String spAttività[] = attivitàConnect.split("_");
+		
+		int j=0;
+		
+		for (int i=0; i<spAttività.length; i++){
+			String y = spAttività[i];
+			String spAttivitàColonne[] = y.split(",");
+=====================================================================
+Found a 7 line (41 tokens) duplication in the following files: 
+Starting at line 322 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/InsertTableView.java
+Starting at line 1087 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/ManagementTableView.java
+
+		labelEmailAzienda.setBounds(69, 191, 117, 29);
+		
+		getContentPane().add(labelIDTirocinio);
+		getContentPane().add(labelIDAttività);
+		getContentPane().add(labelNomeAzienda);
+		getContentPane().add(labelDescrizioneAzienda);
+		getContentPane().add(labelEmailAzienda);
+=====================================================================
+Found a 9 line (41 tokens) duplication in the following files: 
+Starting at line 76 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/my_components/Attività.java
+Starting at line 98 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/my_components/Attività.java
+
+	public Attività(int ore, String id, String descrizione, String nome, Date inizio, Date fine, int semestre, ArrayList<Docente> elencoResponsabili) {
+		this.ore 				= ore;
+		this.id 				= id;
+		this.descrizione		= descrizione;
+		this.nome 				= nome;
+		this.inizio 			= inizio;
+		this.fine 				= fine;
+		this.semestre 			= semestre;
+		this.elencoResponsabili = elencoResponsabili;
+=====================================================================
+Found a 20 line (41 tokens) duplication in the following files: 
+Starting at line 43 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/my_components/Disciplina.java
+Starting at line 63 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/my_components/Disciplina.java
+
+		super(ore, id, descrizione, nome, inizio, fine, semestre, elencoResponsabili);
+		this.codice = codice;
+		this.crediti = crediti;
+	}
+
+	/**
+	 * Instantiates a new disciplina.
+	 *
+	 * @param ore the ore
+	 * @param id the id
+	 * @param descrizione the descrizione
+	 * @param nome the nome
+	 * @param inizio the inizio
+	 * @param fine the fine
+	 * @param semestre the semestre
+	 * @param codice the codice
+	 * @param crediti the crediti
+	 */
+	public Disciplina(int ore, String id, String descrizione, String nome, Date inizio, Date fine,
+			int semestre, String codice, float crediti) {
+=====================================================================
+Found a 2 line (40 tokens) duplication in the following files: 
+Starting at line 353 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/memorizzazione_dati/InsertValues.java
+Starting at line 365 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/memorizzazione_dati/InsertValues.java
+Starting at line 378 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/memorizzazione_dati/InsertValues.java
+Starting at line 390 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/memorizzazione_dati/InsertValues.java
+Starting at line 402 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/memorizzazione_dati/InsertValues.java
+
+					model.getListConvegno().add(new Convegno(Integer.parseInt(splitColonne[3]),splitColonne[0],splitColonne[2],
+							splitColonne[1],dateInizio, dateFine, Integer.parseInt(splitColonne[4]),
+=====================================================================
+Found a 5 line (40 tokens) duplication in the following files: 
+Starting at line 496 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/ManagementTableView.java
+Starting at line 693 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/ManagementTableView.java
+Starting at line 839 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/ManagementTableView.java
+
+	private void initDocente(String record){
+		JLabel labelMatricola = new JLabel("Matricola");
+		labelMatricola.setBounds(69, 71, 117, 29);
+		JTextField matricola = new JTextField();
+		matricola.setBounds(250, 71, 400, 29);
+=====================================================================
+Found a 7 line (39 tokens) duplication in the following files: 
+Starting at line 121 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/OpenViewGestisciOrario.java
+Starting at line 67 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/SelectedActivityListener.java
+Starting at line 59 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/SelectedAllListener.java
+Starting at line 66 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/SelectedDocenteListener.java
+Starting at line 65 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/SelectedPianoListener.java
+
+				generaPiani.generaPiani();
+				
+				
+				if(viewOrario.getTableRecords().getRowCount()!=0)
+					for (int i = 0; i<21; i++){
+						viewOrario.getTableRecords().removeRow(0);
+					}
+=====================================================================
+Found a 10 line (39 tokens) duplication in the following files: 
+Starting at line 195 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/elaborazione_dati/InsertInTable.java
+Starting at line 283 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/elaborazione_dati/InsertInTable.java
+Starting at line 365 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/elaborazione_dati/InsertInTable.java
+Starting at line 442 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/elaborazione_dati/InsertInTable.java
+Starting at line 492 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/elaborazione_dati/InsertInTable.java
+Starting at line 562 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/elaborazione_dati/InsertInTable.java
+Starting at line 779 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/elaborazione_dati/InsertInTable.java
+
+			String splitColonneConvegno[] = splitRigheConvegno[i-1].split(",");
+			
+			
+			int j=1;
+			String splitColonneAttività[];
+			do {
+			
+				splitColonneAttività = splitRigheAttività[j-1].split(",");
+				j++;
+			} while (!splitColonneConvegno[1].equals(splitColonneAttività[0]));
+=====================================================================
+Found a 10 line (39 tokens) duplication in the following files: 
+Starting at line 620 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/elaborazione_dati/InsertInTable.java
+Starting at line 666 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/elaborazione_dati/InsertInTable.java
+
+				String splitColonnePrefAula[] = splitRighePrefAula[i-1].split(",");
+
+				
+				int j=1;
+				String splitColonneDocente[];
+				do {
+				
+					splitColonneDocente = splitRigheDocente[j-1].split(",");
+					j++;
+				} while (!splitColonnePrefAula[0].equals(splitColonneDocente[0]));
+=====================================================================
+Found a 7 line (39 tokens) duplication in the following files: 
+Starting at line 183 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/InsertTableView.java
+Starting at line 1019 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/ManagementTableView.java
+
+		labelAssociato.setBounds(69, 221, 117, 29);
+		
+		getContentPane().add(labelMatricola);
+		getContentPane().add(labelNome);
+		getContentPane().add(labelCognome);
+		getContentPane().add(labelEmail);
+		getContentPane().add(labelQualifica);
+=====================================================================
+Found a 7 line (39 tokens) duplication in the following files: 
+Starting at line 301 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/InsertTableView.java
+Starting at line 533 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/ManagementTableView.java
+
+		labelID.setBounds(69, 251, 117, 29);
+		
+		getContentPane().add(labelMatricola);
+		getContentPane().add(labelNome);
+		getContentPane().add(labelCognome);
+		getContentPane().add(labelEmail);
+		getContentPane().add(labelDataNascita);
+=====================================================================
+Found a 6 line (39 tokens) duplication in the following files: 
+Starting at line 366 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/ManagementTableView.java
+Starting at line 604 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/ManagementTableView.java
+
+		JLabel labelID = new JLabel("ID Corso Di Studi");
+		labelID.setBounds(69, 71, 117, 29);
+		JTextField id = new JTextField();
+		id.setBounds(250, 71, 400, 29);
+		id.enable(false);
+		JLabel labelNome = new JLabel("Nome");
+=====================================================================
+Found a 6 line (39 tokens) duplication in the following files: 
+Starting at line 540 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/ManagementTableView.java
+Starting at line 1027 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/ManagementTableView.java
+
+		getContentPane().add(labelAssociato);
+		getContentPane().add(matricola);
+		getContentPane().add(nome);
+		getContentPane().add(cognome);
+		getContentPane().add(email);
+		getContentPane().add(qualifica);
+=====================================================================
+Found a 22 line (39 tokens) duplication in the following files: 
+Starting at line 39 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/my_components/Esame.java
+Starting at line 61 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/my_components/Esame.java
+
+		super(ore, id, descrizione, nome, inizio, fine, semestre, elencoResponsabili);
+		this.tipologia = tipologia;
+		//this.materia = materia;
+		this.idEsame = idEsame;
+	}
+	
+	/**
+	 * Instantiates a new esame.
+	 *
+	 * @param ore the ore
+	 * @param id the id
+	 * @param descrizione the descrizione
+	 * @param nome the nome
+	 * @param inizio the inizio
+	 * @param fine the fine
+	 * @param semestre the semestre
+	 * @param tipologia the tipologia
+	 * @param materia the materia
+	 * @param idEsame the id esame
+	 */
+	public Esame(int ore, String id, String descrizione, String nome, Date inizio, Date fine, int semestre,
+			String tipologia, Disciplina materia, int idEsame) {
+=====================================================================
+Found a 5 line (38 tokens) duplication in the following files: 
+Starting at line 89 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/InsertTableView.java
+Starting at line 269 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/ManagementTableView.java
+
+		capienza.setBounds(250, 151, 200, 29);
+		JLabel labelDescrizione = new JLabel("Descrizione");
+		labelDescrizione.setBounds(69, 191, 117, 29);
+		JTextField descrizione = new JTextField();
+		descrizione.setBounds(250, 191, 200, 29);
+=====================================================================
+Found a 7 line (37 tokens) duplication in the following files: 
+Starting at line 36 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/DeleteRecordListener.java
+Starting at line 52 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/DeleteRecordListener.java
+
+	private void deleteRecordConvegno() {
+
+		String recordDaEliminare = (String) view.getComboBoxRecord().getSelectedItem();
+		String[] chiave = recordDaEliminare.split(",");
+
+		try {
+			Connect.connectDb(Elimina.ELIMINA_CONVEGNO+"?IDConvegno="+chiave[0].trim());
+=====================================================================
+Found a 18 line (37 tokens) duplication in the following files: 
+Starting at line 224 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/elaborazione_dati/LarghezzaColonne.java
+Starting at line 270 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/elaborazione_dati/LarghezzaColonne.java
+
+		vettLarghezze[3] = 30;
+		vettLarghezze[4] = 60;
+		vettLarghezze[5] = 100;
+		vettLarghezze[6] = 100;
+		vettLarghezze[7] = 70;
+
+
+		return vettLarghezze;	
+	}
+
+	/**
+	 * Gets the docente.
+	 *
+	 * @return the docente
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws URISyntaxException the URI syntax exception
+	 */
+	private int[] getDocente() throws IOException, URISyntaxException {
+=====================================================================
+Found a 5 line (37 tokens) duplication in the following files: 
+Starting at line 77 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/InsertTableView.java
+Starting at line 255 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/ManagementTableView.java
+
+	private void initAula(){
+		JLabel labelEdificio = new JLabel("Edificio");
+		labelEdificio.setBounds(69, 71, 117, 29);
+		JTextField edificio = new JTextField();
+		edificio.setBounds(250, 71, 200, 29);
+=====================================================================
+Found a 5 line (37 tokens) duplication in the following files: 
+Starting at line 214 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/MainView.java
+Starting at line 267 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/ViewTimeTable.java
+
+										.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+												.addGroup(groupLayout.createSequentialGroup()
+														.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+																.addGroup(groupLayout.createSequentialGroup()
+																		.addComponent(lblSelezionaRecord, GroupLayout.PREFERRED_SIZE, 105, GroupLayout.PREFERRED_SIZE)
+=====================================================================
+Found a 5 line (37 tokens) duplication in the following files: 
+Starting at line 367 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/ManagementTableView.java
+Starting at line 605 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/ManagementTableView.java
+Starting at line 1041 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/ManagementTableView.java
+
+		labelID.setBounds(69, 71, 117, 29);
+		JTextField id = new JTextField();
+		id.setBounds(250, 71, 400, 29);
+		id.enable(false);
+		JLabel labelNome = new JLabel("Nome");
+=====================================================================
+Found a 5 line (37 tokens) duplication in the following files: 
+Starting at line 524 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/ManagementTableView.java
+Starting at line 1011 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/ManagementTableView.java
+
+		associato.setEditable(true);
+		matricola.setText(spRecord[0]);
+		nome.setText(spRecord[1]);
+		cognome.setText(spRecord[2]);
+		email.setText(spRecord[3]);
+=====================================================================
+Found a 22 line (37 tokens) duplication in the following files: 
+Starting at line 24 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/my_components/SceltaAula.java
+Starting at line 39 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/my_components/SceltaOraria.java
+
+	public SceltaAula(Aula scelta, int priorità) {
+		this.scelta = scelta;
+		this.priorità = priorità;
+	}
+	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return scelta.toString() + ", " + priorità;
+	}
+	
+	
+	
+	/**
+	 * Gets the scelta.
+	 *
+	 * @return the scelta
+	 */
+	public Aula getScelta() {
+=====================================================================
+Found a 5 line (36 tokens) duplication in the following files: 
+Starting at line 101 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/elaborazione_dati/InsertInTable.java
+Starting at line 230 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/elaborazione_dati/InsertInTable.java
+
+		String[][] values = new String[numAttività+1][7];
+		values[0][0] = "ID";
+		values[0][1] = "Nome";
+		values[0][2] = "Descrizione";
+		values[0][3] = "Ore";
+=====================================================================
+Found a 5 line (36 tokens) duplication in the following files: 
+Starting at line 473 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/elaborazione_dati/InsertInTable.java
+Starting at line 607 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/elaborazione_dati/InsertInTable.java
+Starting at line 650 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/elaborazione_dati/InsertInTable.java
+
+			String[][] values = new String[numInsegna+1][9];
+			values[0][0] = "Matricola";
+			values[0][1] = "Nome Docente";
+			values[0][2] = "Cognome Docente";
+			values[0][3] = "Nome Attività";
+=====================================================================
+Found a 2 line (36 tokens) duplication in the following files: 
+Starting at line 118 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/memorizzazione_dati/InsertValues.java
+Starting at line 125 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/memorizzazione_dati/InsertValues.java
+Starting at line 132 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/memorizzazione_dati/InsertValues.java
+
+						if(model.getListDisciplina().get(k).getId().equals(splitColInsegna[1])){
+							model.getListDocente().get(i).aggiungiAttività(model.getListDisciplina().get(k));
+=====================================================================
+Found a 5 line (36 tokens) duplication in the following files: 
+Starting at line 81 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/InsertTableView.java
+Starting at line 260 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/ManagementTableView.java
+
+		edificio.setBounds(250, 71, 200, 29);
+		JLabel labelNumero = new JLabel("Numero");
+		labelNumero.setBounds(69, 111, 117, 29);
+		JTextField numero = new JTextField();
+		numero.setBounds(250, 111, 200, 29);
+=====================================================================
+Found a 5 line (36 tokens) duplication in the following files: 
+Starting at line 85 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/InsertTableView.java
+Starting at line 265 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/ManagementTableView.java
+
+		numero.setBounds(250, 111, 200, 29);
+		JLabel labelCapienza = new JLabel ("Capienza");
+		labelCapienza.setBounds(69, 151, 117, 29);
+		JTextField capienza = new JTextField();
+		capienza.setBounds(250, 151, 200, 29);
+=====================================================================
+Found a 8 line (36 tokens) duplication in the following files: 
+Starting at line 56 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/my_components/Docente.java
+Starting at line 94 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/my_components/Docente.java
+
+			ArrayList<SceltaOraria> orariPreferiti, ArrayList<SceltaAula> aulePreferite) {
+		this.nome = nome;
+		this.cognome = cognome;
+		this.associato = associato;
+		this.matricola = matricola;
+		this.email = email;
+		this.qualifica = qualifica;
+		this.elencoAttività = elencoAttività;
+=====================================================================
+Found a 3 line (35 tokens) duplication in the following files: 
+Starting at line 105 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/CreateNewOrario.java
+Starting at line 90 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/InsertInTimeTable.java
+
+			viewOrario.setButtonCheckBox(new JCheckBoxMenuItem(model.getListAttivitàInserite().get(i).getNome()));
+			viewOrario.getVisualizzaAttività().add(viewOrario.getButtonCheckBox());
+			viewOrario.getButtonCheckBox().addActionListener(new SelectedActivityListener(model, viewOrario,
+=====================================================================
+Found a 22 line (35 tokens) duplication in the following files: 
+Starting at line 118 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/SelectedActivityListener.java
+Starting at line 94 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/SelectedAllListener.java
+Starting at line 110 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/SelectedDocenteListener.java
+
+							cell.setForeground(Color.BLUE);
+						}
+						else{
+							cell.setBackground( Color.red );
+							cell.setForeground(Color.red);
+						}
+
+					}
+					return cell;
+
+				}});
+
+		}
+
+
+
+	}
+	
+	/**
+	 * Sets the attribute to view.
+	 */
+	private void setAttributeToView(){
+=====================================================================
+Found a 2 line (35 tokens) duplication in the following files: 
+Starting at line 148 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/SelectedActivityListener.java
+Starting at line 117 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/SelectedAllListener.java
+Starting at line 141 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/SelectedDocenteListener.java
+
+		for (int i=0; i<viewOrario.getVisualizzaCorso().getItemCount(); i++)
+			viewOrario.getVisualizzaCorso().getItem(i).setSelected(false);
+=====================================================================
+Found a 2 line (35 tokens) duplication in the following files: 
+Starting at line 121 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/SelectedAllListener.java
+Starting at line 139 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/SelectedDocenteListener.java
+Starting at line 140 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/SelectedPianoListener.java
+
+		for (int i=0; i<viewOrario.getVisualizzaAttività().getItemCount(); i++)
+			viewOrario.getVisualizzaAttività().getItem(i).setSelected(false);
+=====================================================================
+Found a 4 line (35 tokens) duplication in the following files: 
+Starting at line 104 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/elaborazione_dati/InsertInTable.java
+Starting at line 270 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/elaborazione_dati/InsertInTable.java
+Starting at line 352 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/elaborazione_dati/InsertInTable.java
+Starting at line 429 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/elaborazione_dati/InsertInTable.java
+
+		values[0][2] = "Descrizione";
+		values[0][3] = "Ore";
+		values[0][4] = "Semestre";
+		values[0][5] = "Inizio";
+=====================================================================
+Found a 4 line (35 tokens) duplication in the following files: 
+Starting at line 514 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/elaborazione_dati/InsertInTable.java
+Starting at line 631 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/elaborazione_dati/InsertInTable.java
+Starting at line 683 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/elaborazione_dati/InsertInTable.java
+
+				values[i][0] = splitColonneInsegna[0];
+				values[i][1] = splitColonneDocente[1];
+				values[i][2] = splitColonneDocente[2];
+				values[i][3] = splitColonneAttività[1];
+=====================================================================
+Found a 6 line (35 tokens) duplication in the following files: 
+Starting at line 223 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/elaborazione_dati/LarghezzaColonne.java
+Starting at line 314 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/elaborazione_dati/LarghezzaColonne.java
+
+		vettLarghezze[2] = 400;
+		vettLarghezze[3] = 30;
+		vettLarghezze[4] = 60;
+		vettLarghezze[5] = 100;
+		vettLarghezze[6] = 100;
+		vettLarghezze[7] = 70;
+=====================================================================
+Found a 1 line (35 tokens) duplication in the following files: 
+Starting at line 70 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/memorizzazione_dati/InsertValues.java
+Starting at line 72 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/memorizzazione_dati/InsertValues.java
+
+				model.getListAula().add(new Aula(splitColonne[0], Integer.parseInt(splitColonne[1]), Integer.parseInt(splitColonne[2]), splitColonne[3]));
+=====================================================================
+Found a 10 line (35 tokens) duplication in the following files: 
+Starting at line 487 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/memorizzazione_dati/InsertValues.java
+Starting at line 501 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/memorizzazione_dati/InsertValues.java
+
+						model.getListDisciplina().get(i).aggiungiResponsabile(model.getListDocente().get(j));
+					}
+					
+				}
+				
+			}
+			
+		}
+		
+		for (int i=0; i<model.getListGita().size(); i++){	
+=====================================================================
+Found a 8 line (35 tokens) duplication in the following files: 
+Starting at line 58 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/InsertTableView.java
+Starting at line 145 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/InsertTableView.java
+
+		labelDataFine.setBounds(69, 321, 117, 29);
+		//JDatePicker dataFine = new JDatePicker();
+		//dataFine.setBounds(250, 321, 200, 29);
+		
+		getContentPane().add(labelID);
+		getContentPane().add(labelNome);
+		getContentPane().add(labelDescrizione);
+		getContentPane().add(labelOre);
+=====================================================================
+Found a 19 line (35 tokens) duplication in the following files: 
+Starting at line 58 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/my_components/Attività.java
+Starting at line 121 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/my_components/Attività.java
+
+		this.inizio 			= new Date();
+		this.fine 				= new Date();
+		this.semestre 			= -1;
+		this.elencoResponsabili = new ArrayList<Docente>();
+	}
+	
+	/**
+	 * Instantiates a new attività.
+	 *
+	 * @param ore the ore
+	 * @param id the id
+	 * @param descrizione the descrizione
+	 * @param nome the nome
+	 * @param inizio the inizio
+	 * @param fine the fine
+	 * @param semestre the semestre
+	 * @param elencoResponsabili the elenco responsabili
+	 */
+	public Attività(int ore, String id, String descrizione, String nome, Date inizio, Date fine, int semestre, ArrayList<Docente> elencoResponsabili) {
+=====================================================================
+Found a 2 line (35 tokens) duplication in the following files: 
+Starting at line 41 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/my_components/Disciplina.java
+Starting at line 108 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/my_components/Disciplina.java
+
+	public Disciplina(int ore, String id, String descrizione, String nome, Date inizio, Date fine,
+			int semestre, ArrayList<Docente> elencoResponsabili, String codice, float crediti) {
+=====================================================================
+Found a 9 line (34 tokens) duplication in the following files: 
+Starting at line 42 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/DeleteRecordListener.java
+Starting at line 75 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/DeleteRecordListener.java
+
+			Connect.connectDb(Elimina.ELIMINA_CONVEGNO+"?IDConvegno="+chiave[0].trim());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (URISyntaxException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+=====================================================================
+Found a 11 line (34 tokens) duplication in the following files: 
+Starting at line 42 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/DeleteRecordListener.java
+Starting at line 58 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/DeleteRecordListener.java
+
+			Connect.connectDb(Elimina.ELIMINA_CONVEGNO+"?IDConvegno="+chiave[0].trim());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (URISyntaxException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	private void deleteRecordAula() {
+=====================================================================
+Found a 2 line (34 tokens) duplication in the following files: 
+Starting at line 40 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/memorizzazione_dati/DisciplinaInseritaPiano.java
+Starting at line 57 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/memorizzazione_dati/DisciplinaInseritaPiano.java
+Starting at line 178 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/memorizzazione_dati/DisciplinaInseritaPiano.java
+Starting at line 235 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/memorizzazione_dati/DisciplinaInseritaPiano.java
+Starting at line 367 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/memorizzazione_dati/DisciplinaInseritaPiano.java
+
+		for (int i=0; i<model.getListAssegnamento().size(); i++){
+			if(model.getListAssegnamento().get(i).getAttività().getId().equals(id) &&
+=====================================================================
+Found a 5 line (34 tokens) duplication in the following files: 
+Starting at line 659 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/ManagementTableView.java
+Starting at line 775 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/ManagementTableView.java
+
+		luogo.setBounds(250, 151, 400, 29);
+		
+		String spRecord[] = record.split(",");
+		String attivitàConnect = Connect.connectDb(GiveAll.giveAllAttività);
+		String gitaConnect = Connect.connectDb(GiveAll.giveAllGita);
+=====================================================================
+Found a 4 line (34 tokens) duplication in the following files: 
+Starting at line 78 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/my_components/Docente.java
+Starting at line 101 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/my_components/Docente.java
+
+		this.elencoAttività = new ArrayList<Attività>();
+		this.orariPreferiti = new ArrayList<SceltaOraria>();
+		this.aulePreferite = new ArrayList<SceltaAula>();
+	}
+=====================================================================
+Found a 3 line (33 tokens) duplication in the following files: 
+Starting at line 256 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/CreateNewOrario.java
+Starting at line 299 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/CreateNewOrario.java
+
+					for (int iDisciplina = 0; iDisciplina < listDisciplina.size(); iDisciplina++){
+
+						if (listDisciplina.get(iDisciplina).getSemestre()==semestre){
+=====================================================================
+Found a 7 line (33 tokens) duplication in the following files: 
+Starting at line 215 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/InsertTableView.java
+Starting at line 634 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/ManagementTableView.java
+
+		labelOraFine.setBounds(69, 161, 117, 29);
+		
+		
+		getContentPane().add(labelID);
+		getContentPane().add(labelGiorno);
+		getContentPane().add(labelOraInizio);
+		getContentPane().add(labelOraFine);
+=====================================================================
+Found a 16 line (33 tokens) duplication in the following files: 
+Starting at line 367 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/MainView.java
+Starting at line 318 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/UpdateTimeTable.java
+Starting at line 364 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/ViewTimeTable.java
+
+	}
+
+
+
+	/* (non-Javadoc)
+	 * @see java.util.Observer#update(java.util.Observable, java.lang.Object)
+	 */
+	// Update the view with the notify send by model
+	@Override
+	public void update(Observable o, Object arg)
+	{
+		MyNotify notify = (MyNotify) arg;
+
+		switch (notify.getNotifyID())
+		{
+		case MyNotify.ENABLE_BUTTON_MODIFICA:
+=====================================================================
+Found a 5 line (33 tokens) duplication in the following files: 
+Starting at line 299 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/ManagementTableView.java
+Starting at line 455 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/ManagementTableView.java
+Starting at line 555 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/ManagementTableView.java
+
+		JLabel labelIDAttività = new JLabel("ID Attività");
+		labelIDAttività.setBounds(69, 111, 117, 29);
+		JComboBox idAttività = new JComboBox();
+		idAttività.setBounds(250, 111, 400, 29);
+		JLabel labelNomeRelatore = new JLabel ("Nome Relatore");
+=====================================================================
+Found a 5 line (33 tokens) duplication in the following files: 
+Starting at line 652 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/ManagementTableView.java
+Starting at line 1045 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/ManagementTableView.java
+
+		JLabel labelIDAttività = new JLabel("IDAttività");
+		labelIDAttività.setBounds(69, 111, 117, 29);
+		JComboBox attività = new JComboBox();
+		attività.setBounds(250, 111, 400, 29);
+		JLabel labelLuogo = new JLabel ("Luogo");
+=====================================================================
+Found a 26 line (33 tokens) duplication in the following files: 
+Starting at line 330 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/my_components/Docente.java
+Starting at line 271 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/my_components/Orario.java
+
+	}
+
+	/**
+	 * Gets the elenco attività.
+	 *
+	 * @return the elenco attività
+	 */
+	public ArrayList<Attività> getElencoAttività() {
+		return elencoAttività;
+	}
+
+	/**
+	 * Sets the elenco attività.
+	 *
+	 * @param elencoAttività the new elenco attività
+	 */
+	public void setElencoAttività(ArrayList<Attività> elencoAttività) {
+		this.elencoAttività = elencoAttività;
+	}
+
+	/**
+	 * Gets the orari preferit.
+	 *
+	 * @return the orari preferit
+	 */
+	public ArrayList<SceltaOraria> getOrariPreferit() {
+=====================================================================
+Found a 25 line (33 tokens) duplication in the following files: 
+Starting at line 54 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/my_components/SceltaAula.java
+Starting at line 68 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/my_components/SceltaOraria.java
+
+	public void setScelta(Aula scelta) {
+		this.scelta = scelta;
+	}
+	
+	/**
+	 * Gets the priorità.
+	 *
+	 * @return the priorità
+	 */
+	public int getPriorità() {
+		return priorità;
+	}
+	
+	/**
+	 * Sets the priorità.
+	 *
+	 * @param priorità the new priorità
+	 */
+	public void setPriorità(int priorità) {
+		this.priorità = priorità;
+	}
+	
+	
+
+}
+=====================================================================
+Found a 10 line (32 tokens) duplication in the following files: 
+Starting at line 58 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/DeleteRecordListener.java
+Starting at line 75 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/DeleteRecordListener.java
+
+			Connect.connectDb(Elimina.ELIMINA_AULA+"?Edificio="+chiave[0].trim()+"&Numero="+chiave[1].trim());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (URISyntaxException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+=====================================================================
+Found a 6 line (32 tokens) duplication in the following files: 
+Starting at line 90 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/SelectedActivityListener.java
+Starting at line 70 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/SelectedAllListener.java
+Starting at line 88 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/SelectedDocenteListener.java
+Starting at line 78 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/SelectedPianoListener.java
+Starting at line 325 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/ViewTimeTable.java
+
+			viewOrario.getTableRecords().addRow(model.getTabella().get(i));
+		}
+
+
+
+		for (int i=1; i<7; i++){
+=====================================================================
+Found a 4 line (32 tokens) duplication in the following files: 
+Starting at line 108 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/InsertTableView.java
+Starting at line 159 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/InsertTableView.java
+Starting at line 250 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/InsertTableView.java
+Starting at line 314 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/InsertTableView.java
+
+		labelIDConvegno.setBounds(69, 71, 117, 29);
+		JLabel labelIDAttività = new JLabel("ID Attività");
+		labelIDAttività.setBounds(69, 101, 117, 29);
+		JLabel labelNomeRelatore = new JLabel ("Nome Relatore");
+=====================================================================
+Found a 4 line (32 tokens) duplication in the following files: 
+Starting at line 131 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/InsertTableView.java
+Starting at line 173 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/InsertTableView.java
+Starting at line 289 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/InsertTableView.java
+
+		labelID.setBounds(69, 71, 117, 29);
+		JLabel labelNome = new JLabel("Nome");
+		labelNome.setBounds(69, 101, 117, 29);
+		JLabel labelDescrizione = new JLabel ("Descrizione");
+=====================================================================
+Found a 4 line (32 tokens) duplication in the following files: 
+Starting at line 195 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/InsertTableView.java
+Starting at line 226 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/InsertTableView.java
+
+		labelIDEsame.setBounds(69, 71, 117, 29);
+		JLabel labelIDAttività = new JLabel("IDAttività");
+		labelIDAttività.setBounds(69, 101, 117, 29);
+		JLabel labelTipologia = new JLabel ("Tipologia");
+=====================================================================
+Found a 2 line (32 tokens) duplication in the following files: 
+Starting at line 596 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/Model.java
+Starting at line 622 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/Model.java
+
+		for (int i=0; i<this.getListPianoDiStudi().size(); i++){
+			if (getListPianoDiStudi().get(i).getCorso().getCodice().equals(codice)){
+=====================================================================
+Found a 3 line (32 tokens) duplication in the following files: 
+Starting at line 48 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/my_components/Convegno.java
+Starting at line 75 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/my_components/Convegno.java
+
+			int semestre, ArrayList<Docente> elencoResponsabili, String relatoreNome, String relatoreCognome, String relatoreEmail, String relatoreQualifica, int idConvegno) {
+		
+		super(ore, id, descrizione, nome, inizio, fine, semestre, elencoResponsabili);
+=====================================================================
+Found a 6 line (32 tokens) duplication in the following files: 
+Starting at line 60 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/my_components/Esame.java
+Starting at line 81 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/my_components/Esame.java
+
+			String tipologia, Disciplina materia, int idEsame) {
+		super(ore, id, descrizione, nome, inizio, fine, semestre);
+		this.tipologia = tipologia;
+		//this.materia = materia;
+		this.idEsame = idEsame;
+	}
+=====================================================================
+Found a 8 line (31 tokens) duplication in the following files: 
+Starting at line 58 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/InsertTableView.java
+Starting at line 429 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/ManagementTableView.java
+
+		labelDataFine.setBounds(69, 321, 117, 29);
+		//JDatePicker dataFine = new JDatePicker();
+		//dataFine.setBounds(250, 321, 200, 29);
+		
+		getContentPane().add(labelID);
+		getContentPane().add(labelNome);
+		getContentPane().add(labelDescrizione);
+		getContentPane().add(labelOre);
+=====================================================================
+Found a 5 line (31 tokens) duplication in the following files: 
+Starting at line 68 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/InsertTableView.java
+Starting at line 215 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/ManagementTableView.java
+Starting at line 438 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/ManagementTableView.java
+
+		getContentPane().add(labelDataFine);
+		getContentPane().add(id);
+		getContentPane().add(nome);
+		getContentPane().add(descrizione);
+		getContentPane().add(ore);
+=====================================================================
+Found a 6 line (31 tokens) duplication in the following files: 
+Starting at line 145 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/InsertTableView.java
+Starting at line 203 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/ManagementTableView.java
+
+		labelTipoLaurea.setBounds(69, 281, 117, 29);
+		
+		getContentPane().add(labelID);
+		getContentPane().add(labelNome);
+		getContentPane().add(labelDescrizione);
+		getContentPane().add(labelTotaleCrediti);
+=====================================================================
+Found a 5 line (31 tokens) duplication in the following files: 
+Starting at line 209 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/MainView.java
+Starting at line 268 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/ViewTimeTable.java
+
+				groupLayout.createParallelGroup(Alignment.TRAILING)
+				.addGroup(groupLayout.createSequentialGroup()
+						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addGroup(groupLayout.createSequentialGroup()
+										.addGap(46)
+=====================================================================
+Found a 10 line (30 tokens) duplication in the following files: 
+Starting at line 144 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/OpenViewGestisciOrario.java
+Starting at line 55 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/UpdateRecordListener.java
+
+				viewOrario.getFrame().setVisible(true);
+
+
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (URISyntaxException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (ParseException e) {
+=====================================================================
+Found a 19 line (30 tokens) duplication in the following files: 
+Starting at line 114 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/SelectedDocenteListener.java
+Starting at line 111 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/SelectedPianoListener.java
+
+							cell.setForeground(Color.red);
+						}
+
+					}
+					return cell;
+
+				}});
+
+		}
+
+	}
+	
+
+	/**
+	 * Sets the attribute to view.
+	 */
+	private void setAttributeToView(){
+		String[] appoggio;
+		for (int i=0; i<viewOrario.getVisualizzaDocente().getItemCount(); i++){
+=====================================================================
+Found a 36 line (30 tokens) duplication in the following files: 
+Starting at line 44 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/elaborazione_dati/GeneraListaDiscipline.java
+Starting at line 138 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/elaborazione_dati/GeneraListaDiscipline.java
+
+					aggiungiSubDisciplina(listDisciplina, listAttività, i, 6, jSubId);
+					
+//					listDisciplina.add(new Disciplina(listAttività.get(i).getOre(),
+//							listAttività.get(i).getId(),
+//							listAttività.get(i).getDescrizione(),
+//							listAttività.get(i).getNome(), 
+//							listAttività.get(i).getInizio(),
+//							listAttività.get(i).getFine(),
+//							listAttività.get(i).getSemestre(),
+//							listAttività.get(i).getElencoResponsabili(),
+//							((Disciplina)listAttività.get(i)).getCodice(),
+//							((Disciplina)listAttività.get(i)).getCrediti(),
+//							j,6));
+
+					jSubId++;
+
+					aggiungiSubDisciplina(listDisciplina, listAttività, i, 4, jSubId);
+
+
+//					listDisciplina.add(new Disciplina(listAttività.get(i).getOre(),
+//							listAttività.get(i).getId(),
+//							listAttività.get(i).getDescrizione(),
+//							listAttività.get(i).getNome(), 
+//							listAttività.get(i).getInizio(),
+//							listAttività.get(i).getFine(),
+//							listAttività.get(i).getSemestre(),
+//							listAttività.get(i).getElencoResponsabili(),
+//							((Disciplina)listAttività.get(i)).getCodice(),
+//							((Disciplina)listAttività.get(i)).getCrediti(),
+//							j,4));
+
+					jSubId++;
+
+					break;
+
+				case 48:
+=====================================================================
+Found a 3 line (30 tokens) duplication in the following files: 
+Starting at line 271 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/ManagementTableView.java
+Starting at line 1054 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/ManagementTableView.java
+
+		labelDescrizione.setBounds(69, 191, 117, 29);
+		JTextField descrizione = new JTextField();
+		descrizione.setBounds(250, 191, 400, 29);
+=====================================================================
+Found a 3 line (30 tokens) duplication in the following files: 
+Starting at line 653 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/ManagementTableView.java
+Starting at line 699 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/ManagementTableView.java
+Starting at line 1046 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/ManagementTableView.java
+
+		labelIDAttività.setBounds(69, 111, 117, 29);
+		JComboBox attività = new JComboBox();
+		attività.setBounds(250, 111, 400, 29);
+=====================================================================
+Found a 5 line (30 tokens) duplication in the following files: 
+Starting at line 669 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/ManagementTableView.java
+Starting at line 714 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/ManagementTableView.java
+
+			String spAttivitàColonne[] = y.split(",");
+			attività.addItem(spAttivitàColonne[0]+","+spAttivitàColonne[1]);
+		}
+		
+		attività.setEditable(true);
+=====================================================================
+Found a 4 line (30 tokens) duplication in the following files: 
+Starting at line 42 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/my_components/Disciplina.java
+Starting at line 109 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/my_components/Disciplina.java
+
+			int semestre, ArrayList<Docente> elencoResponsabili, String codice, float crediti) {
+		super(ore, id, descrizione, nome, inizio, fine, semestre, elencoResponsabili);
+		this.codice = codice;
+		this.crediti = crediti;
+=====================================================================
+Found a 2 line (30 tokens) duplication in the following files: 
+Starting at line 332 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/pdf_printer/PdfPrinter.java
+Starting at line 341 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/pdf_printer/PdfPrinter.java
+
+		String[] add = new String[NCOL];
+		add[0] = new String( format.format(i.next().getInizio()) );
+=====================================================================
+Found a 12 line (30 tokens) duplication in the following files: 
+Starting at line 69 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/xml_parser/XMLOrarioParserDOM.java
+Starting at line 154 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/xml_parser/XMLOrarioParserDOM.java
+
+	public static void writeOrarioOnFileLight(String file, Orario o) throws SAXException, IOException, ParserConfigurationException, TransformerException {
+	
+		//setup document builder
+		Document doc = setUpXMLDocumentOut();
+		Element e;
+		
+		// root elements
+		Element rootElement = doc.createElement("Orario");
+		doc.appendChild(rootElement);
+		
+		//initialize
+		ArrayList<Assegnamento> elencoAs = new ArrayList<Assegnamento>();
+=====================================================================
+Found a 17 line (29 tokens) duplication in the following files: 
+Starting at line 118 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/SelectedActivityListener.java
+Starting at line 110 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/SelectedDocenteListener.java
+Starting at line 349 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/ViewTimeTable.java
+
+							cell.setForeground(Color.BLUE);
+						}
+						else{
+							cell.setBackground( Color.red );
+							cell.setForeground(Color.red);
+						}
+
+					}
+					return cell;
+
+				}});
+
+		}
+
+
+
+	}
+=====================================================================
+Found a 7 line (29 tokens) duplication in the following files: 
+Starting at line 151 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/SelectedActivityListener.java
+Starting at line 142 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/SelectedDocenteListener.java
+Starting at line 143 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/SelectedPianoListener.java
+
+			viewOrario.getVisualizzaDocente().getItem(i).setSelected(false);
+		viewOrario.getVisualizzaTutto().getItem(0).setSelected(false);
+
+
+	}
+	
+}
+=====================================================================
+Found a 2 line (29 tokens) duplication in the following files: 
+Starting at line 133 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/SelectedDocenteListener.java
+Starting at line 133 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/SelectedPianoListener.java
+
+			appoggio = viewOrario.getVisualizzaDocente().getItem(i).getText().split("-");
+			if (appoggio[0].trim().equals(matricola))
+=====================================================================
+Found a 34 line (29 tokens) duplication in the following files: 
+Starting at line 44 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/elaborazione_dati/GeneraListaDiscipline.java
+Starting at line 291 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/elaborazione_dati/GeneraListaDiscipline.java
+
+					aggiungiSubDisciplina(listDisciplina, listAttività, i, 6, jSubId);
+					
+//					listDisciplina.add(new Disciplina(listAttività.get(i).getOre(),
+//							listAttività.get(i).getId(),
+//							listAttività.get(i).getDescrizione(),
+//							listAttività.get(i).getNome(), 
+//							listAttività.get(i).getInizio(),
+//							listAttività.get(i).getFine(),
+//							listAttività.get(i).getSemestre(),
+//							listAttività.get(i).getElencoResponsabili(),
+//							((Disciplina)listAttività.get(i)).getCodice(),
+//							((Disciplina)listAttività.get(i)).getCrediti(),
+//							j,6));
+
+					jSubId++;
+
+					aggiungiSubDisciplina(listDisciplina, listAttività, i, 4, jSubId);
+
+
+//					listDisciplina.add(new Disciplina(listAttività.get(i).getOre(),
+//							listAttività.get(i).getId(),
+//							listAttività.get(i).getDescrizione(),
+//							listAttività.get(i).getNome(), 
+//							listAttività.get(i).getInizio(),
+//							listAttività.get(i).getFine(),
+//							listAttività.get(i).getSemestre(),
+//							listAttività.get(i).getElencoResponsabili(),
+//							((Disciplina)listAttività.get(i)).getCodice(),
+//							((Disciplina)listAttività.get(i)).getCrediti(),
+//							j,4));
+
+					jSubId++;
+
+					break;
+=====================================================================
+Found a 35 line (29 tokens) duplication in the following files: 
+Starting at line 119 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/elaborazione_dati/GeneraListaDiscipline.java
+Starting at line 232 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/elaborazione_dati/GeneraListaDiscipline.java
+Starting at line 272 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/elaborazione_dati/GeneraListaDiscipline.java
+
+				case 96:
+
+					
+					aggiungiSubDisciplina(listDisciplina, listAttività, i, 6, jSubId);
+
+//					listDisciplina.add(new Disciplina(listAttività.get(i).getOre(),
+//							listAttività.get(i).getId(),
+//							listAttività.get(i).getDescrizione(),
+//							listAttività.get(i).getNome(), 
+//							listAttività.get(i).getInizio(),
+//							listAttività.get(i).getFine(),
+//							listAttività.get(i).getSemestre(),
+//							listAttività.get(i).getElencoResponsabili(),
+//							((Disciplina)listAttività.get(i)).getCodice(),
+//							((Disciplina)listAttività.get(i)).getCrediti(),
+//							j,6));
+//					
+					jSubId++;	
+					
+					aggiungiSubDisciplina(listDisciplina, listAttività, i, 6, jSubId);
+
+					
+//					listDisciplina.add(new Disciplina(listAttività.get(i).getOre(),
+//							listAttività.get(i).getId(),
+//							listAttività.get(i).getDescrizione(),
+//							listAttività.get(i).getNome(), 
+//							listAttività.get(i).getInizio(),
+//							listAttività.get(i).getFine(),
+//							listAttività.get(i).getSemestre(),
+//							listAttività.get(i).getElencoResponsabili(),
+//							((Disciplina)listAttività.get(i)).getCodice(),
+//							((Disciplina)listAttività.get(i)).getCrediti(),
+//							j,6));
+//					
+					jSubId++;					
+=====================================================================
+Found a 5 line (29 tokens) duplication in the following files: 
+Starting at line 224 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/elaborazione_dati/LarghezzaColonne.java
+Starting at line 471 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/elaborazione_dati/LarghezzaColonne.java
+
+		vettLarghezze[3] = 30;
+		vettLarghezze[4] = 60;
+		vettLarghezze[5] = 100;
+		vettLarghezze[6] = 100;
+		vettLarghezze[7] = 70;
+=====================================================================
+Found a 5 line (29 tokens) duplication in the following files: 
+Starting at line 270 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/elaborazione_dati/LarghezzaColonne.java
+Starting at line 315 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/elaborazione_dati/LarghezzaColonne.java
+
+		vettLarghezze[3] = 30;
+		vettLarghezze[4] = 60;
+		vettLarghezze[5] = 100;
+		vettLarghezze[6] = 100;
+		vettLarghezze[7] = 70;
+=====================================================================
+Found a 1 line (29 tokens) duplication in the following files: 
+Starting at line 180 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/memorizzazione_dati/DisciplinaInseritaPiano.java
+Starting at line 240 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/memorizzazione_dati/DisciplinaInseritaPiano.java
+Starting at line 369 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/memorizzazione_dati/DisciplinaInseritaPiano.java
+
+						model.getListAssegnamento().get(i).getFasciaOraria().getInizio().toString().substring(11, 19).equals(time)){
+=====================================================================
+Found a 1 line (29 tokens) duplication in the following files: 
+Starting at line 180 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/memorizzazione_dati/DisciplinaInseritaPiano.java
+Starting at line 369 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/memorizzazione_dati/DisciplinaInseritaPiano.java
+Starting at line 144 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/UpdateTimeTable.java
+
+						model.getListAssegnamento().get(i).getFasciaOraria().getInizio().toString().substring(11, 19).equals(time)){
+=====================================================================
+Found a 4 line (29 tokens) duplication in the following files: 
+Starting at line 237 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/InsertTableView.java
+Starting at line 274 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/InsertTableView.java
+
+	private void initInsegna(){
+		JLabel labelMatricola = new JLabel("Matricola");
+		labelMatricola.setBounds(69, 71, 117, 29);
+		JLabel labelID = new JLabel("ID Attività");
+=====================================================================
+Found a 5 line (29 tokens) duplication in the following files: 
+Starting at line 209 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/MainView.java
+Starting at line 214 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/MainView.java
+
+				groupLayout.createParallelGroup(Alignment.TRAILING)
+				.addGroup(groupLayout.createSequentialGroup()
+						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addGroup(groupLayout.createSequentialGroup()
+										.addGap(46)
+=====================================================================
+Found a 4 line (29 tokens) duplication in the following files: 
+Starting at line 213 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/MainView.java
+Starting at line 256 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/MainView.java
+
+										.addGap(46)
+										.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+												.addGroup(groupLayout.createSequentialGroup()
+														.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+=====================================================================
+Found a 2 line (29 tokens) duplication in the following files: 
+Starting at line 47 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/my_components/Convegno.java
+Starting at line 41 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/my_components/Disciplina.java
+Starting at line 108 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/my_components/Disciplina.java
+Starting at line 37 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/my_components/Esame.java
+Starting at line 35 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/my_components/Gita.java
+Starting at line 43 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/my_components/Tirocinio.java
+
+	public Convegno(int ore, String id, String descrizione, String nome, Date inizio, Date fine,
+			int semestre, ArrayList<Docente> elencoResponsabili, String relatoreNome, String relatoreCognome, String relatoreEmail, String relatoreQualifica, int idConvegno) {
+=====================================================================
+Found a 2 line (29 tokens) duplication in the following files: 
+Starting at line 84 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/my_components/Disciplina.java
+Starting at line 109 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/my_components/Disciplina.java
+
+			int semestre, String codice, float crediti, int subId, int subOre) {
+		super(ore, id, descrizione, nome, inizio, fine, semestre);
+=====================================================================
+Found a 2 line (29 tokens) duplication in the following files: 
+Starting at line 44 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/my_components/Tirocinio.java
+Starting at line 68 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/my_components/Tirocinio.java
+
+			int semestre, ArrayList<Docente> elencoResponsabili, String azienda, String emailAzienda, String descrizioneAzienda, int idTirocinio) {
+		super(ore, id, descrizione, nome, inizio, fine, semestre, elencoResponsabili);
+=====================================================================
+Found a 12 line (28 tokens) duplication in the following files: 
+Starting at line 75 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/DeleteRecordListener.java
+Starting at line 55 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/UpdateRecordListener.java
+
+			Connect.connectDb(Elimina.ELIMINA_ATTIVITA+"?IDAttivita="+id[0].trim());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (URISyntaxException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
+}
+=====================================================================
+Found a 6 line (28 tokens) duplication in the following files: 
+Starting at line 193 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/elaborazione_dati/LarghezzaColonne.java
+Starting at line 217 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/elaborazione_dati/LarghezzaColonne.java
+Starting at line 263 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/elaborazione_dati/LarghezzaColonne.java
+Starting at line 308 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/elaborazione_dati/LarghezzaColonne.java
+
+	private int[] getCorsoDiStudi() throws IOException, URISyntaxException {
+
+		int[] vettLarghezze = new int[8];
+
+		vettLarghezze[0] = 30;
+		vettLarghezze[1] = 250;
+=====================================================================
+Found a 2 line (28 tokens) duplication in the following files: 
+Starting at line 39 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/memorizzazione_dati/DisciplinaInseritaPiano.java
+Starting at line 73 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/memorizzazione_dati/DisciplinaInseritaPiano.java
+
+	public boolean giàInsert(String id, int subId){
+		for (int i=0; i<model.getListAssegnamento().size(); i++){
+=====================================================================
+Found a 9 line (28 tokens) duplication in the following files: 
+Starting at line 187 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/ManagementTableView.java
+Starting at line 403 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/ManagementTableView.java
+
+			String spDataFine[] = spRecord[6].split("-");
+			//String spGio = spDataFine[2];
+			//String spMe = spDataFine[1];
+			//String spAn = spDataFine[0];
+			
+		
+			id.setText(spRecord[0]);
+			nome.setText(spRecord[1]);
+			descrizione.setText(spRecord[2]);
+=====================================================================
+Found a 5 line (28 tokens) duplication in the following files: 
+Starting at line 318 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/ManagementTableView.java
+Starting at line 659 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/ManagementTableView.java
+Starting at line 701 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/ManagementTableView.java
+Starting at line 775 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/ManagementTableView.java
+
+		qualificaRelatore.setBounds(250, 271, 400, 29);
+		
+		String spRecord[] = record.split(",");
+		String attivitàConnect = Connect.connectDb(GiveAll.giveAllAttività);
+		String convegno = Connect.connectDb(GiveAll.giveAllConvegno);
+=====================================================================
+Found a 4 line (28 tokens) duplication in the following files: 
+Starting at line 740 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/ManagementTableView.java
+Starting at line 804 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/ManagementTableView.java
+
+			while (k < spAttività.length){
+				String y = spAttività[k];
+				spAttivitàColonne = y.split(",");
+				System.out.print(spInsegnaColonne[1]);
+=====================================================================
+Found a 14 line (28 tokens) duplication in the following files: 
+Starting at line 329 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/my_components/Attività.java
+Starting at line 392 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/my_components/Docente.java
+
+		return this.id.compareTo(o.id);
+	}
+
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (obj == null) {
+			return false;
+		}
+
+		if (!(obj instanceof Attività)) {
+=====================================================================
+Found a 4 line (28 tokens) duplication in the following files: 
+Starting at line 62 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/my_components/Disciplina.java
+Starting at line 84 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/my_components/Disciplina.java
+
+			int semestre, String codice, float crediti) {
+		super(ore, id, descrizione, nome, inizio, fine, semestre);
+		this.codice = codice;
+		this.crediti = crediti;
+=====================================================================
+Found a 1 line (27 tokens) duplication in the following files: 
+Starting at line 288 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/CreateNewOrario.java
+Starting at line 289 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/CreateNewOrario.java
+
+						if (disciplinaInserita.giàInsert(listDisciplina.get(iDisciplina).getId(), ((Disciplina)listDisciplina.get(iDisciplina)).getSubId())){
+=====================================================================
+Found a 9 line (27 tokens) duplication in the following files: 
+Starting at line 42 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/DeleteRecordListener.java
+Starting at line 58 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/DeleteRecordListener.java
+Starting at line 55 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/UpdateRecordListener.java
+
+			Connect.connectDb(Elimina.ELIMINA_CONVEGNO+"?IDConvegno="+chiave[0].trim());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (URISyntaxException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+=====================================================================
+Found a 11 line (27 tokens) duplication in the following files: 
+Starting at line 76 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/DeleteRecordListener.java
+Starting at line 108 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/InsertInTableListener.java
+Starting at line 57 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/UpdateRecordListener.java
+
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (URISyntaxException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
+}
+=====================================================================
+Found a 4 line (27 tokens) duplication in the following files: 
+Starting at line 175 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/elaborazione_dati/InsertInTable.java
+Starting at line 267 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/elaborazione_dati/InsertInTable.java
+Starting at line 349 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/elaborazione_dati/InsertInTable.java
+Starting at line 426 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/elaborazione_dati/InsertInTable.java
+Starting at line 761 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/elaborazione_dati/InsertInTable.java
+
+		String[][] values = new String[numConvegni+1][11];
+		values[0][0] = "ID";
+		values[0][1] = "Nome Attività";
+		values[0][2] = "Descrizione";
+=====================================================================
+Found a 2 line (27 tokens) duplication in the following files: 
+Starting at line 114 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/memorizzazione_dati/InsertValues.java
+Starting at line 145 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/memorizzazione_dati/InsertValues.java
+Starting at line 162 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/memorizzazione_dati/InsertValues.java
+
+				String splitColInsegna[] = splitInsegna[j].split(",");
+				if (model.getListDocente().get(i).getMatricola().equals(splitColInsegna[0])){
+=====================================================================
+Found a 7 line (27 tokens) duplication in the following files: 
+Starting at line 250 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/memorizzazione_dati/InsertValues.java
+Starting at line 336 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/memorizzazione_dati/InsertValues.java
+
+		for (int i=0; i<numStudenti; i++){
+
+			String splitColonne[] = splitRighe[i].split(",");
+
+
+			DateFormat format = new SimpleDateFormat("yyyy-mm-dd");
+			Date date = format.parse(splitColonne[4]);
+=====================================================================
+Found a 2 line (27 tokens) duplication in the following files: 
+Starting at line 143 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/UpdateTimeTable.java
+Starting at line 162 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/UpdateTimeTable.java
+
+			if (model.getOrarioUfficiale().getElencoAssegnamenti().get(i).getFasciaOraria().getGiorno().equals(giorno) &&
+					model.getOrarioUfficiale().getElencoAssegnamenti().get(i).getFasciaOraria().getInizio().toString().substring(11, 19).equals(ora)){
+=====================================================================
+Found a 1 line (27 tokens) duplication in the following files: 
+Starting at line 144 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/UpdateTimeTable.java
+Starting at line 163 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/UpdateTimeTable.java
+
+					model.getOrarioUfficiale().getElencoAssegnamenti().get(i).getFasciaOraria().getInizio().toString().substring(11, 19).equals(ora)){
+=====================================================================
+Found a 1 line (27 tokens) duplication in the following files: 
+Starting at line 76 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/my_components/Attività.java
+Starting at line 47 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/my_components/Convegno.java
+Starting at line 41 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/my_components/Disciplina.java
+Starting at line 108 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/my_components/Disciplina.java
+Starting at line 37 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/my_components/Esame.java
+Starting at line 35 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/my_components/Gita.java
+Starting at line 43 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/my_components/Tirocinio.java
+
+	public Attività(int ore, String id, String descrizione, String nome, Date inizio, Date fine, int semestre, ArrayList<Docente> elencoResponsabili) {
+=====================================================================
+Found a 13 line (27 tokens) duplication in the following files: 
+Starting at line 330 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/my_components/Attività.java
+Starting at line 196 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/my_components/Disciplina.java
+Starting at line 393 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/my_components/Docente.java
+
+	}
+
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (obj == null) {
+			return false;
+		}
+
+		if (!(obj instanceof Attività)) {
+=====================================================================
+Found a 7 line (27 tokens) duplication in the following files: 
+Starting at line 50 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/my_components/Convegno.java
+Starting at line 77 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/my_components/Convegno.java
+
+		super(ore, id, descrizione, nome, inizio, fine, semestre, elencoResponsabili);
+		this.relatoreNome = relatoreNome;
+		this.relatoreCognome = relatoreCognome;
+		this.relatoreEmail = relatoreEmail;
+		this.relatoreQualifica = relatoreQualifica;
+		this.idConvegno = idConvegno;
+	}
+=====================================================================
+Found a 18 line (27 tokens) duplication in the following files: 
+Starting at line 59 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/my_components/CorsoDiStudi.java
+Starting at line 88 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/my_components/CorsoDiStudi.java
+
+	}
+
+	/**
+	 * Instantiates a new corso di studi.
+	 *
+	 * @param anno the anno
+	 * @param nomePrincipale the nome principale
+	 * @param indirizzo the indirizzo
+	 * @param tipoLaurea the tipo laurea
+	 * @param facoltà the facoltà
+	 * @param codice the codice
+	 * @param descrizione the descrizione
+	 * @param totCrediti the tot crediti
+	 * @param elencoPianiPossibili the elenco piani possibili
+	 * @param elencoStudenti the elenco studenti
+	 */
+	public CorsoDiStudi(int anno, String nomePrincipale, String indirizzo, String tipoLaurea, 
+			String facoltà, String codice, String descrizione, int totCrediti, 
+=====================================================================
+Found a 15 line (27 tokens) duplication in the following files: 
+Starting at line 35 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/my_components/Orario.java
+Starting at line 64 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/my_components/Orario.java
+
+		elencoAttività 		= new ArrayList<Attività>();
+		elencoCorsi 		= new ArrayList<CorsoDiStudi>();
+		sovrapposizioni 	= -1;
+		integrSovrap 		= false;
+	}
+	
+	
+	/**
+	 * Instantiates a new orario.
+	 *
+	 * @param elencoAssegnamenti the elenco assegnamenti
+	 * @param elencoAttività the elenco attività
+	 * @param elencoCorsi the elenco corsi
+	 */
+	public Orario(ArrayList<Assegnamento> elencoAssegnamenti, ArrayList<Attività> elencoAttività, ArrayList<CorsoDiStudi> elencoCorsi) {
+=====================================================================
+Found a 5 line (26 tokens) duplication in the following files: 
+Starting at line 84 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/CaricaOrarioDaFile.java
+Starting at line 111 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/InsertInTimeTable.java
+
+				model.setOrarioUfficiale( XMLOrarioParserDOM.getOrarioFromFileFull(model,file) );
+
+				model.setTabella(new Vector<Vector<String>>());
+				model.fromOrarioUfficialeToTable();
+				viewOrario.visualizzaOrario();
+=====================================================================
+Found a 6 line (26 tokens) duplication in the following files: 
+Starting at line 350 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/CreateNewOrario.java
+Starting at line 111 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/InsertInTimeTable.java
+
+		create.fromAssegnamentoToOrarioPerGiorno();
+
+		model.setTabella(new Vector<Vector<String>>());
+		model.fromOrarioUfficialeToTable();
+
+		viewOrario.getVisualizzaTutto().getItem(0).setSelected(true);
+=====================================================================
+Found a 13 line (26 tokens) duplication in the following files: 
+Starting at line 46 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/DefaultTableCellRenderer.java
+Starting at line 118 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/SelectedActivityListener.java
+Starting at line 110 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/SelectedDocenteListener.java
+
+					cell.setForeground(Color.green);
+				}
+				else{
+					cell.setBackground( Color.red );
+					cell.setForeground(Color.red);
+				}
+
+			}
+
+			return cell;
+
+	}
+}
+=====================================================================
+Found a 8 line (26 tokens) duplication in the following files: 
+Starting at line 42 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/DeleteRecordListener.java
+Starting at line 58 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/DeleteRecordListener.java
+Starting at line 75 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/DeleteRecordListener.java
+Starting at line 144 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/OpenViewGestisciOrario.java
+
+			Connect.connectDb(Elimina.ELIMINA_CONVEGNO+"?IDConvegno="+chiave[0].trim());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (URISyntaxException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+=====================================================================
+Found a 8 line (26 tokens) duplication in the following files: 
+Starting at line 43 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/DeleteRecordListener.java
+Starting at line 59 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/DeleteRecordListener.java
+Starting at line 108 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/InsertInTableListener.java
+
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (URISyntaxException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+=====================================================================
+Found a 28 line (26 tokens) duplication in the following files: 
+Starting at line 115 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/InsertInTimeTable.java
+Starting at line 361 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/pdf_printer/PdfPrinter.java
+
+			viewOrario.visualizzaOrario();
+			
+			
+
+
+
+		}
+
+
+	}
+
+	/**
+	 * Gets the model.
+	 *
+	 * @return the model
+	 */
+	public Model getModel() {
+		return model;
+	}
+
+	/**
+	 * Sets the model.
+	 *
+	 * @param model the new model
+	 */
+	public void setModel(Model model) {
+		this.model = model;
+	}
+=====================================================================
+Found a 11 line (26 tokens) duplication in the following files: 
+Starting at line 52 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/OpenViewGestisciOrario.java
+Starting at line 44 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/SelectedAllListener.java
+
+	public OpenViewGestisciOrario(Model model, ViewTimeTable viewOrario) {
+		this.model = model;
+		this.viewOrario = viewOrario;
+	}
+	
+	
+		/* (non-Javadoc)
+		 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+		 */
+		@Override
+		public void actionPerformed(ActionEvent action)
+=====================================================================
+Found a 3 line (26 tokens) duplication in the following files: 
+Starting at line 103 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/elaborazione_dati/InsertInTable.java
+Starting at line 540 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/elaborazione_dati/InsertInTable.java
+
+		values[0][1] = "Nome";
+		values[0][2] = "Descrizione";
+		values[0][3] = "Ore";
+=====================================================================
+Found a 3 line (26 tokens) duplication in the following files: 
+Starting at line 105 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/elaborazione_dati/InsertInTable.java
+Starting at line 179 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/elaborazione_dati/InsertInTable.java
+Starting at line 765 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/elaborazione_dati/InsertInTable.java
+
+		values[0][3] = "Ore";
+		values[0][4] = "Semestre";
+		values[0][5] = "Inizio";
+=====================================================================
+Found a 29 line (26 tokens) duplication in the following files: 
+Starting at line 75 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/memorizzazione_dati/CreateTimeTable.java
+Starting at line 52 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/Controller.java
+
+		model.getOrarioUfficiale().setElencoCorsi(model.getListCorsoDiStudioInseriti());
+
+	}
+
+
+
+
+
+
+	/**
+	 * Gets the model.
+	 *
+	 * @return the model
+	 */
+	public Model getModel() {
+		return model;
+	}
+
+
+
+
+	/**
+	 * Sets the model.
+	 *
+	 * @param model the new model
+	 */
+	public void setModel(Model model) {
+		this.model = model;
+	}
+=====================================================================
+Found a 2 line (26 tokens) duplication in the following files: 
+Starting at line 76 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/memorizzazione_dati/DisciplinaInseritaPiano.java
+Starting at line 184 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/memorizzazione_dati/DisciplinaInseritaPiano.java
+
+			for (int iDocente = 0; iDocente<model.getListAssegnamento().get(i).getAttività().getElencoResponsabili().size(); iDocente++){
+				if (model.getListAssegnamento().get(i).getAttività().getElencoResponsabili().get(iDocente).equals(matricola) &&
+=====================================================================
+Found a 1 line (26 tokens) duplication in the following files: 
+Starting at line 240 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/memorizzazione_dati/DisciplinaInseritaPiano.java
+Starting at line 144 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/UpdateTimeTable.java
+
+				riga = getRiga(model.getListAssegnamento().get(i).getFasciaOraria().getInizio().toString().substring(11, 19));
+=====================================================================
+Found a 6 line (26 tokens) duplication in the following files: 
+Starting at line 61 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/memorizzazione_dati/InsertValues.java
+Starting at line 195 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/memorizzazione_dati/InsertValues.java
+Starting at line 245 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/memorizzazione_dati/InsertValues.java
+Starting at line 280 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/memorizzazione_dati/InsertValues.java
+
+		int numAule = NumberOfRows.numOfRows(input);
+
+		String splitRighe[] = input.split("_");
+
+
+		for (int i=0; i<numAule; i++){
+=====================================================================
+Found a 3 line (26 tokens) duplication in the following files: 
+Starting at line 91 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/InsertTableView.java
+Starting at line 1054 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/ManagementTableView.java
+
+		labelDescrizione.setBounds(69, 191, 117, 29);
+		JTextField descrizione = new JTextField();
+		descrizione.setBounds(250, 191, 200, 29);
+=====================================================================
+Found a 3 line (26 tokens) duplication in the following files: 
+Starting at line 257 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/MainView.java
+Starting at line 267 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/ViewTimeTable.java
+
+						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addGroup(groupLayout.createSequentialGroup()
+										.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+=====================================================================
+Found a 4 line (26 tokens) duplication in the following files: 
+Starting at line 298 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/ManagementTableView.java
+Starting at line 454 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/ManagementTableView.java
+Starting at line 1044 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/ManagementTableView.java
+
+		idConvegno.enable(false);
+		JLabel labelIDAttività = new JLabel("ID Attività");
+		labelIDAttività.setBounds(69, 111, 117, 29);
+		JComboBox idAttività = new JComboBox();
+=====================================================================
+Found a 4 line (26 tokens) duplication in the following files: 
+Starting at line 554 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/ManagementTableView.java
+Starting at line 651 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/ManagementTableView.java
+
+		idEsame.enable(false);
+		JLabel labelIDAttività = new JLabel("IDAttività");
+		labelIDAttività.setBounds(69, 111, 117, 29);
+		JComboBox idAttività = new JComboBox();
+=====================================================================
+Found a 2 line (26 tokens) duplication in the following files: 
+Starting at line 38 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/my_components/Esame.java
+Starting at line 59 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/my_components/Esame.java
+
+			ArrayList<Docente> elencoResponsabili, String tipologia, Disciplina materia, int idEsame) {
+		super(ore, id, descrizione, nome, inizio, fine, semestre, elencoResponsabili);
+=====================================================================
+Found a 11 line (25 tokens) duplication in the following files: 
+Starting at line 50 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/CaricaOrarioDaFile.java
+Starting at line 44 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/SelectedAllListener.java
+
+	public CaricaOrarioDaFile(final Model model, final ViewTimeTable viewOrario ) {
+		this.model = model;
+		this.viewOrario = viewOrario;
+	}
+
+
+	/* (non-Javadoc)
+	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 */
+	@Override
+	public void actionPerformed(ActionEvent e) {
+=====================================================================
+Found a 2 line (25 tokens) duplication in the following files: 
+Starting at line 57 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/CreateNewOrario.java
+Starting at line 304 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/ViewTimeTable.java
+
+		if (viewOrario.getTableRecords().getRowCount()!=0){
+			for (int i = 0; i<21; i++){
+=====================================================================
+Found a 2 line (25 tokens) duplication in the following files: 
+Starting at line 365 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/CreateNewOrario.java
+Starting at line 34 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/elaborazione_dati/GeneraListaDiscipline.java
+
+		for (int i=0; i<listAttività.size(); i++){
+			if (listAttività.get(i).getSemestre()==semestre &&
+=====================================================================
+Found a 3 line (25 tokens) duplication in the following files: 
+Starting at line 32 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/DefaultTableCellRenderer.java
+Starting at line 104 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/SelectedActivityListener.java
+Starting at line 80 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/SelectedAllListener.java
+Starting at line 96 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/SelectedDocenteListener.java
+Starting at line 92 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/SelectedPianoListener.java
+Starting at line 335 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/ViewTimeTable.java
+
+		public  static Component getTableCellRendererComponent (JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) 
+		{
+			Component cell = getTableCellRendererComponent (table, value, isSelected, hasFocus, row, column);
+=====================================================================
+Found a 29 line (25 tokens) duplication in the following files: 
+Starting at line 106 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/DoubleClickListener.java
+Starting at line 124 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/InsertInTimeTable.java
+Starting at line 54 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/Controller.java
+
+	}
+
+
+	/**
+	 * Gets the model.
+	 *
+	 * @return the model
+	 */
+	public Model getModel() {
+		return model;
+	}
+
+
+	/**
+	 * Sets the model.
+	 *
+	 * @param model the new model
+	 */
+	public void setModel(Model model) {
+		this.model = model;
+	}
+
+
+	/**
+	 * Gets the view orario.
+	 *
+	 * @return the view orario
+	 */
+	public ViewTimeTable getViewOrario() {
+=====================================================================
+Found a 23 line (25 tokens) duplication in the following files: 
+Starting at line 126 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/DoubleClickListener.java
+Starting at line 94 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/Controller.java
+
+	}
+
+
+	/**
+	 * Gets the view orario.
+	 *
+	 * @return the view orario
+	 */
+	public ViewTimeTable getViewOrario() {
+		return viewOrario;
+	}
+
+
+	/**
+	 * Sets the view orario.
+	 *
+	 * @param viewOrario the new view orario
+	 */
+	public void setViewOrario(ViewTimeTable viewOrario) {
+		this.viewOrario = viewOrario;
+	}
+
+}
+=====================================================================
+Found a 7 line (25 tokens) duplication in the following files: 
+Starting at line 108 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/InsertInTableListener.java
+Starting at line 147 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/OpenViewGestisciOrario.java
+
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (URISyntaxException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+=====================================================================
+Found a 10 line (25 tokens) duplication in the following files: 
+Starting at line 44 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/SalvaOrarioEsistente.java
+Starting at line 33 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/controller_listener/SalvaPdfOrario.java
+
+		JFileChooser fs = new JFileChooser(new File("c:\\"));
+		fs.setDialogTitle("Save a File");
+		fs.showSaveDialog(fs);
+		
+		
+		
+
+
+		// TODO Auto-generated method stub
+		String file = fs.getSelectedFile().getPath();
+=====================================================================
+Found a 13 line (25 tokens) duplication in the following files: 
+Starting at line 803 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/elaborazione_dati/InsertInTable.java
+Starting at line 482 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/elaborazione_dati/LarghezzaColonne.java
+
+		}
+		
+
+	public String getSelectedItem() {
+		return selectedItem;
+	}
+
+	public void setSelectedItem(String selectedItem) {
+		this.selectedItem = selectedItem;
+	}
+	
+
+}
+=====================================================================
+Found a 29 line (25 tokens) duplication in the following files: 
+Starting at line 77 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/memorizzazione_dati/CreateTimeTable.java
+Starting at line 364 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/pdf_printer/PdfPrinter.java
+
+	}
+
+
+
+
+
+
+	/**
+	 * Gets the model.
+	 *
+	 * @return the model
+	 */
+	public Model getModel() {
+		return model;
+	}
+
+
+
+
+	/**
+	 * Sets the model.
+	 *
+	 * @param model the new model
+	 */
+	public void setModel(Model model) {
+		this.model = model;
+	}
+
+}
+=====================================================================
+Found a 8 line (25 tokens) duplication in the following files: 
+Starting at line 487 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/memorizzazione_dati/InsertValues.java
+Starting at line 501 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/memorizzazione_dati/InsertValues.java
+Starting at line 512 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/memorizzazione_dati/InsertValues.java
+
+						model.getListDisciplina().get(i).aggiungiResponsabile(model.getListDocente().get(j));
+					}
+					
+				}
+				
+			}
+			
+		}
+=====================================================================
+Found a 6 line (25 tokens) duplication in the following files: 
+Starting at line 163 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/InsertTableView.java
+Starting at line 486 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/ManagementTableView.java
+
+		labelCrediti.setBounds(69, 131, 117, 29);
+		
+		
+		getContentPane().add(labelIDDisciplina);
+		getContentPane().add(labelIDAttività);
+		getContentPane().add(labelCrediti);
+=====================================================================
+Found a 6 line (25 tokens) duplication in the following files: 
+Starting at line 199 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/InsertTableView.java
+Starting at line 593 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/ManagementTableView.java
+
+		labelTipologia.setBounds(69, 131, 117, 29);
+		
+		
+		getContentPane().add(labelIDEsame);
+		getContentPane().add(labelIDAttività);
+		getContentPane().add(labelTipologia);
+=====================================================================
+Found a 5 line (25 tokens) duplication in the following files: 
+Starting at line 230 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/InsertTableView.java
+Starting at line 683 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/ManagementTableView.java
+
+		labelLuogo.setBounds(69, 131, 117, 29);
+		
+		getContentPane().add(labelIDGita);
+		getContentPane().add(labelIDAttività);
+		getContentPane().add(labelLuogo);
+=====================================================================
+Found a 5 line (25 tokens) duplication in the following files: 
+Starting at line 254 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/InsertTableView.java
+Starting at line 828 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/ManagementTableView.java
+
+		labelOpzionale.setBounds(69, 131, 117, 29);
+		
+		getContentPane().add(labelIDCorso);
+		getContentPane().add(labelIDAttività);
+		getContentPane().add(labelOpzionale);
+=====================================================================
+Found a 4 line (25 tokens) duplication in the following files: 
+Starting at line 267 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/InsertTableView.java
+Starting at line 280 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/InsertTableView.java
+
+		labelNumero.setBounds(69, 131, 117, 29);
+		
+		getContentPane().add(labelMatricola);
+		getContentPane().add(labelEdificio);
+=====================================================================
+Found a 5 line (25 tokens) duplication in the following files: 
+Starting at line 267 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/InsertTableView.java
+Starting at line 860 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/ManagementTableView.java
+
+		labelNumero.setBounds(69, 131, 117, 29);
+		
+		getContentPane().add(labelMatricola);
+		getContentPane().add(labelEdificio);
+		getContentPane().add(labelNumero);
+=====================================================================
+Found a 26 line (25 tokens) duplication in the following files: 
+Starting at line 420 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/MainView.java
+Starting at line 494 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/ViewTimeTable.java
+
+	}
+
+	/**
+	 * Gets the table.
+	 *
+	 * @return the table
+	 */
+	public JTable getTable() {
+		return table;
+	}
+
+	/**
+	 * Sets the table.
+	 *
+	 * @param table the new table
+	 */
+	public void setTable(JTable table) {
+		this.table = table;
+	}
+
+	/**
+	 * Gets the table records.
+	 *
+	 * @return the table records
+	 */
+	public DefaultTableModel getTableRecords() {
+=====================================================================
+Found a 26 line (25 tokens) duplication in the following files: 
+Starting at line 438 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/MainView.java
+Starting at line 475 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/ViewTimeTable.java
+
+	}
+
+	/**
+	 * Gets the table records.
+	 *
+	 * @return the table records
+	 */
+	public DefaultTableModel getTableRecords() {
+		return tableRecords;
+	}
+
+	/**
+	 * Sets the table records.
+	 *
+	 * @param tableRecords the new table records
+	 */
+	public void setTableRecords(DefaultTableModel tableRecords) {
+		this.tableRecords = tableRecords;
+	}
+
+	/**
+	 * Gets the combo box record.
+	 *
+	 * @return the combo box record
+	 */
+	public JComboBox getComboBoxRecord() {
+=====================================================================
+Found a 4 line (25 tokens) duplication in the following files: 
+Starting at line 99 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/ManagementTableView.java
+Starting at line 369 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/ManagementTableView.java
+
+		id.setBounds(250, 81, 400, 29);
+		id.enable(false);
+		JLabel labelNome = new JLabel("Nome");
+		labelNome.setBounds(69, 121, 117, 29);
+=====================================================================
+Found a 4 line (25 tokens) duplication in the following files: 
+Starting at line 259 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/ManagementTableView.java
+Starting at line 848 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/ManagementTableView.java
+
+		edificio.setBounds(250, 71, 400, 29);
+		edificio.enable(false);
+		JLabel labelNumero = new JLabel("Numero");
+		labelNumero.setBounds(69, 111, 117, 29);
+=====================================================================
+Found a 3 line (25 tokens) duplication in the following files: 
+Starting at line 298 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/ManagementTableView.java
+Starting at line 454 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/ManagementTableView.java
+Starting at line 766 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/ManagementTableView.java
+Starting at line 1044 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/mvc/ManagementTableView.java
+
+		idConvegno.enable(false);
+		JLabel labelIDAttività = new JLabel("ID Attività");
+		labelIDAttività.setBounds(69, 111, 117, 29);
+=====================================================================
+Found a 26 line (25 tokens) duplication in the following files: 
+Starting at line 177 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/my_components/Attività.java
+Starting at line 344 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/my_components/CorsoDiStudi.java
+
+	}
+	
+	/**
+	 * Questo metodo restituisce la descrizione della Attivita'.
+	 *
+	 * @return La descrizione della Attivita'
+	 */
+	public String getDescrizione() {
+		return descrizione;
+	}
+	
+	/**
+	 * Sets the descrizione.
+	 *
+	 * @param descrizione the new descrizione
+	 */
+	public void setDescrizione(String descrizione) {
+		this.descrizione = descrizione;
+	}
+	
+	/**
+	 * Questo metodo restituisce il nome della Attivita'.
+	 *
+	 * @return Il nome della Attivita'
+	 */	
+	public String getNome() {
+=====================================================================
+Found a 26 line (25 tokens) duplication in the following files: 
+Starting at line 195 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/my_components/Attività.java
+Starting at line 219 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/my_components/Docente.java
+Starting at line 65 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/my_components/Studente.java
+
+	}
+	
+	/**
+	 * Questo metodo restituisce il nome della Attivita'.
+	 *
+	 * @return Il nome della Attivita'
+	 */	
+	public String getNome() {
+		return nome;
+	}
+	
+	/**
+	 * Sets the nome.
+	 *
+	 * @param nome the new nome
+	 */
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+	
+	/**
+	 * Questo metodo restituisce la data di inizio della Attivita'.
+	 *
+	 * @return La dataInizio della Attivita'
+	 */
+	public Date getInizio() {
+=====================================================================
+Found a 26 line (25 tokens) duplication in the following files: 
+Starting at line 326 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/my_components/CorsoDiStudi.java
+Starting at line 124 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/my_components/Disciplina.java
+
+	}
+	
+	/**
+	 * Gets the codice.
+	 *
+	 * @return the codice
+	 */
+	public String getCodice() {
+		return codice;
+	}
+	
+	/**
+	 * Sets the codice.
+	 *
+	 * @param codice the new codice
+	 */
+	public void setCodice(String codice) {
+		this.codice = codice;
+	}
+	
+	/**
+	 * Gets the descrizione.
+	 *
+	 * @return the descrizione
+	 */
+	public String getDescrizione() {
+=====================================================================
+Found a 17 line (25 tokens) duplication in the following files: 
+Starting at line 46 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/my_components/Disciplina.java
+Starting at line 66 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/my_components/Disciplina.java
+Starting at line 90 of /Users/andreaquattri/Desktop/Info III - B/RepositoryGit/NoMoreOverlapping/src/my_components/Disciplina.java
+
+	}
+
+	/**
+	 * Instantiates a new disciplina.
+	 *
+	 * @param ore the ore
+	 * @param id the id
+	 * @param descrizione the descrizione
+	 * @param nome the nome
+	 * @param inizio the inizio
+	 * @param fine the fine
+	 * @param semestre the semestre
+	 * @param codice the codice
+	 * @param crediti the crediti
+	 */
+	public Disciplina(int ore, String id, String descrizione, String nome, Date inizio, Date fine,
+			int semestre, String codice, float crediti) {

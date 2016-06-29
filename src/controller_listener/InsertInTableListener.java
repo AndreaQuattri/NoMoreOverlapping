@@ -10,8 +10,8 @@ import java.net.URISyntaxException;
 
 import javax.swing.JTable;
 
-import elaborazioneDati.InsertInTable;
-import elaborazioneDati.LarghezzaColonne;
+import elaborazione_dati.InsertInTable;
+import elaborazione_dati.LarghezzaColonne;
 import mvc.MainView;
 import mvc.Model;
 

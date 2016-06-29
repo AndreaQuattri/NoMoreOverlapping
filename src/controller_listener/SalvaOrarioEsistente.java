@@ -14,7 +14,7 @@ import javax.xml.transform.TransformerException;
 import org.xml.sax.SAXException;
 
 import mvc.Model;
-import xmlParser.XMLOrarioParserDOM;
+import xml_parser.XMLOrarioParserDOM;
 
 // TODO: Auto-generated Javadoc
 /**

@@ -11,24 +11,24 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Vector;
 
-import elaborazioneDati.GeneraPianiDiStudio;
-import memorizzazioneDati.InsertValues;
+import elaborazione_dati.GeneraPianiDiStudio;
+import memorizzazione_dati.InsertValues;
 import mvc.Model;
 import mvc.ViewTimeTable;
-import myComponents.Assegnamento;
-import myComponents.Attività;
-import myComponents.Aula;
-import myComponents.Convegno;
-import myComponents.CorsoDiStudi;
-import myComponents.Disciplina;
-import myComponents.Docente;
-import myComponents.Esame;
-import myComponents.FasciaOraria;
-import myComponents.Gita;
-import myComponents.Orario;
-import myComponents.PianoDiStudi;
-import myComponents.Studente;
-import myComponents.Tirocinio;
+import my_components.Assegnamento;
+import my_components.Attività;
+import my_components.Aula;
+import my_components.Convegno;
+import my_components.CorsoDiStudi;
+import my_components.Disciplina;
+import my_components.Docente;
+import my_components.Esame;
+import my_components.FasciaOraria;
+import my_components.Gita;
+import my_components.Orario;
+import my_components.PianoDiStudi;
+import my_components.Studente;
+import my_components.Tirocinio;
 
 // TODO: Auto-generated Javadoc
 /**

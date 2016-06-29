@@ -1,13 +1,11 @@
 package controller_listener;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 
 import connect_to_database.Connect;
-import urlPhp.Modifica;
+import url_php.Modifica;
 
 public class ModificaCampiListener{
 	
@@ -23,10 +21,37 @@ public class ModificaCampiListener{
 	public void modificaCampi() {
 		// TODO Auto-generated method stub
 		
-		if (tabella.equals("Attivita"))
+		if (tabella.equals("Attività"))
 			modificaAttivita();
 		
+		if (tabella.equals("Aula"))
+	
+		if (tabella.equals("Convegno"))
 		
+		if (tabella.equals("Corso di studi"))
+		
+		if (tabella.equals("Disciplina"))
+		
+		if (tabella.equals("Docente"))
+		
+		if (tabella.equals("Esame"))
+		
+		if (tabella.equals("Fascia oraria"))
+		
+		if (tabella.equals("Gita"))
+		
+		if (tabella.equals("Insegna"))
+		
+		if (tabella.equals("Piano di studio"))
+		
+		if (tabella.equals("Preferenza aula"))
+		
+		if (tabella.equals("Preferenza fascia oraria"))
+		
+		if (tabella.equals("Studente"))
+		
+		if (tabella.equals("Tirocinio"))
+			System.out.println();
 		
 	}
 

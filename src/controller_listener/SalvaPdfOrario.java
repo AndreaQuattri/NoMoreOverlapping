@@ -11,7 +11,7 @@ import com.itextpdf.text.Document;
 import com.itextpdf.text.pdf.PdfWriter;
 
 import mvc.Model;
-import pdfPrinter.PdfPrinter;
+import pdf_printer.PdfPrinter;
 
 public class SalvaPdfOrario implements ActionListener{
 

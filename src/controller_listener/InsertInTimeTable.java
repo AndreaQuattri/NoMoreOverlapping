@@ -9,14 +9,14 @@ import java.util.Vector;
 
 import javax.swing.JCheckBoxMenuItem;
 
-import memorizzazioneDati.CreateTimeTable;
-import memorizzazioneDati.DisciplinaInseritaPiano;
+import memorizzazione_dati.CreateTimeTable;
+import memorizzazione_dati.DisciplinaInseritaPiano;
 import mvc.Model;
 import mvc.UpdateTimeTable;
 import mvc.ViewTimeTable;
-import myComponents.Assegnamento;
-import myComponents.Attività;
-import myComponents.Orario;
+import my_components.Assegnamento;
+import my_components.Attività;
+import my_components.Orario;
 
 // TODO: Auto-generated Javadoc
 /**

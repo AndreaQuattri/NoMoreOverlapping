@@ -11,19 +11,19 @@ import java.util.Vector;
 
 import javax.swing.JCheckBoxMenuItem;
 
-import elaborazioneDati.GeneraListaDiscipline;
-import elaborazioneDati.GeneraSequenzaCasuale;
-import memorizzazioneDati.CreateTimeTable;
-import memorizzazioneDati.DisciplinaInseritaPiano;
+import elaborazione_dati.GeneraListaDiscipline;
+import elaborazione_dati.GeneraSequenzaCasuale;
+import memorizzazione_dati.CreateTimeTable;
+import memorizzazione_dati.DisciplinaInseritaPiano;
 import mvc.Model;
 import mvc.ViewTimeTable;
-import myComponents.Assegnamento;
-import myComponents.Attività;
-import myComponents.CorsoDiStudi;
-import myComponents.Disciplina;
-import myComponents.Docente;
-import myComponents.Orario;
-import myComponents.PianoDiStudi;
+import my_components.Assegnamento;
+import my_components.Attività;
+import my_components.CorsoDiStudi;
+import my_components.Disciplina;
+import my_components.Docente;
+import my_components.Orario;
+import my_components.PianoDiStudi;
 
 // TODO: Auto-generated Javadoc
 /**

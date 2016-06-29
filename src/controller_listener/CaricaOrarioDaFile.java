@@ -23,7 +23,7 @@ import org.xml.sax.SAXException;
 
 import mvc.Model;
 import mvc.ViewTimeTable;
-import xmlParser.XMLOrarioParserDOM;
+import xml_parser.XMLOrarioParserDOM;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -36,10 +36,10 @@ public class CaricaOrarioDaFile extends JPanel implements ActionListener{
 	private static final long serialVersionUID = 1L;
 	
 	/** The model. */
-	Model model;
+	private Model model;
 	
 	/** The view orario. */
-	ViewTimeTable viewOrario;
+	private ViewTimeTable viewOrario;
 
 	/**
 	 * Instantiates a new carica orario da file.

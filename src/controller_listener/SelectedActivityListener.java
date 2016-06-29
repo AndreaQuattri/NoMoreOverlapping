@@ -15,7 +15,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 
 import mvc.Model;
 import mvc.ViewTimeTable;
-import myComponents.Attività;
+import my_components.Attività;
 
 // TODO: Auto-generated Javadoc
 /**

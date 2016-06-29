@@ -14,7 +14,7 @@ import javax.swing.JTextField;
 
 import connect_to_database.Connect;
 import controller_listener.ModificaCampiListener;
-import urlPhp.GiveAll;
+import url_php.GiveAll;
 
 @SuppressWarnings("deprecation")
 public class ManagementTableView extends JFrame {
@@ -245,7 +245,7 @@ public class ManagementTableView extends JFrame {
 				elencoParametri.add(((String) giornoFine.getSelectedItem()).trim());
 				elencoParametri.add((meseNumero((String) meseFine.getSelectedItem())).trim());
 				elencoParametri.add(((String) annoFine.getSelectedItem()).trim());
-				ModificaCampiListener modificaCampi = new ModificaCampiListener(elencoParametri, "Attivita");
+				ModificaCampiListener modificaCampi = new ModificaCampiListener(elencoParametri, "Attività");
 				modificaCampi.modificaCampi();
 			}
 		});

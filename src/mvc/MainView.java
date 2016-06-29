@@ -16,6 +16,9 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.table.DefaultTableModel;
+
+import controller_listener.DeleteRecordListener;
+
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.event.ActionEvent;
 
@@ -488,5 +491,11 @@ public class MainView extends JFrame implements Observer {
 	 */
 	public void setLabelTable(JLabel labelTable) {
 		this.labelTable = labelTable;
+	}
+
+	public void pressButtonElimina(ActionListener listener) {
+		// TODO Auto-generated method stub
+		buttonDeleteTable.addActionListener(listener);
+		
 	}
 }

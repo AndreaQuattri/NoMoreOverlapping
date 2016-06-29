@@ -53,7 +53,6 @@ public class UpdateRecordListener implements  ActionListener
 			managment = new ManagementTableView((String) view.getComboBoxTable().getSelectedItem(),
 																	(String) view.getComboBoxRecord().getSelectedItem());
 			managment.setVisible(true);
-			managment.pressButtonModificaCampi(new ModificaCampiListener());
 
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

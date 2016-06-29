@@ -1,8 +1,10 @@
 package mvc;
 
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -11,9 +13,10 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 import connect_to_database.Connect;
+import controller_listener.ModificaCampiListener;
 import urlPhp.GiveAll;
 
-
+@SuppressWarnings("deprecation")
 public class ManagementTableView extends JFrame {
 	
 	
@@ -28,7 +31,7 @@ public class ManagementTableView extends JFrame {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(400, 80, 700, 500);
 		
-		JButton modificaButton = new JButton ("Modifica");
+		modificaButton = new JButton ("Modifica");
 		modificaButton.setBounds(280, 420, 200, 29);
 		
 		
@@ -92,42 +95,42 @@ public class ManagementTableView extends JFrame {
 	private void initAttività(String record) throws IOException, URISyntaxException{
 		JLabel labelID = new JLabel("ID Attività");
 		labelID.setBounds(69, 81, 117, 29);
-		JTextField id = new JTextField();
+		final JTextField id = new JTextField();
 		id.setBounds(250, 81, 400, 29);
 		id.enable(false);
 		JLabel labelNome = new JLabel("Nome");
 		labelNome.setBounds(69, 121, 117, 29);
-		JTextField nome = new JTextField();
+		final JTextField nome = new JTextField();
 		nome.setBounds(250, 121, 400, 29);
 		JLabel labelDescrizione = new JLabel ("Descrizione");
 		labelDescrizione.setBounds(69, 161, 117, 29);
-		JTextField descrizione = new JTextField();
+		final JTextField descrizione = new JTextField();
 		descrizione.setBounds(250, 161, 400, 29);
 		JLabel labelOre = new JLabel("Ore");
 		labelOre.setBounds(69, 201, 117, 29);
-		JTextField ore = new JTextField();
+		final JTextField ore = new JTextField();
 		ore.setBounds(250, 201, 400, 29);
 		JLabel labelSemestre = new JLabel("Semestre");
 		labelSemestre.setBounds(69, 241, 117, 29);
-		JComboBox semestre = new JComboBox();
+		final JComboBox semestre = new JComboBox();
 		semestre.setBounds(250, 241, 400, 29);
 		semestre.addItem("1");
 		semestre.addItem("2");
 		JLabel labelDataInizio = new JLabel("Data Inizio");
 		labelDataInizio.setBounds(69, 281, 117, 29);
-		JComboBox giornoInizio = new JComboBox();
+		final JComboBox giornoInizio = new JComboBox();
 		giornoInizio.setBounds(250, 281, 100, 29);
-		JComboBox meseInizio = new JComboBox();
+		final JComboBox meseInizio = new JComboBox();
 		meseInizio.setBounds(400, 281, 100, 29);
-		JComboBox annoInizio = new JComboBox();
+		final JComboBox annoInizio = new JComboBox();
 		annoInizio.setBounds(550, 281, 100, 29);
 		JLabel labelDataFine = new JLabel("Data Fine");
 		labelDataFine.setBounds(69, 321, 117, 29);
-		JComboBox giornoFine = new JComboBox();
+		final JComboBox giornoFine = new JComboBox();
 		giornoFine.setBounds(250, 321, 100, 29);
-		JComboBox meseFine = new JComboBox();
+		final JComboBox meseFine = new JComboBox();
 		meseFine.setBounds(400, 321, 100, 29);
-		JComboBox annoFine = new JComboBox();
+		final JComboBox annoFine = new JComboBox();
 		annoFine.setBounds(550, 321, 100, 29);
 		
 
@@ -178,13 +181,13 @@ public class ManagementTableView extends JFrame {
 		
 		
 			String spDataInizio[] = spRecord[5].split("-");
-			String spGiorno = spDataInizio[2];
-			String spMese = spDataInizio[1];
-			String spAnno = spDataInizio[0];
+			//String spGiorno = spDataInizio[2];
+			//String spMese = spDataInizio[1];
+			//String spAnno = spDataInizio[0];
 			String spDataFine[] = spRecord[6].split("-");
-			String spGio = spDataFine[2];
-			String spMe = spDataFine[1];
-			String spAn = spDataFine[0];
+			//String spGio = spDataFine[2];
+			//String spMe = spDataFine[1];
+			//String spAn = spDataFine[0];
 			
 		
 			id.setText(spRecord[0]);
@@ -193,10 +196,10 @@ public class ManagementTableView extends JFrame {
 			ore.setText(spRecord[3]);
 			semestre.setSelectedItem(spRecord[4]);
 			giornoInizio.setSelectedItem(spDataInizio[2]);
-			meseInizio.setSelectedItem(ConvertiMese(spDataInizio[1]));
+			meseInizio.setSelectedItem(convertiMese(spDataInizio[1]));
 			annoInizio.setSelectedItem(spDataInizio[0]);
 			giornoFine.setSelectedItem(spDataFine[2]);
-			meseFine.setSelectedItem(ConvertiMese(spDataFine[1]));
+			meseFine.setSelectedItem(convertiMese(spDataFine[1]));
 			annoFine.setSelectedItem(spDataFine[0]);
 			
 		
@@ -221,6 +224,31 @@ public class ManagementTableView extends JFrame {
 		getContentPane().add(giornoFine);
 		getContentPane().add(meseFine);
 		getContentPane().add(annoFine);
+		
+		
+		
+		//modificaButton.addActionListener(new ModificaCampiListener(elencoParametri));
+		modificaButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				ArrayList<String> elencoParametri = new ArrayList <String>();
+				elencoParametri.add(id.getText().trim());
+				elencoParametri.add(nome.getText().trim());
+				elencoParametri.add(descrizione.getText().trim());
+				elencoParametri.add(ore.getText().trim());
+				elencoParametri.add(((String) semestre.getSelectedItem()).trim());
+				elencoParametri.add(((String) giornoInizio.getSelectedItem()).trim());
+				elencoParametri.add((meseNumero((String) meseInizio.getSelectedItem())).trim());
+				elencoParametri.add(((String) annoInizio.getSelectedItem()).trim());
+				elencoParametri.add(((String) giornoFine.getSelectedItem()).trim());
+				elencoParametri.add((meseNumero((String) meseFine.getSelectedItem())).trim());
+				elencoParametri.add(((String) annoFine.getSelectedItem()).trim());
+				ModificaCampiListener modificaCampi = new ModificaCampiListener(elencoParametri, "Attivita");
+				modificaCampi.modificaCampi();
+			}
+		});
 		
 	}
 	
@@ -290,10 +318,10 @@ public class ManagementTableView extends JFrame {
 		qualificaRelatore.setBounds(250, 271, 400, 29);
 		
 		String spRecord[] = record.split(",");
-		String Attività = Connect.connectDb(GiveAll.giveAllAttività);
-		String Convegno = Connect.connectDb(GiveAll.giveAllConvegno);
-		String spConvegno[] = Convegno.split("_");
-		String spAttività[] = Attività.split("_");
+		String attivitàConnect = Connect.connectDb(GiveAll.giveAllAttività);
+		String convegno = Connect.connectDb(GiveAll.giveAllConvegno);
+		String spConvegno[] = convegno.split("_");
+		String spAttività[] = attivitàConnect.split("_");
 		
 		int j=0;
 		
@@ -433,10 +461,10 @@ public class ManagementTableView extends JFrame {
 		JTextField crediti = new JTextField();
 		crediti.setBounds(250, 151, 400, 29);
 		
-		String Attività = Connect.connectDb(GiveAll.giveAllAttività);
-		String Disciplina = Connect.connectDb(GiveAll.giveAllDisciplina);
-		String spAttività[] = Attività.split("_");
-		String spDisciplina[] = Disciplina.split("_");
+		String attivitàConnect = Connect.connectDb(GiveAll.giveAllAttività);
+		String disciplina = Connect.connectDb(GiveAll.giveAllDisciplina);
+		String spAttività[] = attivitàConnect.split("_");
+		String spDisciplina[] = disciplina.split("_");
 		int j=0;
 		for (int i=0; i<spAttività.length; i++){
 			String y = spAttività[i];
@@ -534,10 +562,10 @@ public class ManagementTableView extends JFrame {
 		tipologia.setBounds(250, 151, 400, 29);
 		
 		String spRecord[] = record.split(",");
-		String Attività = Connect.connectDb(GiveAll.giveAllAttività);
-		String Esame = Connect.connectDb(GiveAll.giveAllEsame);
-		String spAttività[] = Attività.split("_");
-		String spEsame[] = Esame.split("_");
+		String attività = Connect.connectDb(GiveAll.giveAllAttività);
+		String esame = Connect.connectDb(GiveAll.giveAllEsame);
+		String spAttività[] = attività.split("_");
+		String spEsame[] = esame.split("_");
 		int j=0;
 		for (int i=0; i<spAttività.length; i++){
 			String y = spAttività[i];
@@ -584,19 +612,19 @@ public class ManagementTableView extends JFrame {
 		giorno.setBounds(250, 111, 400, 29);
 		JLabel labelOraInizio = new JLabel ("Ora Inizio");
 		labelOraInizio.setBounds(69, 151, 117, 29);
-		JTextField OInizio = new JTextField();
-		OInizio.setBounds(250, 151, 400, 29);
+		JTextField oInizio = new JTextField();
+		oInizio.setBounds(250, 151, 400, 29);
 		JLabel labelOraFine = new JLabel("Ora Fine");
 		labelOraFine.setBounds(69, 191, 117, 29);
-		JTextField OFine = new JTextField();
-		OFine.setBounds(250, 191, 400, 29);
+		JTextField oFine = new JTextField();
+		oFine.setBounds(250, 191, 400, 29);
 		
 		String spRecord[] = record.split(",");
 		giorno.setEditable(true);
 		id.setText(spRecord[0]);
 		giorno.setSelectedItem(spRecord[1]);
-		OInizio.setText(spRecord[2]);
-		OFine.setText(spRecord[3]);
+		oInizio.setText(spRecord[2]);
+		oFine.setText(spRecord[3]);
 		
 		giorno.addItem("Luned�");
 		giorno.addItem("Marted�");
@@ -611,8 +639,8 @@ public class ManagementTableView extends JFrame {
 		getContentPane().add(labelOraFine);
 		getContentPane().add(id);
 		getContentPane().add(giorno);
-		getContentPane().add(OInizio);
-		getContentPane().add(OFine);
+		getContentPane().add(oInizio);
+		getContentPane().add(oFine);
 	}
 	
 	private void initGita(String record) throws IOException, URISyntaxException{
@@ -631,10 +659,10 @@ public class ManagementTableView extends JFrame {
 		luogo.setBounds(250, 151, 400, 29);
 		
 		String spRecord[] = record.split(",");
-		String Attività = Connect.connectDb(GiveAll.giveAllAttività);
-		String Gita = Connect.connectDb(GiveAll.giveAllGita);
-		String spAttività[] = Attività.split("_");
-		String spGita[] = Gita.split("_");
+		String attivitàConnect = Connect.connectDb(GiveAll.giveAllAttività);
+		String gitaConnect = Connect.connectDb(GiveAll.giveAllGita);
+		String spAttività[] = attivitàConnect.split("_");
+		String spGita[] = gitaConnect.split("_");
 		int j=0;
 		for (int i=0; i<spAttività.length; i++){
 			String y = spAttività[i];
@@ -673,10 +701,10 @@ public class ManagementTableView extends JFrame {
 		attività.setBounds(250, 111, 400, 29);
 		
 		String spRecord[] = record.split(",");
-		String Attività = Connect.connectDb(GiveAll.giveAllAttività);
-		String Insegna = Connect.connectDb(GiveAll.giveAllInsegna);
-		String spAttività[] = Attività.split("_");
-		String spInsegna[] = Insegna.split("_");
+		String attivitàConnect = Connect.connectDb(GiveAll.giveAllAttività);
+		String insegna = Connect.connectDb(GiveAll.giveAllInsegna);
+		String spAttività[] = attivitàConnect.split("_");
+		String spInsegna[] = insegna.split("_");
 		String spAttivitàColonne[] = null;
 		String spInsegnaColonne[] = null;
 		int j=0;
@@ -747,15 +775,14 @@ public class ManagementTableView extends JFrame {
 		opzionale.setBounds(250, 151, 400, 29);
 		
 		String spRecord[] = record.split(",");
-		String Attività = Connect.connectDb(GiveAll.giveAllAttività);
-		String Piano = Connect.connectDb(GiveAll.giveAllPianoDiStudio);
-		String spAttività[] = Attività.split("_");
-		String spPiano[] = Piano.split("_");
+		String attivitàConnect = Connect.connectDb(GiveAll.giveAllAttività);
+		String piano = Connect.connectDb(GiveAll.giveAllPianoDiStudio);
+		String spAttività[] = attivitàConnect.split("_");
+		String spPiano[] = piano.split("_");
 		String spPianoColonne[] = null;
 		String spAttivitàColonne[] = null;
 		int j=0;
 		int k=0;
-		int w = 0;
 		
 		
 		while (true){
@@ -851,16 +878,16 @@ public class ManagementTableView extends JFrame {
 		JTextField id = new JTextField();
 		id.setBounds(250, 111, 400, 29);
 		id.enable(false);
-		JLabel labelPriorità = new JLabel ("Priorità");
-		labelPriorità.setBounds(69, 151, 117, 29);
+		JLabel labelpriorità = new JLabel ("priorità");
+		labelpriorità.setBounds(69, 151, 117, 29);
 		JComboBox priorità = new JComboBox();
 		priorità.setBounds(250, 151, 400, 29);
 		
 		String spRecord[] = record.split(",");
-		String Fascia = Connect.connectDb(GiveAll.giveAllPreferenzaFasciaOraria);
-		String spFascia[] = Fascia.split("_");
-		String Oraria = Connect.connectDb(GiveAll.giveAllFasciaOraria);
-		String spOraria[] = Oraria.split("_");
+		String fascia = Connect.connectDb(GiveAll.giveAllPreferenzaFasciaOraria);
+		String spFascia[] = fascia.split("_");
+		String oraria = Connect.connectDb(GiveAll.giveAllFasciaOraria);
+		String spOraria[] = oraria.split("_");
 		String spFasciaColonne[] = null;
 		String spOrariaColonne[] = null;
 		int j = 0;
@@ -910,7 +937,7 @@ public class ManagementTableView extends JFrame {
 		
 		getContentPane().add(labelMatricola);
 		getContentPane().add(labelID);
-		getContentPane().add(labelPriorità);
+		getContentPane().add(labelpriorità);
 		getContentPane().add(matricola);
 		getContentPane().add(id);
 		getContentPane().add(priorità);
@@ -951,10 +978,10 @@ public class ManagementTableView extends JFrame {
 		JComboBox id = new JComboBox();
 		id.setBounds(250, 311, 400, 29);
 		
-		String Corso = Connect.connectDb(GiveAll.giveAllCorsoDiStudi);
-		String Studente = Connect.connectDb(GiveAll.giveAllStudente);
-		String spCorso[] = Corso.split("_");
-		String spStudente[] = Studente.split("_");
+		String corso = Connect.connectDb(GiveAll.giveAllCorsoDiStudi);
+		String studente = Connect.connectDb(GiveAll.giveAllStudente);
+		String spCorso[] = corso.split("_");
+		String spStudente[] = studente.split("_");
 		int j=0;
 		for (int i=0; i<spCorso.length; i++){
 			String y = spCorso[i];
@@ -981,14 +1008,14 @@ public class ManagementTableView extends JFrame {
 		giornoNascita.setEditable(true);
 		meseNascita.setEditable(true);
 		annoNascita.setEditable(true);
-		String Data[] = spRecord[4].split("-");
+		String data[] = spRecord[4].split("-");
 		matricola.setText(spRecord[0]);
 		nome.setText(spRecord[1]);
 		cognome.setText(spRecord[2]);
 		email.setText(spRecord[3]);
-		giornoNascita.setSelectedItem(Data[2]);
-		meseNascita.setSelectedItem(ConvertiMese(Data[1]));
-		annoNascita.setSelectedItem(Data[0]);
+		giornoNascita.setSelectedItem(data[2]);
+		meseNascita.setSelectedItem(convertiMese(data[1]));
+		annoNascita.setSelectedItem(data[0]);
 		anno.setSelectedItem(spRecord[5]);
 
 		getContentPane().add(labelMatricola);
@@ -1034,10 +1061,10 @@ public class ManagementTableView extends JFrame {
 		
 		String spRecord[] = record.split(",");
 		attività.setEditable(true);
-		String Attività = Connect.connectDb(GiveAll.giveAllAttività);
-		String Tirocinio = Connect.connectDb(GiveAll.giveAllTirocinio);
-		String spAttività[] = Attività.split("_");
-		String spTirocinio[] = Tirocinio.split("_");
+		String attivitàConnect = Connect.connectDb(GiveAll.giveAllAttività);
+		String tirocinio = Connect.connectDb(GiveAll.giveAllTirocinio);
+		String spAttività[] = attivitàConnect.split("_");
+		String spTirocinio[] = tirocinio.split("_");
 		int j=0;
 		for (int i=0; i<spAttività.length; i++){
 			String y = spAttività[i];
@@ -1072,7 +1099,7 @@ public class ManagementTableView extends JFrame {
 	}
 
 
-private String ConvertiMese (String numero){
+private String convertiMese (String numero){
 	
 	if (numero.equals("01"))
 		return "Gennaio";
@@ -1113,6 +1140,47 @@ private String ConvertiMese (String numero){
 		return "Errore";
 	
 	}
+
+private String meseNumero (String mese) {
+	if (mese.equals("Gennaio"))
+		return "01";
+	
+	if (mese.equals("Febbraio"))
+		return "02";
+	
+	if (mese.equals("Marzo"))
+		return "03";
+	
+	if (mese.equals("Aprile"))
+		return "04";
+	
+	if (mese.equals("Maggio"))
+		return "05";
+	
+	if (mese.equals("Giugno"))
+		return "06";
+	
+	if (mese.equals("Luglio"))
+		return "07";
+	
+	if (mese.equals("Agosto"))
+		return "08";
+	
+	if (mese.equals("Settembre"))
+		return "09";
+	
+	if (mese.equals("Ottobre"))
+		return "10";
+	
+	if (mese.equals("Novembre"))
+		return "11";
+	
+	if (mese.equals("Dicembre"))
+		return "12";
+	
+	return "00";
+}
+
 
 public void pressButtonModificaCampi(ActionListener listener) {
 	// TODO Auto-generated method stub

@@ -9,50 +9,50 @@ package urlPhp;
  */
 public class Insert {
 	
-	/** The Constant insertAttività. */
-	public static final String insertAttività = "http://nomoreoverlapping.altervista.org/insert/insertAttivita.php";
+	/** The Constant INSERT_ATTIVITA. */
+	public static final String INSERT_ATTIVITA = "http://nomoreoverlapping.altervista.org/insert/insertAttivita.php";
 	
-	/** The Constant insertAula. */
-	public static final String insertAula = "http://nomoreoverlapping.altervista.org/insert/insertAula.php";
+	/** The Constant INSERT_AULA. */
+	public static final String INSERT_AULA = "http://nomoreoverlapping.altervista.org/insert/insertAula.php";
 	
-	/** The Constant insertConvegno. */
-	public static final String insertConvegno = "http://nomoreoverlapping.altervista.org/insert/insertConvegno.php";
+	/** The Constant INSERT_CONVEGNO. */
+	public static final String INSERT_CONVEGNO = "http://nomoreoverlapping.altervista.org/insert/insertConvegno.php";
 	
-	/** The Constant insertCorsoDiStudi. */
-	public static final String insertCorsoDiStudi = "http://nomoreoverlapping.altervista.org/insert/insertCorsoDiStudi.php";
+	/** The Constant INSERT_CORSODISTUDI. */
+	public static final String INSERT_CORSODISTUDI = "http://nomoreoverlapping.altervista.org/insert/insertCorsoDiStudi.php";
 	
-	/** The Constant insertDisciplina. */
-	public static final String insertDisciplina = "http://nomoreoverlapping.altervista.org/insert/insertDisciplina.php";
+	/** The Constant INSERT_DISCIPLINA. */
+	public static final String INSERT_DISCIPLINA = "http://nomoreoverlapping.altervista.org/insert/insertDisciplina.php";
 	
-	/** The Constant insertDocente. */
-	public static final String insertDocente ="http://nomoreoverlapping.altervista.org/insert/insertDocente.php";
+	/** The Constant INSERT_DOCENTE. */
+	public static final String INSERT_DOCENTE ="http://nomoreoverlapping.altervista.org/insert/insertDocente.php";
 	
-	/** The Constant insertEsame. */
-	public static final String insertEsame = "http://nomoreoverlapping.altervista.org/insert/insertEsame.php";
+	/** The Constant INSERT_ESAME. */
+	public static final String INSERT_ESAME = "http://nomoreoverlapping.altervista.org/insert/insertEsame.php";
 	
-	/** The Constant insertFasciaOraria. */
-	public static final String insertFasciaOraria = "http://nomoreoverlapping.altervista.org/insert/insertFasciaOraria.php";
+	/** The Constant INSERT_FASCIAORARIA. */
+	public static final String INSERT_FASCIAORARIA = "http://nomoreoverlapping.altervista.org/insert/insertFasciaOraria.php";
 	
-	/** The Constant insertGita. */
-	public static final String insertGita = "http://nomoreoverlapping.altervista.org/insert/insertGita.php";
+	/** The Constant INSERT_GITA. */
+	public static final String INSERT_GITA = "http://nomoreoverlapping.altervista.org/insert/insertGita.php";
 	
-	/** The Constant insertInsegna. */
-	public static final String insertInsegna = "http://nomoreoverlapping.altervista.org/insert/insertPianoDiStudio.php";
+	/** The Constant INSERT_INSEGNA. */
+	public static final String INSERT_INSEGNA = "http://nomoreoverlapping.altervista.org/insert/insertInsegna.php";
 	
-	/** The Constant insertPianoDiStudio. */
-	public static final String insertPianoDiStudio = "http://nomoreoverlapping.altervista.org/insert/insertPianoDiStudio.php";
+	/** The Constant INSERT_PIANODISTUDIO. */
+	public static final String INSERT_PIANODISTUDIO = "http://nomoreoverlapping.altervista.org/insert/insertPianoDiStudio.php";
 	
-	/** The Constant insertPreferenzaAula. */
-	public static final String insertPreferenzaAula = "http://nomoreoverlapping.altervista.org/insert/insertPreferenzaAula.php";
+	/** The Constant INSERT_PREFERENZAAULA. */
+	public static final String INSERT_PREFERENZAAULA = "http://nomoreoverlapping.altervista.org/insert/insertPreferenzaAula.php";
 	
-	/** The Constant insertPreferenzaFasciaOraria. */
-	public static final String insertPreferenzaFasciaOraria = "http://nomoreoverlapping.altervista.org/insert/insertPreferenzaFasciaOraria.php";
+	/** The Constant INSERT_PREFERENZAFASCIAORARIA. */
+	public static final String INSERT_PREFERENZAFASCIAORARIA = "http://nomoreoverlapping.altervista.org/insert/insertPreferenzaFasciaOraria.php";
 	
-	/** The Constant insertStudente. */
-	public static final String insertStudente = "http://nomoreoverlapping.altervista.org/insert/insertStudente.php";
+	/** The Constant INSERT_STUDENTE. */
+	public static final String INSERT_STUDENTE = "http://nomoreoverlapping.altervista.org/insert/insertStudente.php";
 	
-	/** The Constant insertTirocinio. */
-	public static final String insertTirocinio = "http://nomoreoverlapping.altervista.org/insert/insertTirocinio.php";
+	/** The Constant INSERT_TIROCINIO. */
+	public static final String INSERT_TIROCINIO = "http://nomoreoverlapping.altervista.org/insert/insertTirocinio.php";
 	
 	
 

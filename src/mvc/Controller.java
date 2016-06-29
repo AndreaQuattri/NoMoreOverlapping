@@ -44,6 +44,7 @@ public class Controller
 		view.pressButtonModifica(new UpdateRecordListener(view));
 		view.pressButtonInserisci(new InsertRecordListener(view));
 		view.pressButtonGestisciOrario(new OpenViewGestisciOrario(model,viewOrario));
+		view.pressButtonElimina(new DeleteRecordListener(view));
 		
 		viewOrario.pressButtonNewOrario2(new CreateNewOrario(model,viewOrario));
 		viewOrario.pressButtonCarica(new CaricaOrarioDaFile(model, viewOrario));

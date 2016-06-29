@@ -286,13 +286,13 @@ public class CreateNewOrario implements  ActionListener
 
 					for (int iDisciplina = 0; iDisciplina<listDisciplina.size(); iDisciplina++){
 						if (disciplinaInserita.giàInsert(listDisciplina.get(iDisciplina).getId(), ((Disciplina)listDisciplina.get(iDisciplina)).getSubId())){
-							disciplinaInserita.FromAssToMatrix(listDisciplina.get(iDisciplina).getId(), ((Disciplina)listDisciplina.get(iDisciplina)).getSubId(), matrixSupporto);
+							disciplinaInserita.fromAssToMatrix(listDisciplina.get(iDisciplina).getId(), ((Disciplina)listDisciplina.get(iDisciplina)).getSubId(), matrixSupporto);
 						}
 					}
 
 
 					for (int iDisciplina = 0; iDisciplina<listDisciplinaSupporto.size(); iDisciplina++){
-						disciplinaInserita.FromAssToMatrix(listDisciplinaSupporto.get(iDisciplina).getId(), listDisciplinaSupporto.get(iDisciplina).getSubId() , matrix);
+						disciplinaInserita.fromAssToMatrix(listDisciplinaSupporto.get(iDisciplina).getId(), listDisciplinaSupporto.get(iDisciplina).getSubId() , matrix);
 					}
 
 

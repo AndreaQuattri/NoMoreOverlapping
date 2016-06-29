@@ -228,7 +228,7 @@ public class DisciplinaInseritaPiano {
 	 * @param subId the sub id
 	 * @param matrix the matrix
 	 */
-	public void FromAssToMatrix(String id, int subId, int[][] matrix) {
+	public void fromAssToMatrix(String id, int subId, int[][] matrix) {
 
 		int riga, colonna;
 

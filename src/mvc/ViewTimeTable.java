@@ -393,7 +393,6 @@ public class ViewTimeTable extends JFrame implements Observer {
 	private void enableSalvaButton()
 	{
 		salva.setEnabled(model.isEnableCaricaButton());
-		System.out.println("sssssss");
 	}
 
 

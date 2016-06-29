@@ -297,10 +297,10 @@ public class XMLOrarioParserDOM{
 			// Aula
 			Element aula = doc.createElement("Aula");
 			a.appendChild(aula);
-			Aula aula_ = ass.getAula();
-			aula.appendChild(createElem(doc,"Edificio",aula_.getEdificio()));
-			aula.appendChild(createElem(doc,"Numero",""+aula_.getNumero()));
-			aula.appendChild(createElem(doc,"Capienza",""+aula_.getCapienza()));
+			Aula aulaSupport = ass.getAula();
+			aula.appendChild(createElem(doc,"Edificio",aulaSupport.getEdificio()));
+			aula.appendChild(createElem(doc,"Numero",""+aulaSupport.getNumero()));
+			aula.appendChild(createElem(doc,"Capienza",""+aulaSupport.getCapienza()));
 			
 			// Fascia Oraria
 			a.appendChild(createElem(doc,"FasciaOraria",""+ass.getFasciaOraria().getIdFascia()));

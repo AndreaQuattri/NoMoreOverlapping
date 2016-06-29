@@ -2,8 +2,9 @@ package elaborazioneDati;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
-import connectToDatabase.Connect;
-import connectToDatabase.NumberOfRows;
+
+import connect_to_database.Connect;
+import connect_to_database.NumberOfRows;
 import urlPhp.GiveAll;
 
 public class InsertInTable {
@@ -20,7 +21,7 @@ public class InsertInTable {
 	public String[][] getValues() throws IOException, URISyntaxException{
 		
 		if (selectedItem==null)
-			return null;
+			return new String[1][1];
 		
 		if (selectedItem.equals("Attività")){
 			return getAttività();
@@ -82,9 +83,7 @@ public class InsertInTable {
 			return getTirocinio();
 		}
 		
-		//System.out.println(selectedItem);
-		
-		return null;
+		return new String[1][1]; //coonsigliato da pmd
 		
 	}
 	

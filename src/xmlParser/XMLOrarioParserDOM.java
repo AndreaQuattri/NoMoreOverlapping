@@ -178,7 +178,6 @@ public class XMLOrarioParserDOM{
 		}
 		
 
-		System.out.println("test1.5");
 		
 		// Attività
 		e = saveAttività(doc,elencoAt);
@@ -192,10 +191,7 @@ public class XMLOrarioParserDOM{
 		e = saveCorsi(doc,elencoCorsi);
 		rootElement.appendChild(e);
 				
-		
-
-		System.out.println("test2");
-		
+				
 		// write the content into xml file
 		writeXMLFile(doc,file);
 
@@ -575,7 +571,6 @@ public class XMLOrarioParserDOM{
 		// error case
 		if ( file == null || file == "" ) {
 			file = "temp.xml";
-			System.out.println("ERROR: No XML file name");
 		}
 		else if ( !file.endsWith(".xml") )
 			file = file + ".xml";
@@ -637,7 +632,6 @@ public class XMLOrarioParserDOM{
 		StreamResult result = new StreamResult(new File(file));
 		transformer.transform(source, result);
 
-		System.out.println("File saved! Name: " + file );
 		
 	}
 	

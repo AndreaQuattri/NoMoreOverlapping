@@ -7,7 +7,6 @@ import java.util.ArrayList;
 
 import mvc.Model;
 import myComponents.*;
-import provaPermutazione.Comb;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -24,7 +23,7 @@ public class GeneraPianiDiStudio {
 	 *
 	 * @param model the model
 	 */
-	public GeneraPianiDiStudio(Model model) {
+	public GeneraPianiDiStudio(final Model model) {
 		this.model = model;
 	}
 
@@ -37,7 +36,7 @@ public class GeneraPianiDiStudio {
 
 		for (int k=0; k<model.getListPianoDiStudi().size(); k++){
 
-			PianoDiStudi piano = model.getListPianoDiStudi().get(k);
+			final PianoDiStudi piano = model.getListPianoDiStudi().get(k);
 
 			int creditiMancanti = 0;
 			for (int i=0; i<piano.getElencoAttivitàObbligatorie().size();i++){
@@ -47,15 +46,15 @@ public class GeneraPianiDiStudio {
 			creditiMancanti = piano.getCorso().getTotCrediti()-creditiMancanti;
 
 
-			ArrayList<String> elencoAttivitàString = new ArrayList<String>();
-			ArrayList<String> elencoAttività = new ArrayList<String>();
+			final ArrayList<String> elencoAttivitàString = new ArrayList<String>();
+			final ArrayList<String> elencoAttività = new ArrayList<String>();
 
 			for (int i=0; i<piano.getElencoAttivitàOpzionali().size(); i++)
 				elencoAttivitàString.add(piano.getElencoAttivitàOpzionali().get(i).getId());
 
 
 
-			elencoAttività = Comb.getCombinazioni(elencoAttivitàString, piano.getElencoAttivitàOpzionali().size());
+			//elencoAttività = Comb.getCombinazioni(elencoAttivitàString, piano.getElencoAttivitàOpzionali().size());
 
 			//GetDisciplina getDisplina = new GetDisciplina(model);
 			int cred;
@@ -69,8 +68,10 @@ public class GeneraPianiDiStudio {
 
 			}
 			
-			for (int i=0, indicePiani = 0; i<elencoAttività.size(); i++){
-				String riga[] = elencoAttività.get(i).split(" ");
+			
+			int indicePiani = 0;
+			for (int i=0; i<elencoAttività.size(); i++){
+				final String riga[] = elencoAttività.get(i).split(" ");
 				cred = 0;
 				for (int j=0; j<riga.length; j++)
 					cred+=model.fromIdToDisciplina(riga[j]).getCrediti();
@@ -108,7 +109,7 @@ public class GeneraPianiDiStudio {
 	 *
 	 * @param model the new model
 	 */
-	public void setModel(Model model) {
+	public void setModel(final Model model) {
 		this.model = model;
 	}
 

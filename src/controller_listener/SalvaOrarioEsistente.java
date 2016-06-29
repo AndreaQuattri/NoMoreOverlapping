@@ -1,7 +1,7 @@
 /*
  * 
  */
-package controllerListener;
+package controller_listener;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -51,7 +51,6 @@ public class SalvaOrarioEsistente implements ActionListener{
 
 		// TODO Auto-generated method stub
 		String file = fs.getSelectedFile().getPath();
-		System.out.println(file);
 		
 
 	

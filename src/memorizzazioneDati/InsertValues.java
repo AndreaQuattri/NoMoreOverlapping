@@ -10,8 +10,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import connectToDatabase.Connect;
-import connectToDatabase.NumberOfRows;
+import connect_to_database.Connect;
+import connect_to_database.NumberOfRows;
 import mvc.Model;
 import myComponents.Aula;
 import myComponents.Convegno;
@@ -189,7 +189,7 @@ public class InsertValues {
 	 * @throws IOException Signals that an I/O exception has occurred.
 	 * @throws URISyntaxException the URI syntax exception
 	 */
-	public void getValueCorsoDiStudi_1() throws IOException, URISyntaxException{
+	public void getValueCorsoDiStudi1() throws IOException, URISyntaxException{
 
 		String input = Connect.connectDb(GiveAll.giveAllCorsoDiStudi);
 		int numCorsoDiStudi = NumberOfRows.numOfRows(input);
@@ -214,7 +214,7 @@ public class InsertValues {
 	 * @throws IOException Signals that an I/O exception has occurred.
 	 * @throws URISyntaxException the URI syntax exception
 	 */
-	public void getValueCorsoDiStudi_2() throws IOException, URISyntaxException{
+	public void getValueCorsoDiStudi2() throws IOException, URISyntaxException{
 
 
 
@@ -304,7 +304,7 @@ public class InsertValues {
 	 * @throws URISyntaxException the URI syntax exception
 	 * @throws ParseException the parse exception
 	 */
-	public void getValueAttività_1() throws IOException, URISyntaxException, ParseException{
+	public void getValueAttività1() throws IOException, URISyntaxException, ParseException{
 
 		String inputAttività = Connect.connectDb(GiveAll.giveAllAttività);
 		int numAttività = NumberOfRows.numOfRows(inputAttività);
@@ -473,7 +473,7 @@ public class InsertValues {
 	 * @throws URISyntaxException the URI syntax exception
 	 * @throws ParseException the parse exception
 	 */
-	public void getValueAttività_2() throws IOException, URISyntaxException, ParseException{
+	public void getValueAttività2() throws IOException, URISyntaxException, ParseException{
 		
 		
 		for (int i=0; i<model.getListDisciplina().size(); i++){

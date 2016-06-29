@@ -1,7 +1,7 @@
 /*
  * 
  */
-package controllerListener;
+package controller_listener;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -92,20 +92,20 @@ public class OpenViewGestisciOrario implements  ActionListener
 				insert.getValueAula();
 
 				//corsi di studi inseriti in arraylist<CorsoDiStudi>
-				insert.getValueCorsoDiStudi_1();
+				insert.getValueCorsoDiStudi1();
 
 				//studenti inseriti in arrayList<Studente>
 				insert.getValueStudente();
 
 				//corsi di studi inseriti in arraylist<CorsoDiStudi>
 				//mancano elencoPianiPossibili
-				insert.getValueCorsoDiStudi_2();
+				insert.getValueCorsoDiStudi2();
 
 				//fascie orarie inserite in arraylist<FasciaOraria>
 				insert.getValueFasciaOraria();
 
 				//le sottoclassi di attività inserite nei rispettivi arraylist
-				insert.getValueAttività_1();
+				insert.getValueAttività1();
 
 
 				insert.getValuePianoDiStudi();
@@ -114,7 +114,7 @@ public class OpenViewGestisciOrario implements  ActionListener
 				insert.getValueDocente();
 
 
-				insert.getValueAttività_2();
+				insert.getValueAttività2();
 		 
 
 				GeneraPianiDiStudio generaPiani = new GeneraPianiDiStudio(model);

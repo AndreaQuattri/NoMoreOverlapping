@@ -33,7 +33,7 @@ import myComponents.Orario;
 /**
  * The Class PdfPrinter.
  */
-public class PdfPrinter implements ActionListener{
+public class PdfPrinter{
 	
 	/** The big font. */
 	private static Font bigFont = new Font(Font.FontFamily.HELVETICA, 16, Font.BOLD);
@@ -98,7 +98,7 @@ public class PdfPrinter implements ActionListener{
 	 * @return the element
 	 * @throws DocumentException the document exception
 	 */
-	private static Element aggiungiTitolo(final String title) throws DocumentException {
+	public static Element aggiungiTitolo(final String title) throws DocumentException {
 		Paragraph p = new Paragraph(title,bigFont);
 		p.setAlignment(Element.ALIGN_CENTER);
 		aggiungiLineaVuota(p, 1);
@@ -123,7 +123,7 @@ public class PdfPrinter implements ActionListener{
 	 * @param document the document
 	 * @param title the title
 	 */
-	private static void aggiungiMetaDati(final Document document, final String title) {
+	public static void aggiungiMetaDati(final Document document, final String title) {
 		document.addTitle(title);
 		document.addSubject("Orario ottimizzato " + new SimpleDateFormat("dd/MM/yyyy").format( new Date() ));
 		document.addKeywords("Orario, Overlapping, iText");
@@ -139,7 +139,7 @@ public class PdfPrinter implements ActionListener{
 	 * @return the pdf p table
 	 * @throws Exception the exception
 	 */
-	private static PdfPTable creaTabella(Orario o , ArrayList<FasciaOraria> listFO) throws Exception  {
+	public static PdfPTable creaTabella(Orario o , ArrayList<FasciaOraria> listFO) throws Exception  {
 		PdfPTable tabella = new PdfPTable(NCOL);
 		
 		//impostazioni tabella
@@ -369,55 +369,6 @@ public class PdfPrinter implements ActionListener{
 		
 	}
 
-
-	/* (non-Javadoc)
-	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
-	 */
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		String title = "Orario Ingegneria";
-		
-		
-		JFileChooser fs = new JFileChooser(new File("c:\\"));
-		fs.setDialogTitle("Save a File");
-		fs.showSaveDialog(fs);
-		
-		
-		
-
-
-		// TODO Auto-generated method stub
-		String fileName = fs.getSelectedFile().getPath();
-		
-		
-		try {
-			// error case
-			if ( fileName == null || fileName == "" ) {
-				fileName = "temp.pdf";
-				System.out.println("ERROR: No PDF file name");
-			}
-			else if ( !fileName.endsWith(".pdf") )
-				fileName = fileName + ".pdf";
-			
-			
-			FileOutputStream file = new FileOutputStream(new File(fileName));
-
-			Document document = new Document();
-			PdfWriter.getInstance(document, file);
-			document.open();
-			aggiungiMetaDati(document,title);
-			document.add(aggiungiTitolo(title));
-			document.add(creaTabella(model.getOrarioDaMostrare(), model.getListFasciaOraria()));
-			
-			document.close();
-			file.close();
-			System.out.println("pdf salvato col nome " + fileName);
-
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
-		
-	}
 
 
 	/**

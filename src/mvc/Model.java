@@ -555,9 +555,9 @@ public class Model extends Observable{
 	 *
 	 * @param numSovrapposizioni the new num sovrapposizioni
 	 */
-	public void setNumSovrapposizioni(int numSovrapposizioni) {
-		this.numSovrapposizioni = numSovrapposizioni;
-	}
+//	public void setNumSovrapposizioni(int numSovrapposizioni) {
+//		this.numSovrapposizioni = numSovrapposizioni;
+//	}
 
 
 
@@ -591,7 +591,7 @@ public class Model extends Observable{
 	 * @param codice the codice
 	 * @return true, if successful
 	 */
-	public boolean AttivitàInCorso(String idAtt, String codice){
+	public boolean attivitàInCorso(String idAtt, String codice){
 
 		for (int i=0; i<this.getListPianoDiStudi().size(); i++){
 			if (getListPianoDiStudi().get(i).getCorso().getCodice().equals(codice)){
@@ -1004,7 +1004,7 @@ public class Model extends Observable{
 		orarioDaMostrare = new Orario();
 		while( i != null && i.hasNext() ) {
 			Assegnamento ax = i.next();
-			if( AttivitàInCorso(ax.getAttività().getId(), codice ) ) {
+			if( attivitàInCorso(ax.getAttività().getId(), codice ) ) {
 				// aggiungere attività?
 				orarioDaMostrare.aggiungiAssegnamento(ax);
 			}

@@ -1,7 +1,7 @@
 /*
  * 
  */
-package controllerListener;
+package controller_listener;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -42,8 +42,8 @@ public class InsertInTimeTable implements ActionListener{
 	 * @param updateTimeTable the update time table
 	 */
 	public InsertInTimeTable(Model model, ViewTimeTable viewOrario, UpdateTimeTable updateTimeTable) {
-		this.setModel(model);
-		this.setUpdateTimeTable(updateTimeTable);
+		this.model = model;
+		this.updateTimeTable = updateTimeTable;
 		this.viewOrario = viewOrario;
 	}
 
@@ -104,6 +104,7 @@ public class InsertInTimeTable implements ActionListener{
 				}
 			}
 
+			
 			CreateTimeTable c = new CreateTimeTable(model);
 
 			model.setOrarioUfficiale(new Orario());
@@ -112,6 +113,8 @@ public class InsertInTimeTable implements ActionListener{
 			model.setTabella(new Vector<Vector<String>>());
 			model.fromOrarioUfficialeToTable();
 			viewOrario.visualizzaOrario();
+			
+			
 
 
 

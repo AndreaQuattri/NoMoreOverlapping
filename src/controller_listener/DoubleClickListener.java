@@ -1,7 +1,7 @@
 /*
  * 
  */
-package controllerListener;
+package controller_listener;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -40,7 +40,7 @@ public class DoubleClickListener implements MouseListener {
 	 * @param viewOrario the view orario
 	 */
 	public DoubleClickListener(Model model, ViewTimeTable viewOrario) {
-		this.setModel(model);
+		this.model = model;
 		this.viewOrario = viewOrario;
 	}
 

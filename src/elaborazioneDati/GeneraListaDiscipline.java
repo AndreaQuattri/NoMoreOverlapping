@@ -8,7 +8,7 @@ import myComponents.Disciplina;
 public class GeneraListaDiscipline {
 
 
-	public void aggiungiSubDisciplina(ArrayList<Disciplina> listDisciplina, ArrayList<Attività> listAttività, 
+	public void aggiungiSubDisciplina(final ArrayList<Disciplina> listDisciplina, ArrayList<Attività> listAttività, 
 			int posizione, int subOre, int subId){
 		
 		listDisciplina.add(new Disciplina(listAttività.get(posizione).getOre(),
@@ -26,7 +26,7 @@ public class GeneraListaDiscipline {
 	}
 
 
-	public  ArrayList<Disciplina> generaLista(ArrayList<Attività> listAttività){
+	public  ArrayList<Disciplina> generaLista(final ArrayList<Attività> listAttività){
 
 		ArrayList<Disciplina> listDisciplina = new ArrayList<Disciplina>();
 		int j;

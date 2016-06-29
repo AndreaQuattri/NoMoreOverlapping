@@ -37,7 +37,7 @@ public class LarghezzaColonne {
 	public int[] getLarghezza() throws IOException, URISyntaxException{
 
 		if (selectedItem==null)
-			return null;
+			return new int[1];
 
 		if (selectedItem.equals("Attività")){
 			return getAttività();
@@ -100,7 +100,7 @@ public class LarghezzaColonne {
 		}
 
 
-		return null;
+		return new int[1];
 
 	}
 

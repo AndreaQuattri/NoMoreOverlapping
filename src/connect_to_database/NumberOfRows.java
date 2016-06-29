@@ -1,7 +1,7 @@
 /*
  * 
  */
-package connectToDatabase;
+package connect_to_database;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -16,7 +16,7 @@ public class NumberOfRows {
 	 * @param input the input
 	 * @return the int
 	 */
-	public static int numOfRows (String input){
+	public static int numOfRows (final String input){
 		
 		int toReturn = 0;
 		

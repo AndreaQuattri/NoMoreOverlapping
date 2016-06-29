@@ -12,7 +12,7 @@ import java.util.ArrayList;
 public class CorsoDiStudi {
 
 	/** The anno. */
-	private short anno;
+	private int anno;
 	
 	/** The nome principale. */
 	private String nomePrincipale;
@@ -72,7 +72,7 @@ public class CorsoDiStudi {
 	 * @param elencoPianiPossibili the elenco piani possibili
 	 * @param elencoStudenti the elenco studenti
 	 */
-	public CorsoDiStudi(short anno, String nomePrincipale, String indirizzo, String tipoLaurea, 
+	public CorsoDiStudi(int anno, String nomePrincipale, String indirizzo, String tipoLaurea, 
 			String facoltà, String codice, String descrizione, int totCrediti, 
 			ArrayList<PianoDiStudi> elencoPianiPossibili, ArrayList<Studente> elencoStudenti) {
 		this.anno 			= anno;
@@ -99,7 +99,7 @@ public class CorsoDiStudi {
 	 * @param descrizione the descrizione
 	 * @param totCrediti the tot crediti
 	 */
-	public CorsoDiStudi(short anno, String nomePrincipale, String indirizzo, String tipoLaurea, 
+	public CorsoDiStudi(int anno, String nomePrincipale, String indirizzo, String tipoLaurea, 
 			String facoltà, String codice, String descrizione, int totCrediti) {
 		this.anno = anno;
 		this.nomePrincipale = nomePrincipale;
@@ -240,7 +240,7 @@ public class CorsoDiStudi {
 	 *
 	 * @return the anno
 	 */
-	public short getAnno() {
+	public int getAnno() {
 		return anno;
 	}
 	
@@ -249,7 +249,7 @@ public class CorsoDiStudi {
 	 *
 	 * @param anno the new anno
 	 */
-	public void setAnno(short anno) {
+	public void setAnno(int anno) {
 		this.anno = anno;
 	}
 	

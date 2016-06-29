@@ -22,7 +22,7 @@ public class UpdateTimeTable extends JFrame implements Observer{
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
-	
+
 	/** The button inserisci. */
 	private JButton buttonInserisci;
 
@@ -30,16 +30,16 @@ public class UpdateTimeTable extends JFrame implements Observer{
 
 	/** The model. */
 	private Model model;
-	
+
 	/** The combo gita convegno. */
 	private JComboBox comboGitaConvegno;
-	
+
 	/** The row. */
 	private int row;
-	
+
 	/** The col. */
 	private int col;
-	
+
 	/** The semestre. */
 	private int semestre;
 
@@ -105,7 +105,7 @@ public class UpdateTimeTable extends JFrame implements Observer{
 
 		ora = switchRiga(row);
 
-		
+
 
 		switch (col){
 		case 1:
@@ -205,9 +205,17 @@ public class UpdateTimeTable extends JFrame implements Observer{
 
 	private String switchRiga(int row2) {
 		// TODO Auto-generated method stub
-		
+
+		if (row2 < 10)
+			return switchRigaMinore(row2);
+		else
+			return switchRigaMaggiore(row2);
+	}
+
+	private String switchRigaMinore(int row2){
+
 		String ora;
-		
+
 		switch (row){
 		case 0:
 			ora = "08:30:00";
@@ -248,6 +256,18 @@ public class UpdateTimeTable extends JFrame implements Observer{
 			ora = "13:00:00";
 			break;
 
+		default:
+			ora = "20:00:00";
+		}
+
+		return ora;
+	}
+
+	private String switchRigaMaggiore (int row2){
+
+		String ora;
+
+		switch (row2){
 		case 10:
 			ora = "13:30:00";
 			break;
@@ -291,11 +311,9 @@ public class UpdateTimeTable extends JFrame implements Observer{
 		case 20:
 			ora = "18:30:00";
 			break;
-
 		default:
 			ora = "20:00:00";
 		}
-
 		return ora;
 	}
 

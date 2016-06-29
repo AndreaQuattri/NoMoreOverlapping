@@ -1,7 +1,7 @@
 /*
  * 
  */
-package connectToDatabase;
+package connect_to_database;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -25,22 +25,22 @@ public class Connect {
 	 * @throws IOException Signals that an I/O exception has occurred.
 	 * @throws URISyntaxException the URI syntax exception
 	 */
-	public static String connectDb(String tabella) throws IOException, URISyntaxException{
+	public static String connectDb(final String tabella) throws IOException, URISyntaxException{
 		
-		URL yahoo = new URL(tabella);
-        URLConnection yc = yahoo.openConnection();
-        BufferedReader in = new BufferedReader(
+		final URL yahoo = new URL(tabella);
+        final URLConnection yconn = yahoo.openConnection();
+        BufferedReader inRead = new BufferedReader(
                                 new InputStreamReader(
-                                yc.getInputStream()));
+                                yconn.getInputStream()));
         String inputLine, toReturn = "";
 
 
-        while ((inputLine = in.readLine()) != null) 
+        while ((inputLine = inRead.readLine()) != null) 
         {
         	toReturn = inputLine;
         }
         
-        in.close();
+        inRead.close();
                 
         return toReturn;
 		

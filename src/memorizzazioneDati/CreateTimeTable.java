@@ -24,7 +24,7 @@ public class CreateTimeTable {
 	 * @param model the model
 	 */
 	public CreateTimeTable(Model model) {
-		this.setModel(model);
+		this.model = model;
 	}
 
 

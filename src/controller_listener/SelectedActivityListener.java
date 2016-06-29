@@ -1,12 +1,13 @@
 /*
  * 
  */
-package controllerListener;
+package controller_listener;
 
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Iterator;
 import java.util.Vector;
 
 import javax.swing.JTable;
@@ -14,20 +15,21 @@ import javax.swing.table.DefaultTableCellRenderer;
 
 import mvc.Model;
 import mvc.ViewTimeTable;
+import myComponents.Attività;
 
 // TODO: Auto-generated Javadoc
 /**
- * The listener interface for receiving selectedPiano events.
- * The class that is interested in processing a selectedPiano
+ * The listener interface for receiving selectedActivity events.
+ * The class that is interested in processing a selectedActivity
  * event implements this interface, and the object created
  * with that class is registered with a component using the
- * component's <code>addSelectedPianoListener<code> method. When
- * the selectedPiano event occurs, that object's appropriate
+ * component's <code>addSelectedActivityListener<code> method. When
+ * the selectedActivity event occurs, that object's appropriate
  * method is invoked.
  *
- * @see SelectedPianoEvent
+ * @see SelectedActivityEvent
  */
-public class SelectedPianoListener implements  ActionListener
+public class SelectedActivityListener implements  ActionListener
 {
 
 	/** The model. */
@@ -36,43 +38,53 @@ public class SelectedPianoListener implements  ActionListener
 	/** The view orario. */
 	private ViewTimeTable viewOrario;
 	
-	/** The codice. */
-	private String codice;
+	/** The nome attività. */
+	private String nomeAttività;
 
 	/**
-	 * Instantiates a new selected piano listener.
+	 * Instantiates a new selected activity listener.
 	 *
 	 * @param model the model
 	 * @param viewOrario the view orario
-	 * @param codice the codice
+	 * @param nomeAttività the nome attività
 	 */
-	public SelectedPianoListener(Model model, ViewTimeTable viewOrario, String codice) {
+	public SelectedActivityListener(Model model, ViewTimeTable viewOrario, String nomeAttività) {
+		// TODO Auto-generated constructor stub
 		this.model = model;
 		this.viewOrario = viewOrario;
-		this.codice = codice;
+		this.nomeAttività = nomeAttività;
 	}
 
-	/* (non-Javadoc)
-	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
-	 */
+
 	@Override
 	public void actionPerformed(ActionEvent action)
 	{
 
-		
+		// gestione selezioni
 		setAttributeToView();
-
+		
+		// inizializzare la tabella nel model
 		model.setTabella(new Vector<Vector<String>>());
 
+		// inizializza la tabella mostrata
 		if(viewOrario.getTableRecords().getRowCount()!=0)
 			for (int i = 0; i<21; i++){
 				viewOrario.getTableRecords().removeRow(0);
 			}
-
-
-		model.filtraOrarioPerCorso(codice);
+		
+		
+		// trovo l'attività per il nome
+		Iterator<Attività> iAtt = model.getListAllAttivitàInserite().iterator();
+		Attività attivitàSelezionata = null;
+		while( iAtt != null && iAtt.hasNext() ) {
+			attivitàSelezionata = iAtt.next();
+			if(nomeAttività.equals(attivitàSelezionata.getNome()))
+				iAtt = null;
+		}
+		model.filtraOrario(attivitàSelezionata);
 
 		model.fromOrarioDaMostrareToTable();
+		
 		
 		for(int i=0; i<21; i++){
 			viewOrario.getTableRecords().addRow(model.getTabella().get(i));
@@ -102,15 +114,13 @@ public class SelectedPianoListener implements  ActionListener
 					}
 					else{
 						if (value.equals("1")){
-							cell.setBackground(Color.BLUE);
+							cell.setBackground( Color.BLUE );
 							cell.setForeground(Color.BLUE);
 						}
-
 						else{
-							cell.setBackground( Color.RED );
-							cell.setForeground(Color.RED);
+							cell.setBackground( Color.red );
+							cell.setForeground(Color.red);
 						}
-
 
 					}
 					return cell;
@@ -123,25 +133,25 @@ public class SelectedPianoListener implements  ActionListener
 
 	}
 	
-	
 	/**
 	 * Sets the attribute to view.
 	 */
 	private void setAttributeToView(){
-		String[] appoggio;
-		for (int i=0; i<viewOrario.getVisualizzaCorso().getItemCount(); i++){
-			appoggio = viewOrario.getVisualizzaCorso().getItem(i).getText().split("-");
-			if (appoggio[0].trim().equals(codice))
-				viewOrario.getVisualizzaCorso().getItem(i).setSelected(true);
+		String appoggio;
+		for (int i=0; i<viewOrario.getVisualizzaAttività().getItemCount(); i++){
+			appoggio = viewOrario.getVisualizzaAttività().getItem(i).getText();
+			if (appoggio.equals(nomeAttività))
+				viewOrario.getVisualizzaAttività().getItem(i).setSelected(true);
 			else
-				viewOrario.getVisualizzaCorso().getItem(i).setSelected(false);
-
+				viewOrario.getVisualizzaAttività().getItem(i).setSelected(false);
 		}
-		for (int i=0; i<viewOrario.getVisualizzaAttività().getItemCount(); i++)
-			viewOrario.getVisualizzaAttività().getItem(i).setSelected(false);
+		for (int i=0; i<viewOrario.getVisualizzaCorso().getItemCount(); i++)
+			viewOrario.getVisualizzaCorso().getItem(i).setSelected(false);
 		for (int i=0; i<viewOrario.getVisualizzaDocente().getItemCount(); i++)
 			viewOrario.getVisualizzaDocente().getItem(i).setSelected(false);
 		viewOrario.getVisualizzaTutto().getItem(0).setSelected(false);
 
+
 	}
+	
 }

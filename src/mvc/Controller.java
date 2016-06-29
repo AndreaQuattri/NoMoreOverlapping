@@ -3,7 +3,7 @@
  */
 package mvc;
 
-import controllerListener.*;
+import controller_listener.*;
 import pdfPrinter.PdfPrinter;;
 
 
@@ -34,9 +34,9 @@ public class Controller
 	 */
 	public Controller(Model model, MainView view, ViewTimeTable viewOrario)
 	{
-		this.setModel(model);
-		this.setView(view);
-		this.setViewOrario(viewOrario);
+		this.model = model;
+		this.view = view;
+		this.viewOrario = viewOrario;
 
 		// Set all the listener of the view
 		view.selectedTableToView(new SelectedTableListener(model));
@@ -49,7 +49,7 @@ public class Controller
 		viewOrario.pressButtonCarica(new CaricaOrarioDaFile(model, viewOrario));
 		viewOrario.pressButtonSalva(new SalvaOrarioEsistente(model));
 		viewOrario.pressButtonEsci(new EsciViewTimeTable(viewOrario));
-		viewOrario.pressEsportaPdf(new PdfPrinter(model));
+		viewOrario.pressEsportaPdf(new SalvaPdfOrario(model));
 
 	}
 

@@ -1,7 +1,7 @@
 /*
  * 
  */
-package controllerListener;
+package controller_listener;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -47,7 +47,7 @@ public class CaricaOrarioDaFile extends JPanel implements ActionListener{
 	 * @param model the model
 	 * @param viewOrario the view orario
 	 */
-	public CaricaOrarioDaFile( Model model, ViewTimeTable viewOrario ) {
+	public CaricaOrarioDaFile(final Model model, final ViewTimeTable viewOrario ) {
 		this.model = model;
 		this.viewOrario = viewOrario;
 	}
@@ -61,22 +61,21 @@ public class CaricaOrarioDaFile extends JPanel implements ActionListener{
 		// TODO Auto-generated method stub
 
 
-		JFileChooser fileChooser = new JFileChooser();
+		final JFileChooser fileChooser = new JFileChooser();
 		fileChooser.setDialogTitle("Select a Time Table");
 		fileChooser.setApproveButtonText("Open");
 		fileChooser.setCurrentDirectory(new java.io.File("."));
 		fileChooser.setFileFilter(new MyFileFilter());
 
 
-		int n = fileChooser.showOpenDialog(CaricaOrarioDaFile.this);
+		int resultOfCarica = fileChooser.showOpenDialog(CaricaOrarioDaFile.this);
 
-		if (n == JFileChooser.APPROVE_OPTION)
+		if (resultOfCarica == JFileChooser.APPROVE_OPTION)
 		{
 
 			File inputFile = fileChooser.getSelectedFile();
 
 			String file = inputFile.getPath();
-			System.out.println(file);
 
 
 

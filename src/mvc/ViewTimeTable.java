@@ -25,7 +25,8 @@ import javax.swing.JCheckBoxMenuItem;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
-import controllerListener.DoubleClickListener;
+import controller_listener.DoubleClickListener;
+
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 

@@ -86,10 +86,6 @@ public class ManagementTableView extends JFrame {
 		getContentPane().setLayout(null);
 		getContentPane().add(modificaButton);
 		
-		
-
-		
-		
 	}
 	
 	private void initAttività(String record) throws IOException, URISyntaxException{
@@ -714,6 +710,7 @@ public class ManagementTableView extends JFrame {
 			spAttivitàColonne = y.split(",");
 			attività.addItem(spAttivitàColonne[0]+","+spAttivitàColonne[1]);
 		}
+		
 		attività.setEditable(true);
 		matricola.setText(spRecord[0]);
 		
@@ -724,38 +721,36 @@ public class ManagementTableView extends JFrame {
 		getContentPane().add(attività);
 		
 		while (true){
+			
 		while (j < spInsegna.length) {
 			String x = spInsegna[j];
 			spInsegnaColonne = x.split(",");
-			//System.out.println(spInsegnaColonne[0]+" "+spRecord[0]);
 			if (spInsegnaColonne[0].equals(spRecord[0]))
 					break;
-				j++;
+			j++;
 		}
 			
 			if (j == spInsegna.length)
 				return;
 			j++;
 			
-			while (k < spAttività.length){
+			for (k=0; k < spAttività.length; k++){
 				String y = spAttività[k];
 				spAttivitàColonne = y.split(",");
-				System.out.print(spInsegnaColonne[1]);
 				if (spAttivitàColonne[0].equals(spInsegnaColonne[1]))
 					break;
-				k++;
 			}
 			
 			if (k == spAttività.length)
 				return;
 			k++;
 			
-			if (spRecord[3].equals(spAttivitàColonne[1]))
+			if (spRecord[3].trim().equals(spAttivitàColonne[1].trim())){
 				attività.setSelectedItem(spInsegnaColonne[1]);
 				break;
 		}
 		}
-		
+	}
 	
 	
 	private void initPianoDiStudio(String record) throws IOException, URISyntaxException{
@@ -790,7 +785,6 @@ public class ManagementTableView extends JFrame {
 			while (j < spPiano.length){
 				String x = spPiano[j];
 				spPianoColonne = x.split(",");
-				//System.out.println(spRecord[0]+" "+spPianoColonne[0]);
 				if (spRecord[0].equals(spPianoColonne[0]))
 					break;
 				j++;
@@ -801,24 +795,21 @@ public class ManagementTableView extends JFrame {
 			
 			
 			String idAttivitàPiano = spPianoColonne[1];
-			while (k < spAttività.length){
+			for (k=0;k < spAttività.length;k++){
 				String y = spAttività[k];
 				spAttivitàColonne = y.split(",");
-				System.out.println(spAttivitàColonne[0]+" "+spPianoColonne[1]);
 				if (idAttivitàPiano.trim().equals(spAttivitàColonne[0].trim()))
 					break;
-				k++;
 			}
 				if (k == spAttività.length)
 					return;
 				k++;
-				//System.out.println(spRecord[8]+" "+spAttivitàColonne[1]);
 					if (spRecord[8].trim().equals(spAttivitàColonne[1].trim())){
 						idAttività.setText(spAttivitàColonne[0]);
 					break;
 		}
 				}
-	
+		
 		opzionale.setEditable(true);
 		idCorso.setText(spRecord[0]);
 		opzionale.setSelectedItem(spRecord[14]);

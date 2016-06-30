@@ -6,7 +6,9 @@ package controller_listener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import mvc.MainView;
 import mvc.Model;
+import mvc.ViewTimeTable;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -22,21 +24,21 @@ import mvc.Model;
  */
 public class SelectedTableListener implements  ActionListener
 {
-	
+
 	/** The model. */
 	private Model model;
-	
+
 	/**
 	 * Instantiates a new selected table listener.
 	 *
 	 * @param model the model
 	 */
-	
+
 	public SelectedTableListener(Model model) {
 		// TODO Auto-generated constructor stub
 		this.model = model;
 	}
-	
+
 	/* (non-Javadoc)
 	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
@@ -46,11 +48,10 @@ public class SelectedTableListener implements  ActionListener
 
 		model.enableButtonAcquisisci(true);
 		model.enableButtonAggiorna(true);
-		
+
 		model.enableInserisciButton(false);
 		model.enableEliminaTable(false);
 		model.enableModificaTable(false);
-
 
 		//TODO
 		/*

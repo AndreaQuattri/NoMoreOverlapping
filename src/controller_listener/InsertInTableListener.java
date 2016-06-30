@@ -53,10 +53,11 @@ public class InsertInTableListener implements  ActionListener
 	public void actionPerformed(ActionEvent action)
 	{
 
-		model.enableInserisciButton(true);
-		model.enableEliminaTable(true);
-		model.enableModificaTable(true);
-
+		if(!((String)view.getComboBoxTable().getSelectedItem()).equals("Fascia oraria")){
+			model.enableInserisciButton(true);
+			model.enableEliminaTable(true);
+			model.enableModificaTable(true);
+		}
 
 
 		view.getLabelTable().setText((String)view.getComboBoxTable().getSelectedItem());

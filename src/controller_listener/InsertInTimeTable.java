@@ -105,6 +105,7 @@ public class InsertInTimeTable implements ActionListener{
 			}
 
 			
+			model.getListAllAttivitàInserite().add(a);
 			CreateTimeTable c = new CreateTimeTable(model);
 
 			model.setOrarioUfficiale(new Orario());

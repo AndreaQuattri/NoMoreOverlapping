@@ -21,10 +21,13 @@ public class ModificaCampiListener{
 	public void modificaCampi() {
 		// TODO Auto-generated method stub
 		
+		int daCancellare = 1;
+		
 		if (tabella.equals("Attività"))
 			modificaAttivita();
 		
 		if (tabella.equals("Aula"))
+			modificaAula();
 	
 		if (tabella.equals("Convegno"))
 		
@@ -51,7 +54,12 @@ public class ModificaCampiListener{
 		if (tabella.equals("Studente"))
 		
 		if (tabella.equals("Tirocinio"))
-			System.out.println();
+			daCancellare = 1;
+			
+	}
+
+	private void modificaAula() {
+		// TODO Auto-generated method stub
 		
 	}
 

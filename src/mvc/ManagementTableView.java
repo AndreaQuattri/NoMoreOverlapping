@@ -86,6 +86,7 @@ public class ManagementTableView extends JFrame {
 		getContentPane().setLayout(null);
 		getContentPane().add(modificaButton);
 		
+		
 	}
 	
 	private void initAttività(String record) throws IOException, URISyntaxException{
@@ -223,7 +224,7 @@ public class ManagementTableView extends JFrame {
 		
 		
 		
-		//modificaButton.addActionListener(new ModificaCampiListener(elencoParametri));
+		
 		modificaButton.addActionListener(new ActionListener() {
 			
 			@Override
@@ -234,13 +235,13 @@ public class ManagementTableView extends JFrame {
 				elencoParametri.add(nome.getText().trim());
 				elencoParametri.add(descrizione.getText().trim());
 				elencoParametri.add(ore.getText().trim());
-				elencoParametri.add(((String) semestre.getSelectedItem()).trim());
-				elencoParametri.add(((String) giornoInizio.getSelectedItem()).trim());
-				elencoParametri.add((meseNumero((String) meseInizio.getSelectedItem())).trim());
-				elencoParametri.add(((String) annoInizio.getSelectedItem()).trim());
-				elencoParametri.add(((String) giornoFine.getSelectedItem()).trim());
-				elencoParametri.add((meseNumero((String) meseFine.getSelectedItem())).trim());
-				elencoParametri.add(((String) annoFine.getSelectedItem()).trim());
+				elencoParametri.add(semestre.getSelectedItem().toString().trim());
+				elencoParametri.add(giornoInizio.getSelectedItem().toString().trim());
+				elencoParametri.add(meseInizio.getSelectedItem().toString().trim());
+				elencoParametri.add(annoInizio.getSelectedItem().toString().trim());
+				elencoParametri.add(giornoFine.getSelectedItem().toString().trim());
+				elencoParametri.add(meseFine.getSelectedItem().toString().trim());
+				elencoParametri.add(annoFine.getSelectedItem().toString().trim());
 				ModificaCampiListener modificaCampi = new ModificaCampiListener(elencoParametri, "Attività");
 				modificaCampi.modificaCampi();
 			}
@@ -251,21 +252,21 @@ public class ManagementTableView extends JFrame {
 	private void initAula(String record){
 		JLabel labelEdificio = new JLabel("Edificio");
 		labelEdificio.setBounds(69, 71, 117, 29);
-		JTextField edificio = new JTextField();
+		final JTextField edificio = new JTextField();
 		edificio.setBounds(250, 71, 400, 29);
 		edificio.enable(false);
 		JLabel labelNumero = new JLabel("Numero");
 		labelNumero.setBounds(69, 111, 117, 29);
-		JTextField numero = new JTextField();
+		final JTextField numero = new JTextField();
 		numero.setBounds(250, 111, 400, 29);
 		numero.enable(false);
 		JLabel labelCapienza = new JLabel ("Capienza");
 		labelCapienza.setBounds(69, 151, 117, 29);
-		JTextField capienza = new JTextField();
+		final JTextField capienza = new JTextField();
 		capienza.setBounds(250, 151, 400, 29);
 		JLabel labelDescrizione = new JLabel("Descrizione");
 		labelDescrizione.setBounds(69, 191, 117, 29);
-		JTextField descrizione = new JTextField();
+		final JTextField descrizione = new JTextField();
 		descrizione.setBounds(250, 191, 400, 29);
 		
 		String spRecord[] = record.split(",");
@@ -283,34 +284,49 @@ public class ManagementTableView extends JFrame {
 		getContentPane().add(numero);
 		getContentPane().add(capienza);
 		getContentPane().add(descrizione);
+		
+modificaButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				ArrayList<String> elencoParametri = new ArrayList <String>();
+				elencoParametri.add(edificio.getText().trim());
+				elencoParametri.add(numero.getText().trim());
+				elencoParametri.add(capienza.getText().trim());
+				elencoParametri.add(descrizione.getText().trim());
+				ModificaCampiListener modificaCampi = new ModificaCampiListener(elencoParametri, "Aula");
+				modificaCampi.modificaCampi();
+			}
+		});
 
 	}
 	
 	private void initConvegno(String record) throws IOException, URISyntaxException{
 		JLabel labelIDConvegno = new JLabel("ID Convegno");
 		labelIDConvegno.setBounds(69, 71, 117, 29);
-		JTextField idConvegno = new JTextField();
+		final JTextField idConvegno = new JTextField();
 		idConvegno.setBounds(250, 71, 400, 29);
 		idConvegno.enable(false);
 		JLabel labelIDAttività = new JLabel("ID Attività");
 		labelIDAttività.setBounds(69, 111, 117, 29);
-		JComboBox idAttività = new JComboBox();
+		final JComboBox idAttività = new JComboBox();
 		idAttività.setBounds(250, 111, 400, 29);
 		JLabel labelNomeRelatore = new JLabel ("Nome Relatore");
 		labelNomeRelatore.setBounds(69, 151, 117, 29);
-		JTextField nomeRelatore = new JTextField();
+		final JTextField nomeRelatore = new JTextField();
 		nomeRelatore.setBounds(250, 151, 400, 29);
 		JLabel labelCognomeRelatore = new JLabel("Cognome Relatore");
 		labelCognomeRelatore.setBounds(69, 191, 117, 29);
-		JTextField cognomeRelatore = new JTextField();
+		final JTextField cognomeRelatore = new JTextField();
 		cognomeRelatore.setBounds(250, 191, 400, 29);
 		JLabel labelEmailRelatore = new JLabel("Email Relatore");
 		labelEmailRelatore.setBounds(69, 231, 117, 29);
-		JTextField emailRelatore = new JTextField();
+		final JTextField emailRelatore = new JTextField();
 		emailRelatore.setBounds(250, 231, 400, 29);
 		JLabel labelQualificaRelatore = new JLabel("Qualifica Relatore");
 		labelQualificaRelatore.setBounds(69, 271, 117, 29);
-		JTextField qualificaRelatore = new JTextField();
+		final JTextField qualificaRelatore = new JTextField();
 		qualificaRelatore.setBounds(250, 271, 400, 29);
 		
 		String spRecord[] = record.split(",");
@@ -355,42 +371,61 @@ public class ManagementTableView extends JFrame {
 		getContentPane().add(cognomeRelatore);
 		getContentPane().add(emailRelatore);
 		getContentPane().add(qualificaRelatore);
-
+		
+		final String id[] =  ((String) idAttività.getSelectedItem()).split(",");
+		
+		modificaButton.addActionListener(new ActionListener() {
+					
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			ArrayList<String> elencoParametri = new ArrayList <String>();
+			elencoParametri.add(idConvegno.getText().trim());
+			elencoParametri.add(id[0].trim());
+			elencoParametri.add(nomeRelatore.getText().trim());
+			elencoParametri.add(cognomeRelatore.getText().trim());
+			elencoParametri.add(emailRelatore.getText().trim());
+			elencoParametri.add(qualificaRelatore.getText().trim());
+			ModificaCampiListener modificaCampi = new ModificaCampiListener(elencoParametri, "Convegno");
+			modificaCampi.modificaCampi();
+		}
+	});
+		
 	}
 	
 	private void initCorsoDiStudi(String record){
 		JLabel labelID = new JLabel("ID Corso Di Studi");
 		labelID.setBounds(69, 71, 117, 29);
-		JTextField id = new JTextField();
+		final JTextField id = new JTextField();
 		id.setBounds(250, 71, 400, 29);
 		id.enable(false);
 		JLabel labelNome = new JLabel("Nome");
 		labelNome.setBounds(69, 111, 117, 29);
-		JTextField nome = new JTextField();
+		final JTextField nome = new JTextField();
 		nome.setBounds(250, 111, 400, 29);
 		JLabel labelDescrizione = new JLabel ("Descrizione");
 		labelDescrizione.setBounds(69, 151, 117, 29);
-		JTextField descrizione = new JTextField();
+		final JTextField descrizione = new JTextField();
 		descrizione.setBounds(250, 151, 400, 29);
 		JLabel labelTotaleCrediti = new JLabel("Totale Crediti");
 		labelTotaleCrediti.setBounds(69, 191, 117, 29);
-		JTextField crediti = new JTextField();
+		final JTextField crediti = new JTextField();
 		crediti.setBounds(250, 191, 400, 29);
 		JLabel labelAnno = new JLabel("Anno");
 		labelAnno.setBounds(69, 231, 117, 29);
-		JComboBox anno = new JComboBox();
+		final JComboBox anno = new JComboBox();
 		anno.setBounds(250, 231, 400, 29);
 		JLabel labelIndirizzo = new JLabel("Indirizzo");
 		labelIndirizzo.setBounds(69, 271, 117, 29);
-		JComboBox indirizzo = new JComboBox();
+		final JComboBox indirizzo = new JComboBox();
 		indirizzo.setBounds(250, 271, 400, 29);
 		JLabel labelfacoltà = new JLabel("Facolt�");
 		labelfacoltà.setBounds(69, 311, 117, 29);
-		JTextField facoltà = new JTextField();
+		final JTextField facoltà = new JTextField();
 		facoltà.setBounds(250, 311, 400, 29);
 		JLabel labelTipoLaurea = new JLabel ("Tipo Laurea");
 		labelTipoLaurea.setBounds(69, 351, 117, 29);
-		JComboBox laurea = new JComboBox();
+		final JComboBox laurea = new JComboBox();
 		laurea.setBounds(250, 351, 400, 29);
 		
 		String spRecord[] = record.split(",");
@@ -440,21 +475,40 @@ public class ManagementTableView extends JFrame {
 		getContentPane().add(indirizzo);
 		getContentPane().add(facoltà);
 		getContentPane().add(laurea);
+		
+modificaButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				ArrayList<String> elencoParametri = new ArrayList <String>();
+				elencoParametri.add(id.getText().trim());
+				elencoParametri.add(nome.getText().trim());
+				elencoParametri.add(descrizione.getText().trim());
+				elencoParametri.add(crediti.getText().trim());
+				elencoParametri.add(((String) anno.getSelectedItem()).trim());
+				elencoParametri.add(((String) indirizzo.getSelectedItem()).trim());
+				elencoParametri.add((facoltà.getText()).trim());
+				elencoParametri.add(((String) laurea.getSelectedItem()).trim());
+				ModificaCampiListener modificaCampi = new ModificaCampiListener(elencoParametri, "Corso di studi");
+				modificaCampi.modificaCampi();
+			}
+		});
 	}
 	
 	private void initDisciplina(String record) throws IOException, URISyntaxException{
 		JLabel labelIDDisciplina = new JLabel("ID Disciplina");
 		labelIDDisciplina.setBounds(69, 71, 117, 29);
-		JTextField idDisciplina = new JTextField();
+		final JTextField idDisciplina = new JTextField();
 		idDisciplina.setBounds(250, 71, 400, 29);
 		idDisciplina.enable(false);
 		JLabel labelIDAttività = new JLabel("ID Attività");
 		labelIDAttività.setBounds(69, 111, 117, 29);
-		JComboBox idAttività = new JComboBox();
+		final JComboBox idAttività = new JComboBox();
 		idAttività.setBounds(250, 111, 400, 29);
 		JLabel labelCrediti = new JLabel ("Crediti");
 		labelCrediti.setBounds(69, 151, 117, 29);
-		JTextField crediti = new JTextField();
+		final JTextField crediti = new JTextField();
 		crediti.setBounds(250, 151, 400, 29);
 		
 		String attivitàConnect = Connect.connectDb(GiveAll.giveAllAttività);
@@ -487,33 +541,49 @@ public class ManagementTableView extends JFrame {
 		getContentPane().add(idDisciplina);
 		getContentPane().add(idAttività);
 		getContentPane().add(crediti);
+		
+		final String id[] = ((String) idAttività.getSelectedItem()).split(",");
+		
+modificaButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				ArrayList<String> elencoParametri = new ArrayList <String>();
+				elencoParametri.add(idDisciplina.getText().trim());
+				elencoParametri.add(id[0].trim());
+				elencoParametri.add(crediti.getText().trim());
+				ModificaCampiListener modificaCampi = new ModificaCampiListener(elencoParametri, "Disciplina");
+				modificaCampi.modificaCampi();
+			}
+		});
 	}
 	
 	private void initDocente(String record){
 		JLabel labelMatricola = new JLabel("Matricola");
 		labelMatricola.setBounds(69, 71, 117, 29);
-		JTextField matricola = new JTextField();
+		final JTextField matricola = new JTextField();
 		matricola.setBounds(250, 71, 400, 29);
 		matricola.enable(false);
 		JLabel labelNome = new JLabel("Nome");
 		labelNome.setBounds(69, 111, 117, 29);
-		JTextField nome = new JTextField();
+		final JTextField nome = new JTextField();
 		nome.setBounds(250, 111, 400, 29);
 		JLabel labelCognome = new JLabel ("Cognome");
 		labelCognome.setBounds(69, 151, 117, 29);
-		JTextField cognome = new JTextField();
+		final JTextField cognome = new JTextField();
 		cognome.setBounds(250, 151, 400, 29);
 		JLabel labelEmail = new JLabel("Email");
 		labelEmail.setBounds(69, 191, 117, 29);
-		JTextField email = new JTextField();
+		final JTextField email = new JTextField();
 		email.setBounds(250, 191, 400, 29);
 		JLabel labelQualifica = new JLabel("Qualifica");
 		labelQualifica.setBounds(69, 231, 117, 29);
-		JTextField qualifica = new JTextField();
+		final JTextField qualifica = new JTextField();
 		qualifica.setBounds(250, 231, 400, 29);
 		JLabel labelAssociato = new JLabel("Associato");
 		labelAssociato.setBounds(69, 271, 117, 29);
-		JComboBox associato = new JComboBox();
+		final JComboBox associato = new JComboBox();
 		associato.setBounds(250, 271, 400, 29);
 		
 		String spRecord[] = record.split(",");
@@ -540,21 +610,38 @@ public class ManagementTableView extends JFrame {
 		getContentPane().add(email);
 		getContentPane().add(qualifica);
 		getContentPane().add(associato);
+		
+modificaButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				ArrayList<String> elencoParametri = new ArrayList <String>();
+				elencoParametri.add(matricola.getText().trim());
+				elencoParametri.add(nome.getText().trim());
+				elencoParametri.add(cognome.getText().trim());
+				elencoParametri.add(email.getText().trim());
+				elencoParametri.add(qualifica.getText().trim());
+				elencoParametri.add(((String) associato.getSelectedItem()).trim());
+				ModificaCampiListener modificaCampi = new ModificaCampiListener(elencoParametri, "Docente");
+				modificaCampi.modificaCampi();
+			}
+		});
 	}
 	
 	private void initEsame(String record) throws IOException, URISyntaxException{
 		JLabel labelIDEsame = new JLabel("ID Esame");
 		labelIDEsame.setBounds(69, 71, 117, 29);
-		JTextField idEsame = new JTextField();
+		final JTextField idEsame = new JTextField();
 		idEsame.setBounds(250, 71, 400, 29);
 		idEsame.enable(false);
 		JLabel labelIDAttività = new JLabel("IDAttività");
 		labelIDAttività.setBounds(69, 111, 117, 29);
-		JComboBox idAttività = new JComboBox();
+		final JComboBox idAttività = new JComboBox();
 		idAttività.setBounds(250, 111, 400, 29);
 		JLabel labelTipologia = new JLabel ("Tipologia");
 		labelTipologia.setBounds(69, 151, 117, 29);
-		JComboBox tipologia = new JComboBox();
+		final JComboBox tipologia = new JComboBox();
 		tipologia.setBounds(250, 151, 400, 29);
 		
 		String spRecord[] = record.split(",");
@@ -594,26 +681,45 @@ public class ManagementTableView extends JFrame {
 		getContentPane().add(idEsame);
 		getContentPane().add(idAttività);
 		getContentPane().add(tipologia);
+		
+		final String id[] = ((String) idAttività.getSelectedItem()).split(",");
+		
+modificaButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				ArrayList<String> elencoParametri = new ArrayList <String>();
+				elencoParametri.add(idEsame.getText().trim());;
+				elencoParametri.add(id[0].trim());
+				elencoParametri.add(((String) tipologia.getSelectedItem()).trim());
+				ModificaCampiListener modificaCampi = new ModificaCampiListener(elencoParametri, "Esame");
+				modificaCampi.modificaCampi();
+			}
+		});
 	}
 	
 	private void initFasciaOraria(String record){
 		JLabel labelID = new JLabel("ID Fascia Oraria");
 		labelID.setBounds(69, 71, 117, 29);
-		JTextField id = new JTextField();
+		final JTextField id = new JTextField();
 		id.setBounds(250, 71, 400, 29);
 		id.enable(false);
 		JLabel labelGiorno = new JLabel("Giorno");
 		labelGiorno.setBounds(69, 111, 117, 29);
-		JComboBox giorno = new JComboBox();
+		final JComboBox giorno = new JComboBox();
 		giorno.setBounds(250, 111, 400, 29);
+		giorno.enable(false);
 		JLabel labelOraInizio = new JLabel ("Ora Inizio");
 		labelOraInizio.setBounds(69, 151, 117, 29);
-		JTextField oInizio = new JTextField();
+		final JTextField oInizio = new JTextField();
 		oInizio.setBounds(250, 151, 400, 29);
+		oInizio.enable(false);
 		JLabel labelOraFine = new JLabel("Ora Fine");
 		labelOraFine.setBounds(69, 191, 117, 29);
-		JTextField oFine = new JTextField();
+		final JTextField oFine = new JTextField();
 		oFine.setBounds(250, 191, 400, 29);
+		oFine.enable(false);
 		
 		String spRecord[] = record.split(",");
 		giorno.setEditable(true);
@@ -642,16 +748,16 @@ public class ManagementTableView extends JFrame {
 	private void initGita(String record) throws IOException, URISyntaxException{
 		JLabel labelIDGita = new JLabel("ID Gita");
 		labelIDGita.setBounds(69, 71, 117, 29);
-		JTextField gita = new JTextField();
+		final JTextField gita = new JTextField();
 		gita.setBounds(250, 71, 400, 29);
 		gita.enable(false);
 		JLabel labelIDAttività = new JLabel("IDAttività");
 		labelIDAttività.setBounds(69, 111, 117, 29);
-		JComboBox attività = new JComboBox();
+		final JComboBox attività = new JComboBox();
 		attività.setBounds(250, 111, 400, 29);
 		JLabel labelLuogo = new JLabel ("Luogo");
 		labelLuogo.setBounds(69, 151, 117, 29);
-		JTextField luogo = new JTextField();
+		final JTextField luogo = new JTextField();
 		luogo.setBounds(250, 151, 400, 29);
 		
 		String spRecord[] = record.split(",");
@@ -684,16 +790,33 @@ public class ManagementTableView extends JFrame {
 		getContentPane().add(gita);
 		getContentPane().add(attività);
 		getContentPane().add(luogo);
+		
+		final String id[] = ((String) attività.getSelectedItem()).split(",");
+		
+modificaButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				ArrayList<String> elencoParametri = new ArrayList <String>();
+				elencoParametri.add(gita.getText().trim());
+				elencoParametri.add(id[0].trim());
+				elencoParametri.add(luogo.getText().trim());
+				ModificaCampiListener modificaCampi = new ModificaCampiListener(elencoParametri, "Gita");
+				modificaCampi.modificaCampi();
+			}
+		});
 	}
 	
 	private void initInsegna(String record) throws IOException, URISyntaxException{
 		JLabel labelMatricola = new JLabel("Matricola");
 		labelMatricola.setBounds(69, 71, 117, 29);
-		JTextField matricola = new JTextField();
+		final JTextField matricola = new JTextField();
 		matricola.setBounds(250, 71, 400, 29);
+		matricola.enable(false);
 		JLabel labelID = new JLabel("ID Attività");
 		labelID.setBounds(69, 111, 117, 29);
-		JComboBox attività = new JComboBox();
+		final JComboBox attività = new JComboBox();
 		attività.setBounds(250, 111, 400, 29);
 		
 		String spRecord[] = record.split(",");
@@ -705,6 +828,8 @@ public class ManagementTableView extends JFrame {
 		String spInsegnaColonne[] = null;
 		int j=0;
 		int k=0;
+		
+		
 		for (int i=0; i<spAttività.length; i++){
 			String y = spAttività[i];
 			spAttivitàColonne = y.split(",");
@@ -750,23 +875,38 @@ public class ManagementTableView extends JFrame {
 				break;
 		}
 		}
+		
+		final String id[] = ((String) attività.getSelectedItem()).split(",");
+		
+modificaButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				ArrayList<String> elencoParametri = new ArrayList <String>();
+				elencoParametri.add((matricola.getText()).trim());
+				elencoParametri.add(id[0].trim());
+				ModificaCampiListener modificaCampi = new ModificaCampiListener(elencoParametri, "Insegna");
+				modificaCampi.modificaCampi();
+			}
+		});
 	}
 	
 	
 	private void initPianoDiStudio(String record) throws IOException, URISyntaxException{
 		JLabel labelIDCorso = new JLabel("ID Corso Di Studi");
 		labelIDCorso.setBounds(69, 71, 117, 29);
-		JTextField idCorso = new JTextField();
+		final JTextField idCorso = new JTextField();
 		idCorso.setBounds(250, 71, 400, 29);
 		idCorso.enable(false);
 		JLabel labelIDAttività = new JLabel("ID Attività");
 		labelIDAttività.setBounds(69, 111, 117, 29);
-		JTextField idAttività = new JTextField();
+		final JTextField idAttività = new JTextField();
 		idAttività.setBounds(250, 111, 400, 29);
 		idAttività.enable(false);
 		JLabel labelOpzionale = new JLabel ("Opzionale");
 		labelOpzionale.setBounds(69, 151, 117, 29);
-		JComboBox opzionale = new JComboBox();
+		final JComboBox opzionale = new JComboBox();
 		opzionale.setBounds(250, 151, 400, 29);
 		
 		String spRecord[] = record.split(",");
@@ -824,23 +964,37 @@ public class ManagementTableView extends JFrame {
 		getContentPane().add(idCorso);
 		getContentPane().add(idAttività);
 		getContentPane().add(opzionale);
+		
+modificaButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				ArrayList<String> elencoParametri = new ArrayList <String>();
+				elencoParametri.add(idCorso.getText().trim());
+				elencoParametri.add(idAttività.getText().trim());
+				elencoParametri.add(((String) opzionale.getSelectedItem()).trim());
+				ModificaCampiListener modificaCampi = new ModificaCampiListener(elencoParametri, "Piano di studio");
+				modificaCampi.modificaCampi();
+			}
+		});
 				
 			}
 	
 	private void initPreferenzaAula(String record){
 		JLabel labelMatricola = new JLabel("Matricola");
 		labelMatricola.setBounds(69, 71, 117, 29);
-		JTextField matricola = new JTextField();
+		final JTextField matricola = new JTextField();
 		matricola.setBounds(250, 71, 400, 29);
 		matricola.enable(false);
 		JLabel labelEdificio = new JLabel("Edificio");
 		labelEdificio.setBounds(69, 111, 117, 29);
-		JTextField edificio = new JTextField();
+		final JTextField edificio = new JTextField();
 		edificio.setBounds(250, 111, 400, 29);
 		edificio.enable(false);
 		JLabel labelNumero = new JLabel ("Numero");
 		labelNumero.setBounds(69, 151, 117, 29);
-		JTextField numero = new JTextField();
+		final JTextField numero = new JTextField();
 		numero.setBounds(250, 151, 400, 29);
 		numero.enable(false);
 		
@@ -856,22 +1010,36 @@ public class ManagementTableView extends JFrame {
 		getContentPane().add(matricola);
 		getContentPane().add(edificio);
 		getContentPane().add(numero);
+		
+modificaButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				ArrayList<String> elencoParametri = new ArrayList <String>();
+				elencoParametri.add(matricola.getText().trim());
+				elencoParametri.add(edificio.getText().trim());
+				elencoParametri.add(numero.getText().trim());
+				ModificaCampiListener modificaCampi = new ModificaCampiListener(elencoParametri, "Preferenza aula");
+				modificaCampi.modificaCampi();
+			}
+		});
 	}
 	
 	private void initPreferenzaFasciaOraria(String record) throws IOException, URISyntaxException{
 		JLabel labelMatricola = new JLabel("Matricola");
 		labelMatricola.setBounds(69, 71, 117, 29);
-		JTextField matricola = new JTextField();
+		final JTextField matricola = new JTextField();
 		matricola.setBounds(250, 71, 400, 29);
 		matricola.enable(false);
 		JLabel labelID = new JLabel("ID Fascia Oraria");
 		labelID.setBounds(69, 111, 117, 29);
-		JTextField id = new JTextField();
+		final JTextField id = new JTextField();
 		id.setBounds(250, 111, 400, 29);
 		id.enable(false);
-		JLabel labelpriorità = new JLabel ("priorità");
+		JLabel labelpriorità = new JLabel ("Priorit�");
 		labelpriorità.setBounds(69, 151, 117, 29);
-		JComboBox priorità = new JComboBox();
+		final JComboBox priorità = new JComboBox();
 		priorità.setBounds(250, 151, 400, 29);
 		
 		String spRecord[] = record.split(",");
@@ -932,41 +1100,55 @@ public class ManagementTableView extends JFrame {
 		getContentPane().add(matricola);
 		getContentPane().add(id);
 		getContentPane().add(priorità);
+		
+modificaButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				ArrayList<String> elencoParametri = new ArrayList <String>();
+				elencoParametri.add(matricola.getText().trim());
+				elencoParametri.add(id.getText().trim());
+				elencoParametri.add(((String) priorità.getSelectedItem()).trim());
+				ModificaCampiListener modificaCampi = new ModificaCampiListener(elencoParametri, "Preferenza fascia oraria");
+				modificaCampi.modificaCampi();
+			}
+		});
 	}
 	
 	private void initStudente(String record) throws IOException, URISyntaxException{
 		JLabel labelMatricola = new JLabel("Matricola");
 		labelMatricola.setBounds(69, 71, 117, 29);
-		JTextField matricola = new JTextField();
+		final JTextField matricola = new JTextField();
 		matricola.setBounds(250, 71, 400, 29);
 		matricola.enable(false);
 		JLabel labelNome = new JLabel("Nome");
 		labelNome.setBounds(69, 111, 117, 29);
-		JTextField nome = new JTextField();
+		final JTextField nome = new JTextField();
 		nome.setBounds(250, 111, 400, 29);
 		JLabel labelCognome = new JLabel ("Cognome");
 		labelCognome.setBounds(69, 151, 117, 29);
-		JTextField cognome = new JTextField();
+		final JTextField cognome = new JTextField();
 		cognome.setBounds(250, 151, 400, 29);
 		JLabel labelEmail = new JLabel("Email");
 		labelEmail.setBounds(69, 191, 117, 29);
-		JTextField email = new JTextField();
+		final JTextField email = new JTextField();
 		email.setBounds(250, 191, 400, 29);
 		JLabel labelDataNascita = new JLabel("Data Nascita");
 		labelDataNascita.setBounds(69, 231, 117, 29);
-		JComboBox giornoNascita = new JComboBox();
+		final JComboBox giornoNascita = new JComboBox();
 		giornoNascita.setBounds(250, 231, 100, 29);
-		JComboBox meseNascita = new JComboBox();
+		final JComboBox meseNascita = new JComboBox();
 		meseNascita.setBounds(400, 231, 100, 29);
-		JComboBox annoNascita = new JComboBox();
+		final JComboBox annoNascita = new JComboBox();
 		annoNascita.setBounds(550, 231, 100, 29);
 		JLabel labelAnnoIscrizione = new JLabel("Anno Iscrizione");
 		labelAnnoIscrizione.setBounds(69, 271, 117, 29);
-		JComboBox anno = new JComboBox();
+		final JComboBox anno = new JComboBox();
 		anno.setBounds(250, 271, 400, 29);
 		JLabel labelID = new JLabel("ID Corso Di Studi");
 		labelID.setBounds(69, 311, 117, 29);
-		JComboBox id = new JComboBox();
+		final JComboBox id = new JComboBox();
 		id.setBounds(250, 311, 400, 29);
 		
 		String corso = Connect.connectDb(GiveAll.giveAllCorsoDiStudi);
@@ -982,6 +1164,27 @@ public class ManagementTableView extends JFrame {
 		
 		for (int i = 2011; i <= 2100; i++){
 			anno.addItem(i);
+		}
+		
+		for (int k=1; k<=31; k++){
+			giornoNascita.addItem(k);
+		}
+		
+		meseNascita.addItem("Gennaio");
+		meseNascita.addItem("Febbraio");
+		meseNascita.addItem("Marzo");
+		meseNascita.addItem("Aprile");
+		meseNascita.addItem("Maggio");
+		meseNascita.addItem("Giugno");
+		meseNascita.addItem("Luglio");
+		meseNascita.addItem("Agosto");
+		meseNascita.addItem("Settembre");
+		meseNascita.addItem("Ottobre");
+		meseNascita.addItem("Novembre");
+		meseNascita.addItem("Dicembre");
+		
+		for (int w = 1992; w<=2100;w++){
+			annoNascita.addItem(w);
 		}
 		
 		String spRecord[] = record.split(",");
@@ -1025,29 +1228,51 @@ public class ManagementTableView extends JFrame {
 		getContentPane().add(annoNascita);
 		getContentPane().add(anno);
 		getContentPane().add(id);
+		
+		final String idCorso[] = ((String) id.getSelectedItem()).split(",");
+		
+modificaButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				ArrayList<String> elencoParametri = new ArrayList <String>();
+				elencoParametri.add(matricola.getText().trim());
+				elencoParametri.add(nome.getText().trim());
+				elencoParametri.add(cognome.getText().trim());
+				elencoParametri.add(email.getText().trim());
+				elencoParametri.add(giornoNascita.getSelectedItem().toString().trim());
+				elencoParametri.add(meseNascita.getSelectedItem().toString().trim());
+				elencoParametri.add(annoNascita.getSelectedItem().toString().trim());
+				elencoParametri.add(anno.getSelectedItem().toString().trim());
+				elencoParametri.add(idCorso[0].trim());
+				ModificaCampiListener modificaCampi = new ModificaCampiListener(elencoParametri, "Studente");
+				modificaCampi.modificaCampi();
+			}
+		});
 	}
 	
 	private void initTirocinio(String record) throws IOException, URISyntaxException{
 		JLabel labelIDTirocinio = new JLabel("ID Tirocinio");
 		labelIDTirocinio.setBounds(69, 71, 117, 29);
-		JTextField id = new JTextField();
+		final JTextField id = new JTextField();
 		id.setBounds(250, 71, 400, 29);
 		id.enable(false);
 		JLabel labelIDAttività = new JLabel("ID Attività");
 		labelIDAttività.setBounds(69, 111, 117, 29);
-		JComboBox attività = new JComboBox();
+		final JComboBox attività = new JComboBox();
 		attività.setBounds(250, 111, 400, 29);
 		JLabel labelNomeAzienda = new JLabel ("Nome Azienda");
 		labelNomeAzienda.setBounds(69, 151, 117, 29);
-		JTextField nome = new JTextField();
+		final JTextField nome = new JTextField();
 		nome.setBounds(250, 151, 400, 29);
 		JLabel labelDescrizioneAzienda = new JLabel("Descrizione Azienda");
 		labelDescrizioneAzienda.setBounds(69, 191, 117, 29);
-		JTextField descrizione = new JTextField();
+		final JTextField descrizione = new JTextField();
 		descrizione.setBounds(250, 191, 400, 29);
 		JLabel labelEmailAzienda = new JLabel("Email Azienda");
 		labelEmailAzienda.setBounds(69, 231, 117, 29);
-		JTextField email = new JTextField();
+		final JTextField email = new JTextField();
 		email.setBounds(250, 231, 400, 29);
 		
 		String spRecord[] = record.split(",");
@@ -1087,6 +1312,24 @@ public class ManagementTableView extends JFrame {
 		getContentPane().add(nome);
 		getContentPane().add(descrizione);
 		getContentPane().add(email);
+		
+		final String idAtt[] = ((String) attività.getSelectedItem()).split(",");
+		
+modificaButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				ArrayList<String> elencoParametri = new ArrayList <String>();
+				elencoParametri.add(id.getText().trim());
+				elencoParametri.add(idAtt[0].trim());
+				elencoParametri.add(nome.getText().trim());
+				elencoParametri.add(descrizione.getText().trim());
+				elencoParametri.add((email.getText()).trim());
+				ModificaCampiListener modificaCampi = new ModificaCampiListener(elencoParametri, "Tirocinio");
+				modificaCampi.modificaCampi();
+			}
+		});
 	}
 
 
@@ -1131,46 +1374,6 @@ private String convertiMese (String numero){
 		return "Errore";
 	
 	}
-
-private String meseNumero (String mese) {
-	if (mese.equals("Gennaio"))
-		return "01";
-	
-	if (mese.equals("Febbraio"))
-		return "02";
-	
-	if (mese.equals("Marzo"))
-		return "03";
-	
-	if (mese.equals("Aprile"))
-		return "04";
-	
-	if (mese.equals("Maggio"))
-		return "05";
-	
-	if (mese.equals("Giugno"))
-		return "06";
-	
-	if (mese.equals("Luglio"))
-		return "07";
-	
-	if (mese.equals("Agosto"))
-		return "08";
-	
-	if (mese.equals("Settembre"))
-		return "09";
-	
-	if (mese.equals("Ottobre"))
-		return "10";
-	
-	if (mese.equals("Novembre"))
-		return "11";
-	
-	if (mese.equals("Dicembre"))
-		return "12";
-	
-	return "00";
-}
 
 
 public void pressButtonModificaCampi(ActionListener listener) {

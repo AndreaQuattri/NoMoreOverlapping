@@ -22,7 +22,7 @@ public class ModificaCampiListener{
 		
 		// TODO Auto-generated method stub
 		
-		if (tabella.equals("Attivit�"))
+		if (tabella.equals("Attività"))
 			modificaAttivita();
 		
 		if (tabella.equals("Aula"))

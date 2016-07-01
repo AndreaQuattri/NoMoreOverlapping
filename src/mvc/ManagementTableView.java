@@ -86,7 +86,6 @@ public class ManagementTableView extends JFrame {
 		getContentPane().setLayout(null);
 		getContentPane().add(modificaButton);
 		
-		
 	}
 	
 	private void initAttività(String record) throws IOException, URISyntaxException{
@@ -372,7 +371,7 @@ modificaButton.addActionListener(new ActionListener() {
 		getContentPane().add(emailRelatore);
 		getContentPane().add(qualificaRelatore);
 		
-		final String id[] =  ((String) idAttività.getSelectedItem()).split(",");
+		
 		
 		modificaButton.addActionListener(new ActionListener() {
 					
@@ -380,6 +379,7 @@ modificaButton.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
 			ArrayList<String> elencoParametri = new ArrayList <String>();
+			final String id[] =  idAttività.getSelectedItem().toString().split(",");
 			elencoParametri.add(idConvegno.getText().trim());
 			elencoParametri.add(id[0].trim());
 			elencoParametri.add(nomeRelatore.getText().trim());
@@ -542,7 +542,7 @@ modificaButton.addActionListener(new ActionListener() {
 		getContentPane().add(idAttività);
 		getContentPane().add(crediti);
 		
-		final String id[] = ((String) idAttività.getSelectedItem()).split(",");
+		
 		
 modificaButton.addActionListener(new ActionListener() {
 			
@@ -550,6 +550,7 @@ modificaButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				ArrayList<String> elencoParametri = new ArrayList <String>();
+				final String id[] = idAttività.getSelectedItem().toString().split(",");
 				elencoParametri.add(idDisciplina.getText().trim());
 				elencoParametri.add(id[0].trim());
 				elencoParametri.add(crediti.getText().trim());
@@ -682,7 +683,6 @@ modificaButton.addActionListener(new ActionListener() {
 		getContentPane().add(idAttività);
 		getContentPane().add(tipologia);
 		
-		final String id[] = ((String) idAttività.getSelectedItem()).split(",");
 		
 modificaButton.addActionListener(new ActionListener() {
 			
@@ -690,6 +690,7 @@ modificaButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				ArrayList<String> elencoParametri = new ArrayList <String>();
+				final String id[] = idAttività.getSelectedItem().toString().split(",");
 				elencoParametri.add(idEsame.getText().trim());;
 				elencoParametri.add(id[0].trim());
 				elencoParametri.add(((String) tipologia.getSelectedItem()).trim());
@@ -791,7 +792,7 @@ modificaButton.addActionListener(new ActionListener() {
 		getContentPane().add(attività);
 		getContentPane().add(luogo);
 		
-		final String id[] = ((String) attività.getSelectedItem()).split(",");
+		
 		
 modificaButton.addActionListener(new ActionListener() {
 			
@@ -799,6 +800,7 @@ modificaButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				ArrayList<String> elencoParametri = new ArrayList <String>();
+				final String id[] = attività.getSelectedItem().toString().split(",");
 				elencoParametri.add(gita.getText().trim());
 				elencoParametri.add(id[0].trim());
 				elencoParametri.add(luogo.getText().trim());
@@ -876,7 +878,7 @@ modificaButton.addActionListener(new ActionListener() {
 		}
 		}
 		
-		final String id[] = ((String) attività.getSelectedItem()).split(",");
+		
 		
 modificaButton.addActionListener(new ActionListener() {
 			
@@ -884,6 +886,7 @@ modificaButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				ArrayList<String> elencoParametri = new ArrayList <String>();
+				final String id[] = attività.getSelectedItem().toString().split(",");
 				elencoParametri.add((matricola.getText()).trim());
 				elencoParametri.add(id[0].trim());
 				ModificaCampiListener modificaCampi = new ModificaCampiListener(elencoParametri, "Insegna");
@@ -971,9 +974,10 @@ modificaButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				ArrayList<String> elencoParametri = new ArrayList <String>();
+				String opz = opzionale.getSelectedItem().toString();
 				elencoParametri.add(idCorso.getText().trim());
 				elencoParametri.add(idAttività.getText().trim());
-				elencoParametri.add(((String) opzionale.getSelectedItem()).trim());
+				elencoParametri.add(opz.trim());
 				ModificaCampiListener modificaCampi = new ModificaCampiListener(elencoParametri, "Piano di studio");
 				modificaCampi.modificaCampi();
 			}
@@ -1229,7 +1233,6 @@ modificaButton.addActionListener(new ActionListener() {
 		getContentPane().add(anno);
 		getContentPane().add(id);
 		
-		final String idCorso[] = ((String) id.getSelectedItem()).split(",");
 		
 modificaButton.addActionListener(new ActionListener() {
 			
@@ -1237,6 +1240,7 @@ modificaButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				ArrayList<String> elencoParametri = new ArrayList <String>();
+				final String idCorso[] = id.getSelectedItem().toString().split(",");
 				elencoParametri.add(matricola.getText().trim());
 				elencoParametri.add(nome.getText().trim());
 				elencoParametri.add(cognome.getText().trim());
@@ -1313,7 +1317,7 @@ modificaButton.addActionListener(new ActionListener() {
 		getContentPane().add(descrizione);
 		getContentPane().add(email);
 		
-		final String idAtt[] = ((String) attività.getSelectedItem()).split(",");
+		
 		
 modificaButton.addActionListener(new ActionListener() {
 			
@@ -1321,6 +1325,7 @@ modificaButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				ArrayList<String> elencoParametri = new ArrayList <String>();
+				final String idAtt[] = attività.getSelectedItem().toString().split(",");
 				elencoParametri.add(id.getText().trim());
 				elencoParametri.add(idAtt[0].trim());
 				elencoParametri.add(nome.getText().trim());

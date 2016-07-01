@@ -3,6 +3,7 @@
  */
 package controller_listener;
 
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -86,6 +87,7 @@ public class CaricaOrarioDaFile extends JPanel implements ActionListener{
 				model.setTabella(new Vector<Vector<String>>());
 				model.fromOrarioUfficialeToTable();
 				viewOrario.visualizzaOrario();
+				viewOrario.getLabelNumSovr().setText("L'orario contiene "+0+ " ore di sovrapposizione");
 				model.enableCaricaButton(true);
 
 			} catch (FileNotFoundException e1) {

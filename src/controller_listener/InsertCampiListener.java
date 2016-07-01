@@ -20,8 +20,8 @@ public class InsertCampiListener{
 
 	public void inserisciCampi() {
 		// TODO Auto-generated method stub
+		
 				
-		int daCancellare = 1;
 		
 		if (tabella.equals("Attività"))
 			inserisciAttivita();
@@ -68,7 +68,7 @@ public class InsertCampiListener{
 
 	private void inserisciTirocinio() {
 		try {
-			Connect.connectDb(Insert.INSERT_TIROCINIO+"?IDAttivita=" + (elencoParametri.get(0)).replaceAll(" ", "%20") + "&NomeAzienda=" + (elencoParametri.get(1)).replaceAll(" ", "%20") + "&DescrizioneAzienda=" + (elencoParametri.get(1)).replaceAll(" ", "%20") + "&EmailAzienda=" + (elencoParametri.get(1)).replaceAll(" ", "%20"));
+			Connect.connectDb(Insert.INSERT_TIROCINIO+"?IDAttivita=" + (elencoParametri.get(0)).replaceAll(" ", "%20") + "&NomeAzienda=" + (elencoParametri.get(1)).replaceAll(" ", "%20") + "&DescrizioneAzienda=" + (elencoParametri.get(2)).replaceAll(" ", "%20") + "&EmailAzienda=" + (elencoParametri.get(3)).replaceAll(" ", "%20"));
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -79,10 +79,9 @@ public class InsertCampiListener{
 	}
 
 	private void inserisciStudente() {
-		/*
+		String data = elencoParametri.get(6)+"-"+meseNumero(elencoParametri.get(5))+"-"+elencoParametri.get(4);
 		try {
-			System.out.println();
-			//Connect.connectDb(Insert.INSERT_STUDENTE+"?Matricola=" + (elencoParametri.get(0)).replaceAll(" ", "%20") + "&Nome=" + (elencoParametri.get(1)).replaceAll(" ", "%20") + "&Cognome=" + (elencoParametri.get(2)).replaceAll(" ", "%20") + "&Email=" + (elencoParametri.get(3)).replaceAll(" ", "%20") + "&DataNascita=" + (elencoParametri.get(4)).replaceAll(" ", "%20") + "&Associato=" + (elencoParametri.get(5)).replaceAll(" ", "%20"));
+			Connect.connectDb(Insert.INSERT_STUDENTE+"?Matricola=" + (elencoParametri.get(0).replaceAll(" ", "%20")) + "&Nome=" + (elencoParametri.get(1).replaceAll(" ", "%20")) + "&Cognome=" + (elencoParametri.get(2).replaceAll(" ", "%20")) + "&Email=" + (elencoParametri.get(3).replaceAll(" ", "%20")) + "&DataNascita=" + (data.replaceAll(" ", "%20")) + "&AnnoIscrizione=" + (elencoParametri.get(7).replaceAll(" ", "%20"))+ "&IDCorsoDiStudi="+ (elencoParametri.get(8).replaceAll(" ", "%20")));
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -90,7 +89,7 @@ public class InsertCampiListener{
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}	
-		*/		
+				
 	}
 
 	private void inserisciPreferenzaFasciaOraria() {
@@ -118,7 +117,6 @@ public class InsertCampiListener{
 	}
 
 	private void inserisciPianoDiStudio() {
-
 		try {
 			Connect.connectDb(Insert.INSERT_PIANODISTUDIO+"?IDCorsoDiStudi=" + (elencoParametri.get(0)).replaceAll(" ", "%20") + "&IDAttivita=" + (elencoParametri.get(1)).replaceAll(" ", "%20") + "&Opzionale=" + (elencoParametri.get(2)).replaceAll(" ", "%20"));
 		} catch (IOException e1) {
@@ -239,11 +237,8 @@ public class InsertCampiListener{
 	private void inserisciAttivita() {
 
 		
-		elencoParametri.set(5, "02");
-		elencoParametri.set(8, "03");
-		
-		String url =  elencoParametri.get(6)+"-"+elencoParametri.get(5)+"-"+elencoParametri.get(4);
-		String url2 = elencoParametri.get(9)+"-"+elencoParametri.get(8)+"-"+elencoParametri.get(7);
+		String url =  elencoParametri.get(6)+"-"+meseNumero(elencoParametri.get(5))+"-"+elencoParametri.get(4);
+		String url2 = elencoParametri.get(9)+"-"+meseNumero(elencoParametri.get(8))+"-"+elencoParametri.get(7);
 		try {
 			Connect.connectDb(Insert.INSERT_ATTIVITA+"?nome=" + (elencoParametri.get(0)).replaceAll(" ", "%20") + "&descrizione=" + (elencoParametri.get(1)).replaceAll(" ", "%20") + "&ore=" + elencoParametri.get(2) + "&semestre=" + elencoParametri.get(3) + "&DataInizio=" + url + "&DataFine=" + url2);
 		} catch (IOException e1) {
@@ -254,6 +249,46 @@ public class InsertCampiListener{
 			e1.printStackTrace();
 		}
 		
+	}
+	
+	private String meseNumero (String mese) {
+		if (mese.equals("Gennaio"))
+			return "01";
+		
+		if (mese.equals("Febbraio"))
+			return "02";
+		
+		if (mese.equals("Marzo"))
+			return "03";
+		
+		if (mese.equals("Aprile"))
+			return "04";
+		
+		if (mese.equals("Maggio"))
+			return "05";
+		
+		if (mese.equals("Giugno"))
+			return "06";
+		
+		if (mese.equals("Luglio"))
+			return "07";
+		
+		if (mese.equals("Agosto"))
+			return "08";
+		
+		if (mese.equals("Settembre"))
+			return "09";
+		
+		if (mese.equals("Ottobre"))
+			return "10";
+		
+		if (mese.equals("Novembre"))
+			return "11";
+		
+		if (mese.equals("Dicembre"))
+			return "12";
+		
+		return "00";
 	}
 
 }

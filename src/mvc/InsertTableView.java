@@ -5,7 +5,6 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
-import java.util.spi.TimeZoneNameProvider;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -15,7 +14,6 @@ import javax.swing.JTextField;
 
 import connect_to_database.Connect;
 import controller_listener.InsertCampiListener;
-import controller_listener.ModificaCampiListener;
 import url_php.GiveAll;
 
 @SuppressWarnings("deprecation")
@@ -202,16 +200,23 @@ public class InsertTableView extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				ArrayList<String> elencoParametri = new ArrayList <String>();
+				String sem = semestre.getSelectedItem().toString();
+				String gioIn = giornoInizio.getSelectedItem().toString();
+				String mesIn = meseInizio.getSelectedItem().toString();
+				String anIn = annoInizio.getSelectedItem().toString();
+				String gioFi = giornoFine.getSelectedItem().toString();
+				String mesFi = meseFine.getSelectedItem().toString();
+				String anFi = annoFine.getSelectedItem().toString();
 				elencoParametri.add(nome.getText().trim());
 				elencoParametri.add(descrizione.getText().trim());
 				elencoParametri.add(ore.getText().trim());
-				elencoParametri.add(((String) semestre.getSelectedItem()).trim());
-				elencoParametri.add(giornoInizio.getSelectedItem().toString().trim());
-				elencoParametri.add(meseInizio.getSelectedItem().toString().trim());
-				elencoParametri.add(annoInizio.getSelectedItem().toString().trim());
-				elencoParametri.add(giornoFine.getSelectedItem().toString().trim());
-				elencoParametri.add(meseFine.getSelectedItem().toString().trim());
-				elencoParametri.add(annoFine.getSelectedItem().toString().trim());
+				elencoParametri.add(sem.trim());
+				elencoParametri.add(gioIn.trim());
+				elencoParametri.add(mesIn.trim());
+				elencoParametri.add(anIn.trim());
+				elencoParametri.add(gioFi.trim());
+				elencoParametri.add(mesFi.trim());
+				elencoParametri.add(anFi.trim());
 				InsertCampiListener inserisciCampi = new InsertCampiListener(elencoParametri, "Attività");
 				inserisciCampi.inserisciCampi();
 			}
@@ -359,7 +364,7 @@ public class InsertTableView extends JFrame {
 		labelIndirizzo.setBounds(69, 271, 117, 29);
 		final JComboBox indirizzo = new JComboBox();
 		indirizzo.setBounds(250, 271, 400, 29);
-		JLabel labelfacoltà = new JLabel("Facoltà");
+		JLabel labelfacoltà = new JLabel("Facolt�");
 		labelfacoltà.setBounds(69, 311, 117, 29);
 		final JTextField facoltà = new JTextField();
 		facoltà.setBounds(250, 311, 400, 29);
@@ -703,7 +708,7 @@ public class InsertTableView extends JFrame {
 	private void initInsegna() throws IOException, URISyntaxException{
 		JLabel labelMatricola = new JLabel("Matricola");
 		labelMatricola.setBounds(69, 71, 117, 29);
-		final JTextField matricola = new JTextField();
+		final JComboBox matricola = new JComboBox();
 		matricola.setBounds(250, 71, 400, 29);
 		JLabel labelID = new JLabel("ID Attività");
 		labelID.setBounds(69, 111, 117, 29);
@@ -712,6 +717,14 @@ public class InsertTableView extends JFrame {
 		attività.setEditable(true);
 		String attivitàConnect = Connect.connectDb(GiveAll.giveAllAttività);
 		String spAttività[] = attivitàConnect.split("_");
+		String docenteConnect = Connect.connectDb(GiveAll.giveAllDocente);
+		String spDocente[] = docenteConnect.split("_");
+
+		for (int j=0; j<spDocente.length;j++){
+			String y = spDocente[j];
+			String spDocenteColonne[] = y.split(",");
+			matricola.addItem(spDocenteColonne[0]+","+spDocenteColonne[1]+" "+spDocenteColonne[2]);
+		}
 		for (int i=0; i<spAttività.length; i++){
 			String y = spAttività[i];
 			String spAttivitàColonne[] = y.split(",");
@@ -719,6 +732,7 @@ public class InsertTableView extends JFrame {
 		}
 
 
+		matricola.setEditable(true);
 		getContentPane().add(labelMatricola);
 		getContentPane().add(labelID);
 		getContentPane().add(matricola);
@@ -732,8 +746,9 @@ public class InsertTableView extends JFrame {
 				ArrayList<String> elencoParametri = new ArrayList <String>();
 				
 				String[] idAtt = attività.getSelectedItem().toString().split(",");
+				String[] mat = matricola.getSelectedItem().toString().split(",");
 
-				elencoParametri.add(matricola.getText().trim());
+				elencoParametri.add(mat[0].trim());
 				elencoParametri.add(idAtt[0].trim());
 				InsertCampiListener inserisciCampi = new InsertCampiListener(elencoParametri, "Insegna");
 				inserisciCampi.inserisciCampi();
@@ -745,9 +760,8 @@ public class InsertTableView extends JFrame {
 	private void initPianoDiStudio() throws IOException, URISyntaxException{
 		JLabel labelIDCorso = new JLabel("ID Corso Di Studi");
 		labelIDCorso.setBounds(69, 71, 117, 29);
-		final JTextField idCorso = new JTextField();
+		final JComboBox idCorso = new JComboBox();
 		idCorso.setBounds(250, 71, 400, 29);
-		idCorso.enable(false);
 		JLabel labelIDAttività = new JLabel("ID Attività");
 		labelIDAttività.setBounds(69, 111, 117, 29);
 		final JComboBox idAttività = new JComboBox();
@@ -760,6 +774,8 @@ public class InsertTableView extends JFrame {
 		idAttività.setEditable(true);
 		String attivitàConnect = Connect.connectDb(GiveAll.giveAllAttività);
 		String spAttività[] = attivitàConnect.split("_");
+		String corsoConnect = Connect.connectDb(GiveAll.giveAllCorsoDiStudi);
+		String spCorso[] = corsoConnect.split("_");
 		for (int i=0; i<spAttività.length; i++){
 			String y = spAttività[i];
 			String spAttivitàColonne[] = y.split(",");
@@ -768,7 +784,13 @@ public class InsertTableView extends JFrame {
 
 		opzionale.addItem("0");
 		opzionale.addItem("1");
-
+		
+		idCorso.setEditable(true);
+		for (int j=0; j<spCorso.length;j++){
+			String x = spCorso[j];
+			String spCorsoColonne[]=x.split(",");
+			idCorso.addItem(spCorsoColonne[0]+" "+spCorsoColonne[1]);
+		}
 		getContentPane().add(labelIDCorso);
 		getContentPane().add(labelIDAttività);
 		getContentPane().add(labelOpzionale);
@@ -786,8 +808,9 @@ public class InsertTableView extends JFrame {
 				
 				String[] idAtt = idAttività.getSelectedItem().toString().split(",");
 				String opzionaleAct = (String) opzionale.getSelectedItem();
+				String[] idCo = idCorso.getSelectedItem().toString().split(",");
 
-				elencoParametri.add(idCorso.getText().trim());
+				elencoParametri.add(idCo[0].trim());
 				elencoParametri.add(idAtt[0].trim());
 				elencoParametri.add(opzionaleAct.trim());
 				InsertCampiListener inserisciCampi = new InsertCampiListener(elencoParametri, "Piano di studio");
@@ -796,31 +819,28 @@ public class InsertTableView extends JFrame {
 		});
 	}
 
-	private void initPreferenzaAula(){
+	private void initPreferenzaAula() throws IOException, URISyntaxException{
 		JLabel labelMatricola = new JLabel("Matricola");
 		labelMatricola.setBounds(69, 71, 117, 29);
-		JTextField matricola = new JTextField();
+		final JComboBox matricola = new JComboBox();
 		matricola.setBounds(250, 71, 400, 29);
 		JLabel labelEdificio = new JLabel("Edificio");
 		labelEdificio.setBounds(69, 111, 117, 29);
-		JComboBox edificio = new JComboBox();
+		final JTextField edificio = new JTextField();
 		edificio.setBounds(250, 111, 400, 29);
 		JLabel labelNumero = new JLabel ("Numero");
 		labelNumero.setBounds(69, 151, 117, 29);
-		JComboBox numero = new JComboBox();
+		final JTextField numero = new JTextField();
 		numero.setBounds(250, 151, 400, 29);
-
-		edificio.setEditable(true);
-		numero.setEditable(true);
-
-		for (int i=1; i<=27;i++){
-			numero.addItem(i);
+		matricola.setEditable(true);
+		String connectDocente = Connect.connectDb(GiveAll.giveAllDocente);
+		String spDocente[] = connectDocente.split("_");
+		for (int i=0; i<spDocente.length;i++){
+			String x = spDocente[i];
+			String spDocenteColonne[] = x.split(",");
+			matricola.addItem(spDocenteColonne[0]+","+spDocenteColonne[1]+" "+spDocenteColonne[2]);
 		}
-		numero.addItem("Magna");
-		edificio.addItem("A");
-		edificio.addItem("B");
-		edificio.addItem("C");
-		edificio.addItem("Ex Enel");
+	
 
 		getContentPane().add(labelMatricola);
 		getContentPane().add(labelEdificio);
@@ -828,20 +848,36 @@ public class InsertTableView extends JFrame {
 		getContentPane().add(matricola);
 		getContentPane().add(edificio);
 		getContentPane().add(numero);
+		
+		inserisciButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				ArrayList<String> elencoParametri = new ArrayList <String>();
+				String[] mat = matricola.getSelectedItem().toString().split(",");
+
+				elencoParametri.add(mat[0].trim());
+				elencoParametri.add(edificio.getText().trim());
+				elencoParametri.add(numero.getText().trim());
+				InsertCampiListener inserisciCampi = new InsertCampiListener(elencoParametri, "Preferenza aula");
+				inserisciCampi.inserisciCampi();
+			}
+		});
 	}
 
 	private void initPreferenzaFasciaOraria() throws IOException, URISyntaxException{
 		JLabel labelMatricola = new JLabel("Matricola");
 		labelMatricola.setBounds(69, 71, 117, 29);
-		JComboBox matricola = new JComboBox();
+		final JComboBox matricola = new JComboBox();
 		matricola.setBounds(250, 71, 400, 29);
 		JLabel labelID = new JLabel("ID Fascia Oraria");
 		labelID.setBounds(69, 111, 117, 29);
-		JComboBox id = new JComboBox();
+		final JComboBox id = new JComboBox();
 		id.setBounds(250, 111, 400, 29);
 		JLabel labelpriorità = new JLabel ("Priorit�");
 		labelpriorità.setBounds(69, 151, 117, 29);
-		JComboBox priorità = new JComboBox();
+		final JComboBox priorità = new JComboBox();
 		priorità.setBounds(250, 151, 400, 29);
 
 		String fasciaConnect = Connect.connectDb(GiveAll.giveAllFasciaOraria);
@@ -874,40 +910,58 @@ public class InsertTableView extends JFrame {
 		getContentPane().add(matricola);
 		getContentPane().add(id);
 		getContentPane().add(priorità);
+		
+		inserisciButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				ArrayList<String> elencoParametri = new ArrayList <String>();
+				String[] mat = matricola.getSelectedItem().toString().split(",");
+				String[] idFO = id.getSelectedItem().toString().split(",");
+				String pri = priorità.getSelectedItem().toString();
+
+				elencoParametri.add(mat[0].trim());
+				elencoParametri.add(idFO[0].trim());
+				elencoParametri.add(pri.trim());
+				InsertCampiListener inserisciCampi = new InsertCampiListener(elencoParametri, "Preferenza fascia oraria");
+				inserisciCampi.inserisciCampi();
+			}
+		});
 	}
 
 	private void initStudente() throws IOException, URISyntaxException{
 		JLabel labelMatricola = new JLabel("Matricola");
 		labelMatricola.setBounds(69, 71, 117, 29);
-		JTextField matricola = new JTextField();
+		final JTextField matricola = new JTextField();
 		matricola.setBounds(250, 71, 400, 29);
 		JLabel labelNome = new JLabel("Nome");
 		labelNome.setBounds(69, 111, 117, 29);
-		JTextField nome = new JTextField();
+		final JTextField nome = new JTextField();
 		nome.setBounds(250, 111, 400, 29);
 		JLabel labelCognome = new JLabel ("Cognome");
 		labelCognome.setBounds(69, 151, 117, 29);
-		JTextField cognome = new JTextField();
+		final JTextField cognome = new JTextField();
 		cognome.setBounds(250, 151, 400, 29);
 		JLabel labelEmail = new JLabel("Email");
 		labelEmail.setBounds(69, 191, 117, 29);
-		JTextField email = new JTextField();
+		final JTextField email = new JTextField();
 		email.setBounds(250, 191, 400, 29);
 		JLabel labelDataNascita = new JLabel("Data Nascita");
 		labelDataNascita.setBounds(69, 231, 117, 29);
-		JComboBox giornoNascita = new JComboBox();
+		final JComboBox giornoNascita = new JComboBox();
 		giornoNascita.setBounds(250, 231, 100, 29);
-		JComboBox meseNascita = new JComboBox();
+		final JComboBox meseNascita = new JComboBox();
 		meseNascita.setBounds(400, 231, 100, 29);
-		JComboBox annoNascita = new JComboBox();
+		final JComboBox annoNascita = new JComboBox();
 		annoNascita.setBounds(550, 231, 100, 29);
 		JLabel labelAnnoIscrizione = new JLabel("Anno Iscrizione");
 		labelAnnoIscrizione.setBounds(69, 271, 117, 29);
-		JComboBox anno = new JComboBox();
+		final JComboBox anno = new JComboBox();
 		anno.setBounds(250, 271, 400, 29);
 		JLabel labelID = new JLabel("ID Corso Di Studi");
 		labelID.setBounds(69, 311, 117, 29);
-		JComboBox id = new JComboBox();
+		final JComboBox id = new JComboBox();
 		id.setBounds(250, 311, 400, 29);
 		anno.setEditable(true);
 		id.setEditable(true);
@@ -964,29 +1018,55 @@ public class InsertTableView extends JFrame {
 		getContentPane().add(annoNascita);
 		getContentPane().add(anno);
 		getContentPane().add(id);
+		
+		inserisciButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				ArrayList<String> elencoParametri = new ArrayList <String>();
+				String anIs = anno.getSelectedItem().toString();
+				String gN = giornoNascita.getSelectedItem().toString();
+				String mN = meseNascita.getSelectedItem().toString();
+				String aN = annoNascita.getSelectedItem().toString();
+				String idCorso[] = id.getSelectedItem().toString().split(",");
+				
+				elencoParametri.add(matricola.getText().trim());
+				elencoParametri.add(nome.getText().trim());
+				elencoParametri.add(cognome.getText().trim());
+				elencoParametri.add(email.getText().trim());
+				elencoParametri.add(gN.trim());
+				elencoParametri.add(mN.trim());
+				elencoParametri.add(aN.trim());
+				elencoParametri.add(anIs.trim());
+				elencoParametri.add(idCorso[0].trim());
+				InsertCampiListener inserisciCampi = new InsertCampiListener(elencoParametri, "Studente");
+				inserisciCampi.inserisciCampi();
+			}
+		});
 	}
 
 	private void initTirocinio() throws IOException, URISyntaxException{
 		JLabel labelIDTirocinio = new JLabel("ID Tirocinio");
 		labelIDTirocinio.setBounds(69, 71, 117, 29);
-		JTextField id = new JTextField();
+		final JTextField id = new JTextField();
 		id.setBounds(250, 71, 400, 29);
 		id.enable(false);
 		JLabel labelIDAttività = new JLabel("ID Attività");
 		labelIDAttività.setBounds(69, 111, 117, 29);
-		JComboBox attività = new JComboBox();
+		final JComboBox attività = new JComboBox();
 		attività.setBounds(250, 111, 400, 29);
 		JLabel labelNomeAzienda = new JLabel ("Nome Azienda");
 		labelNomeAzienda.setBounds(69, 151, 117, 29);
-		JTextField nome = new JTextField();
+		final JTextField nome = new JTextField();
 		nome.setBounds(250, 151, 400, 29);
 		JLabel labelDescrizioneAzienda = new JLabel("Descrizione Azienda");
 		labelDescrizioneAzienda.setBounds(69, 191, 117, 29);
-		JTextField descrizione = new JTextField();
+		final JTextField descrizione = new JTextField();
 		descrizione.setBounds(250, 191, 400, 29);
 		JLabel labelEmailAzienda = new JLabel("Email Azienda");
 		labelEmailAzienda.setBounds(69, 231, 117, 29);
-		JTextField email = new JTextField();
+		final JTextField email = new JTextField();
 		email.setBounds(250, 231, 400, 29);
 		attività.setEditable(true);
 
@@ -1008,5 +1088,23 @@ public class InsertTableView extends JFrame {
 		getContentPane().add(nome);
 		getContentPane().add(descrizione);
 		getContentPane().add(email);
+		
+		inserisciButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				ArrayList<String> elencoParametri = new ArrayList <String>();
+				String idAtt[] = attività.getSelectedItem().toString().split(",");
+				
+				elencoParametri.add(idAtt[0].trim());
+				elencoParametri.add(nome.getText().trim());
+				elencoParametri.add(descrizione.getText().trim());
+				elencoParametri.add(email.getText().trim());
+				InsertCampiListener inserisciCampi = new InsertCampiListener(elencoParametri, "Tirocinio");
+				inserisciCampi.inserisciCampi();
+			}
+		});
+		
 	}
 }
